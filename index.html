@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KOAS KPI 네비게이션</title>
+<title>KOAS KPI 경영 대시보드</title>
 <style>
 /* ============================================================
    KOAS KPI 네비게이션 — 검증용 임시 데이터(숫자 비확정)
@@ -208,7 +208,7 @@ footer{font-size:11px; color:#9aa0a6; text-align:center; padding-top:18px}
 
   <!-- TOP BAR -->
   <div class="topbar">
-    <div class="brand"><b>KOAS KPI 네비게이션</b>
+    <div class="brand"><b>KOAS KPI 경영 대시보드</b>
       <span>전사 → 본부 → 위험 KPI → 특임·실행 과제 → 다음 행동</span></div>
     <div class="sp"></div>
     <span class="demo">검증용 임시 데이터 · 숫자 비확정</span>
@@ -451,7 +451,7 @@ function renderCorp(){
     <div class="kpi-card"><div class="lab">영업이익률 ${sigInline(mSig)}</div>
       <div class="val">${(margin*100).toFixed(1)}<small>%</small></div>
       <div class="meta">목표 ${(th.opMarginGreen*100).toFixed(1)}% · 전월 ${(marginPrev*100).toFixed(1)}%</div></div>
-    <div class="kpi-card"><div class="lab">현금 런웨이 ${sigInline(rSig)}</div>
+    <div class="kpi-card"><div class="lab">현금 런웨이(삭제 예정) ${sigInline(rSig)}</div>
       <div class="val">${runway.toFixed(1)}<small> 개월</small></div>
       <div class="cash-in">
         <label>현금잔액(M)<input type="number" id="cb" value="${e.cash.balance}"></label>
