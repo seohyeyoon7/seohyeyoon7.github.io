@@ -97,7 +97,18 @@ svg.ic{display:block}
 .cmp .rowc .bars .b{flex:1;border-radius:3px 3px 0 0;min-height:3px}
 
 /* compact demand + claim row */
-.row2{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;align-items:start}
+.row2{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;align-items:start}
+.col{min-width:0}
+.colhead{display:flex;align-items:center;gap:9px;margin:0 2px 10px}
+.colhead .bar{width:4px;height:17px;background:var(--brand);border-radius:2px}
+.colhead h2{font-size:15px}
+.colhead .s{font-size:11.5px;color:var(--muted);font-weight:400}
+/* 목표 */
+.goalbox{background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:11px;padding:13px 16px;font-size:13.5px;font-weight:600;color:var(--brand-ink)}
+.goalgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
+.goalitem{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:12.5px}
+.goalitem b{display:block;font-size:13px;margin-bottom:2px;color:var(--text)}
+.goalitem span{color:var(--muted)}
 .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 .panel .ph{padding:11px 14px;border-bottom:1px solid var(--border);font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:8px}
 .panel .ph .ico{color:var(--brand)}
@@ -343,29 +354,29 @@ const KPIS=[
 const PARAMS={agencyRevenue:30.0,shipmentCum:207.8,laborCum:10.76,revenueCum:261.11,fundScale:300,fundRate:0.05,perItem:0.02};
 
 /* 팀별 KPI (시트 [핵심]/[특임] + 성과금) — 실적 대부분 미입력(임의 빈칸) */
-/* 팀별: 시트 [핵심]/[특임] 항목만 (이름은 시트와 동일). 성과금은 본부 단위(DIVS.bonus) */
+/* 팀별: 시트 [핵심]/[특임] 항목만 (이름은 시트와 동일) + 부서 목표(시트). 성과금은 본부 단위(BONUS) */
 const TEAMS={
- sm1:[{team:"세일즈마케팅1본부",kpis:[
+ sm1:[{team:"세일즈마케팅1본부",goal:"대리점공급가 실행율 98% 달성",kpis:[
    {tag:"핵심",name:"대리점 공급가 실행율",disp:"목표 98%",real:false}]}],
- sm2:[{team:"세일즈마케팅2본부",kpis:[
+ sm2:[{team:"세일즈마케팅2본부",goal:"솔루션 세일즈 정착, 직영 성공율 20% 달성",kpis:[
    {tag:"핵심",name:"직영 성공율",disp:"목표 20%",real:false}]}],
  prod:[
-   {team:"생산팀",kpis:[{tag:"특임",name:"가공 생산능률",disp:"목표 74.7%"},{tag:"특임",name:"조립 생산능률",disp:"목표 103.5%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"생산관리팀",kpis:[{tag:"특임",name:"생산능률",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"공장관리팀",kpis:[{tag:"핵심",name:"폐기물 처리 비용률",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"},{tag:"핵심",name:"자원운영시스템 최적화",disp:"미입력"}]},
-   {team:"자재팀",kpis:[{tag:"핵심",name:"자재 창고회전율",disp:"목표 115%"},{tag:"핵심",name:"자재투입율",disp:"목표 100%"}]},
-   {team:"제상품팀",kpis:[{tag:"핵심",name:"제상품 회전율",disp:"목표 145%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"물류팀",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"},{tag:"핵심",name:"무결점 배송률",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"시공팀",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"},{tag:"핵심",name:"발주시스템 최적화",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]}],
+   {team:"생산팀",goal:"생산능률 달성(가공 74.7%/조립 103.5%), 공정 낭비 제거",kpis:[{tag:"특임",name:"가공 생산능률",disp:"목표 74.7%"},{tag:"특임",name:"조립 생산능률",disp:"목표 103.5%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
+   {team:"생산관리팀",goal:"생산 라인 최적 배치, 생산 쏠림 해소",kpis:[{tag:"특임",name:"생산능률",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
+   {team:"공장관리팀",goal:"전년 대비 폐기물 처리 비용률 30% 감축",kpis:[{tag:"핵심",name:"폐기물 처리 비용률",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"},{tag:"핵심",name:"자원운영시스템 최적화",disp:"미입력"}]},
+   {team:"자재팀",goal:"자재 창고회전율 115%, 자재투입율 100% 달성",kpis:[{tag:"핵심",name:"자재 창고회전율",disp:"목표 115%"},{tag:"핵심",name:"자재투입율",disp:"목표 100%"}]},
+   {team:"제상품팀",goal:"제상품 회전율 145%, 재고자산 효율화",kpis:[{tag:"핵심",name:"제상품 회전율",disp:"목표 145%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
+   {team:"물류팀",goal:"물류 직접운송비율 1.95%, 무결점 배송 체계 확립",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"},{tag:"핵심",name:"무결점 배송률",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
+   {team:"시공팀",goal:"물류 직접운송비율 1.95%, 무결점 배송 체계 확립",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"},{tag:"핵심",name:"발주시스템 최적화",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]}],
  ops:[
-   {team:"동반성장운영팀",kpis:[{tag:"핵심",name:"매입율",disp:"목표 40%"},{tag:"특임",name:"재료비 관리",disp:"실적 44.8% / 목표 40%",real:true},{tag:"핵심",name:"공급망 리스크 건수",disp:"목표 0건"}]},
-   {team:"정보데이터팀",kpis:[{tag:"핵심",name:"전산시스템 고도화",disp:"미입력"},{tag:"핵심",name:"BOM 데이터 표준화",disp:"미입력"},{tag:"핵심",name:"불량률",disp:"미입력"}]},
-   {team:"자금관리팀",kpis:[{tag:"핵심",name:"현금흐름 예측 정확도",disp:"목표 97%"},{tag:"핵심",name:"유동성 리스크 건수",disp:"목표 0건"}]}],
+   {team:"동반성장운영팀",goal:"매입율 40% 달성, 공급망 리스크 제로화",kpis:[{tag:"핵심",name:"매입율",disp:"목표 40%"},{tag:"특임",name:"재료비 관리",disp:"실적 44.8% / 목표 40%",real:true},{tag:"핵심",name:"공급망 리스크 건수",disp:"목표 0건"}]},
+   {team:"정보데이터팀",goal:"수익성 분석 체계 구축, 저효율 제품 정비",kpis:[{tag:"핵심",name:"전산시스템 고도화",disp:"미입력"},{tag:"핵심",name:"BOM 데이터 표준화",disp:"미입력"},{tag:"핵심",name:"불량률",disp:"미입력"}]},
+   {team:"자금관리팀",goal:"현금흐름 예측으로 유동성 리스크 ZERO화",kpis:[{tag:"핵심",name:"현금흐름 예측 정확도",disp:"목표 97%"},{tag:"핵심",name:"유동성 리스크 건수",disp:"목표 0건"}]}],
  rnd:[
-   {team:"제품개발팀",kpis:[{tag:"핵심",name:"신제품 출시 건수",disp:"목표 5건"},{tag:"핵심",name:"신소재 개발 건수",disp:"미입력"},{tag:"특임",name:"부품 표준화 달성률",disp:"목표 143종"},{tag:"핵심",name:"설계 부적합 건수",disp:"목표 0건"}]},
-   {team:"제품디자인팀",kpis:[{tag:"핵심",name:"신제품 디자인 건수",disp:"미입력"},{tag:"핵심",name:"신소재 개발 제안 건수",disp:"미입력"},{tag:"핵심",name:"매출 기여 신제품 비중",disp:"미입력"}]}],
+   {team:"제품개발팀",goal:"매출 기여형 신제품 3종 출시, 설계 부적합 ZERO 달성",kpis:[{tag:"핵심",name:"신제품 출시 건수",disp:"목표 5건"},{tag:"핵심",name:"신소재 개발 건수",disp:"미입력"},{tag:"특임",name:"부품 표준화 달성률",disp:"목표 143종"},{tag:"핵심",name:"설계 부적합 건수",disp:"목표 0건"}]},
+   {team:"제품디자인팀",goal:"디자인 우위 확보, 제품 경쟁력 실현",kpis:[{tag:"핵심",name:"신제품 디자인 건수",disp:"미입력"},{tag:"핵심",name:"신소재 개발 제안 건수",disp:"미입력"},{tag:"핵심",name:"매출 기여 신제품 비중",disp:"미입력"}]}],
  plan:[
-   {team:"인사·컴플라이언스팀",kpis:[{tag:"핵심",name:"컴플라이언스 통제 구축률",disp:"실적 80% / 목표 100%",real:true},{tag:"핵심",name:"인당 생산성",disp:"미입력"}]}]
+   {team:"인사·컴플라이언스팀",goal:"인당 생산성 기반 성과체계 정착, 컴플라이언스 체계 구축",kpis:[{tag:"핵심",name:"컴플라이언스 통제 구축률",disp:"실적 80% / 목표 100%",real:true},{tag:"핵심",name:"인당 생산성",disp:"미입력"}]}]
 };
 /* 성과금 재원 (본부 단위) — 세마1/2 = 시트 실제(0), 그 외 = 임의 */
 const BONUS={ sm1:{v:0,real:true}, sm2:{v:0,real:true}, prod:{v:0.5,real:false}, ops:{v:0.3,real:false}, rnd:{v:0.2,real:false}, plan:{v:0.2,real:false} };
@@ -456,18 +467,18 @@ function renderCorp(){
 
   /* 수요처 + 클레임 (compact, 같은 줄) */
   const dsum=DEMAND.rows.reduce((a,r)=>({cnt:a.cnt+r.cnt,cum:a.cum+r.cum}),{cnt:0,cum:0});
-  h+=`<div class="sec"><span class="bar"></span><h2>수요처 관리 · 클레임 현황</h2><span class="s">— 좌: 수요처 <span class="estbadge">임의값</span> / 우: 클레임 <span class="realbadge">실제 2~4월</span></span></div>
-  <div class="row2">
-    <div class="panel"><div class="ph"><span class="ico">${ic(ICON.demand,16)}</span>수요처 관리</div>
+  h+=`<div class="row2">
+    <div class="col"><div class="colhead"><span class="bar"></span><h2>수요처 관리</h2><span class="s">— 1억 이상 <span class="estbadge">임의값</span></span></div>
+    <div class="panel">
       <table class="dt"><thead><tr><th>수요처</th><th class="n">계약</th><th>월별 확정매출</th><th class="n">누적(억)</th></tr></thead><tbody>
       ${DEMAND.rows.map(r=>`<tr><td>${r.nm}</td><td class="n">${r.cnt}건</td><td><span class="minib">${r.mon.map(v=>`<i style="height:${Math.max(v/3.2*16,3)}px"></i>`).join("")}</span></td><td class="n">${r.cum.toFixed(1)}</td></tr>`).join("")}
-      <tr class="sum"><td>합계</td><td class="n">${dsum.cnt}건</td><td></td><td class="n">${dsum.cum.toFixed(1)}</td></tr></tbody></table></div>
-    <div class="panel"><div class="ph"><span class="ico">${ic(ICON.claim,16)}</span>클레임 현황</div>
-      <div class="claimwrap">${claimChart()}
+      <tr class="sum"><td>합계</td><td class="n">${dsum.cnt}건</td><td></td><td class="n">${dsum.cum.toFixed(1)}</td></tr></tbody></table></div></div>
+    <div class="col"><div class="colhead"><span class="bar"></span><h2>클레임 현황</h2><span class="s">— 실제 2~4월</span></div>
+    <div class="panel"><div class="claimwrap">${claimChart()}
         <div class="claim-legend"><span class="k"><span class="sw" style="background:var(--brand)"></span>클레임 건수</span><span class="k"><span class="sw" style="background:var(--danger)"></span>클레임 비용(억)</span></div></div>
       <div class="claim-tot"><div class="b"><div class="l">누적 건수</div><div class="v">${CLAIM.totalCount}건</div></div>
         <div class="b"><div class="l">누적 비용</div><div class="v">${CLAIM.totalCost.toFixed(2)}억</div></div>
-        <div class="b"><div class="l">비용율 목표</div><div class="v" style="font-size:14px">≤0.63% <span class="estbadge">출하금액 미입력</span></div></div></div></div>
+        <div class="b"><div class="l">비용율 목표</div><div class="v" style="font-size:14px">≤0.63% <span class="estbadge">출하금액 미입력</span></div></div></div></div></div>
   </div>`;
 
   /* 본부 KPI */
@@ -507,18 +518,17 @@ function claimChart(){
   const bw=Math.min(iw/m.length*0.46,30);
   let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;max-height:200px">`;
   for(let g=0;g<=2;g++){const y=pt+ih*g/2;svg+=`<line x1="${pl}" y1="${y.toFixed(1)}" x2="${W-pr}" y2="${y.toFixed(1)}" stroke="#eef0f2"/>`;}
-  // bars + 건수 라벨(막대 안쪽 흰색)
+  // bars + 건수 라벨(막대 위)
   m.forEach((mm,i)=>{const cx=pl+iw*(i+0.5)/m.length;
     if(cnt[i]!=null){const bh=cnt[i]/maxC*ih;const top=pt+ih-bh;
       svg+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="3" fill="#F78F1E"/>`;
-      const ly=bh>22?top+14:top-5, lc=bh>22?"#ffffff":"#9a5a07";
-      svg+=`<text x="${cx.toFixed(1)}" y="${ly.toFixed(1)}" font-size="10" font-weight="700" fill="${lc}" text-anchor="middle">${cnt[i]}</text>`;}
+      svg+=`<text x="${cx.toFixed(1)}" y="${(top-5).toFixed(1)}" font-size="10" font-weight="700" fill="#9a5a07" text-anchor="middle">${cnt[i]}</text>`;}
     svg+=`<text x="${cx.toFixed(1)}" y="${H-7}" font-size="10" fill="#6B7280" text-anchor="middle">${mm}</text>`;});
-  // 비용 선 + 라벨(점 위쪽, 차트 안쪽)
+  // 비용 선 + 라벨(꺾은선 아래)
   let pts=[],lbl="";
   m.forEach((mm,i)=>{if(cost[i]!=null){const cx=pl+iw*(i+0.5)/m.length;const cy=pt+ih-(cost[i]/maxK*ih);pts.push([cx,cy]);
-    const ly=Math.max(cy-9,pt+9);
-    lbl+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.5" fill="#D93025"/><text x="${cx.toFixed(1)}" y="${ly.toFixed(1)}" font-size="10" font-weight="700" fill="#D93025" text-anchor="middle">${cost[i].toFixed(2)}</text>`;}});
+    const ly=Math.min(cy+14,pt+ih+11);
+    lbl+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.5" fill="#D93025"/><text x="${cx.toFixed(1)}" y="${ly.toFixed(1)}" font-size="10" font-weight="700" fill="#D93025" text-anchor="middle" style="paint-order:stroke" stroke="#ffffff" stroke-width="3">${cost[i].toFixed(2)}</text>`;}});
   if(pts.length>1)svg+=`<polyline points="${pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ")}" fill="none" stroke="#D93025" stroke-width="2.2"/>`;
   return svg+lbl+`</svg>`;
 }
@@ -540,28 +550,31 @@ function renderDiv(){
   const headChips=tagged.slice(0,3).map(k=>`<span class="chip">${tagChip(k.tag)}${k.name}</span>`).join("")||'<span class="tiny muted">없음</span>';
   const others=DIVS.map(x=>`<option value="${x.id}" ${x.id===curDiv?'selected':''}>${x.name}</option>`).join("");
 
+  const teams=TEAMS[curDiv]||[];
+  const single=(curDiv==="sm1"||curDiv==="sm2");
+  const goalBlock = single
+    ? `<div class="goalbox">${teams[0].goal}</div>`
+    : `<div class="goalgrid">${teams.map(t=>`<div class="goalitem"><b>${t.team}</b><span>${t.goal}</span></div>`).join("")}</div>`;
+  const taskHead = single ? "특임 · 핵심 과제" : "팀별 특임 · 핵심 과제";
+  const taskCards = `<div class="teamgrid">${teams.map(t=>`<div class="team">
+    ${single?'':`<div class="th"><span class="nm">${t.team}</span></div>`}
+    ${t.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span>${k.real?'<span class="realbadge">실제</span>':''}</div>`).join("")}
+  </div>`).join("")}</div>`;
+  const b=BONUS[curDiv];
+  const bonusBlock = `<div class="bonus"><span class="tagb bon">성과금</span><b>성과금 재원</b> · ${b.v.toFixed(1)}억 ${b.real?'<span class="realbadge">실제</span>':'<span class="estbadge">임의값</span>'} <span class="tiny muted">— MAX(0,(공헌이익누계−목표)×50%)</span></div>`;
+
   let h=`<div class="ddtop"><div class="crumb"><a id="back1">전사 KPI 요약</a><span class="sepc">›</span><b>${d.name}</b></div>
     <div class="sp"></div><span class="tiny muted">다른 본부로 이동</span><select class="ddsel" id="divSel">${others}</select></div>
   <div class="ddhead"><div class="blk"><div class="l">본부 상태</div><div class="v">${sigPill(st.worst)}</div></div>
     <div class="blk"><div class="l">${nl.lab} (누계)</div><div class="v ${nl.cls}">${fmtA(st.net,1)}</div></div>
     <div class="rk"><div class="l">핵심 · 특임 KPI</div>${headChips}</div></div>
 
-  <div class="sec"><span class="bar"></span><h2>특임 · 실행 과제</h2><span class="s">— 문제 → 원인 → 액션 → 담당 → 다음 행동</span></div>
-  <div class="tasks">${(TASKS[curDiv]||[]).map(t=>`
-    <div class="task"><div class="ttl">${tagBadge(t.tag)}${t.ttl}</div>
-      <div class="flow">
-        <div class="step"><span class="tag">원인</span><span class="txt">${t.cause}</span></div><span class="arrow">↓</span>
-        <div class="step"><span class="tag">액션</span><span class="txt act">${t.action}</span></div><span class="arrow">↓</span>
-        <div class="step"><span class="tag">담당</span><span class="txt"><span class="owner">${t.owner}</span></span></div><span class="arrow">↓</span>
-        <div class="step"><span class="tag">다음</span><span class="txt">${t.next}</span></div>
-      </div></div>`).join("")||'<div class="tiny muted">등록된 과제 없음</div>'}</div>
+  <div class="sec"><span class="bar"></span><h2>목표</h2><span class="s">— 부서가 달성해야 할 목표(시트 기준)</span></div>
+  ${goalBlock}
 
-  <div class="sec"><span class="bar"></span><h2>팀별 KPI</h2><span class="s">— 세부 팀 · 핵심/특임 + 본부 성과금</span></div>
-  <div class="teamgrid">${(TEAMS[curDiv]||[]).map(t=>`<div class="team">
-    <div class="th"><span class="nm">${t.team}</span></div>
-    ${t.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span>${k.real?'<span class="realbadge">실제</span>':''}</div>`).join("")}
-  </div>`).join("")}</div>
-  ${(()=>{const b=BONUS[curDiv];return `<div class="bonus"><span class="tagb bon">성과금</span><b>성과금 재원</b> · ${b.v.toFixed(1)}억 ${b.real?'<span class="realbadge">실제</span>':'<span class="estbadge">임의값</span>'} <span class="tiny muted">— MAX(0,(공헌이익누계−목표)×50%)</span></div>`;})()}
+  <div class="sec"><span class="bar"></span><h2>${taskHead}</h2><span class="s">— 우리가 도전할 과제들이에요!</span></div>
+  ${taskCards}
+  ${bonusBlock}
 
   <div class="sec"><span class="bar"></span><h2>관련 KPI</h2><span class="s">— 단위가 같은 KPI만 비교</span></div>
   <div class="grp" id="grpBar"></div><div id="kpiList"></div>
