@@ -123,7 +123,7 @@ svg.ic{display:block}
 .kc{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(16,39,31,.04)}
 /* 단일 KPI 카드 */
 .kpi-one{overflow:hidden;border-left:5px solid var(--emerald)}
-.kc-top{padding:20px 22px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.kc-top{padding:20px 22px;display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
 .kc-top .lead{flex:1;min-width:230px}
 .kc-top .lead .lab{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--body);font-weight:600}
 .kc-top .lead .lab .ico{width:30px;height:30px;border-radius:9px;background:var(--emerald-soft);color:var(--emerald);display:flex;align-items:center;justify-content:center}
@@ -147,15 +147,10 @@ svg.ic{display:block}
 .kc-kid .extra b{font-weight:800}
 .dn{color:var(--risk-ink);font-weight:700} .up{color:var(--ok-ink);font-weight:700}
 
-/* AI 코멘트 */
-.aicom{margin-top:14px;background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:12px;padding:15px 17px}
-.aicom .h{font-size:11px;font-weight:800;color:var(--emerald-press);letter-spacing:.3px;display:flex;align-items:center;gap:7px;margin-bottom:9px}
-.aicom .h .ai{background:var(--emerald);color:#fff;border-radius:6px;padding:2px 8px;font-size:10.5px;letter-spacing:0}
-.aicom .h .aitag{background:var(--white);color:var(--emerald-press);border:1px solid var(--border-soft);border-radius:999px;padding:1px 9px;font-size:10px;font-weight:700;letter-spacing:0}
-.aicom p{margin:5px 0;font-size:13.5px;line-height:1.65;color:var(--text2)}
-.aicom p.insight{margin-top:11px;padding-top:11px;border-top:1px dashed var(--border-soft);font-weight:600;color:var(--text)}
-.aicom .arrow{color:var(--emerald-press);font-weight:700}
-.aicom .aifoot{margin-top:11px;font-size:10.5px;color:var(--cap);font-style:italic}
+/* 카드 내 AI 코멘트 */
+.cardai{margin-top:11px;display:flex;align-items:flex-start;gap:8px;font-size:12.5px;line-height:1.5;color:var(--text2);background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:9px;padding:9px 11px}
+.cardai .ai{flex:none;background:var(--emerald);color:#fff;border-radius:6px;padding:2px 8px;font-size:10.5px;font-weight:800;white-space:nowrap}
+.cardai .tx{padding-top:1px}
 
 /* 경쟁사 벤치마킹 */
 .bench{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
@@ -177,11 +172,13 @@ svg.ic{display:block}
 /* 성과 공유 여력 */
 .share{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
 .share .sh{font-size:13px;color:var(--body);margin-bottom:16px;line-height:1.6}
-.gaugebar{display:flex;height:46px;border-radius:11px;overflow:hidden;position:relative;margin:8px 0 6px}
+.gaugebar{display:flex;height:46px;border-radius:11px;position:relative;margin:42px 0 6px}
 .gaugebar .seg{flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;text-align:center;padding:0 4px}
-.gaugebar .pointer{position:absolute;top:-9px;transform:translateX(-50%);transition:left .4s}
-.gaugebar .pointer .pin{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:11px solid var(--text);margin:0 auto}
-.gaugebar .pointer .bdg{position:absolute;top:-26px;left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:10.5px;font-weight:800;border-radius:6px;padding:3px 9px;white-space:nowrap}
+.gaugebar .seg:first-child{border-radius:11px 0 0 11px} .gaugebar .seg:last-child{border-radius:0 11px 11px 0}
+.gaugebar .pointer{position:absolute;top:-7px;bottom:-7px;transform:translateX(-50%);transition:left .4s;z-index:3;display:flex;align-items:center}
+.gaugebar .pointer .pin{width:4px;height:100%;background:var(--text);border-radius:3px;box-shadow:0 0 0 2px #fff}
+.gaugebar .pointer .bdg{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:11.5px;font-weight:800;border-radius:7px;padding:4px 11px;white-space:nowrap}
+.gaugebar .pointer .bdg::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--text)}
 .share-state{background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:11px;padding:13px 16px;margin-top:22px;font-size:13px;color:var(--text2);line-height:1.6}
 .share-state b{font-weight:800}
 .share-note{margin-top:12px;font-size:10.5px;color:var(--cap);line-height:1.6;border-top:1px dashed var(--border);padding-top:10px}
@@ -663,13 +660,14 @@ function renderCorp(){
   const monthSig = E.revAchMonth>=1?"초과":(E.revAchMonth>=0.95?"근접":"미달");
   const monthDelta = (E.revAchMonth-1)*100;
 
-  /* --- KPI 위계 카드 (단일 카드) --- */
+  /* --- KPI 위계 카드 (단일 카드 · 카드별 AI 코멘트) --- */
   let h=`<div class="sec"><span class="bar"></span><h2>전사 KPI</h2></div>
   <div class="kc kpi-one">
     <div class="kc-top">
       <div class="lead">
         <div class="lab"><span class="ico">${ic(ICON.profit,17)}</span> 지금까지 남긴 이익 <span class="realbadge">실제</span></div>
         <div class="big">${fmtA(E.profitCum,2)}</div>
+        ${cardAI('prof',profSig)}
       </div>
       <div class="stat">
         <div class="b"><div class="l">누계 목표 <span class="estbadge">임의</span></div><div class="v">${fmtA(E.profitCumTarget,2)}</div></div>
@@ -689,23 +687,22 @@ function renderCorp(){
             <div class="b"><div class="l">시그널</div><div class="v">${sigInline(revSigCum)}</div></div>
           </div>
           <div class="extra">이번 달(${META.baseMonth}월) 매출 · 목표 대비 <b class="${monthDelta>=0?'up':'dn'}">${monthDelta>=0?'+':'−'}${Math.abs(monthDelta).toFixed(1)}%</b></div>
+          ${cardAI('rev',revSigCum)}
         </div>
         <div class="kc-kid">
           <div class="lab"><span class="ico">${ic(ICON.pct,15)}</span> 누계 영업이익률 <span class="realbadge">실제</span></div>
           <div class="val">${(E.opMarginCum*100).toFixed(1)}<small>%</small></div>
           <div class="grid">
             <div class="b"><div class="l">누계 목표</div><div class="v">${(E.opMarginCumTarget*100).toFixed(1)}%</div></div>
-            <div class="b"><div class="l">목표 대비 Gap</div><div class="v dn">${gapPp>=0?'+':'−'}${Math.abs(gapPp).toFixed(1)}%p</div></div>
+            <div class="b"><div class="l">목표 대비</div><div class="v dn">${gapPp>=0?'+':'−'}${Math.abs(gapPp).toFixed(1)}%p</div></div>
             <div class="b"><div class="l">시그널</div><div class="v">${sigInline(mSig)}</div></div>
           </div>
           <div class="extra">당월 영업이익률 <b class="dn">${(E.opMarginMonth*100).toFixed(1)}%</b> · 흑자전환선 ${(E.opMarginCumTarget*100).toFixed(1)}%</div>
+          ${cardAI('m',mSig)}
         </div>
       </div>
     </div>
   </div>`;
-
-  /* --- AI 코멘트 --- */
-  h+=aiComment(E,revSigCum,mSig,profSig);
 
   /* --- 경쟁사 벤치마킹 --- */
   h+=`<div class="sec"><span class="bar"></span><h2>경쟁사 벤치마킹</h2></div>
@@ -756,24 +753,14 @@ function renderCorp(){
   renderDivGroups();
 }
 
-/* AI 코멘트 (시그널 매칭형) */
-function aiComment(E,revSig,mSig,profSig){
-  const SIGTXT={
-    rev:{ok:"🟢 매출은 목표를 초과 달성하고 있습니다.",warn:"🟡 매출은 목표 수준에 근접해 있습니다.",risk:"🔴 매출이 목표에 미치지 못하고 있습니다."},
-    m:{ok:"🟢 영업이익률은 목표를 충족하고 있습니다.",warn:"🟡 영업이익률이 목표보다 다소 낮습니다.",risk:"🔴 영업이익률이 목표를 크게 밑돌고 있습니다."},
-    prof:{ok:"🟢 누적 이익이 목표를 넘어서고 있습니다.",warn:"🟡 이익은 내고 있으나 목표에는 도달하지 못했습니다.",risk:"🔴 누적 이익이 적자 상태입니다."}
+/* 카드별 AI 코멘트 (지표 시그널 매칭) */
+function cardAI(type,sig){
+  const M={
+    prof:{ok:"목표를 넘겨 이익을 잘 쌓고 있습니다.",warn:"이익은 내고 있으나 누계 목표에는 아직 못 미칩니다.",risk:"누적 이익이 적자 상태로, 손실 축소가 가장 시급합니다."},
+    rev:{ok:"목표를 초과해 매출이 앞서가고 있습니다.",warn:"매출이 목표 수준에 근접해 있습니다.",risk:"매출이 목표에 미치지 못하고 있습니다."},
+    m:{ok:"목표 이익률을 충족하고 있습니다.",warn:"이익률이 목표보다 다소 낮아, 원가·비용 점검이 필요합니다.",risk:"이익률이 목표를 크게 밑돌아 수익 구조 개선이 필요합니다."}
   };
-  const lines=[ SIGTXT.prof[profSig], SIGTXT.rev[revSig], SIGTXT.m[mSig] ];
-  /* 두 시그널 조합 → 한 줄 시사점 */
-  let insight;
-  if(revSig!=="risk" && mSig==="risk") insight="많이 팔고는 있지만 충분히 남기지 못하고 있습니다. 할인·외주·재료비가 이익을 깎고 있지 않은지 점검이 필요합니다.";
-  else if(revSig==="risk" && mSig!=="risk") insight="남기는 구조는 갖췄으나 판매 규모가 부족합니다. 신규 고객 확보와 직접 영업 비중 확대가 필요합니다.";
-  else if(revSig!=="risk" && mSig!=="risk") insight="판매와 수익성이 모두 안정적입니다. 현재 흐름을 유지하며 고부가 제품 비중을 키우면 좋습니다.";
-  else insight="판매와 수익성이 동시에 약합니다. 수익 구조 개선이 가장 시급한 과제입니다.";
-  return `<div class="aicom"><div class="h"><span class="ai">✨ AI</span> 경영 코멘트 <span class="aitag">시그널 자동 해석</span></div>
-    ${lines.map(t=>`<p>${t}</p>`).join("")}
-    <p class="insight"><span class="arrow">➡️</span> ${insight}</p>
-    <div class="aifoot">위 코멘트는 각 KPI의 시그널(정상·주의·위험)을 기준으로 자동 생성되었습니다.</div></div>`;
+  return `<div class="cardai"><span class="ai">✨ AI</span><span class="tx">${(M[type]||{})[sig]||""}</span></div>`;
 }
 
 /* 경쟁사 벤치마킹 블록 */
