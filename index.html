@@ -118,39 +118,44 @@ svg.ic{display:block}
 .tagb.core{color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)}
 .tagb.spec{color:var(--warn-ink);background:var(--warn-soft);border:1px solid rgba(232,163,23,.3)}
 
-/* ===== KPI 위계 카드 ===== */
-.kpi-hier{display:flex;flex-direction:column;gap:14px}
+/* ===== 단일 KPI 카드 (계층형) ===== */
 .kc{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(16,39,31,.04)}
-/* 단일 KPI 카드 */
 .kpi-one{overflow:hidden;border-left:5px solid var(--emerald)}
-.kc-top{padding:20px 22px;display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
-.kc-top .lead{flex:1;min-width:230px}
-.kc-top .lead .lab{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--body);font-weight:600}
-.kc-top .lead .lab .ico{width:30px;height:30px;border-radius:9px;background:var(--emerald-soft);color:var(--emerald);display:flex;align-items:center;justify-content:center}
-.kc-top .lead .big{font-size:40px;font-weight:800;letter-spacing:-1px;margin-top:6px;color:var(--text)}
-.kc-top .lead .big small{font-size:17px;font-weight:700;color:var(--cap)}
-.kc-top .stat{display:flex;gap:24px;flex-wrap:wrap}
-.kc-top .stat .b .l{font-size:11px;color:var(--cap)} .kc-top .stat .b .v{font-size:18px;font-weight:800;margin-top:3px;color:var(--text2)}
-/* 자식 영역 (같은 카드 내부) */
-.kc-subwrap{border-top:1px solid var(--border);background:var(--surf2);padding:14px 22px 18px}
-.subhead{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--body);font-weight:600;margin-bottom:12px}
-.subhead .elbow{display:inline-block;width:16px;height:10px;border-left:2px solid var(--navy3);border-bottom:2px solid var(--navy3);border-bottom-left-radius:5px;margin-left:4px}
-.kc-kids{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.kc-kid{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--navy);border-radius:10px;padding:16px 18px;position:relative}
-.kc-kid .lab{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--body);font-weight:600}
-.kc-kid .lab .ico{width:26px;height:26px;border-radius:7px;background:var(--navy5);color:var(--navy);display:flex;align-items:center;justify-content:center}
-.kc-kid .val{font-size:28px;font-weight:800;letter-spacing:-.6px;margin:8px 0 2px;color:var(--text)}
-.kc-kid .val small{font-size:14px;font-weight:700;color:var(--cap)}
-.kc-kid .grid{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
-.kc-kid .grid .b .l{font-size:10.5px;color:var(--cap)} .kc-kid .grid .b .v{font-size:14px;font-weight:800;margin-top:2px;color:var(--text2)}
-.kc-kid .extra{margin-top:11px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--body)}
-.kc-kid .extra b{font-weight:800}
+/* 상위 지표 (지금까지 남긴 이익) */
+.kc-main{padding:20px 22px 18px}
+.kc-main .lab{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--body);font-weight:600}
+.kc-main .lab .ico{width:30px;height:30px;border-radius:9px;background:var(--emerald-soft);color:var(--emerald);display:flex;align-items:center;justify-content:center}
+.kc-main-row{display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap;margin-top:6px}
+.kc-main-row .big{font-size:42px;font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1}
+.kc-main-row .big small{font-size:17px;font-weight:700;color:var(--cap)}
+.kc-main-stat{display:flex;gap:26px;flex-wrap:wrap;padding-bottom:3px}
+.kc-main-stat .b .l{font-size:11px;color:var(--cap)} .kc-main-stat .b .v{font-size:18px;font-weight:800;margin-top:3px;color:var(--text2)}
+/* 보조 KPI (원인 분석 영역 — 독립 카드 아님) */
+.kc-sub{background:var(--surf2);border-top:1px solid var(--border);padding:13px 22px 16px}
+.kc-sub-cap{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--cap);font-weight:600;margin-bottom:11px}
+.kc-sub-cap .elbow{display:inline-block;width:15px;height:9px;border-left:2px solid var(--navy3);border-bottom:2px solid var(--navy3);border-bottom-left-radius:5px;margin-left:2px}
+.kc-sub-grid{display:grid;grid-template-columns:1fr 1fr}
+.subkpi{padding:2px 20px}
+.subkpi:first-child{padding-left:6px}
+.subkpi.div{border-left:1px solid var(--border)}
+.subkpi .t{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--body);font-weight:600}
+.subkpi .t svg{color:var(--navy)}
+.subkpi .v{font-size:24px;font-weight:800;letter-spacing:-.5px;margin:5px 0 7px;color:var(--text)}
+.subkpi .v small{font-size:13px;font-weight:700;color:var(--cap)}
+.subkpi .meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px;color:var(--cap);align-items:center}
+.subkpi .meta b{color:var(--text2);font-weight:800}
+.subkpi .sx{margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);font-size:11.5px;color:var(--body)}
+.subkpi .sx b{font-weight:800}
 .dn{color:var(--risk-ink);font-weight:700} .up{color:var(--ok-ink);font-weight:700}
-
-/* 카드 내 AI 코멘트 */
-.cardai{margin-top:11px;display:flex;align-items:flex-start;gap:8px;font-size:12.5px;line-height:1.5;color:var(--text2);background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:9px;padding:9px 11px}
-.cardai .ai{flex:none;background:var(--emerald);color:#fff;border-radius:6px;padding:2px 8px;font-size:10.5px;font-weight:800;white-space:nowrap}
-.cardai .tx{padding-top:1px}
+/* 카드 하단 AI 인사이트 */
+.kc-ai{border-top:1px solid var(--border);background:var(--emerald-soft);padding:13px 22px 15px}
+.kc-ai .h{font-size:11px;font-weight:800;color:var(--emerald-press);display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.kc-ai .h .ai{background:var(--emerald);color:#fff;border-radius:6px;padding:2px 8px;font-size:10.5px}
+.kc-ai .h .aitag{background:var(--white);color:var(--emerald-press);border:1px solid var(--border-soft);border-radius:999px;padding:1px 9px;font-size:10px;font-weight:700}
+.kc-ai .lines{display:flex;flex-direction:column;gap:3px}
+.kc-ai p{margin:0;font-size:12.5px;line-height:1.55;color:var(--text2)}
+.kc-ai .sum{margin-top:9px;padding-top:9px;border-top:1px dashed var(--border-soft);font-weight:600;color:var(--text)}
+.kc-ai .arrow{color:var(--emerald-press);font-weight:700}
 
 /* 경쟁사 벤치마킹 */
 .bench{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
@@ -367,7 +372,7 @@ table.t2{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--w
 footer{font-size:11px;color:var(--ph);text-align:center;padding-top:24px}
 
 /* ===== 반응형 ===== */
-@media (max-width:1100px){ .kc-top .lead .big{font-size:34px} }
+@media (max-width:1100px){ .kc-main-row .big{font-size:36px} }
 @media (max-width:1000px){
   .sidebar{position:fixed;left:0;top:0;margin-left:-251px;box-shadow:0 0 40px rgba(0,0,0,.2)}
   .app.sbshow .sidebar{margin-left:0}
@@ -375,16 +380,19 @@ footer{font-size:11px;color:var(--ph);text-align:center;padding-top:24px}
   .topbar{padding:14px 16px}
   .divs{grid-template-columns:1fr 1fr}
   .bench .cgrid{grid-template-columns:1fr}
-  .kc-top .lead .big{font-size:32px}
+  .kc-main-row .big{font-size:34px}
 }
 @media (max-width:760px){
   .topbar .ttl h1{font-size:18px} .topbar .ttl .sub{display:none}
   .topbar .meta{font-size:10.5px}
-  .kc-kids{grid-template-columns:1fr}
+  .kc-sub-grid{grid-template-columns:1fr}
+  .subkpi.div{border-left:none;border-top:1px solid var(--border);padding-top:13px;margin-top:11px}
+  .subkpi:first-child{padding-left:20px}
   .row2{grid-template-columns:1fr}
   .divs{grid-template-columns:1fr}
-  .kc-top{gap:16px;padding:16px}
-  .kc-top .stat{gap:16px}
+  .kc-main{padding:16px}
+  .kc-main-stat{gap:16px}
+  .kc-sub,.kc-ai{padding-left:16px;padding-right:16px}
   .krow{grid-template-columns:1fr;gap:10px} .krow .right{text-align:left}
   .gatec{grid-template-columns:1fr}
   .perhead .lead{flex-basis:100%}
@@ -660,48 +668,38 @@ function renderCorp(){
   const monthSig = E.revAchMonth>=1?"초과":(E.revAchMonth>=0.95?"근접":"미달");
   const monthDelta = (E.revAchMonth-1)*100;
 
-  /* --- KPI 위계 카드 (단일 카드 · 카드별 AI 코멘트) --- */
+  /* --- 단일 KPI 카드: 상위(이익) → 보조 KPI(원인 분석) → AI 인사이트 --- */
   let h=`<div class="sec"><span class="bar"></span><h2>전사 KPI</h2></div>
   <div class="kc kpi-one">
-    <div class="kc-top">
-      <div class="lead">
-        <div class="lab"><span class="ico">${ic(ICON.profit,17)}</span> 지금까지 남긴 이익 <span class="realbadge">실제</span></div>
+    <div class="kc-main">
+      <div class="lab"><span class="ico">${ic(ICON.profit,18)}</span> 지금까지 남긴 이익 <span class="realbadge">실제</span></div>
+      <div class="kc-main-row">
         <div class="big">${fmtA(E.profitCum,2)}</div>
-        ${cardAI('prof',profSig)}
-      </div>
-      <div class="stat">
-        <div class="b"><div class="l">누계 목표 <span class="estbadge">임의</span></div><div class="v">${fmtA(E.profitCumTarget,2)}</div></div>
-        <div class="b"><div class="l">목표 대비</div><div class="v">${(E.profAch*100).toFixed(1)}%</div></div>
-        <div class="b"><div class="l">시그널</div><div class="v">${sigInline(profSig)}</div></div>
-      </div>
-    </div>
-    <div class="kc-subwrap">
-      <div class="subhead"><span class="elbow"></span>위 이익을 만든 두 축 — 매출 누계 · 누계 영업이익률</div>
-      <div class="kc-kids">
-        <div class="kc-kid">
-          <div class="lab"><span class="ico">${ic(ICON.revenue,15)}</span> 매출 누계 <span class="realbadge">실제</span></div>
-          <div class="val">${fmtA(E.revenueCum,0)}</div>
-          <div class="grid">
-            <div class="b"><div class="l">누계 목표</div><div class="v">${fmtA(E.revenueCumTarget,0)}</div></div>
-            <div class="b"><div class="l">목표 대비</div><div class="v up">${(E.revAchCum*100).toFixed(1)}%</div></div>
-            <div class="b"><div class="l">시그널</div><div class="v">${sigInline(revSigCum)}</div></div>
-          </div>
-          <div class="extra">이번 달(${META.baseMonth}월) 매출 · 목표 대비 <b class="${monthDelta>=0?'up':'dn'}">${monthDelta>=0?'+':'−'}${Math.abs(monthDelta).toFixed(1)}%</b></div>
-          ${cardAI('rev',revSigCum)}
-        </div>
-        <div class="kc-kid">
-          <div class="lab"><span class="ico">${ic(ICON.pct,15)}</span> 누계 영업이익률 <span class="realbadge">실제</span></div>
-          <div class="val">${(E.opMarginCum*100).toFixed(1)}<small>%</small></div>
-          <div class="grid">
-            <div class="b"><div class="l">누계 목표</div><div class="v">${(E.opMarginCumTarget*100).toFixed(1)}%</div></div>
-            <div class="b"><div class="l">목표 대비</div><div class="v dn">${gapPp>=0?'+':'−'}${Math.abs(gapPp).toFixed(1)}%p</div></div>
-            <div class="b"><div class="l">시그널</div><div class="v">${sigInline(mSig)}</div></div>
-          </div>
-          <div class="extra">당월 영업이익률 <b class="dn">${(E.opMarginMonth*100).toFixed(1)}%</b> · 흑자전환선 ${(E.opMarginCumTarget*100).toFixed(1)}%</div>
-          ${cardAI('m',mSig)}
+        <div class="kc-main-stat">
+          <div class="b"><div class="l">누계 목표 <span class="estbadge">임의</span></div><div class="v">${fmtA(E.profitCumTarget,2)}</div></div>
+          <div class="b"><div class="l">목표 대비(달성률)</div><div class="v">${(E.profAch*100).toFixed(1)}%</div></div>
+          <div class="b"><div class="l">시그널</div><div class="v">${sigInline(profSig)}</div></div>
         </div>
       </div>
     </div>
+    <div class="kc-sub">
+      <div class="kc-sub-cap"><span class="elbow"></span>이 이익을 만든 두 축 — 원인 분석</div>
+      <div class="kc-sub-grid">
+        <div class="subkpi">
+          <div class="t">${ic(ICON.revenue,14)} 매출 누계 <span class="realbadge">실제</span></div>
+          <div class="v">${fmtA(E.revenueCum,0)}</div>
+          <div class="meta"><span>누계 목표 <b>${fmtA(E.revenueCumTarget,0)}</b></span><span>목표 대비 <b class="up">${(E.revAchCum*100).toFixed(1)}%</b></span><span>${sigInline(revSigCum)}</span></div>
+          <div class="sx">이번 달(${META.baseMonth}월) 매출 목표 대비 <b class="${monthDelta>=0?'up':'dn'}">${monthDelta>=0?'+':'−'}${Math.abs(monthDelta).toFixed(1)}%</b></div>
+        </div>
+        <div class="subkpi div">
+          <div class="t">${ic(ICON.pct,14)} 누계 영업이익률 <span class="realbadge">실제</span></div>
+          <div class="v">${(E.opMarginCum*100).toFixed(1)}<small>%</small></div>
+          <div class="meta"><span>누계 목표 <b>${(E.opMarginCumTarget*100).toFixed(1)}%</b></span><span>목표 대비 <b class="dn">${gapPp>=0?'+':'−'}${Math.abs(gapPp).toFixed(1)}%p</b></span><span>${sigInline(mSig)}</span></div>
+          <div class="sx">당월 영업이익률 <b class="dn">${(E.opMarginMonth*100).toFixed(1)}%</b> · 흑자전환선 ${(E.opMarginCumTarget*100).toFixed(1)}%</div>
+        </div>
+      </div>
+    </div>
+    ${aiInsight(profSig,revSigCum,mSig)}
   </div>`;
 
   /* --- 경쟁사 벤치마킹 --- */
@@ -753,14 +751,27 @@ function renderCorp(){
   renderDivGroups();
 }
 
-/* 카드별 AI 코멘트 (지표 시그널 매칭) */
-function cardAI(type,sig){
+/* 카드 하단 AI 인사이트 (지표별 시그널 매칭) */
+function aiInsight(profSig,revSig,mSig){
   const M={
-    prof:{ok:"목표를 넘겨 이익을 잘 쌓고 있습니다.",warn:"이익은 내고 있으나 누계 목표에는 아직 못 미칩니다.",risk:"누적 이익이 적자 상태로, 손실 축소가 가장 시급합니다."},
-    rev:{ok:"목표를 초과해 매출이 앞서가고 있습니다.",warn:"매출이 목표 수준에 근접해 있습니다.",risk:"매출이 목표에 미치지 못하고 있습니다."},
-    m:{ok:"목표 이익률을 충족하고 있습니다.",warn:"이익률이 목표보다 다소 낮아, 원가·비용 점검이 필요합니다.",risk:"이익률이 목표를 크게 밑돌아 수익 구조 개선이 필요합니다."}
+    prof:{ok:"이익: 목표를 넘겨 이익을 잘 쌓고 있습니다.",warn:"이익: 흑자는 유지하나 누계 목표에는 아직 못 미칩니다.",risk:"이익: 누적 적자 상태로 손실 축소가 가장 시급합니다."},
+    rev:{ok:"매출: 목표를 초과해 매출이 앞서가고 있습니다.",warn:"매출: 목표 수준에 근접해 있습니다.",risk:"매출: 목표에 미치지 못하고 있습니다."},
+    m:{ok:"이익률: 목표 이익률을 충족하고 있습니다.",warn:"이익률: 목표보다 낮아 원가·비용 점검이 필요합니다.",risk:"이익률: 목표를 크게 밑돌아 수익 구조 개선이 필요합니다."}
   };
-  return `<div class="cardai"><span class="ai">✨ AI</span><span class="tx">${(M[type]||{})[sig]||""}</span></div>`;
+  let sum;
+  if(revSig!=="risk" && mSig==="risk") sum="많이 팔고는 있지만 충분히 남기지 못하고 있습니다. 원가·할인 구조 점검이 핵심입니다.";
+  else if(revSig==="risk" && mSig!=="risk") sum="남기는 구조는 갖췄으나 판매 규모 확대가 필요합니다.";
+  else if(revSig!=="risk" && mSig!=="risk") sum="매출과 수익성이 모두 안정적입니다. 현재 흐름을 유지하세요.";
+  else sum="매출과 수익성이 동시에 약해 수익 구조 개선이 시급합니다.";
+  return `<div class="kc-ai">
+    <div class="h"><span class="ai">✨ AI</span> 인사이트 <span class="aitag">지표 시그널 자동 해석</span></div>
+    <div class="lines">
+      <p>${M.prof[profSig]}</p>
+      <p>${M.rev[revSig]}</p>
+      <p>${M.m[mSig]}</p>
+    </div>
+    <p class="sum"><span class="arrow">➡️</span> ${sum}</p>
+  </div>`;
 }
 
 /* 경쟁사 벤치마킹 블록 */
