@@ -95,6 +95,7 @@ svg.ic{display:block}
 .content{padding:22px 26px 70px;max-width:1200px}
 
 .sec{display:flex;align-items:baseline;gap:10px;margin:30px 2px 14px}
+.sec-gap{margin-top:46px}
 .sec:first-child{margin-top:4px}
 .sec .bar{width:4px;height:18px;background:var(--emerald);border-radius:2px;align-self:center}
 .sec h2{font-size:16px}
@@ -120,8 +121,9 @@ svg.ic{display:block}
 /* ===== KPI 위계 카드 ===== */
 .kpi-hier{display:flex;flex-direction:column;gap:14px}
 .kc{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(16,39,31,.04)}
-/* 최상위 카드 */
-.kc-top{padding:20px 22px;display:flex;gap:26px;align-items:center;flex-wrap:wrap;border-left:5px solid var(--emerald)}
+/* 단일 KPI 카드 */
+.kpi-one{overflow:hidden;border-left:5px solid var(--emerald)}
+.kc-top{padding:20px 22px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
 .kc-top .lead{flex:1;min-width:230px}
 .kc-top .lead .lab{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--body);font-weight:600}
 .kc-top .lead .lab .ico{width:30px;height:30px;border-radius:9px;background:var(--emerald-soft);color:var(--emerald);display:flex;align-items:center;justify-content:center}
@@ -129,11 +131,12 @@ svg.ic{display:block}
 .kc-top .lead .big small{font-size:17px;font-weight:700;color:var(--cap)}
 .kc-top .stat{display:flex;gap:24px;flex-wrap:wrap}
 .kc-top .stat .b .l{font-size:11px;color:var(--cap)} .kc-top .stat .b .v{font-size:18px;font-weight:800;margin-top:3px;color:var(--text2)}
-.hier-link{display:flex;align-items:center;gap:8px;padding:0 22px;color:var(--cap);font-size:11px}
-.hier-link .l1{width:2px;height:16px;background:var(--border)}
-/* 자식 카드 2개 */
+/* 자식 영역 (같은 카드 내부) */
+.kc-subwrap{border-top:1px solid var(--border);background:var(--surf2);padding:14px 22px 18px}
+.subhead{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--body);font-weight:600;margin-bottom:12px}
+.subhead .elbow{display:inline-block;width:16px;height:10px;border-left:2px solid var(--navy3);border-bottom:2px solid var(--navy3);border-bottom-left-radius:5px;margin-left:4px}
 .kc-kids{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.kc-kid{padding:16px 18px;position:relative;border-top:3px solid var(--navy)}
+.kc-kid{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--navy);border-radius:10px;padding:16px 18px;position:relative}
 .kc-kid .lab{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--body);font-weight:600}
 .kc-kid .lab .ico{width:26px;height:26px;border-radius:7px;background:var(--navy5);color:var(--navy);display:flex;align-items:center;justify-content:center}
 .kc-kid .val{font-size:28px;font-weight:800;letter-spacing:-.6px;margin:8px 0 2px;color:var(--text)}
@@ -145,11 +148,14 @@ svg.ic{display:block}
 .dn{color:var(--risk-ink);font-weight:700} .up{color:var(--ok-ink);font-weight:700}
 
 /* AI 코멘트 */
-.aicom{margin-top:14px;background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:12px;padding:14px 16px}
-.aicom .h{font-size:10.5px;font-weight:800;color:var(--emerald-press);letter-spacing:.4px;display:flex;align-items:center;gap:6px;margin-bottom:7px}
-.aicom .h .ai{background:var(--emerald);color:#fff;border-radius:5px;padding:1px 6px;font-size:9.5px}
-.aicom p{margin:4px 0;font-size:13px;line-height:1.6;color:var(--text2)}
+.aicom{margin-top:14px;background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:12px;padding:15px 17px}
+.aicom .h{font-size:11px;font-weight:800;color:var(--emerald-press);letter-spacing:.3px;display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.aicom .h .ai{background:var(--emerald);color:#fff;border-radius:6px;padding:2px 8px;font-size:10.5px;letter-spacing:0}
+.aicom .h .aitag{background:var(--white);color:var(--emerald-press);border:1px solid var(--border-soft);border-radius:999px;padding:1px 9px;font-size:10px;font-weight:700;letter-spacing:0}
+.aicom p{margin:5px 0;font-size:13.5px;line-height:1.65;color:var(--text2)}
+.aicom p.insight{margin-top:11px;padding-top:11px;border-top:1px dashed var(--border-soft);font-weight:600;color:var(--text)}
 .aicom .arrow{color:var(--emerald-press);font-weight:700}
+.aicom .aifoot{margin-top:11px;font-size:10.5px;color:var(--cap);font-style:italic}
 
 /* 경쟁사 벤치마킹 */
 .bench{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
@@ -162,10 +168,10 @@ svg.ic{display:block}
 .costchart .row .track{flex:1;background:var(--surf2);border-radius:6px;height:20px;position:relative;overflow:hidden}
 .costchart .row .fill{position:absolute;left:0;top:0;bottom:0;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:7px;color:#fff;font-size:10.5px;font-weight:800}
 .costchart .row.me .nm{font-weight:800;color:var(--text)}
-.bench .mini{font-size:11.5px}
-.bench .mini .mr{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)}
+.bench .mini{font-size:13.5px}
+.bench .mini .mr{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border)}
 .bench .mini .mr:last-child{border:none}
-.bench .mini .mr .k{color:var(--body)} .bench .mini .mr .v{font-weight:800;color:var(--text)}
+.bench .mini .mr .k{color:var(--body);font-weight:600} .bench .mini .mr .v{font-weight:800;color:var(--text);font-size:15px}
 .bench .mini .mr .v.win{color:var(--ok-ink)}
 
 /* 성과 공유 여력 */
@@ -198,6 +204,7 @@ svg.ic{display:block}
 
 /* 어떻게 벌고 있을까 + 클레임 */
 .row2{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:start}
+.row2-gap{margin-top:46px}
 .col{min-width:0}
 .colhead{display:flex;align-items:center;gap:9px;margin:0 2px 11px}
 .colhead .bar{width:4px;height:17px;background:var(--emerald);border-radius:2px}
@@ -263,9 +270,12 @@ svg.ic{display:block}
 .perhead .lead .v{font-size:34px;font-weight:800;color:var(--text);letter-spacing:-1px;margin-top:4px}
 .perhead .lead .v small{font-size:15px;color:var(--cap);font-weight:700}
 .perhead .gw{flex:1;min-width:240px}
-.phgauge{position:relative;height:12px;border-radius:7px;overflow:hidden;display:flex}
+.phgauge{position:relative;height:12px;border-radius:7px;overflow:visible;display:flex;margin-top:30px}
 .phgauge .z{flex:1}
+.phgauge .z:first-child{border-radius:7px 0 0 7px} .phgauge .z:last-child{border-radius:0 7px 7px 0}
 .phgauge .pt{position:absolute;top:-4px;width:4px;height:20px;background:var(--text);border-radius:3px;transform:translateX(-50%);transition:left .4s}
+.phgauge .pt .phbdg{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:10.5px;font-weight:800;border-radius:6px;padding:3px 9px;white-space:nowrap}
+.phgauge .pt .phbdg::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--text)}
 .phgauge-lb{display:flex;justify-content:space-between;font-size:11px;color:var(--cap);margin-top:9px;font-weight:600}
 .perhead .note{flex-basis:100%;font-size:11.5px;color:var(--body);background:var(--surf2);border-radius:9px;padding:10px 13px;line-height:1.55}
 .perhead .note b{color:var(--text);font-weight:800}
@@ -636,7 +646,7 @@ function renderSidebar(active){
       h+=`<button class="sb-item ${active==='div'&&curDiv===d.id?'active':''}" data-divnav="${d.id}">${ic(ICON[d.icon],17)}<span class="lbl">${d.name}</span><span class="dotsig" style="background:${col}"></span></button>`;});
   });
   h+=`<div class="sb-grp">경영진 전용</div>
-    <button class="sb-item ${active==='l2'?'active':''}" data-nav="l2">${ic(ICON.cost,17)}<span class="lbl">비용 적정성</span></button>`;
+    <button class="sb-item ${active==='l2'?'active':''}" data-nav="l2">${ic(ICON.cost,17)}<span class="lbl">인당생산성</span></button>`;
   document.getElementById("sbNav").innerHTML=h;
   document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{if(b.dataset.nav==='corp')goHome();else{renderL2();showView('l2');}closeMobile();});
   document.querySelectorAll('[data-divnav]').forEach(b=>b.onclick=()=>{openDiv(b.dataset.divnav);closeMobile();});
@@ -653,63 +663,65 @@ function renderCorp(){
   const monthSig = E.revAchMonth>=1?"초과":(E.revAchMonth>=0.95?"근접":"미달");
   const monthDelta = (E.revAchMonth-1)*100;
 
-  /* --- KPI 위계 카드 --- */
+  /* --- KPI 위계 카드 (단일 카드) --- */
   let h=`<div class="sec"><span class="bar"></span><h2>전사 KPI</h2></div>
-  <div class="kpi-hier">
-    <div class="kc kc-top">
+  <div class="kc kpi-one">
+    <div class="kc-top">
       <div class="lead">
-        <div class="lab"><span class="ico">${ic(ICON.profit,17)}</span> 지금까지 남긴 이익 (영업이익 누계) <span class="realbadge">실제</span></div>
+        <div class="lab"><span class="ico">${ic(ICON.profit,17)}</span> 지금까지 남긴 이익 <span class="realbadge">실제</span></div>
         <div class="big">${fmtA(E.profitCum,2)}</div>
       </div>
       <div class="stat">
         <div class="b"><div class="l">누계 목표 <span class="estbadge">임의</span></div><div class="v">${fmtA(E.profitCumTarget,2)}</div></div>
         <div class="b"><div class="l">목표 대비</div><div class="v">${(E.profAch*100).toFixed(1)}%</div></div>
-        <div class="b"><div class="l">시그널</div><div class="v">${sigInline(profSig)} ${profState}</div></div>
+        <div class="b"><div class="l">시그널</div><div class="v">${sigInline(profSig)}</div></div>
       </div>
     </div>
-    <div class="hier-link"><span class="l1"></span>매출과 영업이익률이 위 결과를 만든 두 축입니다</div>
-    <div class="kc-kids">
-      <div class="kc kc-kid">
-        <div class="lab"><span class="ico">${ic(ICON.revenue,15)}</span> 매출 누계 <span class="realbadge">실제</span></div>
-        <div class="val">${fmtA(E.revenueCum,0)}</div>
-        <div class="grid">
-          <div class="b"><div class="l">누계 목표</div><div class="v">${fmtA(E.revenueCumTarget,0)}</div></div>
-          <div class="b"><div class="l">목표 대비</div><div class="v up">${(E.revAchCum*100).toFixed(1)}%</div></div>
-          <div class="b"><div class="l">시그널</div><div class="v">${sigInline(revSigCum)} ${monthSig==="미달"?"미달":"초과"}</div></div>
+    <div class="kc-subwrap">
+      <div class="subhead"><span class="elbow"></span>위 이익을 만든 두 축 — 매출 누계 · 누계 영업이익률</div>
+      <div class="kc-kids">
+        <div class="kc-kid">
+          <div class="lab"><span class="ico">${ic(ICON.revenue,15)}</span> 매출 누계 <span class="realbadge">실제</span></div>
+          <div class="val">${fmtA(E.revenueCum,0)}</div>
+          <div class="grid">
+            <div class="b"><div class="l">누계 목표</div><div class="v">${fmtA(E.revenueCumTarget,0)}</div></div>
+            <div class="b"><div class="l">목표 대비</div><div class="v up">${(E.revAchCum*100).toFixed(1)}%</div></div>
+            <div class="b"><div class="l">시그널</div><div class="v">${sigInline(revSigCum)}</div></div>
+          </div>
+          <div class="extra">이번 달(${META.baseMonth}월) 매출 · 목표 대비 <b class="${monthDelta>=0?'up':'dn'}">${monthDelta>=0?'+':'−'}${Math.abs(monthDelta).toFixed(1)}%</b></div>
         </div>
-        <div class="extra">이번 달(${META.baseMonth}월) 매출 · 목표 대비 <b class="${monthDelta>=0?'up':'dn'}">${monthDelta>=0?'+':'−'}${Math.abs(monthDelta).toFixed(1)}%</b></div>
-      </div>
-      <div class="kc kc-kid">
-        <div class="lab"><span class="ico">${ic(ICON.pct,15)}</span> 누계 영업이익률 <span class="realbadge">실제</span></div>
-        <div class="val">${(E.opMarginCum*100).toFixed(1)}<small>%</small></div>
-        <div class="grid">
-          <div class="b"><div class="l">누계 목표</div><div class="v">${(E.opMarginCumTarget*100).toFixed(1)}%</div></div>
-          <div class="b"><div class="l">목표 대비 Gap</div><div class="v dn">${gapPp>=0?'+':'−'}${Math.abs(gapPp).toFixed(1)}%p</div></div>
-          <div class="b"><div class="l">시그널</div><div class="v">${sigInline(mSig)} ${E.opMarginCum>0?'흑자 구간':'적자 구간'}</div></div>
+        <div class="kc-kid">
+          <div class="lab"><span class="ico">${ic(ICON.pct,15)}</span> 누계 영업이익률 <span class="realbadge">실제</span></div>
+          <div class="val">${(E.opMarginCum*100).toFixed(1)}<small>%</small></div>
+          <div class="grid">
+            <div class="b"><div class="l">누계 목표</div><div class="v">${(E.opMarginCumTarget*100).toFixed(1)}%</div></div>
+            <div class="b"><div class="l">목표 대비 Gap</div><div class="v dn">${gapPp>=0?'+':'−'}${Math.abs(gapPp).toFixed(1)}%p</div></div>
+            <div class="b"><div class="l">시그널</div><div class="v">${sigInline(mSig)}</div></div>
+          </div>
+          <div class="extra">당월 영업이익률 <b class="dn">${(E.opMarginMonth*100).toFixed(1)}%</b> · 흑자전환선 ${(E.opMarginCumTarget*100).toFixed(1)}%</div>
         </div>
-        <div class="extra">당월 영업이익률 <b class="dn">${(E.opMarginMonth*100).toFixed(1)}%</b> · 흑자전환선 ${(E.opMarginCumTarget*100).toFixed(1)}%</div>
       </div>
     </div>
   </div>`;
 
   /* --- AI 코멘트 --- */
-  h+=aiComment(E,revSigCum,mSig);
+  h+=aiComment(E,revSigCum,mSig,profSig);
 
   /* --- 경쟁사 벤치마킹 --- */
-  h+=`<div class="sec"><span class="bar"></span><h2>경쟁사 벤치마킹</h2><span class="s">— 동종업계 가구 4사 비교</span></div>
+  h+=`<div class="sec"><span class="bar"></span><h2>경쟁사 벤치마킹</h2></div>
   ${benchBlock()}`;
 
   /* --- 지금 가장 이익이 될 개선 과제 (구 손실 Top3) --- */
-  h+=`<div class="sec"><span class="bar"></span><h2>지금 가장 이익이 될 개선 과제</h2><span class="s">— 환산 가능 KPI · 누계 기준 추정 · 클릭 시 해당 본부로 이동</span></div>
+  h+=`<div class="sec"><span class="bar"></span><h2>지금 가장 이익이 될 개선 과제</h2></div>
   <div class="lpan"><div class="sum"><div class="l">개선 가능 추정치</div><div class="v" id="lossSum">–</div><span class="n estbadge">방향성 지표 · 추정</span></div><div class="lst" id="lossList"></div></div>`;
 
   /* --- 성과 공유 여력 --- */
-  h+=`<div class="sec"><span class="bar"></span><h2>성과 공유 여력</h2><span class="s">— 영업이익과 함께 커지는 공유 여력 수준</span></div>
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>성과 공유 여력</h2></div>
   ${shareBlock(E)}`;
 
   /* --- 어떻게 벌고 있을까 + 클레임 --- */
-  h+=`<div class="row2">
-    <div class="col"><div class="colhead"><span class="bar"></span><h2>어떻게 벌고 있을까</h2><span class="s">— 영업 활동 종합 <span class="estbadge">예시값</span></span></div>
+  h+=`<div class="row2 row2-gap">
+    <div class="col"><div class="colhead"><span class="bar"></span><h2>어떻게 벌고 있을까</h2><span class="s">— 계약 건수·금액 <span class="estbadge">예시값</span></span></div>
       <div class="panel"><div class="ph">${ic(ICON.sales,15)} 영업 활동 추이</div>${salesBlock()}</div>
     </div>
     <div class="col"><div class="colhead"><span class="bar"></span><h2>클레임 현황</h2><span class="s">— 실제 2~4월</span></div>
@@ -723,7 +735,7 @@ function renderCorp(){
   </div>`;
 
   /* --- 본부 KPI (그룹 탭) --- */
-  h+=`<div class="sec"><span class="bar"></span><h2>본부 KPI</h2><span class="s">— 부서 유형별 그룹 · 카드 클릭 시 본부 상세</span></div>
+  h+=`<div class="sec"><span class="bar"></span><h2>본부 KPI</h2></div>
   <div class="grptab" id="grpTab"></div>
   <div id="divArea"></div>`;
 
@@ -744,30 +756,24 @@ function renderCorp(){
   renderDivGroups();
 }
 
-/* AI 코멘트 (조건부) */
-function aiComment(E,revSig,mSig){
-  let l1,l2,arrow=[];
-  if(E.revAchCum>=1.0) l1="🟢 매출은 목표보다 앞서가고 있습니다.";
-  else if(E.revAchCum>=0.95) l1="🟡 매출은 목표 수준입니다.";
-  else l1="🔴 매출이 목표에 미치지 못하고 있습니다.";
-  if(E.opMarginCum>=E.opMarginCumTarget) l2="🟢 이익률도 목표를 충족하고 있습니다.";
-  else l2="🔴 하지만 이익률은 목표보다 낮습니다.";
-  if(E.revAchCum>=1.0 && E.opMarginCum<E.opMarginCumTarget){
-    arrow.push("많이 팔고는 있지만, 충분히 남기지는 못하고 있습니다.");
-    arrow.push("할인·외주 비용이 늘지 않는지 병행 확인하세요.");
-    arrow.push("원가 개선과 고부가가치 제품 확대가 필요합니다.");
-  } else if(E.revAchCum<0.95 && E.opMarginCum>=E.opMarginCumTarget){
-    arrow.push("남기고 있지만, 판매 규모 확대가 필요합니다.");
-    arrow.push("더 많은 고객 확보와 직접 영업 비중 확대가 필요합니다.");
-  } else if(E.revAchCum>=0.95 && E.opMarginCum>=E.opMarginCumTarget){
-    arrow.push("계획대로 운영되고 있습니다.");
-  } else {
-    arrow.push("판매와 수익성 모두 개선이 필요한 상황입니다.");
-    arrow.push("수익 구조 개선이 시급합니다.");
-  }
-  return `<div class="aicom"><div class="h"><span class="ai">AI</span> 경영 코멘트</div>
-    <p>${l1}</p><p>${l2}</p>
-    ${arrow.map(a=>`<p><span class="arrow">➡️</span> ${a}</p>`).join("")}</div>`;
+/* AI 코멘트 (시그널 매칭형) */
+function aiComment(E,revSig,mSig,profSig){
+  const SIGTXT={
+    rev:{ok:"🟢 매출은 목표를 초과 달성하고 있습니다.",warn:"🟡 매출은 목표 수준에 근접해 있습니다.",risk:"🔴 매출이 목표에 미치지 못하고 있습니다."},
+    m:{ok:"🟢 영업이익률은 목표를 충족하고 있습니다.",warn:"🟡 영업이익률이 목표보다 다소 낮습니다.",risk:"🔴 영업이익률이 목표를 크게 밑돌고 있습니다."},
+    prof:{ok:"🟢 누적 이익이 목표를 넘어서고 있습니다.",warn:"🟡 이익은 내고 있으나 목표에는 도달하지 못했습니다.",risk:"🔴 누적 이익이 적자 상태입니다."}
+  };
+  const lines=[ SIGTXT.prof[profSig], SIGTXT.rev[revSig], SIGTXT.m[mSig] ];
+  /* 두 시그널 조합 → 한 줄 시사점 */
+  let insight;
+  if(revSig!=="risk" && mSig==="risk") insight="많이 팔고는 있지만 충분히 남기지 못하고 있습니다. 할인·외주·재료비가 이익을 깎고 있지 않은지 점검이 필요합니다.";
+  else if(revSig==="risk" && mSig!=="risk") insight="남기는 구조는 갖췄으나 판매 규모가 부족합니다. 신규 고객 확보와 직접 영업 비중 확대가 필요합니다.";
+  else if(revSig!=="risk" && mSig!=="risk") insight="판매와 수익성이 모두 안정적입니다. 현재 흐름을 유지하며 고부가 제품 비중을 키우면 좋습니다.";
+  else insight="판매와 수익성이 동시에 약합니다. 수익 구조 개선이 가장 시급한 과제입니다.";
+  return `<div class="aicom"><div class="h"><span class="ai">✨ AI</span> 경영 코멘트 <span class="aitag">시그널 자동 해석</span></div>
+    ${lines.map(t=>`<p>${t}</p>`).join("")}
+    <p class="insight"><span class="arrow">➡️</span> ${insight}</p>
+    <div class="aifoot">위 코멘트는 각 KPI의 시그널(정상·주의·위험)을 기준으로 자동 생성되었습니다.</div></div>`;
 }
 
 /* 경쟁사 벤치마킹 블록 */
@@ -808,7 +814,7 @@ function shareBlock(E){
   return `<div class="share">
     <div class="sh">회사의 수익성이 높아질수록 구성원과 공유할 수 있는 성과 여력도 함께 커집니다.</div>
     <div class="gaugebar">${segs}
-      <div class="pointer" style="left:${pos}%"><div class="bdg">현재 수준</div><div class="pin"></div></div>
+      <div class="pointer" style="left:${pos}%"><div class="bdg">현재 · ${zones[zi].l}</div><div class="pin"></div></div>
     </div>
     <div class="share-state">${stateText}</div>
     <div class="share-note">
@@ -830,7 +836,7 @@ function perHeadBlock(E){
     <div class="lead"><div class="l">인당 생산성 (1인당 영업이익 누계)</div>
       <div class="v">${v.toFixed(2)}<small>억</small></div></div>
     <div class="gw">
-      <div class="phgauge">${segs}<div class="pt" style="left:${pos}%"></div></div>
+      <div class="phgauge">${segs}<div class="pt" style="left:${pos}%"><span class="phbdg">현재 · ${zlab}</span></div></div>
       <div class="phgauge-lb"><span>위험</span><span>주의</span><span>정상</span><span>우수</span></div>
     </div>
     <div class="note">현재 인당 영업이익은 <b>${v.toFixed(2)}억</b>으로 목표 <b>1.0억</b> 대비 <b>"${zlab}"</b> 구간입니다 <span class="realbadge">실적 실제</span> <span class="estbadge">목표 임의</span>. 적자 구간에서는 절대 수준보다 손실 축소 속도를 우선 봅니다.</div>
@@ -851,7 +857,7 @@ function renderDivGroups(){
   let h="";
   showTypes.forEach(tp=>{
     const t=TYPE[tp];
-    h+=`<div class="divgroup"><div class="gh"><span class="tagb ${t.tag==='core'?'core':'spec'}" style="${t.tag==='data'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':t.tag==='ops'?'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)':''}">${t.label}</span><span class="n">${tp==='sales'?'매출을 직접 만드는 본부':tp==='cost'?'원가·품질로 이익에 기여':'전사 운영을 지원'}</span></div>
+    h+=`<div class="divgroup"><div class="gh"><span class="tagb ${t.tag==='core'?'core':'spec'}" style="${t.tag==='data'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':t.tag==='ops'?'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)':''}">${t.label}</span></div>
       <div class="divs">${DIVS.filter(d=>d.type===tp).map(divCard).join("")}</div></div>`;
   });
   document.getElementById("divArea").innerHTML=h;
@@ -891,17 +897,6 @@ function salesBlock(){
   h+=`<div class="mchart"><div class="t"><span>평균 계약액 (월별)</span><span class="badge tiny muted">억</span></div>
     ${lineMini(S.month,S.avgAmt,"var(--navy2)","억")}
     <div class="cm">평균 계약액이 감소하고 있습니다.</div></div>`;
-  /* 3) 대형수요처 막대 + 매출비중 라인 */
-  h+=`<div class="mchart"><div class="t"><span>대형 수요처(1억↑) 수 · 매출 비중</span><span class="badge tiny muted">막대=수 · 선=비중%</span></div>
-    ${comboMini(S.month,S.bigCnt,S.bigShare)}
-    <div class="cm">큰 거래가 늘고 매출을 잘 받치고 있습니다.</div></div>`;
-  /* 4) 매출유형 */
-  h+=`<div class="mchart"><div class="t"><span>매출 유형</span><span class="badge tiny muted">조달 vs 민수</span></div>
-    <div class="typebar"><div class="seg" style="flex:${S.procurement};background:var(--navy)">조달 ${S.procurement}%</div><div class="seg" style="flex:${S.civil};background:var(--navy3)">민수 ${S.civil}%</div></div></div>`;
-  /* 5) 예상매출 */
-  h+=`<div class="mchart"><div class="t"><span>예상 매출 (실적 + 향후 확정~상한)</span><span class="badge tiny muted">억</span></div>
-    ${forecastMini()}
-    <div class="cm">큰 거래 발굴이 정체되고 있습니다. 파이프라인 점검이 필요합니다.</div></div>`;
   h+=`</div>`;
   return h;
 }
@@ -1070,8 +1065,8 @@ function renderL2(){const L=LAYER2,unit=L.totalCM/L.totalFTE;
     return `<tr><td>${a.name}</td><td class="n">${a.fte}</td><td class="n">${al.toFixed(1)}</td><td class="n">${a.cost.toFixed(1)}</td><td class="n ${sp<0?'neg':'pos'}">${sp>=0?'+':'−'}${Math.abs(sp).toFixed(1)}</td><td>${sp<0?'구조 점검 필요(경영진 참고)':'비용 대비 기여 충분'}</td></tr>`;}).join("");
   const g=L.gate;
   document.getElementById("view-l2").innerHTML=`
-    <div class="ddtop"><div class="crumb"><a id="back2">전사 KPI 요약</a><span class="sepc">›</span><b>비용 적정성</b></div></div>
-    <div class="l2warn"><b>⚠ 비용 적정성 (Layer 2)</b><span class="c">분기용</span><span class="c">경영진 전용</span><span class="c">평가 미연동</span><span class="c">영업이익 KPI와 분리</span>
+    <div class="ddtop"><div class="crumb"><a id="back2">전사 KPI 요약</a><span class="sepc">›</span><b>인당생산성</b></div></div>
+    <div class="l2warn"><b>⚠ 인당생산성 · 비용 적정성 (Layer 2)</b><span class="c">분기용</span><span class="c">경영진 전용</span><span class="c">평가 미연동</span><span class="c">영업이익 KPI와 분리</span>
       <span style="flex:1"></span><span class="tiny">소규모 부서 구조적 불리 → 부서장 평가 직접 연동 금지</span></div>
     <div class="sec" style="margin-top:0"><span class="bar"></span><h2>FTE 배분 공헌이익</h2><span class="s">배분단가 ${unit.toFixed(2)} 억/인 = ${L.totalCM.toFixed(0)}억 ÷ ${L.totalFTE}명 <span class="estbadge">공헌이익·비용 임의</span></span></div>
     <table class="t2"><thead><tr><th>본부</th><th class="n">FTE</th><th class="n">배분 공헌이익</th><th class="n">실제 비용</th><th class="n">잉여/부족</th><th>해석</th></tr></thead><tbody>${rows}</tbody></table>
