@@ -532,7 +532,7 @@ footer b{color:var(--cap)}
 
 <div class="app hidden" id="app">
   <aside class="sidebar">
-    <div class="sb-logo" id="logoHome"><div class="mark">K</div><div><b>KOAS 경영 신호등</b><span>KPI 경영관리</span></div></div>
+    <div class="sb-logo" id="logoHome"><div class="mark">K</div><div><b>KOAS 경영 신호등</b></div></div>
     <nav class="sb-nav" id="sbNav"></nav>
     <div class="sb-foot">
       <div class="sb-demo">검증용 임시 빌드 · 일부 숫자 비확정<br>임의=가정값 (별도 표시)</div>
@@ -792,11 +792,11 @@ function renderCorp(){
   let h=`<div class="sec"><span class="bar"></span><h2>전사 KPI</h2></div>
   <div class="kc kpi-one">
     <div class="kc-main">
-      <div class="lab"><span class="ico">${ic(ICON.profit,18)}</span> 지금까지 남긴 이익 (영업이익 누계)</div>
+      <div class="lab"><span class="ico">${ic(ICON.profit,18)}</span> 지금까지 남긴 이익</div>
       <div class="kc-main-row">
         <div class="big">${fmtA(E.profitCum,2)}</div>
         <div class="kc-main-stat">
-          <div class="b"><div class="l">누계 목표</div><div class="v">${fmtA(E.profitCumTarget,2)}</div><div class="sub">매출 누계목표 ${fmtA(E.revenueCumTarget,1)} × 목표 영업이익률 ${(E.opMarginCumTarget*100).toFixed(1)}%</div></div>
+          <div class="b"><div class="l">누계 목표</div><div class="v">${fmtA(E.profitCumTarget,2)}</div></div>
           <div class="b"><div class="l">목표 대비(달성률)</div><div class="v">${(E.profAch*100).toFixed(1)}%</div></div>
           <div class="b"><div class="l">시그널</div><div class="v"><span class="sig ${E.profitCum>0?'ok':'risk'}"><span class="dot"></span>${E.profitCum>0?'흑자 구간':'적자 구간'}</span></div></div>
         </div>
@@ -825,7 +825,7 @@ function renderCorp(){
   </div>`;
 
   /* KPI 신호등 카드뉴스 */
-  h+=`<div class="sec"><span class="bar"></span><h2>KPI 신호등 현황</h2><span class="s">— 전체 관리 KPI 상태를 한눈에</span></div>
+  h+=`<div class="sec"><span class="bar"></span><h2>KPI 신호등 현황</h2></div>
   <div id="kstatBox"></div>`;
 
   h+=`<div class="sec"><span class="bar"></span><h2>경쟁사 벤치마킹</h2></div>${benchBlock()}`;
@@ -912,7 +912,7 @@ function renderKstatList(){
 function insProf(E,sig){
   if(E.profitCum<=0) return "적자 상태로, 손실 축소가 가장 시급합니다.";
   if(sig==="ok")   return "목표를 넘겨 이익을 잘 쌓고 있습니다.";
-  return "흑자는 유지하고 있으나 누계 목표(매출목표×목표이익률)에는 아직 미치지 못합니다.";
+  return "흑자는 유지하고 있으나 누계 목표에는 아직 미치지 못합니다.";
 }
 function insRev(E,sig){
   if(sig==="risk") return "매출이 목표에 미치지 못하고 있습니다.";
