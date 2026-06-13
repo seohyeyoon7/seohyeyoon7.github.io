@@ -879,8 +879,7 @@ function renderKstat(){
   else if(cnt.warn>0) msg=`🟡 위험 KPI는 없으나 주의 KPI가 <b>${cnt.warn}개</b>입니다. 추세 악화를 사전에 차단하세요.`;
   else msg=`🟢 모든 관리 KPI가 정상 범위입니다. 현재 흐름을 유지하세요.`;
   let h=`<div class="kstat">
-    <div class="kstat-top">${ic(ICON.light,16)} 전체 관리 KPI ${total}개 신호 현황</div>
-    <div class="kstat-sub">신호등을 누르면 해당 색상의 KPI 과제를 매출·원가·운영지원으로 나눠 볼 수 있어요.</div>
+    <div class="kstat-sub" style="margin-top:2px">신호등을 누르면 해당 색상의 KPI 과제를 매출·원가·운영지원으로 나눠 볼 수 있어요.</div>
     <div class="kstat-lights">
       <div class="klight ok ${kstatSel==='ok'?'sel':''}" data-kl="ok"><div class="bulb ok">${cnt.ok}</div><div class="lab">정상 <span class="cnt">${cnt.ok}개</span></div></div>
       <div class="klight warn ${kstatSel==='warn'?'sel':''}" data-kl="warn"><div class="bulb warn">${cnt.warn}</div><div class="lab">주의 <span class="cnt">${cnt.warn}개</span></div></div>
