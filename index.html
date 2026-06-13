@@ -163,7 +163,9 @@ svg.ic{display:block}
 .kstat-list{margin-top:12px}
 .kstat-list .grp2{margin-bottom:11px}
 .kstat-list .grp2:last-child{margin-bottom:0}
-.kstat-list .grph{font-size:11px;font-weight:800;color:var(--cap);margin-bottom:5px;letter-spacing:.3px}
+.kstat-list .grph{font-size:11px;font-weight:800;color:var(--cap);margin-bottom:5px;letter-spacing:.3px;display:flex;align-items:center;gap:6px}
+.kstat-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.kstat-dot.ok{background:var(--ok)} .kstat-dot.warn{background:var(--warn)} .kstat-dot.risk{background:var(--risk)}
 .kstat-tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;background:var(--surf2);border:1px solid var(--border);border-radius:7px;padding:4px 9px;margin:0 5px 5px 0;cursor:pointer}
 .kstat-tag:hover{border-color:var(--emerald);background:var(--surf-hover)}
 .kstat-tag .d{width:7px;height:7px;border-radius:50%}
@@ -443,6 +445,19 @@ svg.ic{display:block}
 .hcgauge .tg{position:absolute;top:-7px;bottom:-7px;width:2px;background:var(--text2);z-index:1}
 .hcgauge-lb{display:flex;margin-top:11px}
 .hcgauge-lb span{flex:1;text-align:center;font-size:10.5px;color:var(--cap);font-weight:600}
+.critlist{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.critrow{display:flex;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surf2)}
+.critrow.cur{background:var(--white);border-width:2px}
+.critrow.ok.cur{border-color:var(--ok)} .critrow.warn.cur{border-color:var(--warn)} .critrow.risk.cur{border-color:var(--risk)}
+.critdot{width:11px;height:11px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.critdot.ok{background:var(--ok)} .critdot.warn{background:var(--warn)} .critdot.risk{background:var(--risk)}
+.critmain{flex:1;min-width:0}
+.critrange{font-size:12.5px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.curtag{font-size:9.5px;font-weight:800;color:#fff;background:var(--text);border-radius:5px;padding:1px 6px}
+.critdesc{font-size:11.5px;color:var(--body);margin-top:3px;line-height:1.5}
+.critact{font-size:11px;color:var(--navy2);margin-top:4px;font-weight:600}
+.critnote{margin-top:14px;font-size:11px;color:var(--cap);line-height:1.7;background:var(--surf2);border-radius:10px;padding:12px 14px}
+.critnote b{color:var(--text2);font-weight:800}
 
 /* layer2 경영진 전용 */
 .l2warn{background:var(--warn-soft);border:1px solid rgba(232,163,23,.35);border-radius:11px;padding:13px 16px;margin-bottom:16px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--warn-ink)}
@@ -585,13 +600,25 @@ EXEC.revAchCum   = EXEC.revenueCum/EXEC.revenueCumTarget;
 EXEC.revAchMonth = EXEC.revenueMonth/EXEC.revenueMonthTarget;
 EXEC.profAch     = EXEC.profitCum/EXEC.profitCumTarget;
 
+/* 인적 기여가치 기준 — 연간 역산 기준 (HCVA·HCROI 기준점 정의)
+   2026 영업이익 목표 2,900M(29억) / 연간 인건비 10,266M(102.66억) / FTE 234 */
 const HR={
-  perRevenue: EXEC.revenueCum/META.FTE,
-  perProfit:  EXEC.profitCum/META.FTE,
-  hcva:       (EXEC.profitCum+META.laborCum)/META.FTE,
-  hcroi:      (EXEC.profitCum+META.laborCum)/META.laborCum,
-  hcvaTarget: 0.50, hcroiTarget:1.5
+  perRevenue: EXEC.revenueCum/META.FTE,          // 인당 매출액(누계)
+  perProfit:  EXEC.profitCum/META.FTE,           // 인당 영업이익(누계)
+  laborAnnual: 102.66,                           // 연간 인건비(억)
+  opTarget2026: 29.0                             // 2026 영업이익 목표(억)
 };
+HR.perLabor    = HR.laborAnnual/META.FTE;                          // 인당 인건비 ≈ 0.439억(43.9M)
+HR.hcvaTarget  = (HR.opTarget2026+HR.laborAnnual)/META.FTE;        // HCVA 목표 ≈ 0.563억(56.3M) = 인당인건비×1.28
+HR.hcroiTarget = (HR.opTarget2026+HR.laborAnnual)/HR.laborAnnual;  // HCROI 목표 ≈ 1.28
+HR.hcroiGrowth = 1.5;                                              // 성장 목표선(흑자 안정화)
+HR.hcvaGrowth  = HR.perLabor*1.5;                                  // 성장선 ≈ 0.659억(65.9M)
+/* 현재 수준 — 연환산 추정(영업이익 누계 ÷ 경과월 × 12) */
+HR.opAnnualized = EXEC.profitCum/META.baseMonth*12;                // 연환산 영업이익(억)
+HR.hcva  = (HR.opAnnualized+HR.laborAnnual)/META.FTE;              // 현재 HCVA(억/인)
+HR.hcroi = (HR.opAnnualized+HR.laborAnnual)/HR.laborAnnual;        // 현재 HCROI(배)
+/* 표시용: 억 → 백만원(M) */
+function toM(eok){return eok*100;}
 
 const BENCH={ period:"2026년 1분기 · DART 연결 분기 기준",
   cost:[ {nm:"KOAS",v:70.2,me:true},{nm:"퍼시스",v:70.1},{nm:"한샘",v:71.6},{nm:"현대리바트",v:82.5},{nm:"업계평균",v:74.7} ],
@@ -654,7 +681,7 @@ const KPIS=[
   {id:"K18",div:"rnd",team:"제품개발팀",group:"원가",name:"부품 단종(표준화)",def:"단종 진척(목표 143종)",unit:"종",st:"higher",target:143,actual:100,money:"부분",base:"perItem"},
   {id:"K19",div:"rnd",team:"제품개발팀",group:"품질",name:"설계 부적합 건수",def:"당월 부적합 건수(목표 0)",unit:"건",st:"count",target:0,actual:1,money:"간접",base:null},
   {id:"K20",div:"rnd",team:"제품개발팀",group:"영업",name:"신제품 출시 건수",def:"당해 출시 신제품 수(목표 5)",unit:"건",st:"higher",target:5,actual:3,money:"간접",base:null},
-  {id:"K21",div:"plan",team:"인사·컴플라이언스팀",group:"생산성",name:"HCROI",def:"(영업이익+인건비)÷인건비 (목표 ≥1.5)",unit:"배",st:"higher",target:HR.hcroiTarget,actual:HR.hcroi,money:"간접",base:null},
+  {id:"K21",div:"plan",team:"인사·컴플라이언스팀",group:"생산성",name:"HCROI",def:"(영업이익+인건비)÷인건비 (목표 ≥1.28 · 성장선 1.5)",unit:"배",st:"higher",target:HR.hcroiTarget,actual:HR.hcroi,money:"간접",base:null},
   {id:"K22",div:"plan",team:"인사·컴플라이언스팀",group:"생산성",name:"컴플라이언스 통제 구축률",def:"완료 통제 ÷ 전체 통제",unit:"%",st:"higher",target:1.00,actual:0.80,money:"간접",base:null}
 ];
 const PARAMS={agencyRevenue:30.0,shipmentCum:261.11,laborCum:20.39,revenueCum:261.11,fundScale:300,fundRate:0.05,perItem:0.02};
@@ -836,7 +863,7 @@ function renderCorp(){
   h+=`<div class="sec sec-gap"><span class="bar"></span><h2>성과 공유 여력</h2></div>${shareBlock(E)}`;
 
   h+=`<div class="row2 row2-gap">
-    <div class="col"><div class="colhead"><span class="bar"></span><h2>어떻게 벌고 있을까</h2><span class="s">— 영업 활동 종합 <span class="estbadge">예시값</span></span></div>
+    <div class="col"><div class="colhead"><span class="bar"></span><h2>어떻게 벌고 있을까</h2><span class="s">— 영업 활동 종합</span></div>
       <div class="panel"><div class="ph">${ic(ICON.sales,15)} 영업 활동 추이</div>${salesBlock()}</div>
     </div>
     <div class="col"><div class="colhead"><span class="bar"></span><h2>클레임 현황</h2><span class="s">— 2~4월</span></div>
@@ -868,18 +895,17 @@ function renderCorp(){
 }
 
 /* KPI 신호등 카드뉴스 */
-let kstatSel="risk";
+let kstatSel=null;
 function renderKstat(){
   let cnt={ok:0,warn:0,risk:0,none:0};
   KPIS.forEach(k=>{cnt[signal(k)]++;});
-  const total=cnt.ok+cnt.warn+cnt.risk+cnt.none;
   let msg;
   if(cnt.risk>=2) msg=`🔴 위험 KPI가 <b>${cnt.risk}개</b>입니다. RED 2건 이상 → 월간 실적회의 필수 안건입니다. 아래에서 위험 과제를 먼저 점검하세요.`;
   else if(cnt.risk===1) msg=`🟡 위험 KPI가 <b>1개</b> 있습니다. 해당 과제를 우선 점검하세요.`;
   else if(cnt.warn>0) msg=`🟡 위험 KPI는 없으나 주의 KPI가 <b>${cnt.warn}개</b>입니다. 추세 악화를 사전에 차단하세요.`;
   else msg=`🟢 모든 관리 KPI가 정상 범위입니다. 현재 흐름을 유지하세요.`;
   let h=`<div class="kstat">
-    <div class="kstat-sub" style="margin-top:2px">신호등을 누르면 해당 색상의 KPI 과제를 매출·원가·운영지원으로 나눠 볼 수 있어요.</div>
+    <div class="kstat-sub" style="margin-top:2px">신호등을 누르면 해당 색상의 KPI만, 다시 누르면 전체를 볼 수 있어요.</div>
     <div class="kstat-lights">
       <div class="klight ok ${kstatSel==='ok'?'sel':''}" data-kl="ok"><div class="bulb ok">${cnt.ok}</div><div class="lab">정상 <span class="cnt">${cnt.ok}개</span></div></div>
       <div class="klight warn ${kstatSel==='warn'?'sel':''}" data-kl="warn"><div class="bulb warn">${cnt.warn}</div><div class="lab">주의 <span class="cnt">${cnt.warn}개</span></div></div>
@@ -889,21 +915,21 @@ function renderKstat(){
     <div class="kstat-list" id="kstatList"></div>
   </div>`;
   document.getElementById("kstatBox").innerHTML=h;
-  document.querySelectorAll('[data-kl]').forEach(b=>b.onclick=()=>{kstatSel=b.dataset.kl;renderKstat();});
+  document.querySelectorAll('[data-kl]').forEach(b=>b.onclick=()=>{kstatSel=(kstatSel===b.dataset.kl)?null:b.dataset.kl;renderKstat();});
   renderKstatList();
 }
 function renderKstatList(){
-  const typeName={sales:"매출",cost:"원가",ops:"운영지원"};
-  const list=KPIS.filter(k=>signal(k)===kstatSel);
-  if(list.length===0){document.getElementById("kstatList").innerHTML=`<div class="tiny muted">해당 신호의 KPI가 없습니다.</div>`;return;}
+  const sigName={risk:"위험",warn:"주의",ok:"정상"};
+  const signals=kstatSel?[kstatSel]:["risk","warn","ok"];
   let h="";
-  ["sales","cost","ops"].forEach(tp=>{
-    const ks=list.filter(k=>{const d=DIVS.find(x=>x.id===k.div);return d&&d.type===tp;});
+  signals.forEach(sg=>{
+    const ks=KPIS.filter(k=>signal(k)===sg);
     if(ks.length===0)return;
-    h+=`<div class="grp2"><div class="grph">${typeName[tp]} 부서 · ${ks.length}건</div>`;
-    h+=ks.map(k=>`<button class="kstat-tag ${kstatSel}" data-gokpi="${k.div}"><span class="d"></span>${k.name} <small>${k.team}</small></button>`).join("");
+    h+=`<div class="grp2"><div class="grph"><span class="kstat-dot ${sg}"></span>${sigName[sg]} · ${ks.length}건</div>`;
+    h+=ks.map(k=>`<button class="kstat-tag ${sg}" data-gokpi="${k.div}"><span class="d"></span>${k.name} <small>${k.team}</small></button>`).join("");
     h+=`</div>`;
   });
+  if(!h)h=`<div class="tiny muted">표시할 KPI가 없습니다.</div>`;
   document.getElementById("kstatList").innerHTML=h;
   document.querySelectorAll('[data-gokpi]').forEach(b=>b.onclick=()=>openDiv(b.dataset.gokpi));
 }
@@ -990,7 +1016,7 @@ function perHeadBlock(E){
       <div class="phgauge">${segs}<div class="pt" style="left:${pos}%"><span class="phbdg">현재 · ${zones[zi].l}</span></div></div>
       <div class="phgauge-lb">${labs}</div>
     </div>
-    <div class="note">현재 인당 영업이익은 <b>${v.toFixed(2)}억</b>으로 목표 <b>1.0억</b> 대비 <b>"${zones[zi].l}"</b> 구간입니다 <span class="estbadge">목표 임의</span>. 적자 구간에서는 절대 수준보다 손실 축소 속도를 우선 봅니다.</div>
+    <div class="note">현재 인당 영업이익은 <b>${v.toFixed(2)}억</b>으로 목표 <b>1.0억</b> 대비 <b>"${zones[zi].l}"</b> 구간입니다. 적자 구간에서는 절대 수준보다 손실 축소 속도를 우선 봅니다.</div>
   </div>`;
 }
 
@@ -1248,20 +1274,20 @@ function renderDiv(){
 }
 
 function hcMiniCards(d){
-  /* 본부 단위 공헌이익/HCVA/HCROI — 전사값 표시(본부 인건비 미입력 시 전사 기준 참고) */
-  const cm = d.revCum!=null ? d.revCum*0.30 : null;  // 공헌이익(추정: 매출×30%) — 매출부서만
+  /* 본부 단위 공헌이익/HCVA/HCROI — 전사 연간 역산 기준 참조 */
+  const cm = d.revCum!=null ? d.revCum*0.30 : null;  // 공헌이익(매출×30%) — 매출부서
   const cards=[];
   cards.push(`<div class="hccard"><div class="hl">${ic(ICON.revenue,13)} 공헌이익(누계)</div>
     <div class="hv">${cm!=null?fmtA(cm,1):'<small>전사 기준 참조</small>'}</div>
-    <div class="hd">${cm!=null?'매출 × 공헌이익률 30% 추정':'원가·지원 부서는 전사 공헌이익에 기여'} <span class="estbadge">임의</span></div></div>`);
-  cards.push(`<div class="hccard"><div class="hl">${ic(ICON.people,13)} HCVA (인당부가가치)</div>
-    <div class="hv">${HR.hcva.toFixed(2)}<small>억/인</small></div>
-    <div class="hd">(영업이익+인건비)÷인원 · 전사 기준 <span class="estbadge">임의</span>
+    <div class="hd">${cm!=null?'매출 × 공헌이익률 30%':'원가·지원 부서는 전사 공헌이익에 기여'}</div></div>`);
+  cards.push(`<div class="hccard"><div class="hl">${ic(ICON.people,13)} HCVA (인당 부가가치)</div>
+    <div class="hv">${toM(HR.hcva).toFixed(1)}<small>M/인</small></div>
+    <div class="hd">목표 ${toM(HR.hcvaTarget).toFixed(1)}M/인 (배율 1.28) · 전사 연환산
     <div class="hbar"><div class="hf" style="width:${Math.min(HR.hcva/HR.hcvaTarget*100,100).toFixed(0)}%;background:var(--navy)"></div></div></div></div>`);
   const hcroiS=HR.hcroi>=HR.hcroiTarget?"var(--ok)":(HR.hcroi>=1?"var(--warn)":"var(--risk)");
   cards.push(`<div class="hccard"><div class="hl">${ic(ICON.roi,13)} HCROI (인건비 투자수익률)</div>
     <div class="hv">${HR.hcroi.toFixed(2)}<small>배</small></div>
-    <div class="hd">목표 ≥${HR.hcroiTarget} · 전사 기준 <span class="estbadge">임의</span>
+    <div class="hd">목표 ≥${HR.hcroiTarget.toFixed(2)} · 성장선 ${HR.hcroiGrowth} · 전사 연환산
     <div class="hbar"><div class="hf" style="width:${Math.min(HR.hcroi/HR.hcroiTarget*100,100).toFixed(0)}%;background:${hcroiS}"></div></div></div></div>`);
   return cards.join("");
 }
@@ -1285,22 +1311,47 @@ function renderL2(){
     return `<tr><td>${a.name}</td><td class="n">${a.fte}</td><td class="n">${al.toFixed(1)}</td><td class="n">${a.cost.toFixed(1)}</td><td class="n ${sp<0?'neg':'pos'}">${sp>=0?'+':'−'}${Math.abs(sp).toFixed(1)}</td><td>${sp<0?'구조 점검 필요(경영진 참고)':'비용 대비 기여 충분'}</td></tr>`;}).join("");
   const g=L.gate;
 
-  /* HCVA 게이지 */
+  /* === HCVA 게이지 (연간 역산 기준) ===
+     위험 < 인당인건비(43.9M, 배율1.0) | 주의 ~목표(56.3M, 배율1.28) | 정상 ~성장선(65.9M,1.5) | 우수 ≥성장선 */
   const hcvaZones=[{l:"위험",c:"#f2b8bd"},{l:"주의",c:"#f3d9a3"},{l:"정상",c:"#b6e0b9"},{l:"우수",c:"#34a853"}];
-  let hz; const hv=HR.hcva,ht=HR.hcvaTarget;
-  if(hv<ht*0.5)hz=0;else if(hv<ht*0.85)hz=1;else if(hv<ht)hz=2;else hz=3;
+  const hv=HR.hcva;
+  let hz; if(hv<HR.perLabor)hz=0;else if(hv<HR.hcvaTarget)hz=1;else if(hv<HR.hcvaGrowth)hz=2;else hz=3;
   const hpos=(hz+0.5)*(100/hcvaZones.length);
   const hsegs=hcvaZones.map(z=>`<div class="z" style="flex:1;background:${z.c}"></div>`).join("");
   const hlabs=hcvaZones.map(z=>`<span>${z.l}</span>`).join("");
 
-  /* HCROI 게이지 (목표 1.5) */
-  const roiZones=[{l:"손실(<1.0)",c:"#f2b8bd"},{l:"회수(1.0~1.5)",c:"#f3d9a3"},{l:"목표 달성(≥1.5)",c:"#34a853"}];
-  let rz; const rv=HR.hcroi; if(rv<1.0)rz=0;else if(rv<1.5)rz=1;else rz=2;
+  /* === HCROI 게이지 (목표 1.28 · 성장선 1.5) ===
+     손실 <1.0 | 회수 1.0~1.28 | 목표달성 1.28~1.5 | 성장안정 ≥1.5 */
+  const roiZones=[{l:"손실",c:"#f2b8bd"},{l:"회수",c:"#f3d9a3"},{l:"목표달성",c:"#b6e0b9"},{l:"성장안정",c:"#34a853"}];
+  const rv=HR.hcroi;
+  let rz; if(rv<1.0)rz=0;else if(rv<HR.hcroiTarget)rz=1;else if(rv<HR.hcroiGrowth)rz=2;else rz=3;
   const rpos=(rz+0.5)*(100/roiZones.length);
   const rsegs=roiZones.map(z=>`<div class="z" style="flex:1;background:${z.c}"></div>`).join("");
   const rlabs=roiZones.map(z=>`<span>${z.l}</span>`).join("");
-  const roiTgtPos = (1/roiZones.length)*100 + (0.5/(1.5))* (100/roiZones.length); // 1.5 경계 ≈ 2/3 지점
-  const roiTgtLine = (2/3)*100;
+
+  /* === 기준점 해석 (행동 가이드만 · 긍정 표현) === */
+  const hcvaCrit=[
+    {sig:"risk",range:`HCVA &lt; ${toM(HR.perLabor).toFixed(1)}M/인 (배율 &lt; 1.0)`,
+      act:"한 사람의 노력이 더 큰 성과로 이어지도록 일하는 방식과 자원 배분을 함께 점검합니다."},
+    {sig:"warn",range:`${toM(HR.perLabor).toFixed(1)} ~ ${toM(HR.hcvaTarget).toFixed(1)}M/인 (배율 1.0~1.28)`,
+      act:"핵심 과제에 집중하고 불필요한 일을 덜어, 더 가볍게 성과를 만들 수 있도록 지원합니다."},
+    {sig:"ok",range:`${toM(HR.hcvaTarget).toFixed(1)}M/인 이상 (배율 1.28 이상)`,
+      act:"성과에 걸맞은 보상과 성장 기회를 넓히고, 함께 오래 성장할 기반을 다집니다."}
+  ];
+  const hcroiCrit=[
+    {sig:"risk",range:"HCROI &lt; 1.0",
+      act:"매출과 수익 회복을 최우선으로, 회사가 함께 성장 기반을 단단히 다지는 단계입니다."},
+    {sig:"warn",range:"1.0 ~ 1.28",
+      act:"성과가 보상으로 이어지도록 체계를 다듬으며 안정적인 흑자 안착을 향해 나아갑니다."},
+    {sig:"ok",range:"1.28 이상 (1.5 → 성장 안정권)",
+      act:"성과 공유와 보상을 강화하고, 새로운 도전과 인재 합류를 검토할 수 있는 단계입니다."}
+  ];
+  function critBlock(tiers,curIdx){
+    return `<div class="critlist">`+tiers.map((t,i)=>`<div class="critrow ${t.sig} ${i===curIdx?'cur':''}">
+      <div class="critdot ${t.sig}"></div>
+      <div class="critmain"><div class="critrange">${t.range}${i===curIdx?' <span class="curtag">현재</span>':''}</div>
+      <div class="critact">→ ${t.act}</div></div></div>`).join("")+`</div>`;
+  }
 
   document.getElementById("view-l2").innerHTML=`
     <div class="ddtop"><div class="crumb"><a id="back2">전사 KPI</a><span class="sepc">›</span><b>인적 기여가치</b></div></div>
@@ -1308,33 +1359,33 @@ function renderL2(){
     <div class="hcvahero">
       <div class="tagrow"><span class="htag">인적 기여가치</span><span class="htag">경영진 전용</span><span class="htag">분기 점검</span></div>
       <h2>우리 팀은 얼마나 큰 가치를 만들고 있을까?</h2>
-      <p>구성원 한 사람이 만들어내는 가치(HCVA)와, 인건비 1원이 만들어내는 회수율(HCROI)을 통해 우리 조직의 인적 효율을 확인합니다. 적자 구간에서는 절대 수준보다 회복 속도를 우선 봅니다.</p>
+      <p>인력 운영의 생산성과 효율성을 점검합니다.</p>
     </div>
 
-    <div class="sec"><span class="bar"></span><h2>2026년 경영 가이드라인 · 전사 현황</h2><span class="s">— 누계 기준</span></div>
+    <div class="sec"><span class="bar"></span><h2>2026년 경영 가이드라인 · 전사 현황</h2><span class="s">— 매출·이익은 누계, HCVA·HCROI는 연환산 기준</span></div>
     <div class="guidegrid">
-      <div class="gcard"><div class="gl">${ic(ICON.revenue,14)} 인당 매출액</div><div class="gv">${HR.perRevenue.toFixed(2)}<small>억/인</small></div><div class="gsub">매출 누계 ${fmtA(EXEC.revenueCum,1)} ÷ ${META.FTE}명</div></div>
-      <div class="gcard c2"><div class="gl">${ic(ICON.profit,14)} 인당 영업이익</div><div class="gv">${HR.perProfit.toFixed(2)}<small>억/인</small></div><div class="gsub">영업이익 누계 ${fmtA(EXEC.profitCum,2)} ÷ ${META.FTE}명</div></div>
-      <div class="gcard c3"><div class="gl">${ic(ICON.people,14)} 현재 인원</div><div class="gv">${META.FTE}<small>명</small></div><div class="gsub">Base FTE (연초 고정)</div></div>
+      <div class="gcard"><div class="gl">${ic(ICON.revenue,14)} 인당 매출액</div><div class="gv">${HR.perRevenue.toFixed(2)}<small>억/인</small></div></div>
+      <div class="gcard c2"><div class="gl">${ic(ICON.profit,14)} 인당 영업이익</div><div class="gv">${HR.perProfit.toFixed(2)}<small>억/인</small></div></div>
+      <div class="gcard c3"><div class="gl">${ic(ICON.people,14)} 현재 인원</div><div class="gv">${META.FTE}<small>명</small></div></div>
     </div>
 
     <div class="sec"><span class="bar"></span><h2>한 사람이 만드는 가치</h2><span class="s">— HCVA · 인재 투자 효율 HCROI</span></div>
     <div class="hcvabig">
       <div class="hcvacard">
         <div class="hh"><span class="ico">${ic(ICON.people,17)}</span><h3>한 사람이 만드는 가치</h3><span class="en">HCVA</span></div>
-        <div class="hdesc">(영업이익 + 인건비) ÷ 인원 · 1인이 창출한 부가가치 <span class="estbadge">임의(인건비 연결마스터)</span></div>
-        <div class="hbig">${HR.hcva.toFixed(2)}<small>억/인</small></div>
-        <div class="hmeta">목표 <b>${HR.hcvaTarget.toFixed(2)}억/인</b> 대비 현재 <b>"${hcvaZones[hz].l}"</b> 구간</div>
-        <div class="hcgauge">${hsegs}<div class="pt" style="left:${hpos}%"><span class="b">현재 · ${hcvaZones[hz].l}</span></div></div>
+        <div class="hbig">${toM(hv).toFixed(1)}<small>M/인</small></div>
+        <div class="hmeta">목표 <b>${toM(HR.hcvaTarget).toFixed(1)}M/인</b>(배율 1.28) · 인당 인건비 ${toM(HR.perLabor).toFixed(1)}M · 현재 <b>"${hcvaZones[hz].l}"</b> 구간</div>
+        <div class="hcgauge">${hsegs}<div class="pt" style="left:${hpos}%"><span class="b">현재 ${toM(hv).toFixed(1)}M</span></div></div>
         <div class="hcgauge-lb">${hlabs}</div>
+        ${critBlock(hcvaCrit,hz===3?2:hz)}
       </div>
       <div class="hcvacard">
         <div class="hh"><span class="ico">${ic(ICON.roi,17)}</span><h3>인재 투자 효율</h3><span class="en">HCROI</span></div>
-        <div class="hdesc">(영업이익 + 인건비) ÷ 인건비 · 인건비 1원의 회수 배수 <span class="estbadge">임의(인건비 연결마스터)</span></div>
-        <div class="hbig">${HR.hcroi.toFixed(2)}<small>배</small></div>
-        <div class="hmeta">목표 <b>≥${HR.hcroiTarget}배</b> · 현재 ${rv<1?'<b style="color:var(--risk-ink)">인건비 미회수</b>':rv<1.5?'<b style="color:var(--warn-ink)">회수 구간</b>':'<b style="color:var(--ok-ink)">목표 달성</b>'}</div>
-        <div class="hcgauge">${rsegs}<div class="tg" style="left:${roiTgtLine}%"></div><div class="pt" style="left:${rpos}%"><span class="b">현재 ${rv.toFixed(2)}배</span></div></div>
+        <div class="hbig">${rv.toFixed(2)}<small>배</small></div>
+        <div class="hmeta">목표 <b>≥${HR.hcroiTarget.toFixed(2)}배</b> · 성장선 ${HR.hcroiGrowth} · 현재 ${rv<1?'<b style="color:var(--risk-ink)">인건비 미회수</b>':rv<HR.hcroiTarget?'<b style="color:var(--warn-ink)">회수 구간</b>':'<b style="color:var(--ok-ink)">목표 달성</b>'}</div>
+        <div class="hcgauge">${rsegs}<div class="pt" style="left:${rpos}%"><span class="b">현재 ${rv.toFixed(2)}배</span></div></div>
         <div class="hcgauge-lb">${rlabs}</div>
+        ${critBlock(hcroiCrit,rz===3?2:rz)}
       </div>
     </div>
 
@@ -1342,7 +1393,7 @@ function renderL2(){
     <div class="l2warn"><b>⚠ 비용 적정성 (Layer 2)</b><span class="c">분기용</span><span class="c">경영진 전용</span><span class="c">평가 미연동</span><span class="c">영업이익 KPI와 분리</span>
       <span style="flex:1"></span><span class="tiny">소규모 부서 구조적 불리 → 부서장 평가 직접 연동 금지</span></div>
     <table class="t2"><thead><tr><th>본부</th><th class="n">FTE</th><th class="n">배분 공헌이익</th><th class="n">실제 비용</th><th class="n">잉여/부족</th><th>해석</th></tr></thead><tbody>${rows}</tbody></table>
-    <div class="sec"><span class="bar"></span><h2>채용 타당성 게이트</h2><span class="s">— 이 수치 없이 채용 승인 금지 <span class="estbadge">임의값</span></span></div>
+    <div class="sec"><span class="bar"></span><h2>채용 타당성 게이트</h2><span class="s">— 이 수치 없이 채용 승인 금지</span></div>
     <div class="gatec">
       <div class="bx"><div class="l">신규 채용 인건비 (억)</div><div class="v"><input id="gc" type="number" step="0.05" value="${g.newLaborCost}"></div></div>
       <div class="bx"><div class="l">공헌이익률 기준 필요매출 (억)<br><span class="tiny">인건비 ÷ ${(g.cmRate*100).toFixed(0)}%</span></div><div class="v" id="gcm">${(g.newLaborCost/g.cmRate).toFixed(2)}</div></div>
