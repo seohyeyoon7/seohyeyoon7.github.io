@@ -3,25 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-<title>KOAS KPI 경영 대시보드</title>
+<title>KOAS 경영 신호등</title>
 <style>
 :root{
-  /* 1. Primary — 인터랙션 (에메랄드) */
   --emerald:#1e8e5a; --emerald-press:#19774b; --emerald-soft:#e6f4ec;
-  /* 2. Brand — 다크 면 (포레스트) */
   --forest:#26473a; --forest-line:#1b332a; --lime:#9fd356;
-  /* 3. Data — 데이터 시각화 (네이비) */
   --navy:#234876; --navy2:#4a6794; --navy3:#6f86b0; --navy4:#cdd8e8; --navy5:#e8eff7;
-  --navy-box:#eef3f8; --navy-border:#dce5f0;
-  /* 4. Surface & Border */
+  --navy-border:#dce5f0;
   --white:#fff; --surf2:#f3f6f4; --surf-hover:#f7faf8; --border:#e4eae6; --border-soft:#d3e7da;
-  /* 5. Text */
   --text:#16271f; --text2:#2e3d36; --body:#52635b; --cap:#869389; --ph:#aab4ad;
-  /* 6. Semantic — 신호등 (변경 금지) */
   --ok:#16a34a; --ok-ink:#15803d; --ok-soft:rgba(22,163,74,.12);
   --warn:#e8a317; --warn-ink:#b45309; --warn-soft:rgba(232,163,23,.14);
   --risk:#f04452; --risk-ink:#dc2626; --risk-soft:rgba(240,68,82,.12);
-  --bg:#f3f6f4; --radius:14px;
+  --bg:#f3f6f4; --radius:14px; --maxw:1180px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
@@ -34,14 +28,13 @@ h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-.3px;color:var(--text)}
 button{font-family:inherit;cursor:pointer}
 svg.ic{display:block}
 ::selection{background:rgba(30,142,90,.15)}
-
 .app{display:flex;min-height:100vh}
 
-/* ---- Login ---- */
+/* Login */
 .login{position:fixed;inset:0;z-index:200;background:
   linear-gradient(rgba(20,40,32,.90),rgba(31,58,47,.86)),
   radial-gradient(120% 120% at 80% 10%, #2f5848 0%, #1b332a 70%);
-  display:flex;align-items:center;justify-content:center;padding:20px}
+  display:flex;align-items:center;justify-content:center;padding:20px;flex-direction:column}
 .login-card{width:100%;max-width:380px;background:var(--white);border-radius:18px;padding:34px 30px 28px;box-shadow:0 24px 70px rgba(16,39,31,.45)}
 .login-card .brand{display:flex;align-items:center;gap:12px;margin-bottom:6px}
 .login-card .brand .mark{width:40px;height:40px;border-radius:11px;background:var(--emerald);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px}
@@ -56,8 +49,10 @@ svg.ic{display:block}
 .login-btn:hover{background:var(--emerald-press)}
 .login-err{color:var(--risk-ink);font-size:12px;margin-top:10px;min-height:16px}
 .login-hint{font-size:11px;color:var(--cap);margin-top:14px;text-align:center;line-height:1.5}
+.login-credit{margin-top:20px;font-size:11px;color:rgba(255,255,255,.62);text-align:center;letter-spacing:.2px}
+.login-credit b{color:rgba(255,255,255,.85);font-weight:700}
 
-/* ---- Sidebar (forest dark) ---- */
+/* Sidebar */
 .sidebar{width:250px;flex-shrink:0;background:var(--forest);border-right:1px solid var(--forest-line);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;transition:margin-left .22s ease;z-index:60}
 .app.sbhide .sidebar{margin-left:-251px}
 .sb-logo{display:flex;align-items:center;gap:11px;padding:18px 18px 16px;cursor:pointer;border-bottom:1px solid var(--forest-line)}
@@ -71,17 +66,19 @@ svg.ic{display:block}
 .sb-item.active{background:rgba(159,211,86,.18);color:var(--lime);font-weight:700}
 .sb-item .ic{flex-shrink:0} .sb-item .lbl{flex:1}
 .sb-item .dotsig{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.sb-sub{font-size:9.5px;color:rgba(255,255,255,.4);padding:2px 10px 4px 38px;margin-top:-2px}
 .sb-foot{padding:12px 14px;border-top:1px solid var(--forest-line)}
 .sb-demo{font-size:10.5px;color:var(--lime);background:rgba(159,211,86,.1);border:1px dashed rgba(159,211,86,.4);border-radius:8px;padding:8px 10px;line-height:1.45}
 .sb-logout{margin-top:9px;width:100%;padding:8px;border:1px solid var(--forest-line);background:transparent;color:rgba(255,255,255,.7);border-radius:8px;font-size:12px}
 .sb-logout:hover{background:rgba(255,255,255,.06);color:#fff}
+.sb-credit{margin-top:11px;padding-top:10px;border-top:1px solid var(--forest-line);font-size:10px;color:rgba(255,255,255,.5);line-height:1.5;text-align:center}
+.sb-credit b{color:rgba(255,255,255,.72);font-weight:700}
 .backdrop{display:none;position:fixed;inset:0;background:rgba(16,39,31,.45);z-index:50}
 .backdrop.on{display:block}
 
-/* ---- Main ---- */
+/* Main */
 .main{flex:1;min-width:0;display:flex;flex-direction:column}
-.topbar{display:flex;align-items:center;gap:13px;padding:16px 26px 14px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:30}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:30}
+.topbar-inner{display:flex;align-items:center;gap:13px;padding:16px 26px 14px;max-width:var(--maxw);margin:0 auto;width:100%}
 .burger{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--text);flex-shrink:0}
 .burger:hover{border-color:var(--emerald);color:var(--emerald)}
 .topbar .ttl{cursor:pointer;min-width:0}
@@ -92,7 +89,7 @@ svg.ic{display:block}
 .topbar .meta b{color:var(--text2)}
 .upd-btn{cursor:pointer;border-bottom:1px dashed var(--navy3);color:var(--navy)}
 .upd-btn:hover{color:var(--emerald);border-color:var(--emerald)}
-.content{padding:22px 26px 70px;max-width:1200px}
+.content{padding:22px 26px 70px;max-width:var(--maxw);margin:0 auto;width:100%}
 
 .sec{display:flex;align-items:baseline;gap:10px;margin:30px 2px 14px}
 .sec-gap{margin-top:46px}
@@ -101,7 +98,6 @@ svg.ic{display:block}
 .sec h2{font-size:16px}
 .sec .s{font-size:12px;color:var(--cap);font-weight:400}
 
-/* signal */
 .sig{display:inline-flex;align-items:center;gap:6px;font-weight:700;white-space:nowrap;font-size:12px}
 .sig .dot{width:9px;height:9px;border-radius:50%}
 .sig.ok{color:var(--ok-ink)} .sig.ok .dot{background:var(--ok)}
@@ -113,24 +109,21 @@ svg.ic{display:block}
 .sig.pill.risk{background:var(--risk-soft)} .sig.pill.none{background:var(--surf2)}
 
 .estbadge{font-size:10px;font-weight:700;color:var(--navy2);background:var(--navy5);border:1px dashed var(--navy-border);border-radius:5px;padding:1px 6px}
-.realbadge{font-size:10px;font-weight:700;color:var(--ok-ink);background:var(--ok-soft);border:1px solid rgba(22,163,74,.3);border-radius:5px;padding:1px 6px}
 .tagb{font-size:10px;font-weight:800;border-radius:5px;padding:1px 6px}
 .tagb.core{color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)}
 .tagb.spec{color:var(--warn-ink);background:var(--warn-soft);border:1px solid rgba(232,163,23,.3)}
 
-/* ===== 단일 KPI 카드 (계층형) ===== */
+/* KPI 카드 (전사) */
 .kc{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(16,39,31,.04)}
 .kpi-one{overflow:hidden;border-left:5px solid var(--emerald)}
-/* 상위 지표 (지금까지 남긴 이익) */
 .kc-main{padding:20px 22px 18px}
 .kc-main .lab{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--body);font-weight:600}
 .kc-main .lab .ico{width:30px;height:30px;border-radius:9px;background:var(--emerald-soft);color:var(--emerald);display:flex;align-items:center;justify-content:center}
 .kc-main-row{display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap;margin-top:6px}
 .kc-main-row .big{font-size:42px;font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1}
-.kc-main-row .big small{font-size:17px;font-weight:700;color:var(--cap)}
 .kc-main-stat{display:flex;gap:26px;flex-wrap:wrap;padding-bottom:3px}
 .kc-main-stat .b .l{font-size:11px;color:var(--cap)} .kc-main-stat .b .v{font-size:18px;font-weight:800;margin-top:3px;color:var(--text2)}
-/* 보조 KPI (원인 분석 영역 — 독립 카드 아님) */
+.kc-main-stat .b .sub{font-size:9.5px;color:var(--ph);margin-top:2px;max-width:170px;line-height:1.4}
 .kc-sub{background:var(--surf2);border-top:1px solid var(--border);padding:15px 22px 16px}
 .kc-sub-grid{display:grid;grid-template-columns:1fr 1fr}
 .subkpi{padding:2px 20px}
@@ -145,13 +138,37 @@ svg.ic{display:block}
 .subkpi .sx{margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);font-size:11.5px;color:var(--body)}
 .subkpi .sx b{font-weight:800}
 .dn{color:var(--risk-ink);font-weight:700} .up{color:var(--ok-ink);font-weight:700}
-/* 지표별 AI 인사이트 (각 KPI 아래) */
 .kpi-ins{margin-top:10px;font-size:12.5px;line-height:1.55;color:var(--text2)}
 .kc-main .kpi-ins{padding-top:11px;border-top:1px dashed var(--border)}
 .subkpi .kpi-ins{padding-top:9px;border-top:1px dashed var(--border)}
-/* 카드 하단 한 줄 종합 */
 .kc-syn{border-top:1px solid var(--border);background:var(--emerald-soft);padding:13px 22px;font-size:13px;font-weight:600;color:var(--text);line-height:1.55}
 .kc-syn .arrow{color:var(--emerald-press);font-weight:700;margin-right:4px}
+
+/* KPI 신호등 카드뉴스 */
+.kstat{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
+.kstat-top{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--text2);margin-bottom:4px}
+.kstat-top .ico{color:var(--emerald)}
+.kstat-sub{font-size:11.5px;color:var(--cap);margin-bottom:16px}
+.kstat-lights{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.klight{border:1px solid var(--border);border-radius:12px;padding:16px 10px;text-align:center;cursor:pointer;transition:.14s;background:var(--white)}
+.klight:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,39,31,.07)}
+.klight.sel{border-width:2px}
+.klight.ok.sel{border-color:var(--ok)} .klight.warn.sel{border-color:var(--warn)} .klight.risk.sel{border-color:var(--risk)}
+.bulb{width:52px;height:52px;border-radius:50%;margin:0 auto 9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:21px;font-weight:800}
+.bulb.ok{background:radial-gradient(circle at 35% 30%,#34d27a,#16a34a);box-shadow:0 0 0 5px var(--ok-soft),0 4px 10px rgba(22,163,74,.3)}
+.bulb.warn{background:radial-gradient(circle at 35% 30%,#f8cd6b,#e8a317);box-shadow:0 0 0 5px var(--warn-soft),0 4px 10px rgba(232,163,23,.3)}
+.bulb.risk{background:radial-gradient(circle at 35% 30%,#ff6b76,#f04452);box-shadow:0 0 0 5px var(--risk-soft),0 4px 10px rgba(240,68,82,.3)}
+.klight .lab{font-size:12px;font-weight:700;color:var(--text2)} .klight .lab .cnt{font-size:11px;color:var(--cap);font-weight:600}
+.kstat-msg{margin-top:14px;background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:10px;padding:11px 14px;font-size:12.5px;color:var(--text);line-height:1.55}
+.kstat-list{margin-top:12px}
+.kstat-list .grp2{margin-bottom:11px}
+.kstat-list .grp2:last-child{margin-bottom:0}
+.kstat-list .grph{font-size:11px;font-weight:800;color:var(--cap);margin-bottom:5px;letter-spacing:.3px}
+.kstat-tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;background:var(--surf2);border:1px solid var(--border);border-radius:7px;padding:4px 9px;margin:0 5px 5px 0;cursor:pointer}
+.kstat-tag:hover{border-color:var(--emerald);background:var(--surf-hover)}
+.kstat-tag .d{width:7px;height:7px;border-radius:50%}
+.kstat-tag.ok .d{background:var(--ok)} .kstat-tag.warn .d{background:var(--warn)} .kstat-tag.risk .d{background:var(--risk)}
+.kstat-tag small{color:var(--cap)}
 
 /* 경쟁사 벤치마킹 */
 .bench{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
@@ -185,7 +202,7 @@ svg.ic{display:block}
 .share-note{margin-top:12px;font-size:10.5px;color:var(--cap);line-height:1.6;border-top:1px dashed var(--border);padding-top:10px}
 .share-note p{margin:3px 0;display:flex;gap:6px} .share-note p::before{content:"※";color:var(--navy3)}
 
-/* 손실 Top3 = 개선 과제 */
+/* 개선 과제 */
 .lpan{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;gap:20px;flex-wrap:wrap}
 .lpan .sum{flex:0 0 210px;background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:11px;padding:15px}
 .lpan .sum .l{font-size:12px;color:var(--emerald-press);font-weight:600} .lpan .sum .v{font-size:25px;font-weight:800;color:var(--emerald-press);margin-top:4px}
@@ -200,7 +217,7 @@ svg.ic{display:block}
 .lrow .amt{font-weight:800;color:var(--emerald-press);font-size:14px}
 .lrow .go{color:var(--emerald);font-size:16px;flex-shrink:0}
 
-/* 어떻게 벌고 있을까 + 클레임 */
+/* 영업 활동 + 클레임 */
 .row2{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:start}
 .row2-gap{margin-top:46px}
 .col{min-width:0}
@@ -215,10 +232,7 @@ svg.ic{display:block}
 .mchart{padding:13px 15px;border-bottom:1px solid var(--border)}
 .mchart:last-child{border-bottom:none}
 .mchart .t{font-size:11.5px;font-weight:700;color:var(--text2);margin-bottom:2px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.mchart .t .badge{font-weight:700}
 .mchart .cm{font-size:11px;color:var(--navy2);margin-top:7px;background:var(--navy5);border-radius:7px;padding:6px 9px;line-height:1.45}
-.typebar{display:flex;height:26px;border-radius:7px;overflow:hidden;margin-top:6px}
-.typebar .seg{display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
 .claim-legend{display:flex;gap:14px;font-size:11px;color:var(--cap);margin-top:6px}
 .claim-legend .k{display:inline-flex;align-items:center;gap:5px}
 .claim-legend .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
@@ -234,7 +248,6 @@ svg.ic{display:block}
 .divgroup{margin-bottom:18px}
 .divgroup .gh{display:flex;align-items:center;gap:9px;margin:0 2px 11px}
 .divgroup .gh .tag{font-size:11px;font-weight:800;border-radius:6px;padding:3px 10px}
-.divgroup .gh .n{font-size:11.5px;color:var(--cap)}
 .divs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .dcard{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:11px;cursor:pointer;transition:.12s;border-top:4px solid var(--navy)}
 .dcard:hover{border-color:var(--emerald);transform:translateY(-2px);box-shadow:0 8px 22px rgba(16,39,31,.07)}
@@ -249,8 +262,10 @@ svg.ic{display:block}
 .dcard .top .nm{font-size:14.5px;font-weight:700;flex:1;color:var(--text)}
 .dcard .mrow{font-size:12px;color:var(--cap)} .dcard .mrow b{color:var(--text2);font-weight:700}
 .dcard .achv{margin-top:1px}
-.dcard .achv .bar{height:7px;background:var(--surf2);border-radius:5px;overflow:hidden}
+.dcard .achv .alab{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:var(--body);font-weight:600;margin-bottom:5px}
+.dcard .achv .bar{height:8px;background:var(--surf2);border-radius:5px;overflow:hidden;position:relative}
 .dcard .achv .fill{height:100%;border-radius:5px;background:var(--emerald)}
+.dcard .achv .tgtmark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text2)}
 .dcard .achv .lb{display:flex;justify-content:space-between;font-size:10.5px;color:var(--cap);margin-top:4px}
 .dcard .imp{font-size:12px;color:var(--cap)} .dcard .imp b{font-size:16px;display:block;font-weight:800;color:var(--emerald-press)}
 .dcard .imp b.zero{color:var(--cap)}
@@ -261,24 +276,25 @@ svg.ic{display:block}
 .chip .tg.spec{color:var(--warn-ink);background:var(--warn-soft)}
 .dcard .go{margin-top:2px;align-self:flex-start;font-size:12px;font-weight:700;color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:9px;padding:6px 13px}
 
-/* 인당 기여가치 */
-.perhead{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+/* 인당 기여 게이지(전사 하단) */
+.perhead{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap}
 .perhead .lead{flex:0 0 200px}
 .perhead .lead .l{font-size:12.5px;color:var(--body);font-weight:600}
 .perhead .lead .v{font-size:34px;font-weight:800;color:var(--text);letter-spacing:-1px;margin-top:4px}
 .perhead .lead .v small{font-size:15px;color:var(--cap);font-weight:700}
 .perhead .gw{flex:1;min-width:240px}
-.phgauge{position:relative;height:12px;border-radius:7px;overflow:visible;display:flex;margin-top:30px}
-.phgauge .z{flex:1}
+.phgauge{position:relative;height:14px;border-radius:7px;display:flex;margin-top:34px;overflow:visible}
+.phgauge .z{height:100%}
 .phgauge .z:first-child{border-radius:7px 0 0 7px} .phgauge .z:last-child{border-radius:0 7px 7px 0}
-.phgauge .pt{position:absolute;top:-4px;width:4px;height:20px;background:var(--text);border-radius:3px;transform:translateX(-50%);transition:left .4s}
-.phgauge .pt .phbdg{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:10.5px;font-weight:800;border-radius:6px;padding:3px 9px;white-space:nowrap}
+.phgauge .pt{position:absolute;top:-4px;width:4px;height:22px;background:var(--text);border-radius:3px;transform:translateX(-50%);transition:left .4s;z-index:2}
+.phgauge .pt .phbdg{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:10.5px;font-weight:800;border-radius:6px;padding:3px 9px;white-space:nowrap}
 .phgauge .pt .phbdg::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--text)}
-.phgauge-lb{display:flex;justify-content:space-between;font-size:11px;color:var(--cap);margin-top:9px;font-weight:600}
+.phgauge-lb{display:flex;margin-top:11px}
+.phgauge-lb span{flex:1;text-align:center;font-size:11px;color:var(--cap);font-weight:600}
 .perhead .note{flex-basis:100%;font-size:11.5px;color:var(--body);background:var(--surf2);border-radius:9px;padding:10px 13px;line-height:1.55}
 .perhead .note b{color:var(--text);font-weight:800}
 
-/* ===== 본부 상세 ===== */
+/* 본부 상세 */
 .ddtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .ddtop .crumb{display:flex;align-items:center;gap:8px;font-size:13px}
 .ddtop .crumb a{color:var(--emerald);font-weight:700;cursor:pointer}
@@ -296,6 +312,51 @@ svg.ic{display:block}
 .ddhead .blk .v.pos{color:var(--emerald-press)} .ddhead .blk .v.zero{color:var(--cap)}
 .ddhead .rk{flex:1;min-width:200px} .ddhead .rk .l{font-size:11.5px;color:var(--cap);margin-bottom:5px}
 
+/* 본부 현황 요약 */
+.statuscard{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.statuscard .scrow{display:grid;grid-template-columns:150px 1fr;border-bottom:1px solid var(--border)}
+.statuscard .scrow:last-child{border-bottom:none}
+.statuscard .sck{background:var(--surf2);padding:14px 16px;font-size:12px;font-weight:700;color:var(--body);display:flex;align-items:center;gap:6px}
+.statuscard .scv{padding:14px 16px;font-size:13px;color:var(--text);line-height:1.6}
+.statuscard .scv b{font-weight:800}
+.statuscard .scv .big{font-size:20px;font-weight:800;color:var(--text)}
+.statuscard .ai{display:flex;gap:9px;align-items:flex-start}
+.statuscard .ai .aibadge{flex-shrink:0;font-size:10px;font-weight:800;color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:6px;padding:2px 7px;margin-top:1px}
+.scachv{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.scachv .barwrap{flex:1;min-width:150px}
+.scachv .bar{height:8px;background:var(--surf2);border-radius:5px;overflow:hidden;position:relative}
+.scachv .bar .fill{height:100%;border-radius:5px}
+.scachv .bar .tgtmark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text2)}
+
+/* KPI 달성 경로 */
+.flowwrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 16px 18px}
+.flowlegend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--cap);margin-bottom:13px;align-items:center}
+.flowlegend .k{display:inline-flex;align-items:center;gap:5px}
+.flowlegend .d{width:9px;height:9px;border-radius:50%}
+.flowlegend .d.ok{background:var(--ok)} .flowlegend .d.warn{background:var(--warn)} .flowlegend .d.risk{background:var(--risk)} .flowlegend .d.none{background:#c2c6cc}
+.flowchain{display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:stretch}
+.fstage{position:relative;padding:0 7px;display:flex}
+.fcard{background:var(--surf2);border:1px solid var(--border);border-radius:12px;padding:12px 12px 13px;width:100%;display:flex;flex-direction:column;gap:6px;position:relative}
+.fcard.kpi{background:var(--white)}
+.fcard.kpi.ok{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok-soft)}
+.fcard.kpi.warn{border-color:var(--warn);box-shadow:0 0 0 1px var(--warn-soft)}
+.fcard.kpi.risk{border-color:var(--risk);box-shadow:0 0 0 1px var(--risk-soft)}
+.fstep{font-size:9.5px;font-weight:800;letter-spacing:.4px;color:var(--cap);text-transform:uppercase;display:flex;align-items:center;gap:5px}
+.fstep .sdot{width:8px;height:8px;border-radius:50%}
+.fstep .sdot.ok{background:var(--ok)} .fstep .sdot.warn{background:var(--warn)} .fstep .sdot.risk{background:var(--risk)} .fstep .sdot.none{background:#c2c6cc}
+.fcard .fname{font-size:12.5px;font-weight:700;color:var(--text);line-height:1.35}
+.fcard .fval{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-.3px}
+.fcard .fval.ok{color:var(--ok-ink)} .fcard .fval.warn{color:var(--warn-ink)} .fcard .fval.risk{color:var(--risk-ink)}
+.fcard .ftgt{font-size:10.5px;color:var(--cap)}
+.fcard .fbar{height:6px;background:#eef1ef;border-radius:4px;overflow:hidden;position:relative;margin-top:1px}
+.fcard .fbar .ff{height:100%;border-radius:4px}
+.fcard .ftag{position:absolute;top:10px;right:10px}
+.fstage .farrow{position:absolute;right:-9px;top:50%;transform:translateY(-50%);z-index:3;width:18px;height:18px;border-radius:50%;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--navy2);font-size:11px;font-weight:800}
+.fstage:last-child .farrow{display:none}
+.flownote{margin-top:13px;font-size:11.5px;color:var(--navy2);background:var(--navy5);border-radius:9px;padding:9px 12px;line-height:1.5}
+.flownote b{color:var(--navy);font-weight:800}
+
+/* 목표/과제 */
 .goalbox{background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:12px;padding:13px 16px;font-size:13.5px;font-weight:600;color:var(--emerald-press)}
 .goalgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
 .goalitem{background:var(--white);border:1px solid var(--border);border-radius:11px;padding:11px 14px;font-size:12.5px}
@@ -310,12 +371,17 @@ svg.ic{display:block}
 .tk .knm{font-weight:600;color:var(--text2)}
 .tk .kt{color:var(--cap);font-size:11.5px}
 
-.grp{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
-.gbtn{font-size:12.5px;font-weight:600;color:var(--body);background:var(--white);border:1px solid var(--border);border-radius:999px;padding:6px 15px;cursor:pointer}
-.gbtn.active{background:var(--emerald);border-color:var(--emerald);color:#fff}
+/* 관련 KPI 태그필터 */
+.grp{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.grp .glab{font-size:11px;color:var(--cap);font-weight:700;margin-right:2px}
+.gtag{font-size:12px;font-weight:600;color:var(--body);background:var(--white);border:1px solid var(--border);border-radius:7px;padding:5px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.gtag .gd{width:7px;height:7px;border-radius:50%;background:#c2c6cc}
+.gtag.has .gd{background:var(--warn)}
+.gtag.active{background:var(--emerald-soft);border-color:var(--emerald);color:var(--emerald-press);font-weight:800}
 .krow{background:var(--white);border:1px solid var(--border);border-radius:11px;padding:13px 15px;margin-bottom:10px;display:grid;grid-template-columns:1.5fr 1.3fr auto;gap:14px;align-items:center}
 .krow .nm{font-weight:700;font-size:13.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--text)}
-.krow .df{font-size:11px;color:var(--cap)}
+.krow .teamtag{font-size:10px;font-weight:700;color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border);border-radius:5px;padding:1px 7px}
+.krow .df{font-size:11px;color:var(--cap);margin-top:2px}
 .krow .edit{display:flex;gap:12px}
 .krow .f{display:flex;flex-direction:column;gap:2px}
 .krow .f label{font-size:10px;color:var(--cap)}
@@ -333,11 +399,52 @@ svg.ic{display:block}
 .gauge .tgt::after{content:"목표";position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--cap);white-space:nowrap}
 .gauge .lb{display:flex;justify-content:space-between;font-size:10.5px;color:var(--cap);margin-top:9px} .gauge .lb b{color:var(--text)}
 .gline{font-size:12px;color:var(--body)}
-.cassent{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:15px 17px;font-size:13.5px;line-height:1.8;color:var(--body)}
-.cassent b{color:var(--text)}
-.cassent .act{font-weight:700;color:var(--emerald-press);background:var(--emerald-soft);border-radius:6px;padding:2px 8px}
 
-/* layer2 */
+/* 본부 하단 HCVA */
+.hcgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hccard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:15px 16px}
+.hccard .hl{font-size:11.5px;color:var(--cap);font-weight:600;display:flex;align-items:center;gap:5px}
+.hccard .hv{font-size:26px;font-weight:800;color:var(--text);letter-spacing:-.5px;margin:6px 0 3px}
+.hccard .hv small{font-size:13px;color:var(--cap);font-weight:700}
+.hccard .hd{font-size:11px;color:var(--body)}
+.hccard .hbar{height:6px;background:var(--surf2);border-radius:4px;overflow:hidden;margin-top:9px}
+.hccard .hbar .hf{height:100%;border-radius:4px}
+
+/* 인적 기여가치 페이지 */
+.hcvahero{background:linear-gradient(135deg,#26473a,#1b332a);border-radius:var(--radius);padding:26px 26px 24px;color:#fff;position:relative;overflow:hidden}
+.hcvahero::after{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(159,211,86,.12)}
+.hcvahero .tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.hcvahero .htag{font-size:10.5px;font-weight:700;background:rgba(159,211,86,.18);color:var(--lime);border:1px solid rgba(159,211,86,.35);border-radius:999px;padding:3px 11px}
+.hcvahero h2{color:#fff;font-size:25px;letter-spacing:-.5px;line-height:1.3;position:relative}
+.hcvahero p{margin:9px 0 0;font-size:13px;color:rgba(255,255,255,.78);line-height:1.6;position:relative;max-width:620px}
+.guidegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.gcard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 18px;border-top:4px solid var(--emerald)}
+.gcard.c2{border-top-color:var(--navy)} .gcard.c3{border-top-color:var(--navy3)}
+.gcard .gl{font-size:12px;color:var(--body);font-weight:600;display:flex;align-items:center;gap:6px}
+.gcard .gv{font-size:30px;font-weight:800;color:var(--text);letter-spacing:-1px;margin:7px 0 2px}
+.gcard .gv small{font-size:14px;color:var(--cap);font-weight:700}
+.gcard .gsub{font-size:11px;color:var(--cap)}
+.hcvabig{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hcvacard{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px}
+.hcvacard .hh{display:flex;align-items:center;gap:9px;margin-bottom:3px}
+.hcvacard .hh .ico{width:32px;height:32px;border-radius:9px;background:var(--emerald-soft);color:var(--emerald);display:flex;align-items:center;justify-content:center}
+.hcvacard .hh h3{font-size:14.5px}
+.hcvacard .hh .en{font-size:11px;color:var(--cap);font-weight:600}
+.hcvacard .hdesc{font-size:11.5px;color:var(--cap);margin:2px 0 16px}
+.hcvacard .hbig{font-size:38px;font-weight:800;color:var(--text);letter-spacing:-1.5px;line-height:1}
+.hcvacard .hbig small{font-size:16px;color:var(--cap);font-weight:700}
+.hcvacard .hmeta{font-size:12px;color:var(--body);margin-top:7px} .hcvacard .hmeta b{font-weight:800;color:var(--text2)}
+.hcgauge{position:relative;height:14px;border-radius:7px;display:flex;margin-top:32px;overflow:visible}
+.hcgauge .z{height:100%}
+.hcgauge .z:first-child{border-radius:7px 0 0 7px} .hcgauge .z:last-child{border-radius:0 7px 7px 0}
+.hcgauge .pt{position:absolute;top:-4px;width:4px;height:22px;background:var(--text);border-radius:3px;transform:translateX(-50%);z-index:2}
+.hcgauge .pt .b{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:10.5px;font-weight:800;border-radius:6px;padding:3px 9px;white-space:nowrap}
+.hcgauge .pt .b::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--text)}
+.hcgauge .tg{position:absolute;top:-7px;bottom:-7px;width:2px;background:var(--text2);z-index:1}
+.hcgauge-lb{display:flex;margin-top:11px}
+.hcgauge-lb span{flex:1;text-align:center;font-size:10.5px;color:var(--cap);font-weight:600}
+
+/* layer2 경영진 전용 */
 .l2warn{background:var(--warn-soft);border:1px solid rgba(232,163,23,.35);border-radius:11px;padding:13px 16px;margin-bottom:16px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--warn-ink)}
 .l2warn b{color:var(--warn-ink)} .l2warn .c{background:#fff;border:1px solid rgba(232,163,23,.4);color:var(--warn-ink);border-radius:999px;padding:2px 10px;font-size:11px;font-weight:700}
 table.t2{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--white);border-radius:var(--radius);overflow:hidden}
@@ -351,35 +458,38 @@ table.t2{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--w
 .gatec .bx .v.neg{color:var(--risk-ink)}
 .gatec input{width:90px;padding:5px 7px;border:1px solid var(--border);border-radius:7px;font:inherit;text-align:right}
 
-/* 수정이력 모달 */
+/* 모달 */
 .modal{display:none;position:fixed;inset:0;z-index:120;background:rgba(16,39,31,.40);align-items:flex-start;justify-content:center;padding:60px 16px}
 .modal.on{display:flex}
-.modal-card{background:var(--white);border-radius:16px;width:100%;max-width:460px;max-height:78vh;overflow:auto;box-shadow:0 24px 70px rgba(16,39,31,.3)}
+.modal-card{background:var(--white);border-radius:16px;width:100%;max-width:430px;max-height:78vh;overflow:auto;box-shadow:0 24px 70px rgba(16,39,31,.3)}
 .modal-card .mh{position:sticky;top:0;background:var(--white);padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
 .modal-card .mh h3{font-size:16px;flex:1}
 .modal-card .x{width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--body);font-size:16px;display:flex;align-items:center;justify-content:center}
-.modal-card .mb{padding:8px 20px 20px}
-.logsec{margin-bottom:18px} .logsec:last-child{margin-bottom:0}
-.logsec .logh{font-size:12px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:7px;border-bottom:1px solid var(--border)}
-.logkv{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:12.5px}
+.modal-card .mb{padding:14px 20px 20px}
+.logkv{display:flex;justify-content:space-between;gap:12px;padding:12px 0;font-size:13px;border-bottom:1px solid var(--border)}
+.logkv:last-child{border-bottom:none}
 .logkv span{color:var(--cap)} .logkv b{color:var(--text2);font-weight:700;text-align:right}
-.loglist{margin:0;padding-left:18px} .loglist li{font-size:12.5px;color:var(--text2);line-height:1.7}
-.loglist.est li{color:var(--body)}
-.lognote{margin-top:9px;font-size:11.5px;color:var(--cap);font-style:italic}
+.logkv .vc{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:var(--emerald-press)}
 
 .hidden{display:none!important}
-footer{font-size:11px;color:var(--ph);text-align:center;padding-top:24px}
+footer{font-size:11px;color:var(--ph);text-align:center;padding-top:24px;line-height:1.7}
+footer b{color:var(--cap)}
 
-/* ===== 반응형 ===== */
 @media (max-width:1100px){ .kc-main-row .big{font-size:36px} }
 @media (max-width:1000px){
   .sidebar{position:fixed;left:0;top:0;margin-left:-251px;box-shadow:0 0 40px rgba(0,0,0,.2)}
   .app.sbshow .sidebar{margin-left:0}
   .content{padding:18px 16px 60px}
-  .topbar{padding:14px 16px}
+  .topbar-inner{padding:14px 16px}
   .divs{grid-template-columns:1fr 1fr}
   .bench .cgrid{grid-template-columns:1fr}
   .kc-main-row .big{font-size:34px}
+  .flowchain{grid-template-columns:1fr;gap:10px}
+  .fstage{padding:0}
+  .fstage .farrow{right:auto;left:50%;top:auto;bottom:-15px;transform:translateX(-50%) rotate(90deg)}
+  .hcvabig{grid-template-columns:1fr}
+  .guidegrid{grid-template-columns:1fr}
+  .hcgrid{grid-template-columns:1fr}
 }
 @media (max-width:760px){
   .topbar .ttl h1{font-size:18px} .topbar .ttl .sub{display:none}
@@ -391,9 +501,10 @@ footer{font-size:11px;color:var(--ph);text-align:center;padding-top:24px}
   .divs{grid-template-columns:1fr}
   .kc-main{padding:16px}
   .kc-main-stat{gap:16px}
-  .kc-sub,.kc-ai{padding-left:16px;padding-right:16px}
+  .kc-sub{padding-left:16px;padding-right:16px}
   .krow{grid-template-columns:1fr;gap:10px} .krow .right{text-align:left}
   .gatec{grid-template-columns:1fr}
+  .statuscard .scrow{grid-template-columns:1fr}
   .perhead .lead{flex-basis:100%}
   .lpan .sum{flex-basis:100%}
   .sec h2{font-size:15px} .sec .s{display:none}
@@ -402,10 +513,9 @@ footer{font-size:11px;color:var(--ph);text-align:center;padding-top:24px}
 </head>
 <body>
 
-<!-- 로그인 -->
 <div class="login" id="login">
   <div class="login-card">
-    <div class="brand"><div class="mark">K</div><div><b>KOAS KPI</b><span>경영 대시보드</span></div></div>
+    <div class="brand"><div class="mark">K</div><div><b>KOAS 경영 신호등</b><span>KPI 경영관리 시스템</span></div></div>
     <div class="hr"></div>
     <label for="lid">아이디</label>
     <input id="lid" type="text" placeholder="아이디를 입력하세요" autocomplete="username">
@@ -415,38 +525,39 @@ footer{font-size:11px;color:var(--ph);text-align:center;padding-top:24px}
     <div class="login-err" id="loginErr"></div>
     <div class="login-hint">검증용 빌드 · 데모 계정 <b>koas / koas2026</b></div>
   </div>
+  <div class="login-credit">Architecture &amp; Build | <b>운영기획실 &amp; 서혜윤</b></div>
 </div>
 
 <div class="backdrop" id="backdrop"></div>
 
 <div class="app hidden" id="app">
   <aside class="sidebar">
-    <div class="sb-logo" id="logoHome"><div class="mark">K</div><div><b>KOAS KPI</b><span>경영 대시보드</span></div></div>
+    <div class="sb-logo" id="logoHome"><div class="mark">K</div><div><b>KOAS 경영 신호등</b><span>KPI 경영관리</span></div></div>
     <nav class="sb-nav" id="sbNav"></nav>
     <div class="sb-foot">
-      <div class="sb-demo">검증용 임시 빌드 · 일부 숫자 비확정<br>실제=시트값 · 임의=가정값</div>
+      <div class="sb-demo">검증용 임시 빌드 · 일부 숫자 비확정<br>임의=가정값 (별도 표시)</div>
       <button class="sb-logout" id="logoutBtn">로그아웃</button>
+      <div class="sb-credit">Architecture &amp; Build<br><b>운영기획실 &amp; 서혜윤</b></div>
     </div>
   </aside>
   <div class="main">
-    <div class="topbar">
+    <div class="topbar"><div class="topbar-inner">
       <button class="burger" id="burger" title="메뉴 열기/닫기">
         <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
-      <div class="ttl" id="titleHome"><h1>KOAS KPI 경영 대시보드</h1><div class="sub">전사 목표는 현장의 실행으로 완성됩니다.</div></div>
+      <div class="ttl" id="titleHome"><h1>KOAS 경영 신호등</h1><div class="sub">전사 목표는 현장의 실행으로 완성됩니다.</div></div>
       <div class="sp"></div>
       <div class="meta">기준월 <b id="bm"></b> · 단위 <b>억 원</b><br>갱신일 <span class="upd-btn" id="updBtn"></span></div>
-    </div>
+    </div></div>
     <div class="content">
       <div id="view-corp"></div>
       <div id="view-div" class="hidden"></div>
       <div id="view-l2" class="hidden"></div>
-      <footer>검증용 단일 HTML · 외부 라이브러리 없음 · 실제값=시트 / 임의값=가정 · 인쇄 가능</footer>
+      <footer>검증용 단일 HTML · 외부 라이브러리 없음 · 임의값=가정 · 인쇄 가능<br><b>Architecture &amp; Build | 운영기획실 &amp; 서혜윤</b></footer>
     </div>
   </div>
 </div>
 
-<!-- 수정 이력 모달 -->
 <div class="modal" id="logModal">
   <div class="modal-card">
     <div class="mh"><h3>데이터 갱신 정보</h3><button class="x" id="logClose">×</button></div>
@@ -455,34 +566,33 @@ footer{font-size:11px;color:var(--ph);text-align:center;padding-top:24px}
 </div>
 
 <script>
-/* 드래그 / 우클릭 / 텍스트 선택 방지 (입력창 제외) */
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('dragstart',e=>e.preventDefault());
 document.addEventListener('selectstart',e=>{const t=e.target;if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'))return;e.preventDefault();});
 </script>
 <script>
-/* ================= DATA (실제=시트값 / 임의=가정값) ================= */
-const META={baseMonth:4,lastUpdated:"2026-06-08",FTE:234};
+/* ================= DATA ================= */
+const META={baseMonth:4, lastUpdated:"2026-06-08", FTE:234, laborCum:102.67};
 
-/* 전사 핵심 KPI — 시트 [전사 KPI] / [1_연결마스터 D블록] */
 const EXEC={
-  profitCum:2.83,          // 실제: 영업이익 누계
-  profitMonth:-2.86,       // 실제: 당월 영업이익
-  profitCumTarget:4.00,    // 임의: 시트에 누계 영업이익 목표 없음(사양 예시값)
-  revenueCum:261.11,       // 실제: 누계 매출
-  revenueCumTarget:230.6,  // 실제: 4월까지 누계 목표
-  revenueMonth:53.3,       // 실제: 4월 매출
-  revenueMonthTarget:50.5, // 실제: 4월 목표
-  opMarginMonth:-0.05366,  // 실제: 당월 영업이익률
-  opMarginCumTarget:0.041, // 실제: 목표 영업이익률(흑자전환선)
-  riskCount:7              // 실제: RED KPI 개수
+  profitCum:2.83, profitMonth:-2.86,
+  revenueCum:261.11, revenueCumTarget:230.6, revenueMonth:53.3, revenueMonthTarget:50.5,
+  opMarginMonth:-0.05366, opMarginCumTarget:0.041
 };
-EXEC.opMarginCum = EXEC.profitCum/EXEC.revenueCum;          // 누계 영업이익률(파생) = 1.08%
-EXEC.revAchCum   = EXEC.revenueCum/EXEC.revenueCumTarget;   // 누계 매출 달성률 113.2%
-EXEC.revAchMonth = EXEC.revenueMonth/EXEC.revenueMonthTarget; // 당월 매출 달성률 105.5%
-EXEC.profAch     = EXEC.profitCum/EXEC.profitCumTarget;     // 이익 달성률 70.8%
+EXEC.profitCumTarget = EXEC.revenueCumTarget * EXEC.opMarginCumTarget;   // 매출누계목표 × 목표영업이익률
+EXEC.opMarginCum = EXEC.profitCum/EXEC.revenueCum;
+EXEC.revAchCum   = EXEC.revenueCum/EXEC.revenueCumTarget;
+EXEC.revAchMonth = EXEC.revenueMonth/EXEC.revenueMonthTarget;
+EXEC.profAch     = EXEC.profitCum/EXEC.profitCumTarget;
 
-/* 경쟁사 벤치마킹 — 시트 A블록 (DART 연결 분기, 2026 1Q) · 실제 */
+const HR={
+  perRevenue: EXEC.revenueCum/META.FTE,
+  perProfit:  EXEC.profitCum/META.FTE,
+  hcva:       (EXEC.profitCum+META.laborCum)/META.FTE,
+  hcroi:      (EXEC.profitCum+META.laborCum)/META.laborCum,
+  hcvaTarget: 0.50, hcroiTarget:1.5
+};
+
 const BENCH={ period:"2026년 1분기 · DART 연결 분기 기준",
   cost:[ {nm:"KOAS",v:70.2,me:true},{nm:"퍼시스",v:70.1},{nm:"한샘",v:71.6},{nm:"현대리바트",v:82.5},{nm:"업계평균",v:74.7} ],
   mini:[
@@ -491,75 +601,82 @@ const BENCH={ period:"2026년 1분기 · DART 연결 분기 기준",
     {k:"매출성장률",me:"+5.0%",ind:"업계평균 −11.5%",win:true}
   ]};
 
-/* 클레임 — 시트 D블록 · 실제(2~4월) */
 const CLAIM={month:["1월","2월","3월","4월","5월","6월"],count:[null,176,191,99,null,null],
   cost:[null,0.468,0.678,0.161,null,null],totalCount:466,totalCost:1.307};
 
-/* 어떻게 벌고 있을까(영업 활동 종합) — 임의값 (사양서 요청) */
-const SALES={
-  month:["1월","2월","3월","4월","5월","6월"],
-  contractCnt:[7,9,8,11,6,9],                 // 임의: 계약 건수
-  avgAmt:[3.0,2.8,2.6,2.3,2.2,2.0],           // 임의: 평균 계약액(억) — 감소 추세
-  bigCnt:[2,3,2,4,2,3],                       // 임의: 1억↑ 대형 수요처 수
-  bigShare:[44,55,46,62,43,51],               // 임의: 월 매출 중 대형 비중(%)
-  procurement:38, civil:62,                   // 임의: 조달/민수 비중(%)
-  /* 예상매출: 1~4월 실제 / 5~12월 예상(min=확정, max=상한) */
-  past:[64.5,82.9,60.4,53.3,null,null,null,null,null,null,null,null],
-  fcMin:[null,null,null,null,28,34,30,31,33,40,46,52],
-  fcMax:[null,null,null,null,52,63,58,60,64,72,80,92]
-};
+const SALES={month:["1월","2월","3월","4월","5월","6월"],
+  contractCnt:[7,9,8,11,6,9], avgAmt:[3.0,2.8,2.6,2.3,2.2,2.0]};
 
-/* 본부 — 매출(실제) / 노드(시트 C블록) / 부서유형 */
 const DIVS=[
   {id:"sm1",name:"세일즈마케팅1본부",icon:"sm1",type:"sales",revCum:165.04,revTarget:442.76,
-   node:{n:"수수료율·대리점 수익성",lag:"대리점채널 공헌이익·수수료율",lead:"대리점 공급가 실행율",act:"공급가 재협상·계약구조 개편"}},
+   coreGoal:"대리점 공급가 실행율 98% 달성", coreLabel:"핵심 목표",
+   node:{lag:"대리점채널 공헌이익·수수료율",lead:"대리점 공급가 실행율",act:"공급가 재협상·계약구조 개편"}},
   {id:"sm2",name:"세일즈마케팅2본부",icon:"sm2",type:"sales",revCum:92.16,revTarget:282.26,
-   node:{n:"직영 매출·수익",lag:"직영 영업이익·수주성공률",lead:"제안→수주 성공률",act:"파이프라인 점검·제안 품질 리뷰"}},
+   coreGoal:"직영 성공율 20% 달성", coreLabel:"핵심 목표",
+   node:{lag:"직영 영업이익·수주성공률",lead:"제안→수주 성공률",act:"파이프라인 점검·제안 품질 리뷰"}},
   {id:"prod",name:"생산본부",icon:"factory",type:"cost",revCum:null,revTarget:null,
-   node:{n:"클레임율·생산능률",lag:"클레임 비용율·생산능률",lead:"N차불량 0·예방제안",act:"재발방지 과제 등록·공정 낭비 제거"}},
+   coreGoal:"클레임 비용율 0.63% 이하 달성", coreLabel:"핵심 레버",
+   cardKpi:{name:"클레임 비용율",target:0.0063,actual:0.0080,unit:"%",st:"lower"},
+   node:{lag:"클레임 비용율·생산능률",lead:"N차불량 0·예방제안",act:"재발방지 과제 등록·공정 낭비 제거"}},
   {id:"rnd",name:"제품연구소",icon:"chip",type:"cost",revCum:null,revTarget:null,
-   node:{n:"부품표준화·설계품질",lag:"부품 단종·부적합설계",lead:"단종 진척·부적합 건수",act:"단종 후보 재선정·설계검토 게이트 강화"}},
+   coreGoal:"부품 표준화 143종 달성", coreLabel:"핵심 레버",
+   cardKpi:{name:"부품 표준화 달성률",target:143,actual:100,unit:"종",st:"higher"},
+   node:{lag:"부품 단종·부적합설계",lead:"단종 진척·부적합 건수",act:"단종 후보 재선정·설계검토 게이트 강화"}},
   {id:"ops",name:"운영지원본부",icon:"ops",type:"ops",revCum:null,revTarget:null,
-   node:{n:"재료비율·유동성",lag:"재료비율·현금흐름 정확도",lead:"매입율·예측-실제 편차",act:"단가협상·BOM 표준화·자금 스케줄 점검"}},
+   coreGoal:"재료비율 40% 달성", coreLabel:"핵심 레버",
+   cardKpi:{name:"재료비 관리",target:0.40,actual:0.4484,unit:"%",st:"lower"},
+   node:{lag:"재료비율·현금흐름 정확도",lead:"매입율·예측-실제 편차",act:"단가협상·BOM 표준화·자금 스케줄 점검"}},
   {id:"plan",name:"운영기획실",icon:"plan",type:"ops",revCum:null,revTarget:null,
-   node:{n:"인당생산성·조직",lag:"변화수용도·컴플라이언스",lead:"통제 구축률·인당 생산성",act:"통제항목 완료·성과체계 정착"}}
+   coreGoal:"HCROI 1.5 달성 · 컴플라이언스 체계 구축", coreLabel:"핵심 레버",
+   cardKpi:{name:"HCROI",target:HR.hcroiTarget,actual:HR.hcroi,unit:"배",st:"higher"},
+   node:{lag:"변화수용도·컴플라이언스",lead:"통제 구축률·인당 생산성",act:"통제항목 완료·성과체계 정착"}}
 ];
 const TYPE={
-  sales:{label:"매출 부서",tag:"core",color:"var(--emerald)"},
-  cost:{label:"원가 기여 부서",tag:"data",color:"var(--navy)"},
-  ops:{label:"운영 지원 부서",tag:"ops",color:"var(--navy3)"}
+  sales:{label:"매출 부서",tag:"core"},
+  cost:{label:"원가 기여 부서",tag:"data"},
+  ops:{label:"운영 지원 부서",tag:"ops"}
 };
 const GROUPS=["품질","원가","생산성","영업","현금"];
 
-/* 환산 가능 KPI — 손익 영향액 계산용 */
 const KPIS=[
-  {id:"K1",div:"sm1",group:"영업",name:"대리점 공급가 실행율",def:"실행 공급가 ÷ 목표 공급가",unit:"%",st:"higher",target:0.98,actual:0.91,money:"가능",base:"agencyRevenue",real:false},
-  {id:"K2",div:"sm1",group:"원가",name:"판매수수료율",def:"판매수수료 ÷ 매출 (목표 ≤12%)",unit:"%",st:"lower",target:0.12,actual:0.1392,money:"간접",base:null,real:true},
-  {id:"K3",div:"sm2",group:"영업",name:"직영 성공율",def:"직영 성공건수 ÷ 영업시도",unit:"%",st:"higher",target:0.20,actual:0.14,money:"간접",base:null,real:false},
-  {id:"K4",div:"sm2",group:"영업",name:"매출 달성률(연간)",def:"누계 매출 ÷ 연간목표",unit:"%",st:"higher",target:1.0,actual:0.3265,money:"간접",base:null,real:true},
-  {id:"K6",div:"prod",group:"품질",name:"클레임 비용율",def:"누적 클레임비 ÷ 출하금액 (목표 ≤0.63%)",unit:"%",st:"lower",target:0.0063,actual:0.0080,money:"가능",base:"shipmentCum",real:false},
-  {id:"K8",div:"prod",group:"생산성",name:"가공 생산능률",def:"가공 회수공수 ÷ 총투입공수",unit:"%",st:"higher",target:0.747,actual:0.70,money:"가능",base:"laborCum",real:false},
-  {id:"K9",div:"prod",group:"생산성",name:"조립 생산능률",def:"조립 회수공수 ÷ 총투입공수",unit:"%",st:"higher",target:1.035,actual:1.00,money:"가능",base:"laborCum",real:false},
-  {id:"K11",div:"prod",group:"생산성",name:"납기지연 건수",def:"당월 납기지연 건수",unit:"건",st:"count",target:0,actual:2,money:"부분",base:null,real:false},
-  {id:"K13",div:"ops",group:"원가",name:"재료비율",def:"재료비 ÷ 매출 (목표 ≤40%)",unit:"%",st:"lower",target:0.40,actual:0.4484,money:"가능",base:"revenueCum",real:true},
-  {id:"K14",div:"ops",group:"원가",name:"매입율",def:"실제 매입액 ÷ 매출 (목표 40%)",unit:"%",st:"lower",target:0.40,actual:0.43,money:"간접",base:null,real:false},
-  {id:"K15",div:"ops",group:"현금",name:"현금흐름 예측 정확도",def:"(1−|예측−실제|÷실제)",unit:"%",st:"higher",target:0.97,actual:0.95,money:"가능",base:"fundRate",real:false},
-  {id:"K16",div:"ops",group:"현금",name:"유동성 리스크 건수",def:"당월 유동성 리스크 건수",unit:"건",st:"count",target:0,actual:0,money:"간접",base:null,real:false},
-  {id:"K18",div:"rnd",group:"원가",name:"부품 단종(표준화)",def:"단종 진척(목표 143종)",unit:"종",st:"higher",target:143,actual:100,money:"부분",base:"perItem",real:false},
-  {id:"K19",div:"rnd",group:"품질",name:"설계 부적합 건수",def:"당월 부적합 건수(목표 0)",unit:"건",st:"count",target:0,actual:1,money:"간접",base:null,real:false},
-  {id:"K20",div:"rnd",group:"영업",name:"신제품 출시 건수",def:"당해 출시 신제품 수(목표 5)",unit:"건",st:"higher",target:5,actual:3,money:"간접",base:null,real:false},
-  {id:"K21",div:"plan",group:"생산성",name:"HCROI",def:"(영업이익+인건비)÷인건비 (목표 ≥1.5)",unit:"배",st:"higher",target:1.5,actual:1.28,money:"간접",base:null,real:true},
-  {id:"K22",div:"plan",group:"생산성",name:"컴플라이언스 통제 구축률",def:"완료 통제 ÷ 전체 통제",unit:"%",st:"higher",target:1.00,actual:0.80,money:"간접",base:null,real:false}
+  {id:"K1",div:"sm1",team:"세일즈마케팅1본부",group:"영업",name:"대리점 공급가 실행율",def:"실행 공급가 ÷ 목표 공급가",unit:"%",st:"higher",target:0.98,actual:0.91,money:"가능",base:"agencyRevenue"},
+  {id:"K2",div:"sm1",team:"세일즈마케팅1본부",group:"원가",name:"판매수수료율",def:"판매수수료 ÷ 매출 (목표 ≤12%)",unit:"%",st:"lower",target:0.12,actual:0.1392,money:"간접",base:null},
+  {id:"K3",div:"sm2",team:"세일즈마케팅2본부",group:"영업",name:"직영 성공율",def:"직영 성공건수 ÷ 영업시도",unit:"%",st:"higher",target:0.20,actual:0.14,money:"간접",base:null},
+  {id:"K4",div:"sm2",team:"세일즈마케팅2본부",group:"영업",name:"매출 달성률(연간)",def:"누계 매출 ÷ 연간목표",unit:"%",st:"higher",target:1.0,actual:0.3265,money:"간접",base:null},
+  {id:"K6",div:"prod",team:"생산팀",group:"품질",name:"클레임 비용율",def:"누적 클레임비 ÷ 출하금액 (목표 ≤0.63%)",unit:"%",st:"lower",target:0.0063,actual:0.0080,money:"가능",base:"shipmentCum"},
+  {id:"K8",div:"prod",team:"생산팀",group:"생산성",name:"가공 생산능률",def:"가공 회수공수 ÷ 총투입공수",unit:"%",st:"higher",target:0.747,actual:0.70,money:"가능",base:"laborCum"},
+  {id:"K9",div:"prod",team:"생산팀",group:"생산성",name:"조립 생산능률",def:"조립 회수공수 ÷ 총투입공수",unit:"%",st:"higher",target:1.035,actual:1.00,money:"가능",base:"laborCum"},
+  {id:"K11",div:"prod",team:"자재·물류팀",group:"생산성",name:"납기지연 건수",def:"당월 납기지연 건수",unit:"건",st:"count",target:0,actual:2,money:"부분",base:null},
+  {id:"K13",div:"ops",team:"동반성장운영팀",group:"원가",name:"재료비율",def:"재료비 ÷ 매출 (목표 ≤40%)",unit:"%",st:"lower",target:0.40,actual:0.4484,money:"가능",base:"revenueCum"},
+  {id:"K14",div:"ops",team:"동반성장운영팀",group:"원가",name:"매입율",def:"실제 매입액 ÷ 매출 (목표 40%)",unit:"%",st:"lower",target:0.40,actual:0.43,money:"간접",base:null},
+  {id:"K15",div:"ops",team:"자금관리팀",group:"현금",name:"현금흐름 예측 정확도",def:"(1−|예측−실제|÷실제)",unit:"%",st:"higher",target:0.97,actual:0.95,money:"가능",base:"fundRate"},
+  {id:"K16",div:"ops",team:"자금관리팀",group:"현금",name:"유동성 리스크 건수",def:"당월 유동성 리스크 건수",unit:"건",st:"count",target:0,actual:0,money:"간접",base:null},
+  {id:"K18",div:"rnd",team:"제품개발팀",group:"원가",name:"부품 단종(표준화)",def:"단종 진척(목표 143종)",unit:"종",st:"higher",target:143,actual:100,money:"부분",base:"perItem"},
+  {id:"K19",div:"rnd",team:"제품개발팀",group:"품질",name:"설계 부적합 건수",def:"당월 부적합 건수(목표 0)",unit:"건",st:"count",target:0,actual:1,money:"간접",base:null},
+  {id:"K20",div:"rnd",team:"제품개발팀",group:"영업",name:"신제품 출시 건수",def:"당해 출시 신제품 수(목표 5)",unit:"건",st:"higher",target:5,actual:3,money:"간접",base:null},
+  {id:"K21",div:"plan",team:"인사·컴플라이언스팀",group:"생산성",name:"HCROI",def:"(영업이익+인건비)÷인건비 (목표 ≥1.5)",unit:"배",st:"higher",target:HR.hcroiTarget,actual:HR.hcroi,money:"간접",base:null},
+  {id:"K22",div:"plan",team:"인사·컴플라이언스팀",group:"생산성",name:"컴플라이언스 통제 구축률",def:"완료 통제 ÷ 전체 통제",unit:"%",st:"higher",target:1.00,actual:0.80,money:"간접",base:null}
 ];
-/* 환산 파라미터 — 시트 [1_연결마스터] (억 단위로 변환) */
 const PARAMS={agencyRevenue:30.0,shipmentCum:261.11,laborCum:20.39,revenueCum:261.11,fundScale:300,fundRate:0.05,perItem:0.02};
 
-/* 팀별 KPI — 시트 [본부 KPI] */
+const FLOW={
+  sm1:{goal:"대리점 공급가 실행율 98% 달성", task:{name:"대리점 채널 수익성 개선",tag:"특임"}, action:"공급가 재협상 · 대리점 계약구조 개편", lead:"K1", lag:"K2",
+       note:"<b>선행</b>인 공급가 실행율이 목표를 밑돌아 <b>결과</b>인 수수료율이 12% 선을 넘었습니다. 공급가 협상이 병목입니다."},
+  sm2:{goal:"직영 성공율 20% 달성", task:{name:"솔루션 세일즈 정착",tag:"특임"}, action:"파이프라인 점검 · 제안 품질 리뷰", lead:"K3", lag:"K4",
+       note:"<b>선행</b>인 직영 성공율이 낮아 직영 매출 확대가 더딥니다. 제안 전환율 개선이 병목입니다."},
+  prod:{goal:"클레임 비용율 0.63% 이하 달성", task:{name:"품질 재발방지 프로젝트",tag:"중점"}, action:"동일수주 N차불량 0 · 월 예방제안 5건↑", lead:"K8", lag:"K6",
+       note:"<b>선행</b>인 생산능률 미달이 품질 변동으로 이어져 <b>결과</b>인 클레임 비용율이 목표를 초과했습니다."},
+  rnd:{goal:"부품 표준화 143종 달성", task:{name:"부품 표준화 프로젝트",tag:"중점"}, action:"단종 후보 재선정 · 설계검토 게이트 강화", lead:"K18", lag:"K19",
+       note:"<b>선행</b>인 단종 진척이 목표의 70% 수준입니다. 단종 우선순위 조정이 표준화 속도를 좌우합니다."},
+  ops:{goal:"재료비율 40% 달성", task:{name:"원가 절감 프로젝트",tag:"중점"}, action:"상위 품목 단가 협상 · BOM 표준화", lead:"K14", lag:"K13",
+       note:"<b>선행</b>인 매입율이 목표를 웃돌아 <b>결과</b>인 재료비율이 44.8%로 초과되었습니다. 단가 협상이 최우선 병목입니다."},
+  plan:{goal:"HCROI 1.5 달성 · 컴플라이언스 체계 구축", task:{name:"성과체계·컴플라이언스 정착",tag:"중점"}, action:"통제항목 완료 · 인당 생산성 관리", lead:"K22", lag:"K21",
+       note:"<b>선행</b>인 통제 구축률이 80%, <b>결과</b>인 HCROI가 목표 1.5를 밑돕니다. 영업이익 회복이 핵심 변수입니다."}
+};
+
 const TEAMS={
- sm1:[{team:"세일즈마케팅1본부",goal:"대리점공급가 실행율 98% 달성",kpis:[
-   {tag:"핵심",name:"대리점 공급가 실행율",disp:"목표 98%",real:false}]}],
- sm2:[{team:"세일즈마케팅2본부",goal:"솔루션 세일즈 정착, 직영 성공율 20% 달성",kpis:[
-   {tag:"핵심",name:"직영 성공율",disp:"목표 20%",real:false}]}],
+ sm1:[{team:"세일즈마케팅1본부",goal:"대리점공급가 실행율 98% 달성",kpis:[{tag:"핵심",name:"대리점 공급가 실행율",disp:"목표 98%"}]}],
+ sm2:[{team:"세일즈마케팅2본부",goal:"솔루션 세일즈 정착, 직영 성공율 20% 달성",kpis:[{tag:"핵심",name:"직영 성공율",disp:"목표 20%"}]}],
  prod:[
    {team:"생산팀",goal:"생산능률 달성(가공 74.7%/조립 103.5%), 공정 낭비 제거",kpis:[{tag:"특임",name:"가공 생산능률",disp:"목표 74.7%"},{tag:"특임",name:"조립 생산능률",disp:"목표 103.5%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
    {team:"생산관리팀",goal:"생산 라인 최적 배치, 생산 쏠림 해소",kpis:[{tag:"특임",name:"생산능률",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
@@ -569,14 +686,14 @@ const TEAMS={
    {team:"물류팀",goal:"물류 직접운송비율 1.95%, 무결점 배송 체계 확립",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"},{tag:"핵심",name:"무결점 배송률",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
    {team:"시공팀",goal:"발주시스템 최적화, 무결점 배송 체계 확립",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"},{tag:"핵심",name:"발주시스템 최적화",disp:"미입력"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]}],
  ops:[
-   {team:"동반성장운영팀",goal:"매입율 40% 달성, 공급망 리스크 제로화",kpis:[{tag:"핵심",name:"매입율",disp:"목표 40%"},{tag:"특임",name:"재료비 관리",disp:"실적 44.8% / 목표 40%",real:true},{tag:"핵심",name:"공급망 리스크 건수",disp:"목표 0건"}]},
+   {team:"동반성장운영팀",goal:"매입율 40% 달성, 공급망 리스크 제로화",kpis:[{tag:"핵심",name:"매입율",disp:"목표 40%"},{tag:"특임",name:"재료비 관리",disp:"실적 44.8% / 목표 40%"},{tag:"핵심",name:"공급망 리스크 건수",disp:"목표 0건"}]},
    {team:"정보데이터팀",goal:"수익성 분석 체계 구축, 저효율 제품 정비",kpis:[{tag:"핵심",name:"전산시스템 고도화",disp:"미입력"},{tag:"핵심",name:"BOM 데이터 표준화",disp:"미입력"},{tag:"핵심",name:"불량률",disp:"미입력"}]},
    {team:"자금관리팀",goal:"현금흐름 예측으로 유동성 리스크 ZERO화",kpis:[{tag:"핵심",name:"현금흐름 예측 정확도",disp:"목표 97%"},{tag:"핵심",name:"유동성 리스크 건수",disp:"목표 0건"}]}],
  rnd:[
    {team:"제품개발팀",goal:"매출 기여형 신제품 3종 출시, 설계 부적합 ZERO 달성",kpis:[{tag:"핵심",name:"신제품 출시 건수",disp:"목표 5건"},{tag:"핵심",name:"신소재 개발 건수",disp:"미입력"},{tag:"특임",name:"부품 표준화 달성률",disp:"목표 143종"},{tag:"핵심",name:"설계 부적합 건수",disp:"목표 0건"}]},
    {team:"제품디자인팀",goal:"디자인 우위 확보, 제품 경쟁력 실현",kpis:[{tag:"핵심",name:"신제품 디자인 건수",disp:"미입력"},{tag:"핵심",name:"신소재 개발 제안 건수",disp:"미입력"},{tag:"핵심",name:"매출 기여 신제품 비중",disp:"미입력"}]}],
  plan:[
-   {team:"인사·컴플라이언스팀",goal:"인당 생산성 기반 성과체계 정착, 컴플라이언스 체계 구축",kpis:[{tag:"핵심",name:"컴플라이언스 통제 구축률",disp:"실적 80% / 목표 100%",real:true},{tag:"핵심",name:"인당 생산성",disp:"미입력"}]}]
+   {team:"인사·컴플라이언스팀",goal:"인당 생산성 기반 성과체계 정착, 컴플라이언스 체계 구축",kpis:[{tag:"핵심",name:"컴플라이언스 통제 구축률",disp:"실적 80% / 목표 100%"},{tag:"핵심",name:"인당 생산성",disp:"미입력"}]}]
 };
 
 const LAYER2={totalCM:120.0,totalFTE:234,
@@ -585,9 +702,6 @@ const LAYER2={totalCM:120.0,totalFTE:234,
     {name:"운영기획실(혁신/회계/인사)",fte:10,cost:18.8}],
   gate:{newLaborCost:0.65,cmRate:0.40,opMarginRate:0.041}};
 
-/* 수정 이력 로그 — 임의(샘플) */
-/* 수정 이력 로그는 openLog()에서 실제 데이터 기준값으로 직접 구성 */
-
 /* ================= ICONS ================= */
 function ic(p,sz){sz=sz||18;return `<svg class="ic" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;}
 const ICON={
@@ -595,7 +709,7 @@ const ICON={
   profit:'<path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/>',
   revenue:'<path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
   pct:'<circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M19 5 5 19"/>',
-  share:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',
+  light:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="8" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="16" r="1.6"/>',
   sales:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v16"/>',
   claim:'<path d="M10.3 3.6 1.8 18a1 1 0 0 0 .9 1.5h18.6a1 1 0 0 0 .9-1.5L13.7 3.6a1 1 0 0 0-1.7 0z"/><path d="M12 9v4M12 17h.01"/>',
   people:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
@@ -605,7 +719,9 @@ const ICON={
   chip:'<rect x="6.5" y="6.5" width="11" height="11" rx="1"/><rect x="10" y="10" width="4" height="4"/><path d="M9 6.5V3M15 6.5V3M9 21v-3.5M15 21v-3.5M6.5 9H3M6.5 15H3M21 9h-3.5M21 15h-3.5"/>',
   ops:'<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2.5h6V4M8 10h8M8 14h8M8 18h5"/>',
   plan:'<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/>',
-  cost:'<path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7"/><path d="M16 14h6M19 11v6"/><circle cx="9" cy="12" r="2"/>'
+  cost:'<path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7"/><path d="M16 14h6M19 11v6"/><circle cx="9" cy="12" r="2"/>',
+  spark:'<path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>',
+  roi:'<path d="M3 3v18h18"/><path d="M7 13l3-3 4 4 5-6"/><circle cx="19" cy="8" r="1.4"/>'
 };
 
 /* ================= CALC ================= */
@@ -622,11 +738,25 @@ function fmtA(v,d){if(v==null)return "–";d=d==null?1:d;return (v<0?"−":"")+M
 function dispVal(k,v){if(v==null)return "";return k.unit==="%"?(v*100).toFixed(v<0.1?2:1):v;}
 function parseVal(k,raw){if(raw===""||raw==null)return null;const n=parseFloat(raw);if(isNaN(n))return null;return k.unit==="%"?n/100:n;}
 function fmtDisp(k,v){if(v==null)return "–";if(k.unit==="%")return (v*100).toFixed(v<0.1?2:1)+"%";return v.toLocaleString()+(k.unit==="배"?"배":k.unit);}
-function divStats(id){const ks=KPIS.filter(k=>k.div===id);let worst="ok";
-  ks.forEach(k=>{const s=signal(k);if(SIGW[s]>SIGW[worst]&&s!=="none")worst=s;});
-  if(ks.every(k=>signal(k)==="none"))worst="none";
-  const net=ks.map(impact).filter(v=>v!=null).reduce((a,b)=>a+b,0);
-  return {worst,net};}
+
+function divNet(id){const ks=KPIS.filter(k=>k.div===id);return ks.map(impact).filter(v=>v!=null).reduce((a,b)=>a+b,0);}
+function proratedAch(d){if(d.revCum==null)return null;return d.revCum/(d.revTarget*META.baseMonth/12);}
+function divState(id){
+  const d=DIVS.find(x=>x.id===id);
+  const ks=KPIS.filter(k=>k.div===id);
+  if(ks.length===0)return "none";
+  let worst="ok";ks.forEach(k=>{const s=signal(k);if(SIGW[s]>SIGW[worst]&&s!=="none")worst=s;});
+  if(ks.every(k=>signal(k)==="none"))return "none";
+  if(d.type==="sales"){
+    const pa=proratedAch(d); if(pa==null)return worst;
+    if(pa>=0.98)return "ok"; if(pa>=0.90)return "warn"; return "risk";
+  }
+  const net=divNet(id);
+  if(net<-0.05)return worst;
+  return worst==="risk"?"warn":worst;
+}
+function divStats(id){return {worst:divState(id),net:divNet(id)};}
+
 function sigInline(s){return `<span class="sig ${s}"><span class="dot"></span>${SIGLAB[s]}</span>`;}
 function sigPill(s){return `<span class="sig pill ${s}"><span class="dot"></span>${SIGLAB[s]}</span>`;}
 function statePill(s){return `<span class="sig pill ${s}"><span class="dot"></span>${STATELAB[s]}</span>`;}
@@ -636,7 +766,7 @@ function tagChip(t){if(t==="핵심")return '<span class="tg core">핵심</span>'
 /* ================= SIDEBAR ================= */
 function renderSidebar(active){
   let h=`<div class="sb-grp">전사 KPI</div>
-    <button class="sb-item ${active==='corp'?'active':''}" data-nav="corp">${ic(ICON.home,17)}<span class="lbl">전사 KPI 요약</span></button>
+    <button class="sb-item ${active==='corp'?'active':''}" data-nav="corp">${ic(ICON.home,17)}<span class="lbl">전사 KPI</span></button>
     <div class="sb-grp">본부 KPI</div>`;
   ["sales","cost","ops"].forEach(tp=>{
     DIVS.filter(d=>d.type===tp).forEach(d=>{const st=divStats(d.id);
@@ -644,7 +774,7 @@ function renderSidebar(active){
       h+=`<button class="sb-item ${active==='div'&&curDiv===d.id?'active':''}" data-divnav="${d.id}">${ic(ICON[d.icon],17)}<span class="lbl">${d.name}</span><span class="dotsig" style="background:${col}"></span></button>`;});
   });
   h+=`<div class="sb-grp">경영진 전용</div>
-    <button class="sb-item ${active==='l2'?'active':''}" data-nav="l2">${ic(ICON.cost,17)}<span class="lbl">인당생산성</span></button>`;
+    <button class="sb-item ${active==='l2'?'active':''}" data-nav="l2">${ic(ICON.people,17)}<span class="lbl">인적 기여가치</span></button>`;
   document.getElementById("sbNav").innerHTML=h;
   document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{if(b.dataset.nav==='corp')goHome();else{renderL2();showView('l2');}closeMobile();});
   document.querySelectorAll('[data-divnav]').forEach(b=>b.onclick=()=>{openDiv(b.dataset.divnav);closeMobile();});
@@ -654,24 +784,21 @@ function renderSidebar(active){
 function renderCorp(){
   const E=EXEC;
   const revSigCum=E.revAchCum>=1?"ok":(E.revAchCum>=0.95?"warn":"risk");
-  const profState = E.profitCum>0 ? "흑자 구간" : "적자 구간";
   const profSig = E.profitCum<=0 ? "risk" : (E.profAch>=1?"ok":"warn");
   const mSig = E.opMarginCum>=E.opMarginCumTarget?"ok":(E.opMarginCum>=0?"warn":"risk");
   const gapPp = (E.opMarginCum-E.opMarginCumTarget)*100;
-  const monthSig = E.revAchMonth>=1?"초과":(E.revAchMonth>=0.95?"근접":"미달");
   const monthDelta = (E.revAchMonth-1)*100;
 
-  /* --- 단일 KPI 카드: 상위(이익) → 보조 KPI(매출/이익률) → 한 줄 종합 --- */
   let h=`<div class="sec"><span class="bar"></span><h2>전사 KPI</h2></div>
   <div class="kc kpi-one">
     <div class="kc-main">
-      <div class="lab"><span class="ico">${ic(ICON.profit,18)}</span> 지금까지 남긴 이익 <span class="realbadge">실제</span></div>
+      <div class="lab"><span class="ico">${ic(ICON.profit,18)}</span> 지금까지 남긴 이익 (영업이익 누계)</div>
       <div class="kc-main-row">
         <div class="big">${fmtA(E.profitCum,2)}</div>
         <div class="kc-main-stat">
-          <div class="b"><div class="l">누계 목표 <span class="estbadge">임의</span></div><div class="v">${fmtA(E.profitCumTarget,2)}</div></div>
+          <div class="b"><div class="l">누계 목표</div><div class="v">${fmtA(E.profitCumTarget,2)}</div><div class="sub">매출 누계목표 ${fmtA(E.revenueCumTarget,1)} × 목표 영업이익률 ${(E.opMarginCumTarget*100).toFixed(1)}%</div></div>
           <div class="b"><div class="l">목표 대비(달성률)</div><div class="v">${(E.profAch*100).toFixed(1)}%</div></div>
-          <div class="b"><div class="l">시그널</div><div class="v">${sigInline(profSig)}</div></div>
+          <div class="b"><div class="l">시그널</div><div class="v"><span class="sig ${E.profitCum>0?'ok':'risk'}"><span class="dot"></span>${E.profitCum>0?'흑자 구간':'적자 구간'}</span></div></div>
         </div>
       </div>
       <div class="kpi-ins">✨ ${insProf(E,profSig)}</div>
@@ -679,14 +806,14 @@ function renderCorp(){
     <div class="kc-sub">
       <div class="kc-sub-grid">
         <div class="subkpi">
-          <div class="t">${ic(ICON.revenue,14)} 매출 누계 <span class="realbadge">실제</span></div>
+          <div class="t">${ic(ICON.revenue,14)} 매출은 잘 나오고 있나요? (매출 누계)</div>
           <div class="v">${fmtA(E.revenueCum,1)}</div>
-          <div class="meta"><span>누계 목표 <b>${fmtA(E.revenueCumTarget,1)}</b></span><span>목표 대비 <b class="up">${(E.revAchCum*100).toFixed(1)}%</b></span><span>${sigInline(revSigCum)}</span></div>
+          <div class="meta"><span>누계 목표 <b>${fmtA(E.revenueCumTarget,1)}</b></span><span>목표 대비 <b class="up">${(E.revAchCum*100).toFixed(1)}%</b></span><span><span class="sig ${revSigCum}"><span class="dot"></span>${revSigCum==='ok'?'초과':(revSigCum==='warn'?'근접':'미달')}</span></span></div>
           <div class="sx">이번 달(${META.baseMonth}월) 매출 목표 대비 <b class="${monthDelta>=0?'up':'dn'}">${monthDelta>=0?'+':'−'}${Math.abs(monthDelta).toFixed(1)}%</b></div>
           <div class="kpi-ins">✨ ${insRev(E,revSigCum)}</div>
         </div>
         <div class="subkpi div">
-          <div class="t">${ic(ICON.pct,14)} 누계 영업이익률 <span class="realbadge">실제</span></div>
+          <div class="t">${ic(ICON.pct,14)} 누계 영업이익률</div>
           <div class="v">${(E.opMarginCum*100).toFixed(1)}<small>%</small></div>
           <div class="meta"><span>누계 목표 <b>${(E.opMarginCumTarget*100).toFixed(1)}%</b></span><span>목표 대비 <b class="dn">${gapPp>=0?'+':'−'}${Math.abs(gapPp).toFixed(1)}%p</b></span><span>${sigInline(mSig)}</span></div>
           <div class="sx">당월 영업이익률 <b class="dn">${(E.opMarginMonth*100).toFixed(1)}%</b> · 흑자전환선 ${(E.opMarginCumTarget*100).toFixed(1)}%</div>
@@ -697,24 +824,22 @@ function renderCorp(){
     <div class="kc-syn"><span class="arrow">➡️</span> ${insSynthesis(revSigCum,mSig)}</div>
   </div>`;
 
-  /* --- 경쟁사 벤치마킹 --- */
-  h+=`<div class="sec"><span class="bar"></span><h2>경쟁사 벤치마킹</h2></div>
-  ${benchBlock()}`;
+  /* KPI 신호등 카드뉴스 */
+  h+=`<div class="sec"><span class="bar"></span><h2>KPI 신호등 현황</h2><span class="s">— 전체 관리 KPI 상태를 한눈에</span></div>
+  <div id="kstatBox"></div>`;
 
-  /* --- 지금 가장 이익이 될 개선 과제 (구 손실 Top3) --- */
+  h+=`<div class="sec"><span class="bar"></span><h2>경쟁사 벤치마킹</h2></div>${benchBlock()}`;
+
   h+=`<div class="sec"><span class="bar"></span><h2>지금 가장 이익이 될 개선 과제</h2></div>
   <div class="lpan"><div class="sum"><div class="l">개선 가능 추정치</div><div class="v" id="lossSum">–</div><span class="n estbadge">방향성 지표 · 추정</span></div><div class="lst" id="lossList"></div></div>`;
 
-  /* --- 성과 공유 여력 --- */
-  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>성과 공유 여력</h2></div>
-  ${shareBlock(E)}`;
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>성과 공유 여력</h2></div>${shareBlock(E)}`;
 
-  /* --- 어떻게 벌고 있을까 + 클레임 --- */
   h+=`<div class="row2 row2-gap">
-    <div class="col"><div class="colhead"><span class="bar"></span><h2>어떻게 벌고 있을까</h2><span class="s">— 계약 건수·금액 <span class="estbadge">예시값</span></span></div>
+    <div class="col"><div class="colhead"><span class="bar"></span><h2>어떻게 벌고 있을까</h2><span class="s">— 영업 활동 종합 <span class="estbadge">예시값</span></span></div>
       <div class="panel"><div class="ph">${ic(ICON.sales,15)} 영업 활동 추이</div>${salesBlock()}</div>
     </div>
-    <div class="col"><div class="colhead"><span class="bar"></span><h2>클레임 현황</h2><span class="s">— 실제 2~4월</span></div>
+    <div class="col"><div class="colhead"><span class="bar"></span><h2>클레임 현황</h2><span class="s">— 2~4월</span></div>
       <div class="panel"><div class="ph">${ic(ICON.claim,15)} 클레임 건수·비용</div>
         <div style="padding:12px 14px">${claimChart()}
           <div class="claim-legend"><span class="k"><span class="sw" style="background:var(--navy)"></span>클레임 건수</span><span class="k"><span class="sw" style="background:var(--risk)"></span>클레임 비용(억)</span></div></div>
@@ -724,33 +849,70 @@ function renderCorp(){
     </div>
   </div>`;
 
-  /* --- 본부 KPI (그룹 탭) --- */
   h+=`<div class="sec"><span class="bar"></span><h2>본부 KPI</h2></div>
-  <div class="grptab" id="grpTab"></div>
-  <div id="divArea"></div>`;
+  <div class="grptab" id="grpTab"></div><div id="divArea"></div>`;
 
-  /* --- 인당 기여가치 --- */
-  h+=`<div class="sec"><span class="bar"></span><h2>인당 기여가치</h2><span class="s">— 구성원 1인이 만든 영업이익 수준</span></div>
-  ${perHeadBlock(E)}`;
+  h+=`<div class="sec"><span class="bar"></span><h2>인당 기여가치</h2><span class="s">— 구성원 1인이 만든 영업이익 수준</span></div>${perHeadBlock(E)}`;
 
   document.getElementById("view-corp").innerHTML=h;
 
-  /* 개선 과제 채우기 */
+  renderKstat();
+
   const losses=KPIS.map(k=>({k,imp:impact(k)})).filter(x=>x.imp!=null&&x.imp<0).sort((a,b)=>a.imp-b.imp);
   document.getElementById("lossSum").innerHTML=`<span class="op">(개선 기회)</span> ${fmtA(losses.reduce((s,x)=>s+x.imp,0),1)}`;
   document.getElementById("lossList").innerHTML=losses.slice(0,3).map((x,i)=>{const dn=DIVS.find(d=>d.id===x.k.div).name;
     return `<button class="lrow" data-godiv="${x.k.div}"><span class="rank">${i+1}</span><span class="nm">${x.k.name}<small>${dn}</small></span><span class="amt">${fmtA(x.imp,1)}</span><span class="go">→</span></button>`;}).join("")||`<div class="tiny muted" style="padding:10px">환산 가능한 개선 과제가 없습니다.</div>`;
   document.querySelectorAll('[data-godiv]').forEach(b=>b.onclick=()=>openDiv(b.dataset.godiv));
 
-  /* 본부 그룹 탭 */
   renderDivGroups();
 }
 
-/* 지표별 진단 문구 (수치 없이 시그널 기반 진단만) */
+/* KPI 신호등 카드뉴스 */
+let kstatSel="risk";
+function renderKstat(){
+  let cnt={ok:0,warn:0,risk:0,none:0};
+  KPIS.forEach(k=>{cnt[signal(k)]++;});
+  const total=cnt.ok+cnt.warn+cnt.risk+cnt.none;
+  let msg;
+  if(cnt.risk>=2) msg=`🔴 위험 KPI가 <b>${cnt.risk}개</b>입니다. RED 2건 이상 → 월간 실적회의 필수 안건입니다. 아래에서 위험 과제를 먼저 점검하세요.`;
+  else if(cnt.risk===1) msg=`🟡 위험 KPI가 <b>1개</b> 있습니다. 해당 과제를 우선 점검하세요.`;
+  else if(cnt.warn>0) msg=`🟡 위험 KPI는 없으나 주의 KPI가 <b>${cnt.warn}개</b>입니다. 추세 악화를 사전에 차단하세요.`;
+  else msg=`🟢 모든 관리 KPI가 정상 범위입니다. 현재 흐름을 유지하세요.`;
+  let h=`<div class="kstat">
+    <div class="kstat-top">${ic(ICON.light,16)} 전체 관리 KPI ${total}개 신호 현황</div>
+    <div class="kstat-sub">신호등을 누르면 해당 색상의 KPI 과제를 매출·원가·운영지원으로 나눠 볼 수 있어요.</div>
+    <div class="kstat-lights">
+      <div class="klight ok ${kstatSel==='ok'?'sel':''}" data-kl="ok"><div class="bulb ok">${cnt.ok}</div><div class="lab">정상 <span class="cnt">${cnt.ok}개</span></div></div>
+      <div class="klight warn ${kstatSel==='warn'?'sel':''}" data-kl="warn"><div class="bulb warn">${cnt.warn}</div><div class="lab">주의 <span class="cnt">${cnt.warn}개</span></div></div>
+      <div class="klight risk ${kstatSel==='risk'?'sel':''}" data-kl="risk"><div class="bulb risk">${cnt.risk}</div><div class="lab">위험 <span class="cnt">${cnt.risk}개</span></div></div>
+    </div>
+    <div class="kstat-msg">${msg}</div>
+    <div class="kstat-list" id="kstatList"></div>
+  </div>`;
+  document.getElementById("kstatBox").innerHTML=h;
+  document.querySelectorAll('[data-kl]').forEach(b=>b.onclick=()=>{kstatSel=b.dataset.kl;renderKstat();});
+  renderKstatList();
+}
+function renderKstatList(){
+  const typeName={sales:"매출",cost:"원가",ops:"운영지원"};
+  const list=KPIS.filter(k=>signal(k)===kstatSel);
+  if(list.length===0){document.getElementById("kstatList").innerHTML=`<div class="tiny muted">해당 신호의 KPI가 없습니다.</div>`;return;}
+  let h="";
+  ["sales","cost","ops"].forEach(tp=>{
+    const ks=list.filter(k=>{const d=DIVS.find(x=>x.id===k.div);return d&&d.type===tp;});
+    if(ks.length===0)return;
+    h+=`<div class="grp2"><div class="grph">${typeName[tp]} 부서 · ${ks.length}건</div>`;
+    h+=ks.map(k=>`<button class="kstat-tag ${kstatSel}" data-gokpi="${k.div}"><span class="d"></span>${k.name} <small>${k.team}</small></button>`).join("");
+    h+=`</div>`;
+  });
+  document.getElementById("kstatList").innerHTML=h;
+  document.querySelectorAll('[data-gokpi]').forEach(b=>b.onclick=()=>openDiv(b.dataset.gokpi));
+}
+
 function insProf(E,sig){
-  if(sig==="risk") return "적자 상태로, 손실 축소가 가장 시급합니다.";
+  if(E.profitCum<=0) return "적자 상태로, 손실 축소가 가장 시급합니다.";
   if(sig==="ok")   return "목표를 넘겨 이익을 잘 쌓고 있습니다.";
-  return "흑자는 유지하고 있으나 누계 목표에는 아직 미치지 못합니다.";
+  return "흑자는 유지하고 있으나 누계 목표(매출목표×목표이익률)에는 아직 미치지 못합니다.";
 }
 function insRev(E,sig){
   if(sig==="risk") return "매출이 목표에 미치지 못하고 있습니다.";
@@ -762,7 +924,6 @@ function insM(E,sig){
   if(sig==="risk") return "목표 이익률을 크게 밑돌아 수익성 점검이 시급합니다.";
   return "이익률이 목표보다 낮아 원가·비용 점검이 필요합니다.";
 }
-/* 카드 하단 한 줄 종합 */
 function insSynthesis(revSig,mSig){
   const revOk=revSig==="ok", mOk=mSig==="ok";
   if(revOk && !mOk) return "많이 팔고는 있지만 충분히 남기지 못하고 있습니다. 원가·할인 구조 점검이 핵심입니다.";
@@ -771,7 +932,6 @@ function insSynthesis(revSig,mSig){
   return "매출과 수익성이 동시에 약해 수익 구조 개선이 시급합니다.";
 }
 
-/* 경쟁사 벤치마킹 블록 */
 function benchBlock(){
   const mx=Math.max(...BENCH.cost.map(c=>c.v));
   const rows=BENCH.cost.map(c=>{
@@ -788,15 +948,10 @@ function benchBlock(){
     </div></div>`;
 }
 
-/* 성과 공유 여력 블록 */
 function shareBlock(E){
-  /* 내부 로직(비노출): 영업이익 누계 기반 5구간 위치 산정 */
-  const zones=[
-    {l:"적자 구간",c:"#c2c6cc"},{l:"낮음",c:"#bfe0c2"},{l:"보통",c:"#7ac86f"},{l:"높음",c:"#34a853"},{l:"매우 높음",c:"#177a3a"}
-  ];
+  const zones=[{l:"적자 구간",c:"#c2c6cc"},{l:"낮음",c:"#bfe0c2"},{l:"보통",c:"#7ac86f"},{l:"높음",c:"#34a853"},{l:"매우 높음",c:"#177a3a"}];
   let zi; const p=E.profitCum;
   if(p<=0) zi=0; else if(p<10) zi=1; else if(p<30) zi=2; else if(p<60) zi=3; else zi=4;
-  /* 구간 내 위치 + 전체 위치(%) */
   const segW=100/zones.length;
   const pos=(zi+0.5)*segW;
   const segs=zones.map(z=>`<div class="seg" style="background:${z.c}">${z.l}</div>`).join("");
@@ -819,84 +974,38 @@ function shareBlock(E){
     </div></div>`;
 }
 
-/* 인당 기여가치 블록 */
+/* 인당 기여가치 게이지(전사 하단) — 양쪽 마감 정렬 */
 function perHeadBlock(E){
-  const v=E.profitCum/META.FTE; // 누계 영업이익 ÷ 인원 = 0.01억
-  const target=1.0;             // 임의 목표
+  const v=E.profitCum/META.FTE;
+  const target=1.0;
   const zones=[{l:"위험",c:"#f2b8bd"},{l:"주의",c:"#f3d9a3"},{l:"정상",c:"#b6e0b9"},{l:"우수",c:"#34a853"}];
-  /* 목표 1.0억 기준 위치(%): 0~target → 0~75%, target↑ → 75~100% */
-  let pos; if(v<=0) pos=2; else if(v<target) pos=(v/target)*75; else pos=Math.min(75+(v/target-1)*25,98);
-  const segs=zones.map(z=>`<div class="z" style="background:${z.c}"></div>`).join("");
-  let zlab; if(v<target*0.5) zlab="위험"; else if(v<target*0.85) zlab="주의"; else if(v<target) zlab="정상"; else zlab="우수";
+  const segW=100/zones.length;
+  let zi; if(v<target*0.5) zi=0; else if(v<target*0.85) zi=1; else if(v<target) zi=2; else zi=3;
+  const pos=(zi+0.5)*segW;                         // 구간 중앙 → 양쪽 마감 균일
+  const segs=zones.map(z=>`<div class="z" style="flex:1;background:${z.c}"></div>`).join("");
+  const labs=zones.map(z=>`<span>${z.l}</span>`).join("");
   return `<div class="perhead">
     <div class="lead"><div class="l">인당 생산성 (1인당 영업이익 누계)</div>
       <div class="v">${v.toFixed(2)}<small>억</small></div></div>
     <div class="gw">
-      <div class="phgauge">${segs}<div class="pt" style="left:${pos}%"><span class="phbdg">현재 · ${zlab}</span></div></div>
-      <div class="phgauge-lb"><span>위험</span><span>주의</span><span>정상</span><span>우수</span></div>
+      <div class="phgauge">${segs}<div class="pt" style="left:${pos}%"><span class="phbdg">현재 · ${zones[zi].l}</span></div></div>
+      <div class="phgauge-lb">${labs}</div>
     </div>
-    <div class="note">현재 인당 영업이익은 <b>${v.toFixed(2)}억</b>으로 목표 <b>1.0억</b> 대비 <b>"${zlab}"</b> 구간입니다 <span class="realbadge">실적 실제</span> <span class="estbadge">목표 임의</span>. 적자 구간에서는 절대 수준보다 손실 축소 속도를 우선 봅니다.</div>
+    <div class="note">현재 인당 영업이익은 <b>${v.toFixed(2)}억</b>으로 목표 <b>1.0억</b> 대비 <b>"${zones[zi].l}"</b> 구간입니다 <span class="estbadge">목표 임의</span>. 적자 구간에서는 절대 수준보다 손실 축소 속도를 우선 봅니다.</div>
   </div>`;
 }
 
-/* ================= 본부 그룹 ================= */
-let curGrpTab="all";
-function renderDivGroups(){
-  const tabs=[{id:"all",label:"전체",c:"var(--emerald)"},
-    {id:"sales",label:TYPE.sales.label,c:"var(--emerald)"},
-    {id:"cost",label:TYPE.cost.label,c:"var(--navy)"},
-    {id:"ops",label:TYPE.ops.label,c:"var(--navy3)"}];
-  document.getElementById("grpTab").innerHTML=tabs.map(t=>
-    `<button class="gb ${t.id===curGrpTab?'active':''}" data-grp="${t.id}"><span class="c" style="background:${t.c}"></span>${t.label}</button>`).join("");
-  document.querySelectorAll('[data-grp]').forEach(b=>b.onclick=()=>{curGrpTab=b.dataset.grp;renderDivGroups();});
-  const showTypes = curGrpTab==="all"?["sales","cost","ops"]:[curGrpTab];
-  let h="";
-  showTypes.forEach(tp=>{
-    const t=TYPE[tp];
-    h+=`<div class="divgroup"><div class="gh"><span class="tagb ${t.tag==='core'?'core':'spec'}" style="${t.tag==='data'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':t.tag==='ops'?'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)':''}">${t.label}</span></div>
-      <div class="divs">${DIVS.filter(d=>d.type===tp).map(divCard).join("")}</div></div>`;
-  });
-  document.getElementById("divArea").innerHTML=h;
-  document.querySelectorAll('[data-div]').forEach(el=>el.onclick=()=>openDiv(el.dataset.div));
-}
-function divCard(d){
-  const st=divStats(d.id);
-  const tagged=[];(TEAMS[d.id]||[]).forEach(t=>t.kpis.forEach(k=>{if(k.tag==="핵심"||k.tag==="특임")tagged.push(k);}));
-  const chips=tagged.slice(0,3).map(k=>`<span class="chip">${tagChip(k.tag)}${k.name}</span>`).join("")||`<span class="tiny muted">등록 KPI 없음</span>`;
-  /* 목표/실적/달성률 */
-  let goalBlock;
-  if(d.revCum!=null){const ach=d.revCum/d.revTarget;
-    goalBlock=`<div class="mrow">매출 <b>${fmtA(d.revCum,1)}</b> / 연간목표 ${fmtA(d.revTarget,0)}</div>
-      <div class="achv"><div class="bar"><div class="fill" style="width:${Math.min(ach*100,100)}%"></div></div>
-      <div class="lb"><span>달성률</span><span><b style="color:var(--emerald-press)">${(ach*100).toFixed(1)}%</b></span></div></div>`;
-  } else {
-    goalBlock=`<div class="mrow tiny muted">매출 비귀속 본부 · 원가/효율로 기여</div>`;
-  }
-  const net=st.net;
-  const impBlock=`<div class="imp">개선 여력 <b class="${Math.abs(net)<0.05?'zero':''}">${net<0?fmtA(Math.abs(net),1):fmtA(net,1)}</b></div>`;
-  return `<div class="dcard t-${d.type}" data-div="${d.id}">
-    <div class="top"><span class="dico">${ic(ICON[d.icon],19)}</span><span class="nm">${d.name}</span>${statePill(st.worst)}</div>
-    ${goalBlock}
-    ${impBlock}
-    <div class="lever"><div class="h">핵심 레버 · 핵심/특임 과제</div>${chips}</div>
-    <span class="go">우리 본부 보기 →</span></div>`;
-}
-
-/* ================= 영업 활동 종합 차트 ================= */
+/* ================= 영업 활동 ================= */
 function salesBlock(){
   const S=SALES;
   let h=`<div class="minicharts">`;
-  /* 1) 계약건수 막대 */
-  h+=`<div class="mchart"><div class="t"><span>계약 건수 (월별)</span><span class="badge tiny muted">건</span></div>
-    ${barMini(S.month,S.contractCnt,"var(--navy)","건")}</div>`;
-  /* 2) 평균계약액 라인 */
-  h+=`<div class="mchart"><div class="t"><span>평균 계약액 (월별)</span><span class="badge tiny muted">억</span></div>
-    ${lineMini(S.month,S.avgAmt,"var(--navy2)","억")}
-    <div class="cm">평균 계약액이 감소하고 있습니다.</div></div>`;
+  h+=`<div class="mchart"><div class="t"><span>계약 건수 (월별)</span><span class="tiny muted">건</span></div>${barMini(S.month,S.contractCnt,"var(--navy)")}</div>`;
+  h+=`<div class="mchart"><div class="t"><span>평균 계약액 (월별)</span><span class="tiny muted">억</span></div>${lineMini(S.month,S.avgAmt,"var(--navy2)")}
+    <div class="cm">평균 계약액이 감소하고 있습니다. 큰 거래 발굴이 정체되지 않도록 파이프라인 점검이 필요합니다.</div></div>`;
   h+=`</div>`;
   return h;
 }
-function barMini(labels,vals,color,unit){
+function barMini(labels,vals,color){
   const W=420,H=92,pl=8,pr=8,pt=14,pb=18,iw=W-pl-pr,ih=H-pt-pb;
   const mx=Math.max(...vals.filter(v=>v!=null),1)*1.2;const bw=Math.min(iw/labels.length*0.5,26);
   let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block">`;
@@ -907,7 +1016,7 @@ function barMini(labels,vals,color,unit){
     s+=`<text x="${cx.toFixed(1)}" y="${H-5}" font-size="9" fill="#869389" text-anchor="middle">${m}</text>`;});
   return s+`</svg>`;
 }
-function lineMini(labels,vals,color,unit){
+function lineMini(labels,vals,color){
   const W=420,H=92,pl=14,pr=14,pt=16,pb=18,iw=W-pl-pr,ih=H-pt-pb;
   const valid=vals.filter(v=>v!=null);const mx=Math.max(...valid)*1.15,mn=Math.min(...valid)*0.85;
   let pts=[],s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block">`;
@@ -918,38 +1027,6 @@ function lineMini(labels,vals,color,unit){
   if(pts.length>1)s+=`<polyline points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="none" stroke="${color}" stroke-width="2"/>`;
   return s+`</svg>`;
 }
-function comboMini(labels,bars,line){
-  const W=420,H=100,pl=14,pr=22,pt=16,pb=18,iw=W-pl-pr,ih=H-pt-pb;
-  const mxB=Math.max(...bars)*1.3,bw=Math.min(iw/labels.length*0.42,22);
-  let pts=[],s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block">`;
-  labels.forEach((m,i)=>{const cx=pl+iw*(i+0.5)/labels.length;
-    const bh=bars[i]/mxB*ih,top=pt+ih-bh;
-    s+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw}" height="${bh.toFixed(1)}" rx="3" fill="var(--navy4)"/>`;
-    s+=`<text x="${cx.toFixed(1)}" y="${(top-3).toFixed(1)}" font-size="9" font-weight="700" fill="var(--navy2)" text-anchor="middle">${bars[i]}</text>`;
-    const cy=pt+ih-(line[i]/100)*ih;pts.push([cx,cy]);
-    s+=`<text x="${cx.toFixed(1)}" y="${H-5}" font-size="9" fill="#869389" text-anchor="middle">${m}</text>`;});
-  s+=`<polyline points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="none" stroke="var(--emerald)" stroke-width="2"/>`;
-  pts.forEach((p,i)=>{s+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.6" fill="var(--emerald)"/><text x="${p[0].toFixed(1)}" y="${(p[1]-6).toFixed(1)}" font-size="8.5" font-weight="700" fill="var(--emerald-press)" text-anchor="middle">${line[i]}%</text>`;});
-  return s+`</svg>`;
-}
-function forecastMini(){
-  const S=SALES,labels=["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
-  const W=440,H=110,pl=14,pr=14,pt=14,pb=18,iw=W-pl-pr,ih=H-pt-pb;
-  const all=[...S.past.filter(v=>v!=null),...S.fcMax.filter(v=>v!=null)];const mx=Math.max(...all)*1.12;
-  const bw=Math.min(iw/labels.length*0.6,20);
-  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block">`;
-  labels.forEach((m,i)=>{const cx=pl+iw*(i+0.5)/labels.length;
-    if(S.past[i]!=null){const bh=S.past[i]/mx*ih,top=pt+ih-bh;
-      s+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw}" height="${bh.toFixed(1)}" rx="2" fill="var(--navy)"/>`;}
-    else if(S.fcMin[i]!=null){const tMin=pt+ih-S.fcMin[i]/mx*ih,tMax=pt+ih-S.fcMax[i]/mx*ih;
-      s+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${tMax.toFixed(1)}" width="${bw}" height="${(pt+ih-tMax).toFixed(1)}" rx="2" fill="var(--navy4)"/>`;
-      s+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${tMin.toFixed(1)}" width="${bw}" height="${(pt+ih-tMin).toFixed(1)}" rx="2" fill="var(--emerald)" opacity="0.85"/>`;}
-    s+=`<text x="${cx.toFixed(1)}" y="${H-5}" font-size="8" fill="#869389" text-anchor="middle">${m.replace('월','')}</text>`;});
-  return s+`</svg>
-  <div class="claim-legend" style="margin-top:4px"><span class="k"><span class="sw" style="background:var(--navy)"></span>실적</span><span class="k"><span class="sw" style="background:var(--emerald)"></span>확정(최소)</span><span class="k"><span class="sw" style="background:var(--navy4)"></span>예상 상한</span></div>`;
-}
-
-/* 클레임 콤보 차트 */
 function claimChart(){
   const W=460,H=190,pl=30,pr=30,pt=22,pb=24,iw=W-pl-pr,ih=H-pt-pb;
   const m=CLAIM.month,cnt=CLAIM.count,cost=CLAIM.cost;
@@ -970,6 +1047,68 @@ function claimChart(){
   return svg+lbl+`</svg>`;
 }
 
+/* ================= 본부 그룹/카드 ================= */
+let curGrpTab="all";
+function renderDivGroups(){
+  const tabs=[{id:"all",label:"전체",c:"var(--emerald)"},
+    {id:"sales",label:TYPE.sales.label,c:"var(--emerald)"},
+    {id:"cost",label:TYPE.cost.label,c:"var(--navy)"},
+    {id:"ops",label:TYPE.ops.label,c:"var(--navy3)"}];
+  document.getElementById("grpTab").innerHTML=tabs.map(t=>
+    `<button class="gb ${t.id===curGrpTab?'active':''}" data-grp="${t.id}"><span class="c" style="background:${t.c}"></span>${t.label}</button>`).join("");
+  document.querySelectorAll('[data-grp]').forEach(b=>b.onclick=()=>{curGrpTab=b.dataset.grp;renderDivGroups();});
+  const showTypes = curGrpTab==="all"?["sales","cost","ops"]:[curGrpTab];
+  let h="";
+  showTypes.forEach(tp=>{
+    const t=TYPE[tp];
+    const style=t.tag==='core'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)'
+      :t.tag==='data'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)'
+      :'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
+    h+=`<div class="divgroup"><div class="gh"><span class="tag" style="${style}">${t.label}</span></div>
+      <div class="divs">${DIVS.filter(d=>d.type===tp).map(divCard).join("")}</div></div>`;
+  });
+  document.getElementById("divArea").innerHTML=h;
+  document.querySelectorAll('[data-div]').forEach(el=>el.onclick=()=>openDiv(el.dataset.div));
+}
+function cardKpiGraph(ck){
+  const tmp={target:ck.target,actual:ck.actual,st:ck.st,unit:ck.unit};
+  const s=signal(tmp),col=s==="ok"?"var(--ok)":(s==="warn"?"var(--warn)":"var(--risk)");
+  let ratio,extra;
+  if(ck.st==="lower"){ratio=ck.actual?ck.target/ck.actual:0;}
+  else{ratio=ck.target?ck.actual/ck.target:0;}
+  const fill=Math.max(0,Math.min(ratio,1))*100;
+  const tgtPos=ck.st==="lower"?Math.min(ck.target/(ck.actual||ck.target),1)*100:100;
+  const actDisp=fmtDisp(tmp,ck.actual), tgtDisp=fmtDisp(tmp,ck.target);
+  return `<div class="achv">
+    <div class="alab"><span>${ck.name} <span class="sig ${s}" style="font-size:11px"><span class="dot"></span>${SIGLAB[s]}</span></span><span style="color:${col};font-weight:800">${(ratio*100).toFixed(0)}%</span></div>
+    <div class="bar"><div class="fill" style="width:${fill.toFixed(0)}%;background:${col}"></div><div class="tgtmark" style="left:${tgtPos.toFixed(0)}%"></div></div>
+    <div class="lb"><span>실적 <b style="color:var(--text2)">${actDisp}</b></span><span>목표 ${tgtDisp}</span></div>
+  </div>`;
+}
+function divCard(d){
+  const st=divStats(d.id);
+  const tagged=[];(TEAMS[d.id]||[]).forEach(t=>t.kpis.forEach(k=>{if(k.tag==="핵심"||k.tag==="특임")tagged.push(k);}));
+  const chips=tagged.slice(0,3).map(k=>`<span class="chip">${tagChip(k.tag)}${k.name}</span>`).join("")||`<span class="tiny muted">등록 KPI 없음</span>`;
+  let goalBlock;
+  if(d.revCum!=null){const ach=d.revCum/d.revTarget;const pa=proratedAch(d);
+    goalBlock=`<div class="mrow">매출 <b>${fmtA(d.revCum,1)}</b> / 연간목표 ${fmtA(d.revTarget,0)}</div>
+      <div class="achv"><div class="bar"><div class="fill" style="width:${Math.min(ach*100,100)}%"></div><div class="tgtmark" style="left:${Math.min(META.baseMonth/12*100,100).toFixed(0)}%"></div></div>
+      <div class="lb"><span>달성률 <b style="color:var(--emerald-press)">${(ach*100).toFixed(1)}%</b></span><span>안분진척 ${(pa*100).toFixed(0)}%</span></div></div>`;
+  } else if(d.cardKpi){
+    goalBlock=cardKpiGraph(d.cardKpi);
+  } else {
+    goalBlock="";
+  }
+  const net=st.net;
+  const impBlock=`<div class="imp">개선 여력 <b class="${Math.abs(net)<0.05?'zero':''}">${net<0?fmtA(Math.abs(net),1):fmtA(net,1)}</b></div>`;
+  return `<div class="dcard t-${d.type}" data-div="${d.id}">
+    <div class="top"><span class="dico">${ic(ICON[d.icon],19)}</span><span class="nm">${d.name}</span>${statePill(st.worst)}</div>
+    ${goalBlock}
+    ${impBlock}
+    <div class="lever"><div class="h">핵심/특임 과제</div>${chips}</div>
+    <span class="go">우리 본부 보기 →</span></div>`;
+}
+
 /* ================= 본부 상세 ================= */
 let curDiv=null,curGroup=null;
 function openDiv(id){curDiv=id;curGroup=null;showView("div");renderDiv();renderSidebar('div');window.scrollTo(0,0);}
@@ -982,6 +1121,49 @@ function gauge(k){const s=signal(k),col=s==="ok"?"var(--ok)":(s==="warn"?"var(--
   return `<div class="gauge"><div class="bar"><div class="fill" style="width:${fillPct}%;background:${col}"></div><div class="tgt" style="left:${tgtPct}%"></div></div>
     <div class="lb"><span>현재 <b>${fmtDisp(k,k.actual)}</b> · 달성률 ${(ratio*100).toFixed(0)}%</span><span>${gapTxt}</span></div></div>`;}
 
+function aiComment(d,st){
+  const ks=KPIS.filter(k=>k.div===d.id);
+  const risks=ks.filter(k=>signal(k)==="risk");
+  const teams=(TEAMS[d.id]||[]).map(t=>t.team);
+  const teamTxt=teams.length>1?`${teams.length}개 팀(${teams.slice(0,3).join(", ")}${teams.length>3?" 등":""})`:teams[0]||"본부";
+  if(st==="ok") return `${teamTxt}의 정렬 과제가 순항 중입니다. <b>${d.coreGoal}</b> 기조를 유지하세요.`;
+  if(st==="warn") return `${teamTxt}의 과제 중 일부가 목표에 근접하지 못했습니다. <b>${d.node.act}</b> 중심으로 선제 점검이 필요합니다.`;
+  const rn=risks.slice(0,2).map(k=>k.name).join(", ")||d.node.lag;
+  return `${teamTxt}에서 <b>${rn}</b>이(가) 위험 신호입니다. <b>${d.node.act}</b>를 우선 실행해 병목을 해소하세요.`;
+}
+
+function actionFlow(d){
+  const f=FLOW[d.id]; if(!f)return "";
+  const lead=KPIS.find(k=>k.id===f.lead), lag=KPIS.find(k=>k.id===f.lag);
+  function kpiStage(step,k){
+    if(!k)return "";
+    const s=signal(k),ratio=k.st==="higher"?(k.target?k.actual/k.target:0):(k.actual?k.target/k.actual:1);
+    const col=s==="ok"?"var(--ok)":(s==="warn"?"var(--warn)":"var(--risk)");
+    const fill=Math.max(0,Math.min(ratio,1))*100;
+    return `<div class="fstage"><div class="fcard kpi ${s}">
+      <div class="fstep"><span class="sdot ${s}"></span>${step}</div>
+      <div class="fname">${k.name}</div>
+      <div class="fval ${s}">${fmtDisp(k,k.actual)}</div>
+      <div class="ftgt">목표 ${fmtDisp(k,k.target)} · 달성 ${(ratio*100).toFixed(0)}%</div>
+      <div class="fbar"><div class="ff" style="width:${fill.toFixed(0)}%;background:${col}"></div></div>
+      </div><div class="farrow">→</div></div>`;
+  }
+  return `<div class="flowwrap">
+    <div class="flowlegend">
+      <span class="k"><span class="d ok"></span>정상</span><span class="k"><span class="d warn"></span>주의</span><span class="k"><span class="d risk"></span>긴급</span>
+      <span style="flex:1"></span><span class="tiny">3초 안에 병목 구간(붉은 카드)을 찾으세요</span>
+    </div>
+    <div class="flowchain">
+      <div class="fstage"><div class="fcard"><div class="fstep">목표</div><div class="fname">${f.goal}</div></div><div class="farrow">→</div></div>
+      <div class="fstage"><div class="fcard"><div class="fstep">과제</div><div class="fname">${f.task.name}</div><span class="ftag">${f.task.tag==='중점'?'<span class="tagb spec">중점</span>':'<span class="tagb spec">특임</span>'}</span></div><div class="farrow">→</div></div>
+      <div class="fstage"><div class="fcard"><div class="fstep">실행 행동</div><div class="fname">${f.action}</div></div><div class="farrow">→</div></div>
+      ${kpiStage("선행지표",lead)}
+      ${kpiStage("결과지표",lag)}
+    </div>
+    <div class="flownote">📍 ${f.note}</div>
+  </div>`;
+}
+
 function renderDiv(){
   const d=DIVS.find(x=>x.id===curDiv),st=divStats(curDiv),t=TYPE[d.type];
   const tagged=[];(TEAMS[curDiv]||[]).forEach(tm=>tm.kpis.forEach(k=>{if(k.tag==="핵심"||k.tag==="특임")tagged.push(k);}));
@@ -989,20 +1171,18 @@ function renderDiv(){
   const others=DIVS.map(x=>`<option value="${x.id}" ${x.id===curDiv?'selected':''}>${x.name}</option>`).join("");
   const teams=TEAMS[curDiv]||[];
   const single=(curDiv==="sm1"||curDiv==="sm2");
-  const goalBlock = single
-    ? `<div class="goalbox">${teams[0].goal}</div>`
+  const goalBlock = single ? `<div class="goalbox">${teams[0].goal}</div>`
     : `<div class="goalgrid">${teams.map(tm=>`<div class="goalitem"><b>${tm.team}</b><span>${tm.goal}</span></div>`).join("")}</div>`;
-  const taskHead = single ? "특임 · 핵심 과제" : "팀별 특임 · 핵심 과제";
+  const taskHead = single ? "핵심/특임 과제" : "팀별 핵심/특임 과제";
   const taskCards = `<div class="teamgrid">${teams.map(tm=>`<div class="team">
     ${single?'':`<div class="th"><span class="nm">${tm.team}</span></div>`}
-    ${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span>${k.real?'<span class="realbadge">실제</span>':''}</div>`).join("")}
+    ${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div>`).join("")}
   </div>`).join("")}</div>`;
 
   const typetagStyle = d.type==='sales'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)'
     : d.type==='cost'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)'
     : 'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
 
-  /* 본부 현황 */
   let statusBlk;
   if(d.revCum!=null){const ach=d.revCum/d.revTarget;
     statusBlk=`<div class="blk"><div class="l">매출 실적 / 연간목표</div><div class="v">${fmtA(d.revCum,1)} <span style="font-size:13px;color:var(--cap)">/ ${fmtA(d.revTarget,0)}</span></div></div>
@@ -1011,13 +1191,36 @@ function renderDiv(){
     statusBlk=`<div class="blk"><div class="l">개선 여력 (누계 추정)</div><div class="v ${Math.abs(st.net)<0.05?'zero':'pos'}">${fmtA(Math.abs(st.net),1)}</div></div>`;
   }
 
-  let h=`<div class="ddtop"><div class="crumb"><a id="back1">전사 KPI 요약</a><span class="sepc">›</span><b>${d.name}</b></div>
+  /* 본부 현황 요약 카드 — 목표달성 수준 표현 */
+  let achvLine;
+  if(d.revCum!=null){const ach=d.revCum/d.revTarget;const pa=proratedAch(d);const col=st.worst==='risk'?'var(--risk)':st.worst==='warn'?'var(--warn)':'var(--emerald)';
+    achvLine=`<div class="scachv"><div class="barwrap"><div class="bar"><div class="fill" style="width:${Math.min(ach*100,100)}%;background:${col}"></div><div class="tgtmark" style="left:${Math.min(META.baseMonth/12*100,100)}%"></div></div></div>
+      <span><b class="big">${(ach*100).toFixed(1)}%</b> <span class="tiny muted">연간목표 대비 · 안분진척 ${(pa*100).toFixed(0)}%</span></span></div>`;
+  } else if(d.cardKpi){
+    const ck=d.cardKpi,tmp={target:ck.target,actual:ck.actual,st:ck.st,unit:ck.unit},s=signal(tmp),col=s==="ok"?"var(--ok)":(s==="warn"?"var(--warn)":"var(--risk)");
+    const ratio=ck.st==="lower"?(ck.actual?ck.target/ck.actual:0):(ck.target?ck.actual/ck.target:0);
+    achvLine=`<div class="scachv"><div class="barwrap"><div class="bar"><div class="fill" style="width:${Math.max(0,Math.min(ratio,1))*100}%;background:${col}"></div></div></div>
+      <span><b class="big">${(ratio*100).toFixed(0)}%</b> <span class="tiny muted">${ck.name} 목표 대비 · 실적 ${fmtDisp(tmp,ck.actual)} / 목표 ${fmtDisp(tmp,ck.target)}</span></span></div>
+      <div class="tiny muted" style="margin-top:7px">개선 여력(누계 추정) <b style="color:var(--emerald-press)">${fmtA(Math.abs(st.net),1)}</b></div>`;
+  } else { achvLine=`<span class="big">${fmtA(Math.abs(st.net),1)}</span> <span class="tiny muted">개선 여력(누계 추정)</span>`; }
+
+  const statusCard=`<div class="statuscard">
+    <div class="scrow"><div class="sck">2026 목표</div><div class="scv">${d.coreGoal}</div></div>
+    <div class="scrow"><div class="sck">${d.coreLabel}</div><div class="scv"><b>${d.node.lead}</b> <span class="tiny muted">→ 결과: ${d.node.lag}</span></div></div>
+    <div class="scrow"><div class="sck">목표 달성 수준</div><div class="scv">${achvLine}</div></div>
+    <div class="scrow"><div class="sck">AI 코멘트</div><div class="scv ai"><span class="aibadge">✨ AI</span><span>${aiComment(d,st.worst)}</span></div></div>
+  </div>`;
+
+  let h=`<div class="ddtop"><div class="crumb"><a id="back1">전사 KPI</a><span class="sepc">›</span><b>${d.name}</b></div>
     <div class="sp"></div><span class="tiny muted">다른 본부</span><select class="ddsel" id="divSel">${others}</select></div>
   <div class="ddhead">
     <div class="htop"><span class="dico">${ic(ICON[d.icon],22)}</span><h2>${d.name}</h2><span class="typetag" style="${typetagStyle}">${t.label}</span> ${statePill(st.worst)}</div>
     <div class="hgrid">${statusBlk}
-      <div class="rk"><div class="l">핵심 · 특임 KPI</div>${headChips}</div></div>
+      <div class="rk"><div class="l">핵심/특임 과제</div>${headChips}</div></div>
   </div>
+
+  <div class="sec"><span class="bar"></span><h2>본부 현황 요약</h2><span class="s">— 목표 · 핵심 레버 · 달성 수준 · AI 코멘트</span></div>
+  ${statusCard}
 
   <div class="sec"><span class="bar"></span><h2>2026 목표</h2><span class="s">— 부서가 달성해야 할 목표(시트 기준)</span></div>
   ${goalBlock}
@@ -1025,29 +1228,50 @@ function renderDiv(){
   <div class="sec"><span class="bar"></span><h2>${taskHead}</h2><span class="s">— 우리가 도전할 과제</span></div>
   ${taskCards}
 
-  <div class="sec"><span class="bar"></span><h2>관련 KPI</h2><span class="s">— 단위가 같은 KPI만 비교 · 목표/실적 입력 가능</span></div>
+  <div class="sec"><span class="bar"></span><h2>KPI 달성 경로</h2><span class="s">— 목표 → 과제 → 행동 → 선행지표 → 결과지표</span></div>
+  ${actionFlow(d)}
+
+  <div class="sec"><span class="bar"></span><h2>관련 KPI</h2><span class="s">— 속성 태그로 필터 · 목표/실적 입력 가능</span></div>
   <div class="grp" id="grpBar"></div><div id="kpiList"></div>
 
-  <div class="sec"><span class="bar"></span><h2>캐스케이드 맵</h2><span class="s">— 전사 → 본부 → 후행 → 선행 → 행동</span></div>
-  <div class="cassent" id="cassent"></div>`;
+  <div class="sec"><span class="bar"></span><h2>인당 기여가치</h2><span class="s">— 공헌이익 · HCVA · HCROI</span></div>
+  <div class="hcgrid">${hcMiniCards(d)}</div>`;
   document.getElementById("view-div").innerHTML=h;
   document.getElementById("back1").onclick=goHome;
   document.getElementById("divSel").onchange=e=>openDiv(e.target.value);
 
   const ks=KPIS.filter(k=>k.div===curDiv);const avail=GROUPS.filter(g=>ks.some(k=>k.group===g));
   if(!curGroup||!avail.includes(curGroup))curGroup=avail[0]||null;
-  document.getElementById("grpBar").innerHTML=avail.map(g=>{const has=ks.filter(k=>k.group===g).some(k=>{const s=signal(k);return s==="risk"||s==="warn";});
-    return `<button class="gbtn ${g===curGroup?'active':''}" data-g="${g}">${g}${has?' •':''}</button>`;}).join("");
+  document.getElementById("grpBar").innerHTML=`<span class="glab">속성</span>`+avail.map(g=>{const has=ks.filter(k=>k.group===g).some(k=>{const s=signal(k);return s==="risk"||s==="warn";});
+    return `<button class="gtag ${g===curGroup?'active':''} ${has?'has':''}" data-g="${g}"><span class="gd"></span>${g}</button>`;}).join("");
   document.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{curGroup=b.dataset.g;renderKpiList(ks.filter(k=>k.group===curGroup));document.querySelectorAll('[data-g]').forEach(x=>x.classList.toggle('active',x.dataset.g===curGroup));});
   renderKpiList(ks.filter(k=>k.group===curGroup));
-
-  const nd=d.node;
-  document.getElementById("cassent").innerHTML=`전사 과제 <b>${nd.n}</b>은(는) <b>${d.name}</b>의 후행지표 <b>${nd.lag}</b>로 측정되고, 선행지표 <b>${nd.lead}</b>가 이를 끌어올리며, 최종적으로 <span class="act">${nd.act}</span> 행동으로 완성됩니다.`;
 }
+
+function hcMiniCards(d){
+  /* 본부 단위 공헌이익/HCVA/HCROI — 전사값 표시(본부 인건비 미입력 시 전사 기준 참고) */
+  const cm = d.revCum!=null ? d.revCum*0.30 : null;  // 공헌이익(추정: 매출×30%) — 매출부서만
+  const cards=[];
+  cards.push(`<div class="hccard"><div class="hl">${ic(ICON.revenue,13)} 공헌이익(누계)</div>
+    <div class="hv">${cm!=null?fmtA(cm,1):'<small>전사 기준 참조</small>'}</div>
+    <div class="hd">${cm!=null?'매출 × 공헌이익률 30% 추정':'원가·지원 부서는 전사 공헌이익에 기여'} <span class="estbadge">임의</span></div></div>`);
+  cards.push(`<div class="hccard"><div class="hl">${ic(ICON.people,13)} HCVA (인당부가가치)</div>
+    <div class="hv">${HR.hcva.toFixed(2)}<small>억/인</small></div>
+    <div class="hd">(영업이익+인건비)÷인원 · 전사 기준 <span class="estbadge">임의</span>
+    <div class="hbar"><div class="hf" style="width:${Math.min(HR.hcva/HR.hcvaTarget*100,100).toFixed(0)}%;background:var(--navy)"></div></div></div></div>`);
+  const hcroiS=HR.hcroi>=HR.hcroiTarget?"var(--ok)":(HR.hcroi>=1?"var(--warn)":"var(--risk)");
+  cards.push(`<div class="hccard"><div class="hl">${ic(ICON.roi,13)} HCROI (인건비 투자수익률)</div>
+    <div class="hv">${HR.hcroi.toFixed(2)}<small>배</small></div>
+    <div class="hd">목표 ≥${HR.hcroiTarget} · 전사 기준 <span class="estbadge">임의</span>
+    <div class="hbar"><div class="hf" style="width:${Math.min(HR.hcroi/HR.hcroiTarget*100,100).toFixed(0)}%;background:${hcroiS}"></div></div></div></div>`);
+  return cards.join("");
+}
+
 function renderKpiList(list){
+  const multiTeam=new Set(list.map(k=>k.team)).size>1;
   document.getElementById("kpiList").innerHTML=list.map(k=>{const s=signal(k),imp=impact(k);
-    const badge=k.real?'<span class="realbadge">실제</span>':'<span class="estbadge">임의</span>';
-    return `<div class="krow"><div class="info"><div class="nm">${k.name} ${sigInline(s)} ${badge}</div><div class="df">${k.def}</div>${gauge(k)}</div>
+    const teamtag=`<span class="teamtag">${k.team}</span>`;
+    return `<div class="krow"><div class="info"><div class="nm">${k.name} ${sigInline(s)} ${teamtag}</div><div class="df">${k.def}</div>${gauge(k)}</div>
       <div class="edit"><div class="f"><label>목표</label><div class="ig"><input class="tgt" data-k="${k.id}" data-t="tgt" value="${dispVal(k,k.target)}"><span class="u">${k.unit}</span></div></div>
         <div class="f"><label>실적</label><div class="ig"><input data-k="${k.id}" data-t="act" value="${dispVal(k,k.actual)}" placeholder="–"><span class="u">${k.unit}</span></div></div></div>
       <div class="right">${sigPill(s)}<div class="imp">개선 여력 ${imp==null?'<span class="muted">(환산 불가)</span>':'<b>'+fmtA(imp,1)+'</b>'}<br><span class="tiny muted">누계 기준 추정</span></div></div></div>`;}).join("")||`<div class="tiny muted">해당 그룹 KPI 없음</div>`;
@@ -1055,16 +1279,69 @@ function renderKpiList(list){
     if(e.target.dataset.t==="tgt")k.target=v;else k.actual=v;renderDiv();renderSidebar('div');});
 }
 
-/* ================= LAYER2 ================= */
-function renderL2(){const L=LAYER2,unit=L.totalCM/L.totalFTE;
+/* ================= 인적 기여가치 페이지 ================= */
+function renderL2(){
+  const L=LAYER2,unit=L.totalCM/L.totalFTE;
   const rows=L.alloc.map(a=>{const al=unit*a.fte,sp=al-a.cost;
     return `<tr><td>${a.name}</td><td class="n">${a.fte}</td><td class="n">${al.toFixed(1)}</td><td class="n">${a.cost.toFixed(1)}</td><td class="n ${sp<0?'neg':'pos'}">${sp>=0?'+':'−'}${Math.abs(sp).toFixed(1)}</td><td>${sp<0?'구조 점검 필요(경영진 참고)':'비용 대비 기여 충분'}</td></tr>`;}).join("");
   const g=L.gate;
+
+  /* HCVA 게이지 */
+  const hcvaZones=[{l:"위험",c:"#f2b8bd"},{l:"주의",c:"#f3d9a3"},{l:"정상",c:"#b6e0b9"},{l:"우수",c:"#34a853"}];
+  let hz; const hv=HR.hcva,ht=HR.hcvaTarget;
+  if(hv<ht*0.5)hz=0;else if(hv<ht*0.85)hz=1;else if(hv<ht)hz=2;else hz=3;
+  const hpos=(hz+0.5)*(100/hcvaZones.length);
+  const hsegs=hcvaZones.map(z=>`<div class="z" style="flex:1;background:${z.c}"></div>`).join("");
+  const hlabs=hcvaZones.map(z=>`<span>${z.l}</span>`).join("");
+
+  /* HCROI 게이지 (목표 1.5) */
+  const roiZones=[{l:"손실(<1.0)",c:"#f2b8bd"},{l:"회수(1.0~1.5)",c:"#f3d9a3"},{l:"목표 달성(≥1.5)",c:"#34a853"}];
+  let rz; const rv=HR.hcroi; if(rv<1.0)rz=0;else if(rv<1.5)rz=1;else rz=2;
+  const rpos=(rz+0.5)*(100/roiZones.length);
+  const rsegs=roiZones.map(z=>`<div class="z" style="flex:1;background:${z.c}"></div>`).join("");
+  const rlabs=roiZones.map(z=>`<span>${z.l}</span>`).join("");
+  const roiTgtPos = (1/roiZones.length)*100 + (0.5/(1.5))* (100/roiZones.length); // 1.5 경계 ≈ 2/3 지점
+  const roiTgtLine = (2/3)*100;
+
   document.getElementById("view-l2").innerHTML=`
-    <div class="ddtop"><div class="crumb"><a id="back2">전사 KPI 요약</a><span class="sepc">›</span><b>인당생산성</b></div></div>
-    <div class="l2warn"><b>⚠ 인당생산성 · 비용 적정성 (Layer 2)</b><span class="c">분기용</span><span class="c">경영진 전용</span><span class="c">평가 미연동</span><span class="c">영업이익 KPI와 분리</span>
+    <div class="ddtop"><div class="crumb"><a id="back2">전사 KPI</a><span class="sepc">›</span><b>인적 기여가치</b></div></div>
+
+    <div class="hcvahero">
+      <div class="tagrow"><span class="htag">인적 기여가치</span><span class="htag">경영진 전용</span><span class="htag">분기 점검</span></div>
+      <h2>우리 팀은 얼마나 큰 가치를 만들고 있을까?</h2>
+      <p>구성원 한 사람이 만들어내는 가치(HCVA)와, 인건비 1원이 만들어내는 회수율(HCROI)을 통해 우리 조직의 인적 효율을 확인합니다. 적자 구간에서는 절대 수준보다 회복 속도를 우선 봅니다.</p>
+    </div>
+
+    <div class="sec"><span class="bar"></span><h2>2026년 경영 가이드라인 · 전사 현황</h2><span class="s">— 누계 기준</span></div>
+    <div class="guidegrid">
+      <div class="gcard"><div class="gl">${ic(ICON.revenue,14)} 인당 매출액</div><div class="gv">${HR.perRevenue.toFixed(2)}<small>억/인</small></div><div class="gsub">매출 누계 ${fmtA(EXEC.revenueCum,1)} ÷ ${META.FTE}명</div></div>
+      <div class="gcard c2"><div class="gl">${ic(ICON.profit,14)} 인당 영업이익</div><div class="gv">${HR.perProfit.toFixed(2)}<small>억/인</small></div><div class="gsub">영업이익 누계 ${fmtA(EXEC.profitCum,2)} ÷ ${META.FTE}명</div></div>
+      <div class="gcard c3"><div class="gl">${ic(ICON.people,14)} 현재 인원</div><div class="gv">${META.FTE}<small>명</small></div><div class="gsub">Base FTE (연초 고정)</div></div>
+    </div>
+
+    <div class="sec"><span class="bar"></span><h2>한 사람이 만드는 가치</h2><span class="s">— HCVA · 인재 투자 효율 HCROI</span></div>
+    <div class="hcvabig">
+      <div class="hcvacard">
+        <div class="hh"><span class="ico">${ic(ICON.people,17)}</span><h3>한 사람이 만드는 가치</h3><span class="en">HCVA</span></div>
+        <div class="hdesc">(영업이익 + 인건비) ÷ 인원 · 1인이 창출한 부가가치 <span class="estbadge">임의(인건비 연결마스터)</span></div>
+        <div class="hbig">${HR.hcva.toFixed(2)}<small>억/인</small></div>
+        <div class="hmeta">목표 <b>${HR.hcvaTarget.toFixed(2)}억/인</b> 대비 현재 <b>"${hcvaZones[hz].l}"</b> 구간</div>
+        <div class="hcgauge">${hsegs}<div class="pt" style="left:${hpos}%"><span class="b">현재 · ${hcvaZones[hz].l}</span></div></div>
+        <div class="hcgauge-lb">${hlabs}</div>
+      </div>
+      <div class="hcvacard">
+        <div class="hh"><span class="ico">${ic(ICON.roi,17)}</span><h3>인재 투자 효율</h3><span class="en">HCROI</span></div>
+        <div class="hdesc">(영업이익 + 인건비) ÷ 인건비 · 인건비 1원의 회수 배수 <span class="estbadge">임의(인건비 연결마스터)</span></div>
+        <div class="hbig">${HR.hcroi.toFixed(2)}<small>배</small></div>
+        <div class="hmeta">목표 <b>≥${HR.hcroiTarget}배</b> · 현재 ${rv<1?'<b style="color:var(--risk-ink)">인건비 미회수</b>':rv<1.5?'<b style="color:var(--warn-ink)">회수 구간</b>':'<b style="color:var(--ok-ink)">목표 달성</b>'}</div>
+        <div class="hcgauge">${rsegs}<div class="tg" style="left:${roiTgtLine}%"></div><div class="pt" style="left:${rpos}%"><span class="b">현재 ${rv.toFixed(2)}배</span></div></div>
+        <div class="hcgauge-lb">${rlabs}</div>
+      </div>
+    </div>
+
+    <div class="sec sec-gap"><span class="bar"></span><h2>FTE 배분 공헌이익 · 채용 게이트</h2><span class="s">— 경영진 전용 · 평가 미연동</span></div>
+    <div class="l2warn"><b>⚠ 비용 적정성 (Layer 2)</b><span class="c">분기용</span><span class="c">경영진 전용</span><span class="c">평가 미연동</span><span class="c">영업이익 KPI와 분리</span>
       <span style="flex:1"></span><span class="tiny">소규모 부서 구조적 불리 → 부서장 평가 직접 연동 금지</span></div>
-    <div class="sec" style="margin-top:0"><span class="bar"></span><h2>FTE 배분 공헌이익</h2><span class="s">배분단가 ${unit.toFixed(2)} 억/인 = ${L.totalCM.toFixed(0)}억 ÷ ${L.totalFTE}명 <span class="estbadge">공헌이익·비용 임의</span></span></div>
     <table class="t2"><thead><tr><th>본부</th><th class="n">FTE</th><th class="n">배분 공헌이익</th><th class="n">실제 비용</th><th class="n">잉여/부족</th><th>해석</th></tr></thead><tbody>${rows}</tbody></table>
     <div class="sec"><span class="bar"></span><h2>채용 타당성 게이트</h2><span class="s">— 이 수치 없이 채용 승인 금지 <span class="estbadge">임의값</span></span></div>
     <div class="gatec">
@@ -1077,44 +1354,26 @@ function renderL2(){const L=LAYER2,unit=L.totalCM/L.totalFTE;
     document.getElementById("gop").textContent=(g.newLaborCost/g.opMarginRate).toFixed(1);};
 }
 
-/* ================= 수정이력 모달 ================= */
+/* ================= 데이터 갱신 정보 모달 (조회수 카운트) ================= */
+function getViewCount(){
+  try{let v=parseInt(localStorage.getItem("koas_view_count")||"0",10);if(isNaN(v))v=0;return v;}catch(e){return window.__vc||0;}
+}
+function bumpViewCount(){
+  let v=getViewCount()+1;
+  try{localStorage.setItem("koas_view_count",String(v));}catch(e){window.__vc=v;}
+  return v;
+}
 function openLog(){
   const n=new Date(), p=x=>String(x).padStart(2,"0");
   const ts=`${n.getFullYear()}-${p(n.getMonth()+1)}-${p(n.getDate())} ${p(n.getHours())}:${p(n.getMinutes())}`;
-  const real=[
-    `영업이익 누계 ${fmtA(EXEC.profitCum,2)} · 당월 ${fmtA(EXEC.profitMonth,2)}`,
-    `매출 누계 ${fmtA(EXEC.revenueCum,1)} · 누계 목표 ${fmtA(EXEC.revenueCumTarget,1)} (달성률 ${(EXEC.revAchCum*100).toFixed(1)}%)`,
-    `${META.baseMonth}월 매출 ${fmtA(EXEC.revenueMonth,1)} · 목표 ${fmtA(EXEC.revenueMonthTarget,1)} (${((EXEC.revAchMonth-1)*100).toFixed(1)}%)`,
-    `당월 영업이익률 ${(EXEC.opMarginMonth*100).toFixed(2)}% · 목표 영업이익률 ${(EXEC.opMarginCumTarget*100).toFixed(1)}%`,
-    `위험(RED) KPI ${EXEC.riskCount}개`,
-    `경쟁사 벤치마킹 — 2026 1분기 DART 연결 기준`,
-    `클레임 현황 2~4월 (176 / 191 / 99건)`,
-    `본부 매출 누계 (세일즈마케팅1본부 165.04억 / 2본부 92.16억)`,
-    `재료비율 44.84% (목표 40%)`
-  ];
-  const est=[
-    `영업이익 누계 목표 ${fmtA(EXEC.profitCumTarget,2)} — 시트에 값 없음(가정치)`,
-    `영업 활동(계약 건수·평균 계약액) — 예시값`,
-    `인당생산성·비용 적정성의 공헌이익·비용 — 미입력`
-  ];
+  const vc=bumpViewCount();
   document.getElementById("logBody").innerHTML=`
-    <div class="logsec">
-      <div class="logh">데이터 기준</div>
-      <div class="logkv"><span>데이터 갱신일</span><b>${META.lastUpdated}</b></div>
-      <div class="logkv"><span>기준월</span><b>2026년 ${META.baseMonth}월</b></div>
-      <div class="logkv"><span>데이터 출처</span><b>회계IR 보고서 · 취합용 KPI 가이드</b></div>
-      <div class="logkv"><span>현재 조회 시각</span><b>${ts}</b></div>
-    </div>
-    <div class="logsec">
-      <div class="logh">실제값 <span class="realbadge">시트 확정</span></div>
-      <ul class="loglist">${real.map(x=>`<li>${x}</li>`).join("")}</ul>
-    </div>
-    <div class="logsec">
-      <div class="logh">확인 필요 값 <span class="estbadge">임의 · 미입력</span></div>
-      <ul class="loglist est">${est.map(x=>`<li>${x}</li>`).join("")}</ul>
-      <div class="lognote">위 값은 회계·생산·인사·자금 부서 확인 후 확정 예정입니다.</div>
-    </div>`;
-  document.getElementById("logModal").classList.add("on");}
+    <div class="logkv"><span>데이터 갱신일</span><b>${META.lastUpdated}</b></div>
+    <div class="logkv"><span>기준월</span><b>2026년 ${META.baseMonth}월</b></div>
+    <div class="logkv"><span>현재 조회 시각</span><b>${ts}</b></div>
+    <div class="logkv"><span>누적 조회수</span><b class="vc">${ic(ICON.people,14)} ${vc.toLocaleString()}회</b></div>`;
+  document.getElementById("logModal").classList.add("on");
+}
 
 /* ================= ROUTING ================= */
 function showView(v){document.getElementById("view-corp").classList.toggle("hidden",v!=="corp");
@@ -1130,7 +1389,7 @@ function toggleSidebar(){
   else{app.classList.toggle("sbhide");}
 }
 
-/* ================= INIT ================= */
+/* ================= INIT / LOGIN ================= */
 function startApp(){
   document.getElementById("login").classList.add("hidden");
   document.getElementById("app").classList.remove("hidden");
@@ -1156,21 +1415,18 @@ function doLogout(){
 function tryLogin(){
   const id=document.getElementById("lid").value.trim();
   const pw=document.getElementById("lpw").value;
-  if((id==="koas"&&pw==="koas2026")||(id&&pw)){ // 데모: 지정 계정 또는 비어있지 않은 입력 허용
-    startApp();
-  } else {
-    document.getElementById("loginErr").textContent="아이디와 비밀번호를 입력해 주세요.";
-  }
+  if(id==="koas"&&pw==="koas2026"){ startApp(); }
+  else { document.getElementById("loginErr").textContent="아이디 또는 비밀번호가 올바르지 않습니다."; }
 }
 (function initLogin(){
   document.getElementById("loginBtn").onclick=tryLogin;
   ["lid","lpw"].forEach(id=>document.getElementById(id).addEventListener("keydown",e=>{if(e.key==="Enter")tryLogin();}));
   document.getElementById("lid").focus();
-  window.addEventListener("resize",()=>{ // 데스크탑 복귀 시 모바일 오버레이 정리
+  window.addEventListener("resize",()=>{
     if(!isMobile()){document.getElementById("app").classList.remove("sbshow");document.getElementById("backdrop").classList.remove("on");}
   });
 })();
-
 </script>
+
 </body>
 </html>
