@@ -458,11 +458,11 @@ svg.ic{display:block}
 .critnote{margin-top:14px;font-size:11px;color:var(--cap);line-height:1.7;background:var(--surf2);border-radius:10px;padding:12px 14px}
 .critnote b{color:var(--text2);font-weight:800}
 /* 구간 막대(다색) + 포인터 */
-.zbar{position:relative;height:13px;border-radius:7px;display:flex;overflow:visible;width:100%;margin-top:6px}
+.zbar{position:relative;width:100%;margin-top:6px}
 .zbar.lbl{margin-top:30px}
-.zbar .zs{height:100%}
-.zbar .zs:first-of-type{border-radius:7px 0 0 7px} .zbar .zs:last-of-type{border-radius:0 7px 7px 0}
-.zbar .zpt{position:absolute;top:-4px;bottom:-4px;width:3px;background:var(--text);border-radius:3px;transform:translateX(-50%);z-index:2}
+.zsegs{display:flex;height:13px;border-radius:7px;overflow:hidden;width:100%}
+.zsegs .zs{height:100%}
+.zbar .zpt{position:absolute;top:-4px;height:21px;width:3px;background:var(--text);border-radius:3px;transform:translateX(-50%);z-index:2}
 .zbar .zpb{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:10.5px;font-weight:800;border-radius:6px;padding:3px 9px;white-space:nowrap}
 .zbar .zpb::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--text)}
 /* 구간 안내 리스트 */
@@ -683,19 +683,19 @@ const DIVS=[
    coreGoal:"직영 성공율 20% 달성", coreLabel:"핵심 목표",
    node:{lag:"직영 영업이익·수주성공률",lead:"제안→수주 성공률",act:"파이프라인 점검·제안 품질 리뷰"}},
   {id:"prod",name:"생산본부",icon:"factory",type:"cost",revCum:null,revTarget:null,
-   coreGoal:"클레임 비용율 0.63% 이하 달성", coreLabel:"핵심 레버",
+   coreGoal:"클레임 비용율 0.63% 이하 달성", coreLabel:"핵심 목표",
    cardKpi:{name:"클레임 비용율",target:0.0063,actual:0.0080,unit:"%",st:"lower"},
    node:{lag:"클레임 비용율·생산능률",lead:"N차불량 0·예방제안",act:"재발방지 과제 등록·공정 낭비 제거"}},
   {id:"rnd",name:"제품연구소",icon:"chip",type:"cost",revCum:null,revTarget:null,
-   coreGoal:"부품 표준화 143종 달성", coreLabel:"핵심 레버",
+   coreGoal:"부품 표준화 143종 달성", coreLabel:"핵심 목표",
    cardKpi:{name:"부품 표준화 달성률",target:143,actual:100,unit:"종",st:"higher"},
    node:{lag:"부품 단종·부적합설계",lead:"단종 진척·부적합 건수",act:"단종 후보 재선정·설계검토 게이트 강화"}},
   {id:"ops",name:"운영지원본부",icon:"ops",type:"ops",revCum:null,revTarget:null,
-   coreGoal:"재료비율 40% 달성", coreLabel:"핵심 레버",
+   coreGoal:"재료비율 40% 달성", coreLabel:"핵심 목표",
    cardKpi:{name:"재료비 관리",target:0.40,actual:0.4484,unit:"%",st:"lower"},
    node:{lag:"재료비율·현금흐름 정확도",lead:"매입율·예측-실제 편차",act:"단가협상·BOM 표준화·자금 스케줄 점검"}},
   {id:"plan",name:"운영기획실",icon:"plan",type:"ops",revCum:null,revTarget:null,
-   coreGoal:"HCROI 1.5 달성 · 컴플라이언스 체계 구축", coreLabel:"핵심 레버",
+   coreGoal:"HCROI 1.5 달성 · 컴플라이언스 체계 구축", coreLabel:"핵심 목표",
    cardKpi:{name:"HCROI",target:HR.hcroiTarget,actual:HR.hcroi,unit:"배",st:"higher"},
    node:{lag:"변화수용도·컴플라이언스",lead:"통제 구축률·인당 생산성",act:"통제항목 완료·성과체계 정착"}}
 ];
@@ -1273,7 +1273,7 @@ function renderDiv(){
     <div class="scrow"><div class="sck">2026 목표</div><div class="scv">${d.coreGoal}</div></div>
     <div class="scrow"><div class="sck">${d.coreLabel}</div><div class="scv"><b>${d.node.lead}</b> <span class="tiny muted">→ 결과: ${d.node.lag}</span></div></div>
     <div class="scrow"><div class="sck">목표 달성 수준</div><div class="scv">${achvLine}</div></div>
-    <div class="scrow"><div class="sck">AI 코멘트</div><div class="scv ai"><span class="aibadge">✨ AI</span><span>${aiComment(d,st.worst)}</span></div></div>
+    <div class="scrow"><div class="sck">코멘트</div><div class="scv ai"><span class="aibadge">✨ AI</span><span>${aiComment(d,st.worst)}</span></div></div>
   </div>`;
 
   let h=`<div class="ddtop"><div class="crumb"><a id="back1">전사 KPI</a><span class="sepc">›</span><b>${d.name}</b></div>
@@ -1383,7 +1383,7 @@ function zoneOf(v,zones){
 function zbar(zones,pct,label){
   const seg=zones.map(z=>`<div class="zs" style="flex:1;background:${z.c}"></div>`).join("");
   const badge = label?`<span class="zpb">${label}</span>`:'';
-  return `<div class="zbar${label?' lbl':''}">${seg}<div class="zpt" style="left:${pct}%">${badge}</div></div>`;
+  return `<div class="zbar${label?' lbl':''}"><div class="zsegs">${seg}</div><div class="zpt" style="left:${pct}%">${badge}</div></div>`;
 }
 function zoneGuide(zones,curIdx){
   return `<div class="zoneguide">`+zones.map((z,i)=>{
@@ -1451,7 +1451,7 @@ function renderL2(){
       </div>
     </div>
 
-    <div class="sec sec-gap"><span class="bar"></span><h2>구간 안내 — 한 사람이 만드는 가치 (HCVA)</h2><span class="s">— 단위 백만원</span></div>
+    <div class="sec"><span class="bar"></span><h2>구간 안내 — 한 사람이 만드는 가치 (HCVA)</h2><span class="s">— 단위 백만원</span></div>
     <div class="hcvacard">${zbar(HCVAZONES,hz.pct,`현재 ${hvM.toFixed(1)}백만`)}${zoneGuide(HCVAZONES,hz.idx)}</div>
 
     <div class="sec"><span class="bar"></span><h2>구간 안내 — 인재 투자 효율 (HCROI)</h2><span class="s">— 단위 배</span></div>
@@ -1471,7 +1471,7 @@ function renderDepts(){
   let h="";
   groups.forEach(g=>{
     const items=DIVHR.filter(d=>d.grp===g.key); if(items.length===0)return;
-    h+=`<div class="sec sec-gap"><span class="bar"></span><h2>${g.title}</h2><span class="s">— ${g.sub}</span></div><div class="deptgrid">`;
+    h+=`<div class="sec"><span class="bar"></span><h2>${g.title}</h2><span class="s">— ${g.sub}</span></div><div class="deptgrid">`;
     h+=items.map(d=>{
       const i=DIVHR.indexOf(d);
       if(g.key==="ops"){
