@@ -642,7 +642,7 @@ EXEC.revAchCum   = EXEC.revenueCum/EXEC.revenueCumTarget;
 EXEC.revAchMonth = EXEC.revenueMonth/EXEC.revenueMonthTarget;
 EXEC.profAch     = EXEC.profitCum/EXEC.profitCumTarget;
 
-/* 인적 기여가치 기준 — 연간 역산 기준 (설정 시트 기준)
+/* 인적 기여가치 기준 — 연간 역산 기준
    2026 영업이익 목표 2,900M(29억) / 연간 인건비 10,266M(102.66억) / FTE 234 */
 const HR={
   perRevenue: EXEC.revenueCum/META.FTE,
@@ -1297,7 +1297,7 @@ function renderDiv(){
   <div class="sec"><span class="bar"></span><h2>본부 현황 요약</h2><span class="s">— 목표 · 핵심 레버 · 달성 수준 · AI 코멘트</span></div>
   ${statusCard}
 
-  <div class="sec"><span class="bar"></span><h2>2026 목표</h2><span class="s">— 부서가 달성해야 할 목표(시트 기준)</span></div>
+  <div class="sec"><span class="bar"></span><h2>2026 목표</h2><span class="s">— 부서가 달성해야 할 목표</span></div>
   ${goalBlock}
 
   <div class="sec"><span class="bar"></span><h2>${taskHead}</h2><span class="s">— 우리가 도전할 과제</span></div>
@@ -1354,7 +1354,7 @@ function renderKpiList(list){
 }
 
 /* ================= 인적 기여가치 (경영진 전용) ================= */
-/* 구간 정의 — HCVA(백만/인), HCROI(배). 설정 시트 기준 */
+/* 구간 정의 — HCVA(백만/인), HCROI(배). */
 const HCVAZONES=[
   {l:"구조효율화 필요", lo:0,    hi:43.9, c:"#f2b8bd", sig:"risk", desc:"1인이 만든 부가가치가 인당 인건비(43.9M)에도 못 미칩니다. 구조 효율화가 시급합니다.", act:"저효율 구조 점검 · 부가가치 제고 과제 우선"},
   {l:"흑자 전환", lo:43.9, hi:50,   c:"#f3d9a3", sig:"warn", desc:"인건비를 갓 넘어선 흑자 전환 초기 구간입니다.", act:"매출·공헌이익 확대로 부가가치 가속"},
@@ -1371,7 +1371,7 @@ const HCROIZONES=[
   {l:"성장기업 수준", lo:1.5, hi:Infinity, c:"#34a853", sig:"ok", desc:"성장기업 수준의 인건비 투자수익률입니다.", act:"성과 공유·인재 재투자 균형"}
 ];
 
-/* 부서별 인적 기여가치 — [데이터입력] 시트 기준 (현재값/전월값) */
+/* 부서별 인적 기여가치 — [데이터입력] (현재값/전월값) */
 let DIVHR=[
  {grp:"sales",name:"세일즈마케팅1본부",fte:38,cmRate:32,hcva:52.4,prev:50.1},
  {grp:"sales",name:"세일즈마케팅2본부",fte:22,cmRate:27,hcva:44.8,prev:43.0},
