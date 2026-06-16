@@ -840,7 +840,7 @@ function hcvaReadInfo(){
   인당 인건비 <b>43.9</b>, 목표 <b>56.3</b>(=43.9×1.28). 절대값보다 <b>전월 대비 추세</b>가 더 중요합니다.`;
 }
 function hireInfo(){
-  return `<b>1명 채용 시 필요 매출</b> = 인당 인건비 ÷ 전사 공헌이익율 (영업이익이 아니라 공헌이익 기준)
+  return `<b>1명 채용 시 필요 매출</b> = 인당 인건비 ÷ 전사 공헌이익율 (공헌이익 기준)
   <div class="row"><span>인당 인건비</span><span>${HR.perLabor.toFixed(1)}백만</span></div>
   <div class="row"><span>전사 공헌이익율</span><span>${pct(HR.cmRate)}</span></div>
   <div class="row"><span>필요 매출</span><span>${HR.hireRevenue.toFixed(0)}백만</span></div>
