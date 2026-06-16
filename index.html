@@ -311,6 +311,32 @@ svg.ic{display:block}
 .zbadge .zd{width:7px;height:7px;border-radius:50%}
 
 .hidden{display:none!important}
+/* AI 코멘트 / 종합 */
+.kpi-ins{margin-top:9px;font-size:12px;color:var(--emerald-press);line-height:1.5;background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:8px;padding:7px 11px}
+.kc-syn{background:var(--navy5);border-top:1px solid var(--navy-border);padding:12px 22px;font-size:12.5px;color:var(--navy2);line-height:1.55;display:flex;gap:8px;align-items:flex-start}
+.kc-syn .arrow{flex-shrink:0}
+/* 인당 생산성 게이지 */
+.perhead{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
+.perhead .ph-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+.perhead .ph-top .l{font-size:13px;font-weight:700;color:var(--text2)}
+.perhead .ph-top .v{font-size:24px;font-weight:800;color:var(--text)} .perhead .ph-top .v small{font-size:13px;color:var(--cap);font-weight:700}
+.zbar{position:relative;margin:18px 0 0}
+.zbar .zsegs{display:flex;height:14px;border-radius:7px;overflow:hidden}
+.zbar .zs{display:block}
+.zbar .zpt{position:absolute;top:0;transform:translateX(-50%)}
+.zbar .zpt .zpb{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--text);color:#fff;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px}
+.zbar .zpt::after{content:"";display:block;width:2px;height:20px;background:var(--text);margin:0 auto}
+.phgauge-lb{display:flex;justify-content:space-between;font-size:10.5px;color:var(--cap);margin-top:6px}
+.perhead .note{font-size:12px;color:var(--body);margin-top:11px;line-height:1.55} .perhead .note b{color:var(--text2);font-weight:800}
+/* 구간별 설명 */
+.zoneguide{border:1px solid var(--border);border-radius:11px;overflow:hidden}
+.zgrow{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-top:1px solid var(--border);background:#fff}
+.zgrow:first-child{border-top:none} .zgrow.cur{background:var(--emerald-soft)}
+.zgdot{width:11px;height:11px;border-radius:50%;margin-top:3px;flex-shrink:0}
+.zgmain{flex:1} .zgname{font-size:12.5px;font-weight:800;color:var(--text)}
+.curchip{font-size:9.5px;font-weight:800;color:#fff;background:var(--emerald);border-radius:5px;padding:1px 6px;margin-left:5px}
+.zgdesc{font-size:11.5px;color:var(--body);line-height:1.5;margin-top:2px}
+.zgrange{font-size:11px;font-weight:700;color:var(--cap);white-space:nowrap;text-align:right;min-width:58px}
 /* 우클릭·드래그·복사 금지 */
 body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
 input{-webkit-user-select:text;user-select:text}
@@ -409,7 +435,7 @@ HR.cmRevenue=5330; HR.cmVarCost=3502; HR.cmRate=(HR.cmRevenue-HR.cmVarCost)/HR.c
 HR.hireRevenue=HR.perLabor/HR.cmRate;
 
 /* 벤치마킹 — 2026 1Q (%) : 영업이익률=100−원가율−판관비율 */
-const BENCH={ period:"2026년 1분기 · 가구 4사 수익성 분해",
+const BENCH={ period:"2026년 1분기 · 가구 4사 수익성 비교",
   rows:[
    {nm:"코아스",cost:70.17,sga:20.95,op:8.89,me:true},
    {nm:"한샘",cost:71.62,sga:25.85,op:2.52},
@@ -434,7 +460,7 @@ const DIVS=[
   {id:"rnd",name:"제품연구소",icon:"chip",type:"cost",revCum:null,revTarget:null,coreGoal:"부품 표준화 143종 달성",
    cardKpi:{name:"부품 표준화 달성률",target:143,actual:null,unit:"종",st:"higher"},
    node:{lag:"부품 단종·부적합설계",lead:"단종 진척·부적합 건수",act:"단종 후보 재선정·설계검토 게이트 강화"}},
-  {id:"ops",name:"운영지원본부",icon:"ops",type:"ops",revCum:null,revTarget:null,coreGoal:"재료비율 40% 달성",
+  {id:"ops",name:"동반성장운영본부",icon:"ops",type:"cost",revCum:null,revTarget:null,coreGoal:"재료비율 40% 달성",
    cardKpi:{name:"재료비율",target:0.40,actual:0.4484,unit:"%",st:"lower"},
    node:{lag:"재료비율·현금흐름 정확도",lead:"매입율·예측-실제 편차",act:"단가협상·BOM 표준화·자금 스케줄 점검"}},
   {id:"plan",name:"운영기획실",icon:"plan",type:"ops",revCum:null,revTarget:null,coreGoal:"HCROI 1.28 달성 · 컴플라이언스 체계 구축",
@@ -463,12 +489,12 @@ const KPIS=[
 ];
 
 const TEAMS={
- sm1:[{team:"세일즈마케팅실",kpis:[{tag:"핵심",name:"대리점 공급가 실행율",disp:"목표 98%"},{tag:"핵심",name:"영업조달관리 매뉴얼 구축",disp:"마일스톤"}]}],
+ sm1:[{team:"세일즈마케팅실",kpis:[{tag:"핵심",name:"대리점 공급가 실행율",disp:"목표 98%"},{tag:"핵심",name:"영업조달관리 매뉴얼 구축",disp:"—"}]}],
  sm2:[
-   {team:"대전충청지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp},{tag:"핵심",name:"이익율 증대",disp:"—"}]},
-   {team:"대구경북지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp},{tag:"핵심",name:"이익율 증대",disp:"—"}]},
-   {team:"광주호남지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp},{tag:"핵심",name:"이익율 증대",disp:"—"}]},
-   {team:"부산경남지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp},{tag:"핵심",name:"이익율 증대",disp:"—"}]}],
+   {team:"대전충청지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp:"—"},{tag:"핵심",name:"이익율 증대",disp:"—"}]},
+   {team:"대구경북지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp:"—"},{tag:"핵심",name:"이익율 증대",disp:"—"}]},
+   {team:"광주호남지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp:"—"},{tag:"핵심",name:"이익율 증대",disp:"—"}]},
+   {team:"부산경남지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp:"—"},{tag:"핵심",name:"이익율 증대",disp:"—"}]}],
  prod:[
    {team:"생산팀",kpis:[{tag:"특임",name:"가공 생산능률",disp:"목표 74.7%"},{tag:"특임",name:"조립 생산능률",disp:"목표 103.5%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
    {team:"생산관리팀",kpis:[{tag:"특임",name:"생산능률 개선",disp:"—"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
@@ -476,16 +502,16 @@ const TEAMS={
    {team:"자재팀",kpis:[{tag:"핵심",name:"자재 창고회전율",disp:"목표 115%"},{tag:"핵심",name:"자재투입율",disp:"목표 100%"}]},
    {team:"제상품팀",kpis:[{tag:"핵심",name:"제상품 회전율",disp:"목표 145%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
    {team:"물류팀",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"시공팀",kpis:[{tag:"핵심",name:"발주시스템 최적화",disp:"마일스톤"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]}],
+   {team:"시공팀",kpis:[{tag:"핵심",name:"발주시스템 최적화",disp:"—"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]}],
  ops:[
-   {team:"동반성장운영팀",kpis:[{tag:"특임",name:"재료비 관리(매입율)",disp:"목표 40%"},{tag:"특임",name:"핵심자재 이원화·리스크 대응",disp:"마일스톤"}]},
-   {team:"정보데이터팀",kpis:[{tag:"핵심",name:"전산시스템 고도화",disp:"마일스톤"},{tag:"핵심",name:"BOM 데이터 표준화",disp:"마일스톤"},{tag:"핵심",name:"불량률 관리",disp:"—"}]},
+   {team:"동반성장운영팀",kpis:[{tag:"특임",name:"재료비 관리(매입율)",disp:"목표 40%"},{tag:"특임",name:"핵심자재 이원화·리스크 대응",disp:"—"}]},
+   {team:"정보데이터팀",kpis:[{tag:"핵심",name:"전산시스템 고도화",disp:"—"},{tag:"핵심",name:"BOM 데이터 표준화",disp:"—"},{tag:"핵심",name:"불량률 관리",disp:"—"}]},
    {team:"자금관리팀",kpis:[{tag:"핵심",name:"현금흐름 예측 정확도",disp:"목표 95%"},{tag:"핵심",name:"유동성 리스크 건수",disp:"목표 0건"}]}],
  rnd:[
    {team:"제품개발팀",kpis:[{tag:"특임",name:"부품 표준화 달성률",disp:"목표 143종"},{tag:"핵심",name:"우수제품 특허",disp:"목표 3건"},{tag:"핵심",name:"부적합 설계 예방",disp:"목표 0건"}]},
-   {team:"제품디자인팀",kpis:[{tag:"핵심",name:"신제품 디자인 개발",disp:"마일스톤"},{tag:"핵심",name:"신소재 개발 제안",disp:"마일스톤"}]}],
+   {team:"제품디자인팀",kpis:[{tag:"핵심",name:"신제품 디자인 개발",disp:"—"},{tag:"핵심",name:"신소재 개발 제안",disp:"—"}]}],
  plan:[
-   {team:"인사·컴플라이언스팀",kpis:[{tag:"핵심",name:"컴플라이언스 통제 구축률",disp:"목표 100%"},{tag:"핵심",name:"인당 생산성 체계",disp:"마일스톤"}]}]
+   {team:"인사·컴플라이언스팀",kpis:[{tag:"핵심",name:"컴플라이언스 통제 구축률",disp:"목표 100%"},{tag:"핵심",name:"인당 생산성 체계",disp:"—"}]}]
 };
 
 const FLOW={
@@ -582,6 +608,27 @@ function renderSidebar(active){
 
 /* ================= 전사 ================= */
 let kstatSel=null;
+function perHeadBlock(){
+  const v=EXEC.profitCum/META.FTE;                 /* 1인이 만든 영업이익(누계) */
+  const annualPerHead=HR.opTarget/META.FTE;        /* 연간 목표 인당 */
+  const expected=annualPerHead*META.baseMonth/12;  /* 현 시점 기대 누계 */
+  const zones=[{l:"위험",c:"#f2b8bd"},{l:"주의",c:"#f3d9a3"},{l:"정상",c:"#b6e0b9"},{l:"우수",c:"#34a853"}];
+  const ratio=expected>0?v/expected:0;
+  let zi; if(ratio<0.5)zi=0; else if(ratio<0.85)zi=1; else if(ratio<1.0)zi=2; else zi=3;
+  const seg=100/zones.length, pos=(zi+0.5)*seg;
+  const segs=zones.map(z=>`<span class="zs" style="flex:1;background:${z.c}"></span>`).join("");
+  return `<div class="perhead">
+    <div class="ph-top"><div class="l">1인이 만든 영업이익 (누계)</div><div class="v">${v.toFixed(2)}<small>백만/인</small></div></div>
+    <div class="zbar"><div class="zsegs">${segs}</div><div class="zpt" style="left:${Math.max(4,Math.min(pos,96))}%"><span class="zpb">현재 · ${zones[zi].l}</span></div></div>
+    <div class="phgauge-lb">${zones.map(z=>`<span>${z.l}</span>`).join("")}</div>
+    <div class="note">지금까지 1인당 <b>${v.toFixed(2)}백만</b>의 영업이익을 만들었어요. ${META.baseMonth}월까지 기대 수준은 약 <b>${expected.toFixed(1)}백만/인</b>이라, 현재는 <b>"${zones[zi].l}"</b> 구간입니다.</div>
+  </div>`;
+}
+function profSigOf(E){ return E.profitCum<=0?"risk":(E.opMarginCum>=E.opMarginCumTarget?"ok":"warn"); }
+function insProf(E){ if(E.profitCum<=0)return "아직 적자예요. 손실을 줄이는 게 가장 급합니다."; if(E.opMarginCum>=E.opMarginCumTarget)return "목표보다 이익을 잘 남기고 있어요."; return "흑자는 유지하고 있지만, 목표만큼은 아직 못 남기고 있어요."; }
+function insRev(E,sig){ if(sig==="risk")return "매출이 목표에 못 미치고 있어요."; if(sig==="ok")return "매출이 목표를 넘어 잘 나오고 있어요."; return "매출이 목표에 거의 다 왔어요."; }
+function insM(E,sig){ if(sig==="ok")return "목표 이익률을 채우고 있어요."; if(sig==="risk")return "이익률이 목표보다 많이 낮아요. 원가와 비용을 점검해야 해요."; return "이익률이 목표보다 낮아요. 원가와 비용을 살펴야 해요."; }
+function insSynthesis(revSig,mSig){ const r=revSig==="ok",m=mSig==="ok"; if(r&&!m)return "잘 팔고 있지만 남는 게 적어요. 원가와 할인 구조부터 살펴보세요."; if(!r&&m)return "남기는 구조는 괜찮아요. 이제 판매를 더 늘리는 게 과제예요."; if(r&&m)return "매출도 이익도 안정적이에요. 지금 흐름을 이어가세요."; return "매출도 이익도 약해요. 수익 구조를 함께 손봐야 해요."; }
 function renderCorp(){
   const E=EXEC;
   const revSig=E.revAchCum>=1?"ok":(E.revAchCum>=0.95?"warn":"risk");
@@ -600,6 +647,7 @@ function renderCorp(){
           <div class="b"><div class="l">상태</div><div class="v"><span class="sig ${E.profitCum>0?'ok':'risk'}"><span class="dot"></span>${E.profitCum>0?'흑자 구간':'적자 구간'}</span></div></div>
         </div>
       </div>
+      <div class="kpi-ins">✨ ${insProf(E)}</div>
     </div>
     <div class="kc-sub"><div class="kc-sub-grid">
       <div class="subkpi">
@@ -607,21 +655,21 @@ function renderCorp(){
         <div class="v">${fmtM(E.revenueCum)}</div>
         <div class="meta"><span>누계 목표 <b>${fmtM(E.revenueCumTarget)}</b></span><span>목표 대비 <b class="up">${pct(E.revAchCum)}</b></span><span><span class="sig ${revSig}"><span class="dot"></span>${revSig==='ok'?'초과':(revSig==='warn'?'근접':'미달')}</span></span></div>
         <div class="sx">당월 실적 <b>${fmtM(E.revenueMonth)}</b> · 당월 목표 <b>${fmtM(E.revenueMonthTarget)}</b> · 목표 대비 <b class="${monthDelta>=0?'up':'dn'}">${monthDelta>=0?'+':'−'}${Math.abs(monthDelta).toFixed(1)}%</b></div>
+        <div class="kpi-ins">✨ ${insRev(E,revSig)}</div>
       </div>
       <div class="subkpi div">
         <div class="t">${ic(ICON.pct,14)} 영업이익률 누계</div>
         <div class="v">${pct(E.opMarginCum)}</div>
         <div class="meta"><span>누계 목표 <b>${pct(E.opMarginCumTarget)}</b></span><span>목표 대비 <b class="dn">${gapPp>=0?'+':'−'}${Math.abs(gapPp).toFixed(1)}%p</b></span><span>${sigInline(mSig)}</span></div>
         <div class="sx">당월 실적 <b class="dn">${pct(E.opMarginMonth)}</b> · 흑자전환선 <b>${pct(E.opMarginCumTarget)}</b></div>
+        <div class="kpi-ins">✨ ${insM(E,mSig)}</div>
       </div>
     </div></div>
+    <div class="kc-syn"><span class="arrow">➡️</span> <span>${insSynthesis(revSig,mSig)}</span></div>
   </div>`;
 
   /* 신호등 현황 (개수 유지, 멘트 제거) */
   h+=`<div class="sec"><span class="bar"></span><h2>KPI 신호등 현황</h2></div><div id="kstatBox"></div>`;
-
-  /* 벤치마킹 — 수익성 분해 */
-  h+=`<div class="sec"><span class="bar"></span><h2>경쟁사 벤치마킹</h2></div>${benchBlock()}`;
 
   /* 개선 과제 — info를 섹션 제목에 */
   h+=`<div class="sec"><span class="bar"></span><h2>지금 가장 이익이 될 개선 과제</h2><span class="s">${info(improveInfo())}</span></div>
@@ -636,7 +684,7 @@ function renderCorp(){
     <div class="col"><div class="colhead"><span class="bar"></span><h2>클레임 현황</h2><span class="s">— 2~4월</span></div>
       <div class="panel"><div class="ph">${ic(ICON.claim,15)} 클레임 건수·비용</div>
         <div style="padding:12px 14px 4px">${claimChart()}
-          <div class="claim-legend"><span class="k"><span class="sw" style="background:var(--navy2)"></span>클레임 건수</span><span class="k"><span class="sw" style="background:var(--risk)"></span>클레임 비용(백만)</span><span class="k"><span class="dl"></span>비용율 목표선 0.63%</span></div></div>
+          <div class="claim-legend"><span class="k"><span class="sw" style="background:var(--navy)"></span>클레임 건수</span><span class="k"><span class="sw" style="background:var(--risk)"></span>클레임 비용(백만)</span></div></div>
         <div class="claim-tot"><div class="b"><div class="l">누적 건수</div><div class="v">${CLAIM.totalCount}건</div></div>
           <div class="b"><div class="l">누적 비용</div><div class="v">${fmtM(CLAIM.totalCostM)}</div></div>
           <div class="b"><div class="l">비용율 목표</div><div class="v" style="font-size:13px">≤0.63% <span class="estbadge">실적 비용율 —</span></div></div></div></div>
@@ -646,6 +694,15 @@ function renderCorp(){
   /* 본부 KPI — 그룹별 */
   h+=`<div class="sec sec-gap"><span class="bar"></span><h2>본부 KPI</h2></div><div id="divArea"></div>`;
 
+  /* 인적 기여가치 — 전사 요약 */
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>인적 기여가치</h2><span class="s">— 전사 요약 (자세히는 좌측 ‘인적 기여가치’)</span></div>
+  <div style="margin-bottom:13px">${perHeadBlock()}</div>
+  <div class="hcgrid">${hcMiniCards()}</div>
+  <div style="margin-top:10px"><button class="go" id="goHR" style="border:1px solid var(--border-soft)">인적 기여가치 자세히 보기 →</button></div>`;
+
+  /* 경쟁사 벤치마킹 — 분기 기준이라 하단 배치 */
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>경쟁사 벤치마킹</h2><span class="s">— 분기 1회 갱신</span></div>${benchBlock()}`;
+
   document.getElementById("view-corp").innerHTML=h;
   renderKstat();
   const losses=KPIS.map(k=>({k,imp:impact(k)})).filter(x=>x.imp!=null&&x.imp<0).sort((a,b)=>a.imp-b.imp);
@@ -653,6 +710,7 @@ function renderCorp(){
   document.getElementById("lossList").innerHTML=losses.map((x,i)=>{const dn=DIVS.find(d=>d.id===x.k.div).name;const bs=x.k.base==='revenueCum'?'누계매출 26,110':'누계노무비 2,039';
     return `<button class="lrow" data-godiv="${x.k.div}"><span class="rank">${i+1}</span><span class="nm">${x.k.name}<small>${dn} · 기준값 ${bs}백만</small></span><span class="amt">${fmtM(Math.abs(x.imp))}</span></button>`;}).join("")||`<div class="tiny muted" style="padding:10px">실데이터로 환산되는 개선 과제가 없습니다.</div>`;
   document.querySelectorAll('[data-godiv]').forEach(b=>b.onclick=()=>openDiv(b.dataset.godiv));
+  const goHR=document.getElementById("goHR"); if(goHR)goHR.onclick=()=>{renderHR();showView('hr');renderSidebar('hr');window.scrollTo(0,0);};
   renderDivGroups();
   bindInfos(document.getElementById("view-corp"));
 }
@@ -700,35 +758,32 @@ function benchBlock(){
   }).join("");
   const growth=BENCH.growth.map(g=>`<span class="gpill"><b>${g.nm}</b> ${g.v>=0?'+':''}${g.v.toFixed(1)}%</span>`).join("");
   return `<div class="bench">
-    <div class="bh">${ic(ICON.pct,16)}<h3>경쟁사 수익성 비교</h3></div>
+    <div class="bh">${ic(ICON.pct,16)}<h3>경쟁사 수익성 비교 — 매출 100% = 원가 + 판관비 + 영업이익</h3></div>
     <div class="bsub">${BENCH.period} · 영업이익률이 낮은 곳은 원가가 높은지 판관비가 높은지 바로 보입니다 (맨 오른쪽 = 영업이익률)</div>
     <div class="decomp">${rows}</div>
     <div class="leg"><span class="k"><span class="sw" style="background:var(--navy2)"></span>원가율</span><span class="k"><span class="sw" style="background:var(--warn)"></span>판관비율</span><span class="k"><span class="sw" style="background:var(--emerald)"></span>영업이익률(+)</span><span class="k"><span class="sw" style="background:var(--risk)"></span>적자(−)</span></div>
     <div class="growth"><span class="tiny muted" style="align-self:center">매출성장률(YoY):</span>${growth}</div>
-    <div class="take">코아스는 원가율 70.2%·판관비율 21.0%로 둘 다 가장 낮아 <b>영업이익률 8.9%로 4사 1위</b>입니다. 현대리바트는 <b>원가율 82.5%</b>가, 퍼시스는 <b>판관비율 32.0%</b>가 이익을 갉아먹어 이익률이 낮습니다.</div>
+    <div class="take">코아스는 원가율 70.2%·판관비율 21.0%로 4사 중 가장 낮아 <b>영업이익률 8.9%로 1위</b>입니다. 현대리바트는 원가율(82.5%)이, 퍼시스는 판관비율(32.0%)이 상대적으로 높아 영업이익률이 낮습니다 — 이익률을 높이려면 회사마다 점검할 우선순위(원가 또는 판관비)가 다릅니다.</div>
   </div>`;
 }
 
 function claimChart(){
-  const W=460,H=200,pl=34,pr=44,pt=22,pb=24,iw=W-pl-pr,ih=H-pt-pb;
+  const W=460,H=190,pl=30,pr=30,pt=22,pb=24,iw=W-pl-pr,ih=H-pt-pb;
   const m=CLAIM.month,cnt=CLAIM.count,cost=CLAIM.costM;
-  const maxC=Math.max(...cnt.filter(v=>v!=null),1)*1.15, maxK=Math.max(...cost.filter(v=>v!=null),1)*1.3;
+  const maxC=Math.max(...cnt.filter(v=>v!=null),1)*1.15,maxK=Math.max(...cost.filter(v=>v!=null),0.1)*1.28;
   const bw=Math.min(iw/m.length*0.46,30);
-  const rateMax=0.01, ty=pt+ih-(CLAIM.rateTarget/rateMax*ih);
-  let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block;max-height:210px">`;
-  for(let g=0;g<=2;g++){const y=pt+ih*g/2;svg+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#eef0f2"/>`;}
-  /* 목표선 (점선, 우측 % 축 0~1%) */
-  svg+=`<line x1="${pl}" y1="${ty.toFixed(1)}" x2="${W-pr}" y2="${ty.toFixed(1)}" stroke="#e8a317" stroke-width="2" stroke-dasharray="6 4"/>`;
-  svg+=`<text x="${(W-pr+4).toFixed(1)}" y="${(ty+3).toFixed(1)}" font-size="9.5" font-weight="800" fill="#b45309">0.63%</text>`;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;max-height:200px">`;
+  for(let g=0;g<=2;g++){const y=pt+ih*g/2;svg+=`<line x1="${pl}" y1="${y.toFixed(1)}" x2="${W-pr}" y2="${y.toFixed(1)}" stroke="#eef0f2"/>`;}
   m.forEach((mm,i)=>{const cx=pl+iw*(i+0.5)/m.length;
-    if(cnt[i]!=null){const bh=cnt[i]/maxC*ih,top=pt+ih-bh;
-      svg+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw}" height="${bh.toFixed(1)}" rx="3" fill="#4a6794"/>`;
-      svg+=`<text x="${cx.toFixed(1)}" y="${(top-5).toFixed(1)}" font-size="10" font-weight="700" fill="#4a6794" text-anchor="middle">${cnt[i]}</text>`;}
+    if(cnt[i]!=null){const bh=cnt[i]/maxC*ih;const top=pt+ih-bh;
+      svg+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="3" fill="var(--navy)"/>`;
+      svg+=`<text x="${cx.toFixed(1)}" y="${(top-5).toFixed(1)}" font-size="10" font-weight="700" fill="var(--navy2)" text-anchor="middle">${cnt[i]}</text>`;}
     svg+=`<text x="${cx.toFixed(1)}" y="${H-7}" font-size="10" fill="#869389" text-anchor="middle">${mm}</text>`;});
   let pts=[],lbl="";
-  m.forEach((mm,i)=>{if(cost[i]!=null){const cx=pl+iw*(i+0.5)/m.length,cy=pt+ih-(cost[i]/maxK*ih);pts.push([cx,cy]);
-    lbl+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.5" fill="#f04452"/><text x="${cx.toFixed(1)}" y="${(cy-7).toFixed(1)}" font-size="9.5" font-weight="700" fill="#dc2626" text-anchor="middle">${cost[i].toFixed(1)}</text>`;}});
-  if(pts.length>1)svg+=`<polyline points="${pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ")}" fill="none" stroke="#f04452" stroke-width="2.2"/>`;
+  m.forEach((mm,i)=>{if(cost[i]!=null){const cx=pl+iw*(i+0.5)/m.length;const cy=pt+ih-(cost[i]/maxK*ih);pts.push([cx,cy]);
+    const ly=Math.min(cy+14,pt+ih+11);
+    lbl+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.5" fill="var(--risk)"/><text x="${cx.toFixed(1)}" y="${ly.toFixed(1)}" font-size="10" font-weight="700" fill="var(--risk-ink)" text-anchor="middle" style="paint-order:stroke" stroke="#ffffff" stroke-width="3">${cost[i].toFixed(1)}</text>`;}});
+  if(pts.length>1)svg+=`<polyline points="${pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ")}" fill="none" stroke="var(--risk)" stroke-width="2.2"/>`;
   return svg+lbl+`</svg>`;
 }
 
@@ -848,6 +903,34 @@ function hcMiniCards(){
 /* ================= 인적 기여가치 ================= */
 function zoneHCVA(v){ if(v==null)return "none"; if(v<43.9)return "risk"; if(v<56.3)return "warn"; return "ok"; }
 function zLab(s){return s==='risk'?'위험':s==='warn'?'주의':s==='ok'?'적정':'미입력';}
+function zoneGuide(){
+  const HCVAZONES=[
+   {l:"구조 효율화 필요",lo:0,hi:43.9,c:"#f04452",desc:"한 사람이 만든 가치가 인당 인건비(43.9)에도 못 미쳐요. 일하는 구조를 손봐야 합니다."},
+   {l:"흑자 전환",lo:43.9,hi:50,c:"#e8a317",desc:"인건비를 갓 넘어선 흑자 전환 초기 구간이에요."},
+   {l:"성장 구간",lo:50,hi:56.3,c:"#e8a317",desc:"올해 목표(56.3)에 다가가는 성장 구간이에요."},
+   {l:"2026 목표",lo:56.3,hi:66,c:"#1e8e5a",desc:"올해 목표 구간에 들어왔어요. 보상·증원을 검토할 수 있어요."},
+   {l:"성장기업 수준",lo:66,hi:Infinity,c:"#1e8e5a",desc:"성장기업 수준의 가치를 만들고 있어요."}
+  ];
+  const HCROIZONES=[
+   {l:"구조 개선 필요",lo:0,hi:1.0,c:"#f04452",desc:"쓴 인건비만큼도 못 벌고 있어요. 매출·원가를 먼저 살려야 해요."},
+   {l:"손익분기 접근",lo:1.0,hi:1.1,c:"#e8a317",desc:"인건비 회수에 가까워졌어요."},
+   {l:"흑자 전환",lo:1.1,hi:1.2,c:"#e8a317",desc:"인건비를 회수하고 이익을 내기 시작했어요."},
+   {l:"흑자 안정화",lo:1.2,hi:1.28,c:"#e8a317",desc:"목표(1.28) 직전의 안정화 구간이에요."},
+   {l:"목표 달성",lo:1.28,hi:1.5,c:"#1e8e5a",desc:"올해 목표(1.28)를 달성한 구간이에요."},
+   {l:"성장기업 수준",lo:1.5,hi:Infinity,c:"#1e8e5a",desc:"성장기업 수준의 인재 투자 효율이에요."}
+  ];
+  const idxOf=(v,z)=>{let i=z.findIndex(x=>v>=x.lo&&v<x.hi);return i<0?(v<z[0].lo?0:z.length-1):i;};
+  const render=(zones,v,fmt)=>{const cur=idxOf(v,zones);return `<div class="zoneguide">`+zones.map((z,i)=>`
+     <div class="zgrow ${i===cur?'cur':''}"><span class="zgdot" style="background:${z.c}"></span>
+       <div class="zgmain"><div class="zgname">${z.l} ${i===cur?'<span class="curchip">현재</span>':''}</div><div class="zgdesc">${z.desc}</div></div>
+       <div class="zgrange">${fmt(z)}</div></div>`).join("")+`</div>`;};
+  const fmtHv=z=>`${z.lo===0?'~':z.lo}${isFinite(z.hi)?'~'+z.hi:'+'}`;
+  const fmtRv=z=>`${z.lo===0?'~':z.lo.toFixed(2)}${isFinite(z.hi)?'~'+z.hi.toFixed(2):'+'}`;
+  return `<div style="margin-bottom:6px"><span class="tiny muted">HCVA (한 사람이 만드는 가치, 백만/인) · 현재 ${HR.hcvaNow.toFixed(1)}</span></div>
+    ${render(HCVAZONES,HR.hcvaNow,fmtHv)}
+    <div style="margin:14px 0 6px"><span class="tiny muted">HCROI (인재 투자가 성과로 도는 정도, 배) · 현재 ${HR.hcroiNow.toFixed(2)}</span></div>
+    ${render(HCROIZONES,HR.hcroiNow,fmtRv)}`;
+}
 function zBadge(s){return `<span class="zbadge" style="background:${stateColor(s)}22;color:var(--text2)"><span class="zd" style="background:${stateColor(s)}"></span>${zLab(s)}</span>`;}
 function hcvaReadInfo(){
   return `<b>부서별 HCVA 읽는 법</b><br>HCVA = (전사 영업이익 + 부서 인건비) ÷ 부서 인원 · 한 사람이 만든 가치(백만/인)
@@ -871,7 +954,7 @@ function renderHR(){
   <div class="cardnews">
     <div class="gcard"><div class="gl">${ic(ICON.profit,14)} 영업이익 목표</div><div class="gv">${HR.opTarget.toLocaleString()}<small>백만</small></div><div class="gsub">2026 연간</div></div>
     <div class="gcard c2"><div class="gl">${ic(ICON.cost,14)} 인건비 목표</div><div class="gv">${HR.labor.toLocaleString()}<small>백만</small></div><div class="gsub">연간 총 인건비</div></div>
-    <div class="gcard c3"><div class="gl">${ic(ICON.people,14)} 기준 인원</div><div class="gv">${HR.fte}<small>명</small></div><div class="gsub">HCVA 분모</div></div>
+    <div class="gcard c3"><div class="gl">${ic(ICON.people,14)} 기준 인원</div><div class="gv">${HR.fte}<small>명</small></div><div class="gsub">계산 기준 인원수</div></div>
     <div class="gcard"><div class="gl">${ic(ICON.people,14)} 인당 인건비</div><div class="gv">${HR.perLabor.toFixed(1)}<small>백만/인</small></div><div class="gsub">인건비 ÷ 인원</div></div>
     <div class="gcard c2"><div class="gl">${ic(ICON.people,14)} HCVA 목표</div><div class="gv">${HR.hcvaTarget.toFixed(1)}<small>백만/인</small></div><div class="gsub">한 사람이 만드는 가치 · ×1.28</div></div>
     <div class="gcard c3"><div class="gl">${ic(ICON.roi,14)} HCROI 목표</div><div class="gv">${HR.hcroiTarget.toFixed(2)}<small>배</small></div><div class="gsub">인재 투자 효율 · 성장선 1.5</div></div>
@@ -884,7 +967,7 @@ function renderHR(){
         <div class="db"><div class="l">인원 (현원 vs 이전)</div><div class="v">${META.headcountNow} <span style="font-size:13px;color:var(--cap)">← ${META.headcountPrev}</span> <span class="dn">${hd}명</span></div></div>
         <div class="db"><div class="l">인건비 추세</div><div class="v" style="color:var(--ok-ink)">감소 ▼</div></div>
       </div>
-      <div class="concl"><b>둘 다 늘지 않았습니다.</b> 인원 ${Math.abs(hd)}명 감소·인건비 감소 → 적자는 분모(인력비용)가 아니라 <b>분자(영업이익)</b> 문제입니다. 4월 매출 급감·재료비율 상승이 원인.</div>
+      <div class="concl"><b>둘 다 늘지 않았습니다.</b> 사람은 ${Math.abs(hd)}명 줄었고 인건비도 줄었습니다. 적자는 사람을 더 뽑거나 인건비가 올라서가 아니라, <b>벌어들이는 영업이익이 줄어서</b> 생긴 문제입니다. 4월 매출이 크게 줄고 재료비 비중이 오른 것이 원인입니다.</div>
     </div>
   </div>
   <div class="formulabox">
@@ -893,10 +976,6 @@ function renderHR(){
   </div>
 
   <div class="sec sec-gap"><span class="bar"></span><h2>전사 현황</h2><span class="s">— 누계 기준 · 현재값은 연환산</span></div>
-  <div class="diagbox" style="margin-bottom:13px">
-    <div class="dt">${ic(ICON.warn,15)} 적자 구간 진단</div>
-    <div class="concl">현재 적자 구간(영업이익률 ${pct(EXEC.opMarginCum)}). <b>인원 ${META.headcountNow}명(이전 ${META.headcountPrev}명, ${hd}명)</b>·인건비 모두 감소 — 인력 증가 탓이 아니라 매출·원가 회복이 과제입니다.</div>
-  </div>
   <div class="cardnews">
     <div class="gcard"><div class="gl">${ic(ICON.revenue,14)} 인당 매출액 (누계)</div><div class="gv">${HR.perRevenue.toFixed(1)}<small>백만/인</small></div><div class="gsub">매출 ÷ 기준인원 234</div></div>
     <div class="gcard c2"><div class="gl">${ic(ICON.profit,14)} 인당 영업이익 (누계)</div><div class="gv">${HR.perProfit.toFixed(2)}<small>백만/인</small></div><div class="gsub">영업이익 ÷ 기준인원 234</div></div>
@@ -905,6 +984,9 @@ function renderHR(){
     <div class="gcard c2"><div class="gl">${ic(ICON.people,14)} HCVA (현재)</div><div class="gv">${HR.hcvaNow.toFixed(1)}<small>백만/인</small></div><div class="gsub">연환산 · 목표 ${HR.hcvaTarget.toFixed(1)}</div></div>
     <div class="gcard c3"><div class="gl">${ic(ICON.roi,14)} HCROI (현재)</div><div class="gv">${HR.hcroiNow.toFixed(2)}<small>배</small></div><div class="gsub">연환산 · 목표 ${HR.hcroiTarget.toFixed(2)}</div></div>
   </div>
+
+  <div class="sec sec-gap"><span class="bar"></span><h2>구간별 의미</h2><span class="s">— 신호 색이 뜻하는 것</span></div>
+  ${zoneGuide()}
 
   <div class="sec sec-gap"><span class="bar"></span><h2>부서별 인적 기여가치 ${info(hcvaReadInfo())}</h2><span class="s">— 부서 인건비 입력 전, 공헌이익율은 당월 기준</span></div>
   <div id="deptArea"></div>`;
@@ -951,7 +1033,8 @@ function startApp(){
   document.getElementById("app").classList.remove("hidden");
   document.getElementById("bm").textContent=META.baseMonth+"월";
   document.getElementById("upd").textContent=META.lastUpdated;
-  renderSidebar("corp"); renderCorp(); showView("corp");
+  try{ renderSidebar("corp"); renderCorp(); showView("corp"); }
+  catch(err){ document.getElementById("view-corp").innerHTML='<div style="padding:30px;color:#dc2626;font-size:13px">화면을 그리는 중 오류가 발생했습니다: '+(err&&err.message||err)+'</div>'; showView("corp"); }
   document.getElementById("burger").onclick=toggleSidebar;
   document.getElementById("sbCollapse").onclick=toggleSidebar;
   document.getElementById("logoHome").onclick=goHome;
