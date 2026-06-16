@@ -683,7 +683,7 @@ function benchBlock(){
   }).join("");
   const growth=BENCH.growth.map(g=>`<span class="gpill"><b>${g.nm}</b> ${g.v>=0?'+':''}${g.v.toFixed(1)}%</span>`).join("");
   return `<div class="bench">
-    <div class="bh">${ic(ICON.pct,16)}<h3>수익성 분해 — 매출 100% = 원가 + 판관비 + 영업이익</h3></div>
+    <div class="bh">${ic(ICON.pct,16)}<h3>경쟁사 수익성 비교</h3></div>
     <div class="bsub">${BENCH.period} · 영업이익률이 낮은 곳은 원가가 높은지 판관비가 높은지 바로 보입니다 (맨 오른쪽 = 영업이익률)</div>
     <div class="decomp">${rows}</div>
     <div class="leg"><span class="k"><span class="sw" style="background:var(--navy2)"></span>원가율</span><span class="k"><span class="sw" style="background:var(--warn)"></span>판관비율</span><span class="k"><span class="sw" style="background:var(--emerald)"></span>영업이익률(+)</span><span class="k"><span class="sw" style="background:var(--risk)"></span>적자(−)</span></div>
