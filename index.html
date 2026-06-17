@@ -1111,7 +1111,7 @@ function hcMiniCards(){
   <div class="hccard"><div class="hl">${ic(ICON.profit,13)} 인당 영업이익 (누계)</div><div class="hv">${HR.perProfit.toFixed(2)}<small>백만/인</small></div><div class="hd">영업이익 ÷ 기준인원 234</div></div>`;
 }
 function hireInfo(){
-  return `<b>1명 채용 시 필요 매출</b> = 인당 인건비 ÷ 전사 공헌이익율 (영업이익이 아니라 공헌이익 기준)
+  return `<b>1명 채용 시 필요 매출</b> = 인당 인건비 ÷ 전사 공헌이익율 (공헌이익 기준)
   <div class="row"><span>인당 인건비</span><span>${HR.perLabor.toFixed(1)}백만</span></div>
   <div class="row"><span>전사 공헌이익율</span><span>${pct(HR.cmRate)}</span></div>
   <div class="row"><span>필요 매출</span><span>${HR.hireRevenue.toFixed(0)}백만</span></div>
