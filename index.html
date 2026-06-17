@@ -1166,10 +1166,10 @@ function renderHR(){
     <span class="hb-sub">당월 공헌이익율 ${pct(HR.cmRate)} 적용 · 인당 인건비 ÷ 공헌이익율 ${info(hireInfo())}</span>
   </div>
 
-  <div class="sec sec-gap"><span class="bar"></span><h2>구간 안내 — HCVA</h2><span class="s">· 단위 백만원</span></div>
+  <div class="sec sec-gap"><span class="bar"></span><h2>HCVA 성과 수준 — HCVA</h2><span class="s">· 단위 백만원</span></div>
   <div class="zonecard">${zoneBarLine(HCVA_Z,HR.hcvaNow,'현재 '+HR.hcvaNow.toFixed(1))}${zoneLegend(HCVA_Z,HR.hcvaNow)}</div>
 
-  <div class="sec sec-gap"><span class="bar"></span><h2>구간 안내 — 인재 투자 효율 (HCROI)</h2><span class="s">· 단위 배율</span></div>
+  <div class="sec sec-gap"><span class="bar"></span><h2>HCROI 성과 수준 — 인재 투자 효율 (HCROI)</h2><span class="s">· 단위 배율</span></div>
   <div class="zonecard">${zoneBarLine(HCROI_Z,HR.hcroiNow,'현재 '+HR.hcroiNow.toFixed(2))}${zoneLegend(HCROI_Z,HR.hcroiNow)}</div>
 
   <div class="sec sec-gap"><span class="bar"></span><h2>목표까지 단계별 경로</h2><span class="s">· HCROI 기준 · 현재 ${HR.hcroiNow.toFixed(2)}배</span></div>
