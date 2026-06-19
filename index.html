@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 <title>KOAS 경영 신호등</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='9.5' y='2' width='13' height='28' rx='6.5' fill='%2326473a'/%3E%3Ccircle cx='16' cy='9' r='3.3' fill='%2316a34a'/%3E%3Ccircle cx='16' cy='16' r='3.3' fill='%23e8a317'/%3E%3Ccircle cx='16' cy='23' r='3.3' fill='%23f04452'/%3E%3C/svg%3E">
 <style>
 :root{
   --emerald:#1e8e5a; --emerald-press:#19774b; --emerald-soft:#e6f4ec;
@@ -182,7 +183,7 @@ svg.ic{display:block}
 .decomp .drow .nm{width:96px;flex-shrink:0;color:var(--body)} .decomp .drow.me .nm{font-weight:800;color:var(--emerald-press)}
 .decomp .drow.me{background:var(--emerald-soft);border-radius:7px;padding:3px 5px;margin-left:-5px}
 .decomp .drow .bar{flex:1;display:flex;height:24px;border-radius:8px;overflow:hidden}
-.decomp .seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;color:#fff;white-space:nowrap;overflow:hidden}
+.decomp .seg{height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;color:#fff;white-space:nowrap;overflow:hidden}
 .decomp .seg.cost{background:var(--navy2)} .decomp .seg.sga{background:var(--warn)} .decomp .seg.op{background:var(--emerald)} .decomp .seg.opneg{background:var(--risk)}
 .decomp .drow .opv{width:62px;flex-shrink:0;text-align:right;font-weight:800}
 .bench .leg{display:flex;gap:14px;font-size:12.5px;color:var(--cap);margin:10px 0 4px;flex-wrap:wrap}
@@ -207,6 +208,28 @@ svg.ic{display:block}
 /* 영업 + 클레임 */
 .row2{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:start}
 .row2-gap{margin-top:46px}
+/* 어떻게 벌고 있을까 구성안 */
+.saqgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.saq{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px 18px 16px}
+.saq-h{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--text)}
+.saq-n{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:var(--emerald);color:#fff;font-size:12px;font-weight:800}
+.saq-sub{margin-left:auto;font-size:12px;color:var(--cap);font-weight:600}
+.saq-tbl{margin-top:12px}
+.saq-tr{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;font-size:13.5px;color:var(--body);padding:6px 0;border-bottom:1px solid var(--surf2)}
+.saq-tr span:nth-child(2),.saq-tr span:nth-child(3){text-align:right;min-width:46px;font-weight:800;color:var(--text)}
+.saq-hd{font-size:11.5px;color:var(--cap);font-weight:700;border-bottom:1px solid var(--border)}
+.saq-hd span{color:var(--cap)!important;font-weight:700!important}
+.saq-sum{border-bottom:none;font-weight:800;color:var(--emerald-press)} .saq-sum span{color:var(--emerald-press)!important}
+.saq-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.saq-dot.e{background:var(--emerald)} .saq-dot.g{background:#bcd9c8} .saq-dot.ok{background:var(--ok)} .saq-dot.wn{background:var(--warn)} .saq-dot.gy{background:#c2c6cc}
+.saq-d{color:var(--cap);font-weight:700}
+.saq-mini{font-size:11.5px;color:var(--cap);margin:12px 0 5px;font-weight:700}
+.saq-bar{height:8px;background:var(--surf2);border-radius:5px;overflow:hidden;margin:5px 0}
+.saq-bar span{display:block;height:100%;background:var(--emerald);border-radius:5px} .saq-bar span.ok{background:var(--ok)} .saq-bar span.wn{background:var(--warn)} .saq-bar span.gy{background:#c2c6cc}
+.saq-cap{display:flex;justify-content:space-between;font-size:11.5px;color:var(--cap);font-weight:600}
+.saq-kv{display:flex;justify-content:space-between;align-items:baseline} .saq-k{font-size:13px;color:var(--body);font-weight:600} .saq-rt{font-size:11.5px;color:var(--cap)}
+.saq-big{font-size:26px;font-weight:800;color:var(--text);letter-spacing:-.5px;margin:2px 0} .saq-big small{font-size:13px;color:var(--cap);font-weight:700;margin-left:3px} .saq-tag{font-size:12px;color:var(--emerald-press);font-weight:800;margin-left:10px}
+.saq-tr2{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--body);margin-top:11px} .saq-tr2 b{color:var(--text);font-weight:800;margin-left:3px}
 .col{min-width:0}
 .colhead{display:flex;align-items:center;gap:9px;margin:0 2px 11px}
 .colhead .bar{width:4px;height:17px;background:var(--emerald);border-radius:2px}
@@ -225,7 +248,7 @@ svg.ic{display:block}
 .divgroup .gh{margin:0 2px 11px}
 .divgroup .gh .tag{font-size:12.5px;font-weight:800;border-radius:6px;padding:3px 10px}
 .divs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.dcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:11px;cursor:pointer;transition:.12s;border-top:4px solid var(--navy)}
+.dcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:.12s;border-top:4px solid var(--navy)}
 .dcard:hover{border-color:var(--emerald);transform:translateY(-2px);box-shadow:0 8px 22px rgba(16,39,31,.07)}
 .dcard.t-sales{border-top-color:var(--emerald)} .dcard.t-cost{border-top-color:var(--navy)} .dcard.t-ops{border-top-color:var(--navy3)}
 .dcard .top{display:flex;align-items:center;gap:10px}
@@ -394,14 +417,14 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .wf-amt{text-align:right;font-weight:800;font-size:14.5px}
 .wf-note{font-size:12.5px;color:var(--cap);margin-top:14px;line-height:1.55;border-top:1px dashed var(--border);padding-top:11px}
 /* 본부 카드 (image 3) */
-.dcard .dc-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.dcard .dc-head{display:flex;align-items:center;gap:10px;margin-bottom:4px}
 .dcard .dico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .dcard.t-sales .dico{background:var(--emerald-soft);color:var(--emerald)} .dcard.t-cost .dico{background:var(--navy5);color:var(--navy)} .dcard.t-ops .dico{background:var(--surf2);color:var(--navy3)}
 .dc-nm{font-size:17.5px;font-weight:800;color:var(--text);flex:1}
 .dc-l{font-size:14px;color:var(--body);font-weight:600}
 .dc-v{font-size:27px;font-weight:800;color:var(--text);margin:3px 0 1px;letter-spacing:-.8px} .dc-v small{font-size:14.5px;color:var(--cap);font-weight:700;letter-spacing:0;margin-left:3px}
 .dc-t{font-size:13.5px;color:var(--cap)}
-.dc-bar{height:9px;background:var(--surf2);border-radius:5px;overflow:hidden;margin:11px 0 8px}
+.dc-bar{height:9px;background:var(--surf2);border-radius:5px;overflow:hidden;margin:2px 0 0}
 .dc-fill{height:100%;border-radius:5px}
 .dc-prow{display:flex;justify-content:space-between;align-items:center;font-size:14.5px} .dc-prow b{font-size:16px} .dc-prow .muted{font-size:13.5px;color:var(--cap)}
 .dc-info{margin-top:11px;background:var(--surf2);border-radius:9px;padding:9px 12px;font-size:13.5px;color:var(--body);display:flex;align-items:center;gap:6px;line-height:1.45}
@@ -467,6 +490,22 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .dept-grp{font-size:14px;font-weight:800;color:var(--text2);margin-right:9px}
 .deptlegend{font-size:12px;color:var(--cap);background:var(--surf2);border-radius:8px;padding:9px 12px;margin-bottom:14px;line-height:1.7}
 .deptlegend .up{color:var(--ok-ink);font-weight:800} .deptlegend .dn{color:var(--risk-ink);font-weight:800}
+/* 부서 카드 (PDF형) */
+.dept-note{font-size:12.5px;color:var(--cap);font-weight:600;margin-left:8px}
+.deptcard2 .dh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.deptcard2 .dn{font-size:16px;font-weight:800;color:var(--text)}
+.deptcard2 .dfte{font-size:13px;color:var(--cap);font-weight:700;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.dpair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dbox{background:var(--surf2);border-radius:10px;padding:12px 13px}
+.dbox.em{background:var(--emerald-soft)}
+.dbl{font-size:12px;color:var(--body);font-weight:700;line-height:1.4} .dbsub{color:var(--cap);font-weight:600;font-size:11px}
+.dbv{font-size:23px;font-weight:800;color:var(--text);letter-spacing:-.5px;margin-top:5px} .dbv small{font-size:12.5px;color:var(--cap);font-weight:700;margin-left:2px} .dbv.em{color:var(--emerald-press)} .dbv.navy{color:var(--navy)} .dbv.risk{color:var(--risk-ink)}
+.dbd{font-size:12.5px;font-weight:800;margin-top:4px} .dbd.up{color:var(--ok-ink)} .dbd.dn{color:var(--risk-ink)}
+.dtrend{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:11px;border-top:1px solid var(--surf2)}
+.dtl{font-size:11.5px;color:var(--cap);font-weight:700;background:var(--surf2);border-radius:20px;padding:3px 10px}
+.dtv{font-size:14px;color:var(--body);font-weight:700} .dtv b{color:var(--text);font-size:15px} .dtv .navy{color:var(--navy);font-weight:800} .dtv .risk{color:var(--risk-ink);font-weight:800} .dtv .cap{color:var(--cap);font-weight:800}
+.deptnote{background:var(--surf2);border-radius:10px;padding:12px 15px;font-size:13px;color:var(--body);line-height:1.6;margin-top:12px} .deptnote b{color:var(--text);font-weight:800}
+.deptnote.warn{background:#fff7e6;color:var(--warn-ink)}
 .dpct{font-size:12px;font-weight:800;color:var(--warn-ink);background:var(--warn-soft);border-radius:7px;padding:3px 9px;display:inline-block;margin-bottom:9px} .dpct.gray{color:var(--cap);background:var(--surf2);border:1px solid var(--border)}
 .dbar{display:flex;height:9px;border-radius:5px;overflow:hidden;margin-bottom:9px}
 .dfoot2{font-size:13px;color:var(--body);line-height:1.6} .dfoot2 b{color:var(--text2);font-weight:800} .dfoot2 .up{color:var(--ok-ink)} .dfoot2 .dn{color:var(--risk-ink)}
@@ -554,9 +593,41 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .bench .take .ai-ic{color:var(--navy)}
 /* 본부 카드 보강 */
 .dc-lrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:1px}
-.dc-sig{text-align:right;margin:2px 0 5px}
+.dc-sig{text-align:right;margin:0}
 .dgoal{margin-top:13px;background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:11px;padding:13px 16px;font-size:15px;font-weight:700;color:var(--emerald-press);line-height:1.55}
 .dgoal-t{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--emerald);border-radius:6px;padding:2px 9px;margin-right:8px;vertical-align:middle}
+/* 본부 상단 카드 확대 */
+.ddhead-lg .htop h2{font-size:25px}
+.ddhead-lg .dgoal{font-size:16px;padding:15px 18px}
+.ddhead-lg .hchips .hl{font-size:13px}
+/* AI 진단 */
+.aidiag{margin-top:14px;background:var(--surf2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--text)}
+.aidiag>b{font-size:14.5px}
+.aidiag-row{display:flex;gap:10px;align-items:baseline;margin-top:9px;line-height:1.6;color:var(--body)}
+.adk{flex-shrink:0;font-size:11.5px;font-weight:800;border-radius:6px;padding:3px 9px;color:#fff;min-width:62px;text-align:center}
+.adk.state{background:var(--navy2)} .adk.risk{background:var(--risk)} .adk.act{background:var(--emerald)}
+/* 핵심 지표 상세 */
+.mdetail{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;border-left:5px solid var(--emerald)}
+.md-lab{font-size:14px;color:var(--body);font-weight:700}
+.md-val{font-size:40px;font-weight:800;color:var(--text);letter-spacing:-1.2px;margin:2px 0 1px} .md-val small{font-size:17px;color:var(--cap);font-weight:700;margin-left:4px;letter-spacing:0} .md-val.miss{color:var(--cap);font-size:30px}
+.md-sub{font-size:13.5px;color:var(--cap)}
+.md-bar{position:relative;height:11px;background:var(--surf2);border-radius:6px;overflow:hidden;margin:14px 0 8px}
+.md-fill{height:100%;border-radius:6px}
+.md-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text2);z-index:2;border-radius:1px}
+.md-prow{display:flex;justify-content:space-between;align-items:center;font-size:15px} .md-prow b{font-size:17px} .md-exp{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--text2);font-weight:700}
+.md-side{display:flex;flex-direction:column;gap:10px;justify-content:center;border-left:1px solid var(--border);padding-left:18px}
+.md-s{display:flex;justify-content:space-between;align-items:center} .md-sl{font-size:12.5px;color:var(--cap);font-weight:600} .md-sv{font-size:16px;font-weight:800;color:var(--text)} .md-sv.miss{color:var(--cap);font-size:14px}
+/* 관련 KPI 2열 */
+.kpi2col{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.kc2{background:#fff;border:1px solid var(--border);border-radius:12px;padding:15px 16px}
+.kc2.miss{background:var(--surf2);border-style:dashed}
+.kc2-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.kc2-nm{font-size:15px;font-weight:800;color:var(--text)}
+.kc2-mp{font-size:11px;font-weight:800;color:var(--cap);background:#e7eae8;border-radius:20px;padding:3px 10px}
+.kc2-df{font-size:12px;color:var(--cap);margin:5px 0 9px;line-height:1.5}
+.kc2-row{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;color:var(--body)} .kc2-row b{font-size:16px} .kc2-tg{font-size:12.5px;color:var(--cap)}
+.kc2-bar{height:8px;background:var(--surf2);border-radius:5px;overflow:hidden;margin:8px 0 6px} .kc2-bar div{height:100%;border-radius:5px}
+.kc2-foot{font-size:12.5px;color:var(--body)} .kc2-foot b{font-weight:800}
 .dc-bar{position:relative}
 .dc-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text2);z-index:2;border-radius:1px}
 .dc-exp{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:var(--text2);font-weight:700}
@@ -599,6 +670,12 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
   .lpan{flex-direction:column} .lpan .sum{flex:1 1 auto}
   .info .box{width:240px}
   .pf-v{font-size:30px} .hcb-val{font-size:28px}
+  .saqgrid,.kpi2col,.hcbigrow{grid-template-columns:1fr}
+  .mdetail{grid-template-columns:1fr;gap:14px} .md-side{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:14px;flex-direction:row;flex-wrap:wrap;gap:14px} .md-s{flex-direction:column;align-items:flex-start;gap:2px;min-width:80px}
+  .md-val{font-size:32px}
+  .dpair{grid-template-columns:1fr 1fr}
+  .aidiag-row{flex-direction:column;gap:3px} .adk{min-width:0}
+  .ddhead-lg .htop h2{font-size:21px}
 }
 </style>
 </head>
@@ -668,15 +745,18 @@ HR.perLabor=HR.labor/HR.fte;
 HR.hcvaTarget=(HR.opTarget+HR.labor)/HR.fte;
 HR.hcroiTarget=(HR.opTarget+HR.labor)/HR.labor;
 HR.hcroiGrowth=1.5;
-HR.opAnnualized=EXEC.profitCum/META.baseMonth*12;
-HR.hcvaNow=(HR.opAnnualized+HR.labor)/HR.fte;
-HR.hcroiNow=(HR.opAnnualized+HR.labor)/HR.labor;
+HR.opAnnualized=EXEC.profitCum/META.baseMonth*12;            /* 284÷4×12 = 852 */
+HR.laborYrActual=9691.2;                                      /* 당월 인건비 807.6 × 12 (실적 연환산) */
+HR.headNow=META.headcountNow;                                 /* 225 */
+HR.hcvaNow=(HR.opAnnualized+HR.laborYrActual)/HR.headNow;     /* 46.86 */
+HR.hcroiNow=(HR.opAnnualized+HR.laborYrActual)/HR.laborYrActual; /* 1.09 */
+HR.hcvaTrend=[44.0,46.8,HR.hcvaNow];                          /* 전전월·전월·현재 */
 HR.perRevenue=EXEC.revenueCum/HR.fte;
 HR.perProfit=EXEC.profitCum/HR.fte;
-/* 전사 공헌이익율(당월) = (귀속매출 − 귀속변동비)/귀속매출 = (5330−3502)/5330 */
-HR.cmRevenue=5330; HR.cmVarCost=3502; HR.cmRate=(HR.cmRevenue-HR.cmVarCost)/HR.cmRevenue;
-/* 1명 채용 시 필요 매출 = 인당 인건비 ÷ 공헌이익율 (공헌이익 기준) */
-HR.hireRevenue=HR.perLabor/HR.cmRate;
+/* 전사 공헌이익율(누계) = (누계매출 26111 − 누계변동비 16847)/누계매출 */
+HR.cmRevenue=26111; HR.cmVarCost=16847; HR.cmRate=(HR.cmRevenue-HR.cmVarCost)/HR.cmRevenue;
+/* 1명 채용 시 필요 매출 = 인당 인건비 ÷ 공헌이익율 */
+HR.hireRevenue=HR.perLabor/HR.cmRate;                         /* ≈ 123.7 */
 
 /* 벤치마킹 — 2026 1Q (%) : 영업이익률=100−원가율−판관비율 */
 const BENCH={ period:"2026년 1분기 · 가구 4사",
@@ -775,19 +855,16 @@ const TEAMS={
    {team:"광주호남지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp:"—"},{tag:"핵심",name:"이익율 증대",disp:"—"}]},
    {team:"부산경남지사",kpis:[{tag:"핵심",name:"직영 영업 프로세스 구축",disp:"—"},{tag:"핵심",name:"이익율 증대",disp:"—"}]}],
  prod:[
-   {team:"생산팀",kpis:[{tag:"특임",name:"가공 생산능률",disp:"목표 74.7%"},{tag:"특임",name:"조립 생산능률",disp:"목표 103.5%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"생산관리팀",kpis:[{tag:"특임",name:"생산능률 개선",disp:"—"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"공장관리팀",kpis:[{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"},{tag:"핵심",name:"자원운영시스템 최적화(폐기물)",disp:"전년 대비 30%↓"}]},
+   {team:"생산관리팀",kpis:[{tag:"특임",name:"생산능률 개선",disp:"—"}]},
+   {team:"공장관리팀",kpis:[{tag:"핵심",name:"자원운영시스템 최적화(폐기물)",disp:"전년 대비 30%↓"}]},
    {team:"자재팀",kpis:[{tag:"핵심",name:"자재 창고회전율",disp:"목표 115%"},{tag:"핵심",name:"자재투입율",disp:"목표 100%"}]},
-   {team:"제상품팀",kpis:[{tag:"핵심",name:"제상품 회전율",disp:"목표 145%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"물류팀",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"시공팀",kpis:[{tag:"핵심",name:"발주시스템 최적화",disp:"—"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]}],
+   {team:"제상품팀",kpis:[{tag:"핵심",name:"제상품 회전율",disp:"목표 145%"}]},
+   {team:"물류팀",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"}]},
+   {team:"시공팀",kpis:[{tag:"핵심",name:"발주시스템 최적화",disp:"—"}]}],
  ops:[
-   {team:"동반성장운영팀",kpis:[{tag:"특임",name:"재료비 관리(매입율)",disp:"목표 40%"},{tag:"특임",name:"핵심자재 이원화·리스크 대응",disp:"—"}]},
-   {team:"정보데이터팀",kpis:[{tag:"핵심",name:"전산시스템 고도화",disp:"—"},{tag:"핵심",name:"BOM 데이터 표준화",disp:"—"},{tag:"핵심",name:"불량률 관리",disp:"—"}]},
+   {team:"정보데이터팀",kpis:[{tag:"핵심",name:"BOM 데이터 표준화",disp:"—"},{tag:"핵심",name:"불량률 관리",disp:"—"}]},
    {team:"자금관리팀",kpis:[{tag:"핵심",name:"현금흐름 예측 정확도",disp:"목표 95%"},{tag:"핵심",name:"유동성 리스크 건수",disp:"목표 0건"}]}],
  rnd:[
-   {team:"제품개발팀",kpis:[{tag:"특임",name:"부품 표준화 달성률",disp:"목표 143종"},{tag:"핵심",name:"우수제품 특허",disp:"목표 3건"},{tag:"핵심",name:"부적합 설계 예방",disp:"목표 0건"}]},
    {team:"제품디자인팀",kpis:[{tag:"핵심",name:"신제품 디자인 개발",disp:"—"},{tag:"핵심",name:"신소재 개발 제안",disp:"—"}]}],
  plan:[
    {team:"인사·컴플라이언스팀",kpis:[{tag:"핵심",name:"컴플라이언스 통제 구축률",disp:"목표 100%"},{tag:"핵심",name:"인당 생산성 체계",disp:"—"}]}]
@@ -802,20 +879,19 @@ const FLOW={
  plan:{goal:"HCROI 1.28·컴플라이언스",task:"성과체계·컴플라이언스 정착",action:"통제항목 완료·인당 생산성 관리",lead:"K22",lag:"K21"}
 };
 
-/* 부서별 — 입력양식 데이터입력 시트 기준(백만). 귀속매출·변동비=당월(4월), 부서 인건비/이전 인건비 반영 */
-/* 부서별 — 인당기여가치 입력양식 '사본' 시트값. val=현재값(HCVA 백만 / HCROI 배), laborYr=인건비 연환산 */
+/* 부서별 — 데이터입력 시트 기준. 영업부서=공헌이익, 원가기여·효율지원=평균인건비/전사평균대비/인원추세 */
 const DIVHR=[
- {grp:"sales",name:"세일즈마케팅1본부",metric:"HCVA",fte:12,prevFte:12,labor:72.4,prevLabor:57.1,laborD:26.795,laborYr:868.8,rev:3613,vc:2158,cm:40.271,val:72.4},
- {grp:"sales",name:"세일즈마케팅2본부",metric:"HCVA",fte:15,prevFte:15,labor:56.3,prevLabor:55.2,laborD:1.993,laborYr:675.6,rev:1618,vc:927,cm:42.707,val:45.04},
- {grp:"sales",name:"건설솔루션팀",metric:"HCVA",fte:2,prevFte:2,labor:11.3,prevLabor:11.3,laborD:0,laborYr:135.6,rev:89,vc:43,cm:51.685,val:67.8},
- {grp:"sales",name:"영업지원",metric:"HCVA",fte:11,prevFte:11,labor:37.5,prevLabor:36.3,laborD:3.306,laborYr:450,rev:null,vc:null,cm:null,val:40.909},
- {grp:"cost",name:"생산본부(공장)",metric:"HCVA",fte:152,prevFte:157,labor:470.5,prevLabor:531.6,laborD:-11.494,laborYr:5646,rev:null,vc:null,cm:null,val:37.145},
- {grp:"cost",name:"동반성장팀",metric:"HCVA",fte:6,prevFte:7,labor:23.6,prevLabor:26.7,laborD:-11.61,laborYr:283.2,rev:null,vc:null,cm:null,val:47.2},
- {grp:"cost",name:"데이터정보팀",metric:"HCVA",fte:4,prevFte:4,labor:16.4,prevLabor:16.5,laborD:-0.606,laborYr:196.8,rev:null,vc:null,cm:null,val:49.2},
- {grp:"cost",name:"연구소",metric:"HCVA",fte:9,prevFte:9,labor:44.7,prevLabor:36.2,laborD:23.481,laborYr:536.4,rev:null,vc:null,cm:null,val:59.6},
- {grp:"ops",name:"운영기획실",metric:"HCROI",fte:5,prevFte:5,labor:22.0,prevLabor:22.0,laborD:0,laborYr:264,rev:null,vc:null,cm:null,val:1.0,isRoi:true},
- {grp:"ops",name:"재무·IR본부",metric:"HCROI",fte:5,prevFte:5,labor:27.8,prevLabor:27.8,laborD:0,laborYr:333.6,rev:null,vc:null,cm:null,val:1.0,isRoi:true},
- {grp:"ops",name:"자금팀",metric:"HCROI",fte:2,prevFte:2,labor:7.4,prevLabor:7.3,laborD:1.37,laborYr:88.8,rev:null,vc:null,cm:null,val:1.0,isRoi:true}
+ {grp:"sales",name:"세일즈마케팅1본부",fte:12,fte3:[12,12,12],labor:72.4,perCM:121.25,cm:40.271,cmD:3,perCMd:7},
+ {grp:"sales",name:"세일즈마케팅2본부",fte:15,fte3:[15,15,15],labor:56.3,perCM:46.07,cm:42.707,cmD:0,perCMd:3},
+ {grp:"sales",name:"건설솔루션팀",fte:2,fte3:[2,2,2],labor:11.3,perCM:23.0,cm:51.685,cmD:-2,perCMd:1},
+ {grp:"cost",name:"생산본부(공장)",fte:152,fte3:[157,157,152],laborYr:37.1,vsAvg:-13.761},
+ {grp:"cost",name:"동반성장팀",fte:6,fte3:[7,7,6],laborYr:47.2,vsAvg:9.584},
+ {grp:"cost",name:"데이터정보팀",fte:4,fte3:[4,4,4],laborYr:49.2,vsAvg:14.227},
+ {grp:"cost",name:"연구소",fte:9,fte3:[9,9,9],laborYr:59.6,vsAvg:38.373},
+ {grp:"ops",name:"영업지원",fte:11,fte3:[11,11,11],laborYr:40.9,vsAvg:-5.022},
+ {grp:"ops",name:"운영기획실",fte:5,fte3:[5,5,5],laborYr:52.8,vsAvg:22.585},
+ {grp:"ops",name:"재무·IR본부",fte:5,fte3:[5,5,5],laborYr:66.7,vsAvg:54.903},
+ {grp:"ops",name:"자금팀",fte:2,fte3:[2,2,2],laborYr:44.4,vsAvg:3.083}
 ];
 
 /* ================= ICONS ================= */
@@ -1055,21 +1131,17 @@ function renderCorp(){
   h+=`<div class="sec"><span class="bar"></span><h2>지금 가장 이익이 될 개선 과제</h2><span class="s">${info(improveInfo())}</span></div>
   <div class="lpan"><div class="sum"><div class="l">개선 가능 추정치</div><div class="v" id="lossSum">—</div></div><div class="lst" id="lossList"></div></div>`;
 
-  /* 영업활동(임시) + 클레임 (신호등 위로 이동) */
-  h+=`<div class="row2 row2-gap">
-    <div class="col"><div class="colhead"><span class="bar"></span><h2>어떻게 벌고 있을까</h2><span class="s">— 영업 활동 추이</span></div>
-      <div class="panel"><div class="ph">${ic(ICON.sales,15)} 영업 활동 추이</div>
-        <div style="padding:30px 16px;text-align:center;color:var(--cap);font-size:14px">준비 중 (임시)</div></div>
-    </div>
-    <div class="col"><div class="colhead"><span class="bar"></span><h2>클레임 현황</h2><span class="s">— 2~4월</span></div>
-      <div class="panel"><div class="ph">${ic(ICON.claim,15)} 클레임 건수·비용 · 비용율 목표</div>
-        <div style="padding:12px 14px 4px">${claimChart()}
-          <div class="claim-legend"><span class="k"><span class="sw" style="background:var(--navy)"></span>클레임 건수</span><span class="k"><span class="sw" style="background:var(--risk)"></span>클레임 비용(백만)</span><span class="k"><span class="dl"></span>비용율 목표 0.63%</span></div>
-          <div class="tiny muted" style="margin-top:4px">목표선 = 월평균 출고(누계 ${CLAIM.shipCum.toLocaleString()}÷4) × 0.63%</div></div>
-        <div class="claim-tot"><div class="b"><div class="l">누적 비용 (2~4월)</div><div class="v" style="color:var(--risk-ink)">${fmtM(CLAIM.totalCostM)}</div></div>
-          <div class="b"><div class="l">비용율 목표</div><div class="v" style="font-size:17px;color:var(--warn-ink)">≤0.63%</div></div></div></div>
-    </div>
-  </div>`;
+  /* 어떻게 벌고 있을까 — 구성안 (데이터 연동 예정, 수치 미표기) */
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>어떻게 벌고 있을까?</h2><span class="s">— 영업 활동 구성 · 데이터 연동 예정</span></div>${salesActivityCards()}`;
+
+  /* 클레임 현황 */
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>클레임 현황</h2><span class="s">— 2~4월</span></div>
+    <div class="panel" style="max-width:560px"><div class="ph">${ic(ICON.claim,15)} 클레임 건수·비용 · 비용율 목표</div>
+      <div style="padding:12px 14px 4px">${claimChart()}
+        <div class="claim-legend"><span class="k"><span class="sw" style="background:var(--navy)"></span>클레임 건수</span><span class="k"><span class="sw" style="background:var(--risk)"></span>클레임 비용(백만)</span><span class="k"><span class="dl"></span>비용율 목표 0.63%</span></div>
+        <div class="tiny muted" style="margin-top:4px">목표선 = 월평균 출고(누계 ${CLAIM.shipCum.toLocaleString()}÷4) × 0.63%</div></div>
+      <div class="claim-tot"><div class="b"><div class="l">누적 비용 (2~4월)</div><div class="v" style="color:var(--risk-ink)">${fmtM(CLAIM.totalCostM)}</div></div>
+        <div class="b"><div class="l">비용율 목표</div><div class="v" style="font-size:17px;color:var(--warn-ink)">≤0.63%</div></div></div></div>`;
 
   /* 신호등 현황 (개수 유지, 멘트 제거) */
   h+=`<div class="sec"><span class="bar"></span><h2>KPI 신호등 현황</h2></div><div id="kstatBox"></div>`;
@@ -1121,11 +1193,45 @@ function improveInfo(){
   재료비율을 40%까지 낮추면 약 1,264백만, 가공 생산능률을 74.7%까지 올리면 약 96백만의 이익이 회복됩니다. 기준값(출하금액 등)이 없는 지표는 환산할 수 없어 제외했습니다.`;
 }
 
+function salesActivityCards(){
+  const D='<span class="saq-d">—</span>';
+  return `<div class="saqgrid">
+    <div class="saq">
+      <div class="saq-h"><span class="saq-n">1</span> 매출 구성 <span class="saq-sub">민수 vs 조달</span></div>
+      <div class="saq-tbl"><div class="saq-tr saq-hd"><span>구분</span><span>월</span><span>누계</span></div>
+        <div class="saq-tr"><span><span class="saq-dot e"></span>민수</span>${D}${D}</div>
+        <div class="saq-tr"><span><span class="saq-dot g"></span>조달</span>${D}${D}</div>
+        <div class="saq-tr saq-sum"><span>합계</span>${D}${D}</div></div>
+      <div class="saq-mini">월 구성비</div><div class="saq-bar"><span style="width:55%"></span></div>
+      <div class="saq-cap"><span>민수 —%</span><span>조달 —%</span></div>
+    </div>
+    <div class="saq">
+      <div class="saq-h"><span class="saq-n">2</span> 계약 현황 <span class="saq-sub">월 / 누계</span></div>
+      <div class="saq-kv"><span class="saq-k">계약 건수</span><span class="saq-rt">누계 —건</span></div>
+      <div class="saq-big">—<small>건</small><span class="saq-tag">월 비중 —%</span></div><div class="saq-bar"><span style="width:25%"></span></div>
+      <div class="saq-kv" style="margin-top:12px"><span class="saq-k">계약 금액</span><span class="saq-rt">누계 —</span></div>
+      <div class="saq-big">—<small>백만원</small><span class="saq-tag">월 비중 —%</span></div><div class="saq-bar"><span style="width:24%"></span></div>
+    </div>
+    <div class="saq">
+      <div class="saq-h"><span class="saq-n">3</span> 대형 계약 현황 <span class="saq-sub">총 —건</span></div>
+      <div class="saq-tr2"><span>1,000백만 이상 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span style="width:18%"></span></div>
+      <div class="saq-tr2"><span>300 ~ 999백만 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span style="width:45%"></span></div>
+      <div class="saq-tr2"><span>100 ~ 299백만 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span style="width:62%"></span></div>
+      <div class="saq-tr saq-sum"><span>합계</span><span class="saq-d">—건 · —</span></div>
+    </div>
+    <div class="saq">
+      <div class="saq-h"><span class="saq-n">4</span> 예상 수주 활동 <span class="saq-sub">—건 · —</span></div>
+      <div class="saq-tr2"><span><span class="saq-dot ok"></span>수주 임박 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span class="ok" style="width:15%"></span></div>
+      <div class="saq-tr2"><span><span class="saq-dot wn"></span>협상 진행 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span class="wn" style="width:40%"></span></div>
+      <div class="saq-tr2"><span><span class="saq-dot gy"></span>초기 검토 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span class="gy" style="width:55%"></span></div>
+      <div class="saq-tr saq-sum"><span>합계</span><span class="saq-d">—건 · —</span></div>
+    </div>
+  </div>`;
+}
 function benchBlock(){
   const rows=BENCH.rows.map(c=>{
-    let cw,sw,ow;
-    if(c.op>=0){ cw=c.cost; sw=c.sga; ow=c.op; }            /* 합 100% */
-    else { const t=c.cost+c.sga; cw=c.cost/t*100; sw=c.sga/t*100; ow=0; }  /* 적자: 원가+판관으로 100% 채움 */
+    /* 매출 100% 고정축: 같은 %는 같은 길이. 적자는 원가+판관이 100%를 넘어 끝에서 잘림(초록 없음) */
+    const cw=c.cost, sw=c.sga, ow=c.op>0?c.op:0;
     const segCost=`<div class="seg cost" style="width:${cw.toFixed(2)}%">${cw>13?'원가 '+c.cost.toFixed(0)+'%':''}</div>`;
     const segSga=`<div class="seg sga" style="width:${sw.toFixed(2)}%">${sw>13?'판관 '+c.sga.toFixed(0)+'%':''}</div>`;
     const segOp=ow>0?`<div class="seg op" style="width:${ow.toFixed(2)}%">${ow>5?c.op.toFixed(1)+'%':''}</div>`:'';
@@ -1260,39 +1366,104 @@ function actionFlow(d){
     ${st("선행지표",lead)}${st("결과지표",lag)}
   </div></div>`;
 }
+const DIAG={
+ sm1:{state:"매출 누계 16,504백만으로 연간 목표의 약 37% — 시기상 정상 페이스입니다.",risk:"공급가 실행율이 떨어지면 같은 매출에도 남는 이익이 줄어듭니다.",act:"대리점 공급가를 다시 협상하고 수수료율을 점검하세요."},
+ sm2:{state:"매출 누계 9,216백만으로 연간 목표의 약 33% 수준입니다.",risk:"직영 전환·수주 성공률 데이터가 아직 없어 수익을 제때 점검하기 어렵습니다.",act:"제안에서 수주까지의 단계를 입력하고 성공률을 관리하세요."},
+ prod:{state:"클레임 비용율이 0.79%로 목표(0.63%)를 넘어 주의 단계입니다.",risk:"클레임 비용이 늘면 애써 만든 이익을 그대로 깎아먹습니다.",act:"재발 방지 과제를 등록하고 불량을 줄이는 데 집중하세요."},
+ rnd:{state:"부품 표준화 실적이 아직 입력되지 않았습니다.",risk:"표준화 진척이 보이지 않으면 원가 절감 효과를 확인할 수 없습니다.",act:"표준화 달성 건수를 입력하고 설계 검토 단계를 강화하세요."},
+ ops:{state:"재료비율이 44.8%로 목표(40%)를 크게 넘어 위험 단계입니다.",risk:"재료비는 가장 큰 비용이라, 비율이 높으면 이익에 바로 타격을 줍니다.",act:"단가를 다시 협상하고 BOM을 표준화해 재료비율을 낮추세요."},
+ plan:{state:"전사 HCROI가 1.09배로 손익분기는 넘었지만 목표(1.28)에는 못 미칩니다.",risk:"흑자 폭이 얇아 인건비를 회수하는 여력이 빠듯합니다.",act:"통제 체계를 끝까지 마무리하고 인당 생산성을 끌어올리세요."}
+};
+function aiDiagBlock(d){
+  const g=DIAG[d.id]; if(!g)return "";
+  return `<div class="aidiag">✨ <b>AI 진단</b>
+    <div class="aidiag-row"><span class="adk state">현재</span><span>${g.state}</span></div>
+    <div class="aidiag-row"><span class="adk risk">리스크</span><span>${g.risk}</span></div>
+    <div class="aidiag-row"><span class="adk act">다음 액션</span><span>${g.act}</span></div>
+  </div>`;
+}
+/* 핵심 지표 상세 — 전사 본부 KPI를 그대로 가져와 구체화 (제일 중요) */
+function divMetricDetail(d){
+  const st=divState(d.id);
+  if(d.revCum!=null){
+    const ach=divAch(d),exp=expectedProgress(),col=stateColor(st);
+    return `<div class="mdetail">
+      <div class="md-main">
+        <div class="md-lab">매출 누계</div>
+        <div class="md-val">${d.revCum.toLocaleString()}<small>백만</small></div>
+        <div class="md-sub">연간 목표 ${d.revTarget.toLocaleString()}백만</div>
+        <div class="md-bar"><div class="md-mark" style="left:${(exp*100).toFixed(1)}%"></div><div class="md-fill" style="width:${Math.min(ach*100,100)}%;background:${col}"></div></div>
+        <div class="md-prow"><b style="color:${col}">${pct(ach)} 달성</b><span class="md-exp">기대 진도 ${(exp*100).toFixed(0)}% (${META.baseMonth}/12) ${info(paceInfo(d))}</span></div>
+      </div>
+      <div class="md-side">
+        <div class="md-s"><div class="md-sl">당월 (${META.baseMonth}월)</div><div class="md-sv miss">미입력</div></div>
+        <div class="md-s"><div class="md-sl">연간 목표 대비</div><div class="md-sv" style="color:${col}">${pct(ach)}</div></div>
+        <div class="md-s"><div class="md-sl">상태</div><div class="md-sv">${sigPill(st)}</div></div>
+      </div>
+    </div>`;
+  }
+  let mk=d.cardKpi;
+  if(d.id==='plan'){ mk={name:"HCROI · 인재 투자 효율 (전사)",target:HR.hcroiTarget,actual:HR.hcroiNow,unit:"배",st:"higher"}; }
+  if(!mk) return "";
+  const ratio=mk.actual==null?null:(mk.st==='lower'?(mk.actual?mk.target/mk.actual:0):(mk.target?mk.actual/mk.target:0));
+  const col=ratio==null?'var(--cap)':(ratio>=1?'var(--ok)':ratio>=0.9?'var(--warn)':'var(--risk)');
+  const miss=mk.actual==null;
+  const lowTxt=mk.st==='lower'?' · 낮을수록 좋음':'';
+  return `<div class="mdetail">
+    <div class="md-main">
+      <div class="md-lab">${mk.name}</div>
+      <div class="md-val ${miss?'miss':''}" ${miss?'':`style="color:${col}"`}>${miss?'미입력':dispKpiV(mk,mk.actual)}</div>
+      <div class="md-sub">목표 ${dispKpiV(mk,mk.target)}${lowTxt}</div>
+      <div class="md-bar"><div class="md-fill" style="width:${ratio==null?0:Math.min(Math.max(ratio,0),1)*100}%;background:${miss?'#dfe3e0':col}"></div></div>
+      <div class="md-prow"><b style="color:${miss?'var(--cap)':col}">${miss?'실적 미입력':'목표 도달률 '+(ratio*100).toFixed(0)+'%'}</b></div>
+    </div>
+    <div class="md-side">
+      <div class="md-s"><div class="md-sl">실적</div><div class="md-sv ${miss?'miss':''}" ${miss?'':`style="color:${col}"`}>${miss?'미입력':dispKpiV(mk,mk.actual)}</div></div>
+      <div class="md-s"><div class="md-sl">목표</div><div class="md-sv">${dispKpiV(mk,mk.target)}</div></div>
+      <div class="md-s"><div class="md-sl">상태</div><div class="md-sv">${sigPill(st)}</div></div>
+    </div>
+  </div>`;
+}
+/* 관련 KPI — 2개씩 정렬 · 도달률 · 미입력 색 */
+function kpiCard2(k){
+  const s=signal(k),col=stateColor(s),miss=k.actual==null;
+  const ratio=miss?null:(k.st==="higher"?(k.target?k.actual/k.target:0):k.st==="lower"?(k.actual?k.target/k.actual:1):(k.target?k.actual/k.target:0));
+  const fill=ratio==null?0:Math.min(Math.max(ratio,0),1)*100;
+  return `<div class="kc2 ${miss?'miss':''}">
+    <div class="kc2-top"><span class="kc2-nm">${k.name}</span>${miss?'<span class="kc2-mp">미입력</span>':sigPill(s)}</div>
+    <div class="kc2-df">${k.def}</div>
+    <div class="kc2-row"><span>실적 <b style="color:${miss?'var(--cap)':col}">${miss?'—':dispKpiV(k,k.actual)}</b></span><span class="kc2-tg">목표 ${dispKpiV(k,k.target)}</span></div>
+    <div class="kc2-bar"><div style="width:${fill}%;background:${miss?'#dfe3e0':col}"></div></div>
+    <div class="kc2-foot">${miss?'<span class="muted">실적 미입력</span>':'목표 도달률 <b style="color:'+col+'">'+(ratio*100).toFixed(0)+'%</b>'}</div>
+  </div>`;
+}
 function renderDiv(){
   const d=DIVS.find(x=>x.id===curDiv),st=divState(curDiv),t=TYPE[d.type];
   const others=DIVS.map(x=>`<option value="${x.id}" ${x.id===curDiv?'selected':''}>${x.name}</option>`).join("");
   const teams=TEAMS[curDiv]||[];
-  const single=(curDiv==="sm1");
-  const goalBlock=single?`<div class="goalbox">${d.coreGoal}</div>`:`<div class="goalgrid">${teams.map(tm=>`<div class="goalitem"><b>${tm.team}</b><span>${d.coreGoal}</span></div>`).join("")}</div>`;
+  const showTeams=teams.length && ['prod','rnd','ops'].includes(curDiv);
+  const showKpi=curDiv!=='plan';
   const taskCards=`<div class="teamgrid">${teams.map(tm=>`<div class="team"><div class="th"><span class="nm">${tm.team}</span></div>${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div>`).join("")}</div>`).join("")}</div>`;
   const typetagStyle=d.type==='sales'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)':d.type==='cost'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
 
   let h=`<div class="ddtop"><div class="crumb"><a id="back1">전사 KPI</a><span class="sepc">›</span><b>${d.name}</b></div>
     <div class="sp"></div><span class="tiny muted">다른 본부</span><select class="ddsel" id="divSel">${others}</select></div>
-  <div class="ddhead">
-    <div class="htop"><span class="dico">${ic(ICON[d.icon],22)}</span><h2>${d.name}</h2><span class="typetag" style="${typetagStyle}">${t.label}</span> ${sigPill(st)}</div>
+  <div class="ddhead ddhead-lg">
+    <div class="htop"><span class="dico">${ic(ICON[d.icon],26)}</span><h2>${d.name}</h2><span class="typetag" style="${typetagStyle}">${t.label}</span> ${sigPill(st)}</div>
     <div class="dgoal"><span class="dgoal-t">2026 목표</span> ${d.goal2026||d.coreGoal}</div>
     <div class="hchips"><div class="hl">핵심/특임 과제</div>${divChips(curDiv)}</div>
-    <div class="aicmt">✨ <b>AI 코멘트</b> · ${aiComment(d,st)}</div>
-  </div>
-
-  <div class="sec"><span class="bar"></span><h2>팀별 핵심/특임 과제</h2></div>${taskCards}
-  <div class="sec"><span class="bar"></span><h2>관련 KPI</h2><span class="s">— 실적은 검증값만, 미확정은 —</span></div><div id="kpiList"></div>`;
-  const HCMAP={sm1:["세일즈마케팅1본부"],sm2:["세일즈마케팅2본부"],prod:["생산본부(공장)"],rnd:["연구소"],ops:["동반성장팀","데이터정보팀"],plan:["운영기획실"]};
-  const myDepts=(HCMAP[curDiv]||[]).map(n=>DIVHR.find(x=>x.name===n)).filter(Boolean);
-  const hcSection=myDepts.length
-    ? `<div class="deptgrid">${myDepts.map(deptCardHTML).join("")}</div>`+myDepts.map(dd=>`<div class="aicmt" style="margin-top:12px">✨ <b>AI 코멘트</b> · ${deptComment(dd)}</div>`).join("")
-    : `<div class="hcgrid">${hcMiniCards()}</div>`;
-  h+=`<div class="sec"><span class="bar"></span><h2>인당 기여가치</h2><span class="s">— 우리 본부 부서 기준 (인적 기여가치 페이지와 동일)</span></div>${hcSection}`;
+    ${aiDiagBlock(d)}
+  </div>`;
+  if(showTeams) h+=`<div class="sec"><span class="bar"></span><h2>팀별 핵심/특임 과제</h2></div>${taskCards}`;
+  h+=`<div class="sec"><span class="bar"></span><h2>핵심 지표 상세</h2><span class="s">— 이 본부에서 가장 중요한 지표</span></div>${divMetricDetail(d)}`;
+  if(showKpi) h+=`<div class="sec"><span class="bar"></span><h2>관련 KPI</h2><span class="s">— 실적은 검증값만, 미확정은 미입력</span></div><div id="kpiList" class="kpi2col"></div>`;
   document.getElementById("view-div").innerHTML=h;
   document.getElementById("back1").onclick=goHome;
   document.getElementById("divSel").onchange=e=>openDiv(e.target.value);
-  const ks=KPIS.filter(k=>k.div===curDiv);
-  document.getElementById("kpiList").innerHTML=ks.map(k=>{const s=signal(k),imp=impact(k);
-    return `<div class="krow"><div><div class="nm">${k.name} ${sigInline(s)}</div><div class="df">${k.def}</div>${gaugeLine(k)}</div>
-      <div class="right">${sigPill(s)}<div class="tiny muted" style="margin-top:5px">개선 여력 ${imp==null?'<b>—</b>':'<b style="color:var(--emerald-press)">'+fmtM(Math.abs(imp))+'</b>'}</div></div></div>`;}).join("")||`<div class="tiny muted">관련 KPI 없음</div>`;
+  if(showKpi){
+    const ks=KPIS.filter(k=>k.div===curDiv);
+    document.getElementById("kpiList").innerHTML=ks.map(kpiCard2).join("")||`<div class="tiny muted">관련 KPI 없음</div>`;
+  }
   bindInfos(document.getElementById("view-div"));
 }
 /* ================= 인적 기여가치 ================= */
@@ -1367,10 +1538,12 @@ function hireInfo(){
 }
 function hcBigCard(o){
   const cur=o.zones[zIdx(o.zones,o.value)];
+  const trend=o.trend?`<div class="hcb-trend"><span class="hcb-tt">최근 3개월</span> ${o.trend.map((v,i)=>`${i?' › ':''}<b${i===o.trend.length-1?' class="now"':''}>${v.toFixed(o.dec||1)}</b>`).join("")} <span class="hcb-up">▲</span></div>`:'';
   return `<div class="hcbig">
     <div class="hcb-head"><div><h3>${o.title}</h3><div class="hcb-en">${o.en}</div></div><span class="hcb-pill">${cur.l}</span></div>
     <div class="hcb-val">${o.disp}<small>${o.unit}</small></div>
     ${zoneBarLine(o.zones,o.value,'현재 '+o.disp)}
+    ${trend}
     <div class="hcb-note">전월 대비: 인원 ${o.dPeople} · 인건비 ${o.dLabor}</div>
     <div class="hcb-remain">${o.remain}</div>
   </div>`;
@@ -1399,13 +1572,13 @@ function renderHR(){
   ${statGrid()}
 
   <div class="hcbigrow">
-    ${hcBigCard({title:"한 사람이 만드는 가치 · HCVA",en:"인당 기여가치 · 연환산 기준",value:HR.hcvaNow,disp:HR.hcvaNow.toFixed(1),unit:"백만",zones:HCVA_Z,dPeople:hd+"명",dLabor:"−5.2%",remain:`전사 목표(${HR.hcvaTarget.toFixed(1)}백만)까지 <b>${hcvaRemain.toFixed(1)}백만</b> 남았습니다`})}
-    ${hcBigCard({title:"인재 투자 효율 · HCROI",en:"인건비 대비 성과 회수율",value:HR.hcroiNow,disp:HR.hcroiNow.toFixed(2),unit:"배",zones:HCROI_Z,dPeople:hd+"명",dLabor:"−5.2%",remain:`목표 달성(${HR.hcroiTarget.toFixed(2)}배)까지 <b>${hcroiRemain.toFixed(2)}배</b> 남았습니다`})}
+    ${hcBigCard({title:"한 사람이 만드는 가치 · HCVA",en:"구성원 1명이 창출하는 가치",value:HR.hcvaNow,disp:HR.hcvaNow.toFixed(1),unit:"백만",zones:HCVA_Z,trend:HR.hcvaTrend,dec:1,dPeople:hd+"명",dLabor:"−5.2%",remain:`전사 목표(${HR.hcvaTarget.toFixed(1)}백만)까지 <b>${hcvaRemain.toFixed(1)}백만</b> 남았습니다`})}
+    ${hcBigCard({title:"인재 투자 효율 · HCROI",en:"인건비 1원이 만들어내는 가치",value:HR.hcroiNow,disp:HR.hcroiNow.toFixed(2),unit:"배",zones:HCROI_Z,trend:[1.0,1.05,HR.hcroiNow],dec:2,dPeople:hd+"명",dLabor:"−5.2%",remain:`목표 달성(${HR.hcroiTarget.toFixed(2)}배)까지 <b>${hcroiRemain.toFixed(2)}배</b> 남았습니다`})}
   </div>
   <div class="hireband">
     <span class="hb-tag">+1명 채용 손익분기</span>
     <span class="hb-main">추가 매출 약 <b>${HR.hireRevenue.toFixed(0)}백만</b> 필요</span>
-    <span class="hb-sub">당월 공헌이익율 ${pct(HR.cmRate)} 적용 · 인당 인건비 ÷ 공헌이익율 ${info(hireInfo())}</span>
+    <span class="hb-sub">공헌이익율 ${pct(HR.cmRate)} 적용 · 인당 인건비 ÷ 공헌이익율 ${info(hireInfo())}</span>
   </div>
 
   <div class="sec sec-gap"><span class="bar"></span><h2>HCVA 성과 수준 — HCVA</h2><span class="s">· 단위 백만원</span></div>
@@ -1423,11 +1596,7 @@ function renderHR(){
     <div class="concl"><b>둘 다 늘지 않았습니다.</b> 사람은 ${Math.abs(hd)}명 줄었고 인건비도 줄었습니다. 적자는 사람을 더 뽑거나 인건비가 올라서가 아니라, <b>벌어들이는 영업이익이 줄어서</b> 생긴 문제입니다. 4월 매출이 크게 줄고 재료비 비중이 오른 것이 원인입니다.</div>
   </div>
 
-  <div class="sec sec-gap"><span class="bar"></span><h2>부서별 인적 기여가치</h2><span class="s">· 부서 인건비 입력 전 · 공헌이익율은 당월 기준</span></div>
-  <div class="readbox">
-    <b>부서별 HCVA를 읽는 법</b>
-    <div class="rchecks"><span>✓ 전사 목표 대비 위치 확인</span><span>✓ 유사 규모(인원수) 부서와 비교</span><span>✓ 인원 적은 부서일수록 높게 나타날 수 있음</span></div>
-  </div>
+  <div class="sec sec-gap"><span class="bar"></span><h2>부서별 인적 기여가치</h2><span class="s">— 영업부서는 남긴 마진, 그 외 부서는 인원·추세로 봅니다</span></div>
   <div id="deptArea"></div>`;
   document.getElementById("view-hr").innerHTML=h;
   renderDepts();
@@ -1445,62 +1614,54 @@ function milestonePath(){
     </div>`).join("")+`</div>`;
 }
 function deptInfo(d){
-  if(d.isRoi){
-    return `<b>${d.name} · HCROI</b><br>인재에 투자한 만큼 성과로 얼마나 돌아오는지를 나타냅니다.
-    <div class="row"><span>산식</span><span>(전사 영업이익 + 부서 인건비) ÷ 부서 인건비</span></div>
-    <div class="row"><span>부서 인건비(연환산)</span><span>${d.laborYr.toLocaleString()}백만</span></div>
-    <div class="row"><span>현재값</span><span>${d.val.toFixed(2)}배</span></div>
-    전사 영업이익이 0으로 반영되어 현재 1.00배입니다. (인당기여가치 입력양식 ‘사본’ 시트 기준)`;
+  if(d.grp==='sales'){
+    return `<b>${d.name}</b><br>이 부서가 한 사람당 남긴 마진(공헌이익)과 매출 대비 마진율입니다.
+    <div class="row"><span>인당 공헌이익</span><span>${d.perCM.toFixed(1)}백만</span></div>
+    <div class="row"><span>공헌이익률</span><span>${d.cm.toFixed(1)}%</span></div>
+    <div class="row"><span>현원</span><span>${d.fte}명</span></div>
+    공헌이익률은 매출 규모가 아니라 남긴 마진을 봅니다. 현재값과 전월 대비 증감으로 읽습니다.`;
   }
-  return `<b>${d.name} · HCVA</b><br>이 부서의 한 사람이 만들어내는 가치(백만/인)입니다.
-  <div class="row"><span>산식</span><span>(전사 영업이익 + 부서 인건비) ÷ 현원</span></div>
-  <div class="row"><span>부서 인건비(연환산)</span><span>${d.laborYr.toLocaleString()}백만</span></div>
+  return `<b>${d.name}</b><br>직접 매출이 없어 인원·평균 인건비·전사 평균 대비·인원 추세로 봅니다.
+  <div class="row"><span>평균 인건비(연환산)</span><span>${d.laborYr.toFixed(1)}백만</span></div>
+  <div class="row"><span>전사 평균 대비</span><span>${d.vsAvg>=0?'+':''}${d.vsAvg.toFixed(1)}%</span></div>
   <div class="row"><span>현원</span><span>${d.fte}명</span></div>
-  <div class="row"><span>계산</span><span>${d.laborYr.toLocaleString()} ÷ ${d.fte} = ${d.val.toFixed(1)}</span></div>
-  ${d.cm!=null?`<div class="row"><span>공헌이익율</span><span>${d.cm.toFixed(1)}% (전사 ${(HR.cmRate*100).toFixed(1)}%)</span></div>`:''}
-  전사 영업이익이 0으로 반영되어, 현재값은 부서 인건비(연환산) ÷ 현원과 같습니다. (입력양식 ‘사본’ 시트 기준)`;
+  평균 인건비는 전사 평균(${HR.perLabor.toFixed(1)}백만) 기준 환산값이며, 절대 평가가 아니라 방향·추세로 읽습니다.`;
 }
-/* 인건비 색 기준: 증가(+)=비용↑ 빨강(dn) / 감소(−)=절감 초록(up) · 공헌이익율 전사대비: 높음 초록(up)/낮음 빨강(dn) */
 function deptCardHTML(d){
-  const zc=d.isRoi?HCROI_Z[zIdx(HCROI_Z,d.val)].c:HCVA_Z[zIdx(HCVA_Z,d.val)].c;
-  const tgt=d.isRoi?HR.hcroiTarget:HR.hcvaTarget;
-  const fill=Math.max(Math.min(d.val/tgt*100,100),3);
-  const valStr=d.isRoi?d.val.toFixed(2):d.val.toFixed(1);
-  const unit=d.isRoi?'배 (HCROI)':'백만/인 (HCVA)';
-  const laborCls=d.laborD>0?'dn':'up';   /* 증가=빨강, 감소/0=초록 */
-  let foot;
-  if(d.cm!=null){
-    const cmDiff=(d.cm-HR.cmRate*100);
-    foot=`공헌이익율 <b>${d.cm.toFixed(1)}%</b> <span class="${cmDiff>=0?'up':'dn'}">(전사 대비 ${cmDiff>=0?'+':''}${cmDiff.toFixed(1)}%p)</span> · 인건비 <span class="${laborCls}">${d.laborD>=0?'+':''}${d.laborD.toFixed(1)}%</span>`;
-  } else {
-    foot=`부서 인건비(연환산) <b>${d.laborYr.toLocaleString()}백만</b> · 전월 대비 인건비 <span class="${laborCls}">${d.laborD>=0?'+':''}${d.laborD.toFixed(1)}%</span>`;
+  const head=`<div class="dh"><span class="dn">${d.name}</span><span class="dfte">${d.fte}명 ${info(deptInfo(d))}</span></div>`;
+  if(d.grp==='sales'){
+    const cmCol=d.cmD>=0?'up':'dn';
+    return `<div class="deptcard2 sales">${head}
+      <div class="dpair">
+        <div class="dbox"><div class="dbl">인당 남긴 기여액 <span class="dbsub">(공헌이익액)</span></div><div class="dbv">${d.perCM.toFixed(1)}<small>백만</small></div><div class="dbd ${d.perCMd>=0?'up':'dn'}">${d.perCMd>=0?'+':''}${d.perCMd}%</div></div>
+        <div class="dbox em"><div class="dbl">공헌이익률</div><div class="dbv em">${d.cm.toFixed(1)}<small>%</small></div><div class="dbd ${cmCol}">${d.cmD>=0?'+':''}${d.cmD}%</div></div>
+      </div></div>`;
   }
-  return `<div class="deptcard2">
-    <div class="dh"><span class="dn">${d.name}</span><span class="ddot" style="background:${zc}"></span></div>
-    <div class="dmeta">현원 ${d.fte}명 (이전 ${d.prevFte}명)</div>
-    <div class="dval2">${valStr}<small>${unit}</small> ${info(deptInfo(d))}</div>
-    <div class="dbar"><span style="flex:0 0 ${fill.toFixed(1)}%;background:${zc}"></span><span style="flex:1;background:#eef0f2"></span></div>
-    <div class="dfoot2">${foot}</div>
+  const t=d.fte3, dir=t[2]>t[0]?'증원':t[2]<t[0]?'감원':'유지';
+  const dirCls=t[2]>t[0]?'navy':t[2]<t[0]?'risk':'cap';
+  const vsCol=d.vsAvg>=0?'navy':'risk';
+  return `<div class="deptcard2">${head}
+    <div class="dpair">
+      <div class="dbox"><div class="dbl">평균 인건비</div><div class="dbv">${d.laborYr.toFixed(1)}<small>백만</small></div></div>
+      <div class="dbox"><div class="dbl">전사 평균 대비</div><div class="dbv ${vsCol}">${d.vsAvg>=0?'+':''}${d.vsAvg.toFixed(0)}<small>%</small></div></div>
+    </div>
+    <div class="dtrend"><span class="dtl">최근 3개월 인원</span><span class="dtv">${t[0]} › ${t[1]} › <b>${t[2]}</b> <span class="${dirCls}">${dir}</span></span></div>
   </div>`;
 }
-function deptComment(d){
-  if(d.isRoi){
-    return `${d.name}의 HCROI는 현재 <b>${d.val.toFixed(2)}배</b>로, 인건비만큼만 회수되는 손익분기 부근입니다. 전사 영업이익이 흑자로 돌아서면 이 값도 1.0배 위로 함께 올라갑니다. (전사 영업이익 0 반영 기준)`;
-  }
-  const z=HCVA_Z[zIdx(HCVA_Z,d.val)];
-  const vs=d.val>=HR.hcvaTarget?`전사 목표(${HR.hcvaTarget.toFixed(1)})를 넘는 높은 수준`:(d.val>=43.9?`흑자 전환 구간으로, 전사 목표(${HR.hcvaTarget.toFixed(1)})까지 ${(HR.hcvaTarget-d.val).toFixed(1)}백만 남음`:`구조 효율화가 필요한 구간`);
-  const cmTxt=d.cm!=null?` 공헌이익율은 ${d.cm.toFixed(1)}%로 전사(${(HR.cmRate*100).toFixed(1)}%) 대비 ${d.cm>=HR.cmRate*100?'높습니다':'낮습니다'}.`:'';
-  return `${d.name}의 한 사람당 가치(HCVA)는 <b>${d.val.toFixed(1)}백만/인</b>으로 <b>${z.l}</b>입니다 — ${vs}.${cmTxt}`;
-}
 function renderDepts(){
-  const groups=[{key:"sales",label:"매출 부서",tag:"HCVA + 공헌이익율"},{key:"cost",label:"원가 기여 부서",tag:"HCVA"},{key:"ops",label:"효율 지원 부서",tag:"HCROI"}];
-  let h=`<div class="deptlegend">색 기준 · 인건비 <span class="dn">+증가=비용↑</span> / <span class="up">−감소=절감</span> · 공헌이익율 전사 대비 <span class="up">높음</span>/<span class="dn">낮음</span> · 막대 색은 신호등(<span style="color:#f04452">위험</span>·<span style="color:#eab308">주의</span>·<span style="color:#1e8e5a">정상</span>)</div>`;
+  const groups=[
+    {key:"sales",label:"영업부서",note:"얼마를 팔았는가보다 얼마를 남겼는가",
+      foot:`<div class="deptnote">공헌이익률은 매출 규모가 아니라 <b>남긴 마진</b>을 보여주는 지표입니다. 현재값과 전월 대비 증감으로 봅니다.</div><div class="deptnote warn">※ 영업부서는 인센티브 지급에 따라 평균 인건비가 일시적으로 상승할 수 있습니다.</div>`},
+    {key:"cost",label:"원가기여 부서",note:"제품·서비스 원가를 직접 만드는 부서"},
+    {key:"ops",label:"효율지원 부서",note:"전사 운영을 지원하는 부서",
+      foot:`<div class="deptnote">원가기여·효율지원 부서는 직접 매출이 없어 <b>인원·평균 인건비·전사 평균 대비 수준·인원 추세</b>로 봅니다. 평균 인건비는 전사 평균(${HR.perLabor.toFixed(1)}백만) 기준 환산값이며 <b>절대 평가가 아니라 방향·추세</b>로 읽습니다.</div>`}
+  ];
+  let h="";
   groups.forEach(g=>{
     const list=DIVHR.filter(d=>d.grp===g.key); if(!list.length)return;
-    const style=g.key==='sales'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)':g.key==='cost'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
-    h+=`<div class="divgroup"><div class="gh"><span class="dept-grp">${g.label}</span><span class="tag" style="${style}">${g.tag}</span></div><div class="deptgrid">`;
+    h+=`<div class="divgroup"><div class="gh"><span class="dept-grp">${g.label}</span><span class="dept-note">· ${g.note}</span></div><div class="deptgrid">`;
     h+=list.map(deptCardHTML).join("");
-    h+=`</div></div>`;
+    h+=`</div>${g.foot||''}</div>`;
   });
   document.getElementById("deptArea").innerHTML=h;
 }
