@@ -429,14 +429,14 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .hcb-note{background:var(--surf2);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--body);margin-top:8px}
 .hcb-remain{background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:8px;padding:9px 12px;font-size:13.5px;color:var(--emerald-press);margin-top:8px} .hcb-remain b{color:var(--emerald-press);font-weight:800}
 /* 존 바 (image 4/5) */
-.zbar2{position:relative;margin:18px 0 6px}
+.zbar2{position:relative;margin:18px 0 30px}
 .zbar2-segs{display:flex;height:16px;border-radius:8px;overflow:hidden}
 .zbar2-segs span{display:block}
 .zbar2-pt{position:absolute;top:0}
 .zbar2-pin{position:absolute;transform:translateX(-50%);top:-9px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:9px solid var(--text)}
 .zbar2-lab{position:absolute;transform:translateX(-50%);top:20px;font-size:12.5px;font-weight:800;color:var(--text);white-space:nowrap}
 .zonecard{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px 16px}
-.zlegend{display:flex;flex-wrap:wrap;gap:9px 18px;margin-top:30px;font-size:13px;color:var(--body)}
+.zlegend{display:flex;flex-wrap:wrap;gap:9px 18px;margin-top:10px;font-size:13px;color:var(--body)}
 .zl{display:inline-flex;align-items:center;gap:6px}
 .zld{width:9px;height:9px;border-radius:50%}
 .zlcur{color:var(--text);font-weight:800;margin-left:2px}
@@ -465,6 +465,8 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .deptcard2 .dmeta{font-size:13px;color:var(--cap);margin-top:3px}
 .dval2{font-size:26px;font-weight:800;color:var(--text);margin:10px 0 6px} .dval2 small{font-size:13.5px;color:var(--cap);font-weight:700;margin-left:3px}
 .dept-grp{font-size:14px;font-weight:800;color:var(--text2);margin-right:9px}
+.deptlegend{font-size:12px;color:var(--cap);background:var(--surf2);border-radius:8px;padding:9px 12px;margin-bottom:14px;line-height:1.7}
+.deptlegend .up{color:var(--ok-ink);font-weight:800} .deptlegend .dn{color:var(--risk-ink);font-weight:800}
 .dpct{font-size:12px;font-weight:800;color:var(--warn-ink);background:var(--warn-soft);border-radius:7px;padding:3px 9px;display:inline-block;margin-bottom:9px} .dpct.gray{color:var(--cap);background:var(--surf2);border:1px solid var(--border)}
 .dbar{display:flex;height:9px;border-radius:5px;overflow:hidden;margin-bottom:9px}
 .dfoot2{font-size:13px;color:var(--body);line-height:1.6} .dfoot2 b{color:var(--text2);font-weight:800} .dfoot2 .up{color:var(--ok-ink)} .dfoot2 .dn{color:var(--risk-ink)}
@@ -775,7 +777,7 @@ const TEAMS={
  prod:[
    {team:"생산팀",kpis:[{tag:"특임",name:"가공 생산능률",disp:"목표 74.7%"},{tag:"특임",name:"조립 생산능률",disp:"목표 103.5%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
    {team:"생산관리팀",kpis:[{tag:"특임",name:"생산능률 개선",disp:"—"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
-   {team:"공장관리팀",kpis:[{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"},{tag:"핵심",name:"자원운영시스템 최적화(폐기물)",disp:"전년比 30%↓"}]},
+   {team:"공장관리팀",kpis:[{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"},{tag:"핵심",name:"자원운영시스템 최적화(폐기물)",disp:"전년 대비 30%↓"}]},
    {team:"자재팀",kpis:[{tag:"핵심",name:"자재 창고회전율",disp:"목표 115%"},{tag:"핵심",name:"자재투입율",disp:"목표 100%"}]},
    {team:"제상품팀",kpis:[{tag:"핵심",name:"제상품 회전율",disp:"목표 145%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
    {team:"물류팀",kpis:[{tag:"핵심",name:"물류 직접운송비율",disp:"목표 1.95%"},{tag:"특임",name:"클레임 비용율",disp:"목표 ≤0.63%"}]},
@@ -1277,8 +1279,13 @@ function renderDiv(){
   </div>
 
   <div class="sec"><span class="bar"></span><h2>팀별 핵심/특임 과제</h2></div>${taskCards}
-  <div class="sec"><span class="bar"></span><h2>관련 KPI</h2><span class="s">— 실적은 검증값만, 미확정은 —</span></div><div id="kpiList"></div>
-  <div class="sec"><span class="bar"></span><h2>인당 기여가치</h2><span class="s">— 전사 기준</span></div><div class="hcgrid">${hcMiniCards()}</div>`;
+  <div class="sec"><span class="bar"></span><h2>관련 KPI</h2><span class="s">— 실적은 검증값만, 미확정은 —</span></div><div id="kpiList"></div>`;
+  const HCMAP={sm1:["세일즈마케팅1본부"],sm2:["세일즈마케팅2본부"],prod:["생산본부(공장)"],rnd:["연구소"],ops:["동반성장팀","데이터정보팀"],plan:["운영기획실"]};
+  const myDepts=(HCMAP[curDiv]||[]).map(n=>DIVHR.find(x=>x.name===n)).filter(Boolean);
+  const hcSection=myDepts.length
+    ? `<div class="deptgrid">${myDepts.map(deptCardHTML).join("")}</div>`+myDepts.map(dd=>`<div class="aicmt" style="margin-top:12px">✨ <b>AI 코멘트</b> · ${deptComment(dd)}</div>`).join("")
+    : `<div class="hcgrid">${hcMiniCards()}</div>`;
+  h+=`<div class="sec"><span class="bar"></span><h2>인당 기여가치</h2><span class="s">— 우리 본부 부서 기준 (인적 기여가치 페이지와 동일)</span></div>${hcSection}`;
   document.getElementById("view-div").innerHTML=h;
   document.getElementById("back1").onclick=goHome;
   document.getElementById("divSel").onchange=e=>openDiv(e.target.value);
@@ -1291,26 +1298,26 @@ function renderDiv(){
 /* ================= 인적 기여가치 ================= */
 const HCVA_Z=[
  {l:"구조 효율화 필요",lo:0,hi:43.9,c:"#f04452",rng:"43.9 미만"},
- {l:"흑자 전환 구간",lo:43.9,hi:50,c:"#e8a317",rng:"43.9~50"},
- {l:"성장 구간",lo:50,hi:56.3,c:"#f3cf8e",rng:"50~56.3"},
- {l:"2026 목표 수준",lo:56.3,hi:66,c:"#1e8e5a",rng:"56.3~66"},
- {l:"성장 기업 수준",lo:66,hi:90,c:"#234876",rng:"66 이상"}
+ {l:"흑자 전환 구간",lo:43.9,hi:50,c:"#f59e0b",rng:"43.9~50"},
+ {l:"성장 구간",lo:50,hi:56.3,c:"#eab308",rng:"50~56.3"},
+ {l:"2026 목표 수준",lo:56.3,hi:66,c:"#5cb874",rng:"56.3~66"},
+ {l:"성장 기업 수준",lo:66,hi:90,c:"#1e8e5a",rng:"66 이상"}
 ];
 const HCROI_Z=[
  {l:"구조 개선 필요",lo:0,hi:1.0,c:"#f04452",rng:"1.0 미만"},
- {l:"손익분기 접근",lo:1.0,hi:1.1,c:"#e8a317",rng:"1.0~1.1"},
- {l:"흑자 전환",lo:1.1,hi:1.2,c:"#f3cf8e",rng:"1.1~1.2"},
+ {l:"손익분기 접근",lo:1.0,hi:1.1,c:"#f59e0b",rng:"1.0~1.1"},
+ {l:"흑자 전환",lo:1.1,hi:1.2,c:"#eab308",rng:"1.1~1.2"},
  {l:"흑자 안정화",lo:1.2,hi:1.28,c:"#9fd356",rng:"1.2~1.28"},
- {l:"2026 목표",lo:1.28,hi:1.5,c:"#1e8e5a",rng:"1.28~1.5"},
- {l:"성장 기업 수준",lo:1.5,hi:1.8,c:"#234876",rng:"1.5 이상"}
+ {l:"2026 목표",lo:1.28,hi:1.5,c:"#5cb874",rng:"1.28~1.5"},
+ {l:"성장 기업 수준",lo:1.5,hi:1.8,c:"#1e8e5a",rng:"1.5 이상"}
 ];
 const MILE=[
  {v:0.85,l:"구조 개선 시작점",c:"#f04452"},
- {v:0.97,l:"손익분기 진입",c:"#e8a317"},
- {v:1.08,l:"흑자 전환 진입",c:"#e8a317"},
+ {v:0.97,l:"손익분기 진입",c:"#f59e0b"},
+ {v:1.08,l:"흑자 전환 진입",c:"#eab308"},
  {v:1.20,l:"흑자 안정화 진입",c:"#9fd356"},
- {v:1.31,l:"2026 목표",c:"#1e8e5a"},
- {v:1.58,l:"성장 기업 수준",c:"#234876"}
+ {v:1.31,l:"2026 목표",c:"#5cb874"},
+ {v:1.58,l:"성장 기업 수준",c:"#1e8e5a"}
 ];
 function zIdx(z,v){let i=z.findIndex(x=>v>=x.lo&&v<x.hi);return i<0?(v<z[0].lo?0:z.length-1):i;}
 function zPos(z,v){const seg=100/z.length,i=zIdx(z,v),zz=z[i];let f=(isFinite(zz.hi)&&zz.hi>zz.lo)?Math.min(Math.max((v-zz.lo)/(zz.hi-zz.lo),0),1):0.5;return (i+f)*seg;}
@@ -1453,34 +1460,46 @@ function deptInfo(d){
   ${d.cm!=null?`<div class="row"><span>공헌이익율</span><span>${d.cm.toFixed(1)}% (전사 ${(HR.cmRate*100).toFixed(1)}%)</span></div>`:''}
   전사 영업이익이 0으로 반영되어, 현재값은 부서 인건비(연환산) ÷ 현원과 같습니다. (입력양식 ‘사본’ 시트 기준)`;
 }
+/* 인건비 색 기준: 증가(+)=비용↑ 빨강(dn) / 감소(−)=절감 초록(up) · 공헌이익율 전사대비: 높음 초록(up)/낮음 빨강(dn) */
+function deptCardHTML(d){
+  const zc=d.isRoi?HCROI_Z[zIdx(HCROI_Z,d.val)].c:HCVA_Z[zIdx(HCVA_Z,d.val)].c;
+  const tgt=d.isRoi?HR.hcroiTarget:HR.hcvaTarget;
+  const fill=Math.max(Math.min(d.val/tgt*100,100),3);
+  const valStr=d.isRoi?d.val.toFixed(2):d.val.toFixed(1);
+  const unit=d.isRoi?'배 (HCROI)':'백만/인 (HCVA)';
+  const laborCls=d.laborD>0?'dn':'up';   /* 증가=빨강, 감소/0=초록 */
+  let foot;
+  if(d.cm!=null){
+    const cmDiff=(d.cm-HR.cmRate*100);
+    foot=`공헌이익율 <b>${d.cm.toFixed(1)}%</b> <span class="${cmDiff>=0?'up':'dn'}">(전사 대비 ${cmDiff>=0?'+':''}${cmDiff.toFixed(1)}%p)</span> · 인건비 <span class="${laborCls}">${d.laborD>=0?'+':''}${d.laborD.toFixed(1)}%</span>`;
+  } else {
+    foot=`부서 인건비(연환산) <b>${d.laborYr.toLocaleString()}백만</b> · 전월 대비 인건비 <span class="${laborCls}">${d.laborD>=0?'+':''}${d.laborD.toFixed(1)}%</span>`;
+  }
+  return `<div class="deptcard2">
+    <div class="dh"><span class="dn">${d.name}</span><span class="ddot" style="background:${zc}"></span></div>
+    <div class="dmeta">현원 ${d.fte}명 (이전 ${d.prevFte}명)</div>
+    <div class="dval2">${valStr}<small>${unit}</small> ${info(deptInfo(d))}</div>
+    <div class="dbar"><span style="flex:0 0 ${fill.toFixed(1)}%;background:${zc}"></span><span style="flex:1;background:#eef0f2"></span></div>
+    <div class="dfoot2">${foot}</div>
+  </div>`;
+}
+function deptComment(d){
+  if(d.isRoi){
+    return `${d.name}의 HCROI는 현재 <b>${d.val.toFixed(2)}배</b>로, 인건비만큼만 회수되는 손익분기 부근입니다. 전사 영업이익이 흑자로 돌아서면 이 값도 1.0배 위로 함께 올라갑니다. (전사 영업이익 0 반영 기준)`;
+  }
+  const z=HCVA_Z[zIdx(HCVA_Z,d.val)];
+  const vs=d.val>=HR.hcvaTarget?`전사 목표(${HR.hcvaTarget.toFixed(1)})를 넘는 높은 수준`:(d.val>=43.9?`흑자 전환 구간으로, 전사 목표(${HR.hcvaTarget.toFixed(1)})까지 ${(HR.hcvaTarget-d.val).toFixed(1)}백만 남음`:`구조 효율화가 필요한 구간`);
+  const cmTxt=d.cm!=null?` 공헌이익율은 ${d.cm.toFixed(1)}%로 전사(${(HR.cmRate*100).toFixed(1)}%) 대비 ${d.cm>=HR.cmRate*100?'높습니다':'낮습니다'}.`:'';
+  return `${d.name}의 한 사람당 가치(HCVA)는 <b>${d.val.toFixed(1)}백만/인</b>으로 <b>${z.l}</b>입니다 — ${vs}.${cmTxt}`;
+}
 function renderDepts(){
   const groups=[{key:"sales",label:"매출 부서",tag:"HCVA + 공헌이익율"},{key:"cost",label:"원가 기여 부서",tag:"HCVA"},{key:"ops",label:"효율 지원 부서",tag:"HCROI"}];
-  let h="";
+  let h=`<div class="deptlegend">색 기준 · 인건비 <span class="dn">+증가=비용↑</span> / <span class="up">−감소=절감</span> · 공헌이익율 전사 대비 <span class="up">높음</span>/<span class="dn">낮음</span> · 막대 색은 신호등(<span style="color:#f04452">위험</span>·<span style="color:#eab308">주의</span>·<span style="color:#1e8e5a">정상</span>)</div>`;
   groups.forEach(g=>{
     const list=DIVHR.filter(d=>d.grp===g.key); if(!list.length)return;
     const style=g.key==='sales'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)':g.key==='cost'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
     h+=`<div class="divgroup"><div class="gh"><span class="dept-grp">${g.label}</span><span class="tag" style="${style}">${g.tag}</span></div><div class="deptgrid">`;
-    h+=list.map(d=>{
-      const zc=d.isRoi?HCROI_Z[zIdx(HCROI_Z,d.val)].c:HCVA_Z[zIdx(HCVA_Z,d.val)].c;
-      const tgt=d.isRoi?HR.hcroiTarget:HR.hcvaTarget;
-      const fill=Math.max(Math.min(d.val/tgt*100,100),3);
-      const valStr=d.isRoi?d.val.toFixed(2):d.val.toFixed(1);
-      const unit=d.isRoi?'배 (HCROI)':'백만/인 (HCVA)';
-      let foot;
-      if(d.cm!=null){
-        const cmDiff=(d.cm-HR.cmRate*100);
-        foot=`공헌이익율 <b>${d.cm.toFixed(1)}%</b> <span class="${cmDiff>=0?'up':'dn'}">(전사比 ${cmDiff>=0?'+':''}${cmDiff.toFixed(1)}%p)</span> · 인건비 ${d.laborD>=0?'+':''}${d.laborD.toFixed(1)}%`;
-      } else {
-        foot=`부서 인건비(연환산) <b>${d.laborYr.toLocaleString()}백만</b> · 전월比 인건비 <span class="${d.laborD>=0?'dn':'up'}">${d.laborD>=0?'+':''}${d.laborD.toFixed(1)}%</span>`;
-      }
-      return `<div class="deptcard2">
-        <div class="dh"><span class="dn">${d.name}</span><span class="ddot" style="background:${zc}"></span></div>
-        <div class="dmeta">현원 ${d.fte}명 (이전 ${d.prevFte}명)</div>
-        <div class="dval2">${valStr}<small>${unit}</small> ${info(deptInfo(d))}</div>
-        <div class="dbar"><span style="flex:0 0 ${fill.toFixed(1)}%;background:${zc}"></span><span style="flex:1;background:#eef0f2"></span></div>
-        <div class="dfoot2">${foot}</div>
-      </div>`;
-    }).join("");
+    h+=list.map(deptCardHTML).join("");
     h+=`</div></div>`;
   });
   document.getElementById("deptArea").innerHTML=h;
