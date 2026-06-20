@@ -1334,13 +1334,12 @@ function renderDivGroups(){
   document.querySelectorAll('[data-div]').forEach(el=>el.onclick=()=>openDiv(el.dataset.div));
 }
 function divChips(id){
-  const list=BCHIPS[id]||[];
-  return list.map(k=>`<span class="chip">${tagChip(k.tag)}${k.name}</span>`).join("")||`<span class="tiny muted">등록 과제 없음</span>`;
-}
-/* 상단 카드에 있는 과제명은 팀 목록에서 제거(item 12) */
-function teamsDedup(id){
-  const top=new Set((BCHIPS[id]||[]).map(k=>k.name.replace(/\s+/g,"")));
-  return (TEAMS[id]||[]).map(t=>({team:t.team,kpis:t.kpis.filter(k=>!top.has(k.name.replace(/\s+/g,"")))})).filter(t=>t.kpis.length);
+  const seen=new Set(), out=[];
+  (TEAMS[id]||[]).forEach(t=>t.kpis.forEach(k=>{
+    const key=k.name.replace(/\s+/g,"");
+    if(!seen.has(key)){seen.add(key); out.push(k);}
+  }));
+  return out.map(k=>`<span class="chip">${tagChip(k.tag)}${k.name}</span>`).join("")||`<span class="tiny muted">등록 과제 없음</span>`;
 }
 function paceInfo(d){
   const ach=divAch(d),exp=expectedProgress();
