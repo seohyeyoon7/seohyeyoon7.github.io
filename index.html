@@ -249,6 +249,11 @@ svg.ic{display:block}
 .divgroup .gh{margin:0 2px 11px}
 .divgroup .gh .tag{font-size:12.5px;font-weight:800;border-radius:6px;padding:3px 10px}
 .divs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dd-sec{flex-wrap:wrap}
+.dd-filter{margin-left:auto;display:inline-flex;gap:6px;background:var(--surf2);border:1px solid var(--border);border-radius:999px;padding:4px}
+.dd-b{border:none;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--cap);padding:6px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.12s}
+.dd-b:hover{color:var(--text2)}
+.dd-b.active{background:#fff;color:var(--emerald-press);box-shadow:0 1px 3px rgba(16,39,31,.12)}
 .dcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:.12s;border-top:4px solid var(--navy)}
 .dcard:hover{border-color:var(--emerald);transform:translateY(-2px);box-shadow:0 8px 22px rgba(16,39,31,.07)}
 .dcard.t-sales{border-top-color:var(--emerald)} .dcard.t-cost{border-top-color:var(--navy)} .dcard.t-ops{border-top-color:var(--navy3)}
@@ -439,7 +444,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .dc-info svg{color:var(--warn-ink);flex-shrink:0}
 .dc-tasks{margin-top:13px;border-top:1px solid var(--border);padding-top:12px;display:flex;flex-direction:column;gap:7px}
 .dc-th{font-size:13.5px;color:var(--body);font-weight:700;margin-bottom:1px}
-.dc-foot{margin-top:13px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.dc-foot{margin-top:auto;padding-top:13px;display:flex;align-items:center;justify-content:flex-end;gap:10px}
 .dc-dept{margin-top:13px;border-top:1px solid var(--border);padding-top:12px}
 .dc-dept-h{font-size:13.5px;color:var(--body);font-weight:700;margin-bottom:9px}
 .dcm-row+.dcm-row{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)}
@@ -871,6 +876,7 @@ function buildWF(p){
     ]};
 }
 let wfPeriod="cum";
+let divFilter="all";
 
 /* 본부 */
 const DIVS=[
@@ -1222,7 +1228,13 @@ function renderCorp(){
   h+=`<div class="sec"><span class="bar"></span><h2>KPI 신호등 현황</h2></div><div id="kstatBox"></div>`;
 
   /* 본부 KPI — 그룹별 */
-  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>본부 KPI</h2></div><div id="divArea"></div>`;
+  h+=`<div class="sec sec-gap dd-sec"><span class="bar"></span><h2>본부 KPI</h2>
+    <div class="dd-filter" id="ddFilter">
+      <button class="dd-b ${divFilter==='all'?'active':''}" data-f="all">전체</button>
+      <button class="dd-b ${divFilter==='sales'?'active':''}" data-f="sales">매출 부서</button>
+      <button class="dd-b ${divFilter==='cost'?'active':''}" data-f="cost">원가 기여 부서</button>
+      <button class="dd-b ${divFilter==='ops'?'active':''}" data-f="ops">운영 지원 부서</button>
+    </div></div><div id="divArea"></div>`;
 
   /* 인적 기여가치 — 전사 요약 (인적 기여가치 페이지의 전사 현황과 동일 구성) */
   h+=`<div class="sec sec-gap"><span class="bar"></span><h2>인적 기여가치</h2><span class="s">— 전사 현황 (자세히는 좌측 ‘인적 기여가치’) · 현재값은 연환산</span></div>
@@ -1363,7 +1375,7 @@ function claimChart(){
 /* 본부 그룹 + 카드 */
 function renderDivGroups(){
   let h="";
-  ["sales","cost","ops"].forEach(tp=>{
+  ["sales","cost","ops"].filter(tp=>divFilter==='all'||divFilter===tp).forEach(tp=>{
     const t=TYPE[tp];
     const style=tp==='sales'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)':tp==='cost'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
     h+=`<div class="divgroup"><div class="gh"><span class="tag" style="${style}">${t.label}</span></div>
@@ -1371,6 +1383,12 @@ function renderDivGroups(){
   });
   document.getElementById("divArea").innerHTML=h;
   document.querySelectorAll('[data-div]').forEach(el=>el.onclick=()=>openDiv(el.dataset.div));
+  const ddf=document.getElementById("ddFilter");
+  if(ddf) ddf.querySelectorAll('.dd-b').forEach(b=>b.onclick=()=>{
+    divFilter=b.dataset.f;
+    ddf.querySelectorAll('.dd-b').forEach(x=>x.classList.toggle('active',x.dataset.f===divFilter));
+    renderDivGroups();
+  });
 }
 function divChips(id){
   const list=BCHIPS[id]||[];
