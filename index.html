@@ -61,7 +61,7 @@ svg.ic{display:block}
 .app.sbhide .sb-item[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:54px;top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--text);color:#fff;font-size:13.5px;font-weight:600;padding:5px 9px;border-radius:7px;z-index:90;box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .sb-logo{display:flex;align-items:center;gap:11px;padding:16px 14px 14px;border-bottom:1px solid var(--forest-line);flex-shrink:0}
 .sb-logo .mark{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;flex-shrink:0;cursor:pointer}
-.sb-logo .nm{flex:1;cursor:pointer;min-width:0} .sb-logo b{font-size:14px;display:block;color:#fff;white-space:nowrap} .sb-logo span{font-size:11px;color:rgba(255,255,255,.55);white-space:nowrap}
+.sb-logo .nm{flex:1;cursor:pointer;min-width:0} .sb-logo b{font-size:17px;display:block;color:#fff;white-space:nowrap;letter-spacing:-.3px} .sb-logo span{font-size:11px;color:rgba(255,255,255,.55);white-space:nowrap}
 .sb-collapse{width:30px;height:30px;border-radius:8px;border:1px solid var(--forest-line);background:transparent;color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .sb-collapse:hover{background:rgba(255,255,255,.08);color:#fff}
 .sb-nav{flex:1 1 auto;min-height:0;overflow-y:auto;padding:8px 10px 10px;scrollbar-width:none;-ms-overflow-style:none}
@@ -87,8 +87,8 @@ svg.ic{display:block}
 @media (min-width:1001px){.burger{display:none}}
 .burger:hover{border-color:var(--emerald);color:var(--emerald)}
 .topbar .ttl{cursor:pointer;min-width:0}
-.topbar .ttl h1{font-size:23px}
-.topbar .ttl .sub{font-size:14px;color:var(--emerald-press);margin-top:3px;font-weight:600}
+.topbar .ttl h1{font-size:28px;letter-spacing:-.5px}
+.topbar .ttl .sub{font-size:16px;color:var(--emerald-press);margin-top:4px;font-weight:600}
 .topbar .sp{flex:1}
 .topbar .meta{font-size:13px;color:var(--cap);text-align:right;line-height:1.6}
 .topbar .meta b{color:var(--text2)}
@@ -395,8 +395,9 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .opc-big{font-size:42px;font-weight:800;color:var(--text);letter-spacing:-1.5px;line-height:1} .opc-big small{font-size:19px;font-weight:700;color:var(--body);letter-spacing:0}
 .opc-month{font-size:17px;font-weight:800;color:var(--risk-ink)}
 .opc-sub{font-size:14.5px;color:var(--body);margin-top:9px}
-.opg{margin-top:10px;padding-bottom:34px}
+.opg{margin-top:10px;padding-bottom:34px;position:relative}
 .opg-mk{position:relative;height:15px;margin-bottom:6px;font-size:13px;color:var(--text2);font-weight:700}
+.opg-tg{position:absolute;top:19px;height:20px;width:0;border-left:2px dashed var(--text);opacity:.55;z-index:2}
 .opg-mk span{position:absolute;transform:translateX(-50%);white-space:nowrap} .opg-mk span:first-child{transform:none} .opg-mk span:last-child{transform:translateX(-100%)}
 .opg-bar{display:flex;height:16px;border-radius:9px;overflow:hidden}
 .opg-s{display:block}
@@ -696,6 +697,11 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .kc2-df{font-size:12px;color:var(--cap);margin:5px 0 9px;line-height:1.5}
 .kc2-row{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;color:var(--body)} .kc2-row b{font-size:16px} .kc2-tg{font-size:12.5px;color:var(--cap)}
 .kc2-bar{height:8px;background:var(--surf2);border-radius:5px;overflow:hidden;margin:8px 0 6px} .kc2-bar div{height:100%;border-radius:5px}
+.ksubs{margin-top:10px;display:flex;flex-direction:column;gap:9px}
+.ksub{display:flex;align-items:center;gap:10px}
+.ksub-nm{font-size:12.5px;font-weight:700;color:var(--text2);min-width:90px}
+.ksub-bar{flex:1;height:8px;background:var(--surf2);border-radius:5px;overflow:hidden} .ksub-bar div{height:100%;border-radius:5px;background:#dfe3e0}
+.ksub-v{font-size:11.5px;min-width:38px;text-align:right}
 .kc2-foot{font-size:12.5px;color:var(--body)} .kc2-foot b{font-weight:800}
 .dc-bar{position:relative}
 .dc-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text2);z-index:2;border-radius:1px}
@@ -772,7 +778,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
   <aside class="sidebar">
     <div class="sb-logo">
       <div class="mark" id="logoHome"><svg viewBox="0 0 32 32" width="22" height="22" aria-label="신호등"><rect x="9.5" y="2" width="13" height="28" rx="6.5" fill="#fff" opacity="0.16"/><circle cx="16" cy="9" r="3.3" fill="#16a34a"/><circle cx="16" cy="16" r="3.3" fill="#e8a317"/><circle cx="16" cy="23" r="3.3" fill="#f04452"/></svg></div>
-      <div class="nm" id="titleHome2"><b>KOAS 경영 신호등</b><span>KPI 경영관리</span></div>
+      <div class="nm" id="titleHome2"><b>KOAS 경영 신호등</b></div>
       <button class="sb-collapse" id="sbCollapse" title="사이드바 접기">«</button>
     </div>
     <nav class="sb-nav" id="sbNav"></nav>
@@ -887,8 +893,8 @@ const DIVS=[
   {id:"prod",name:"생산본부",icon:"factory",type:"cost",revCum:null,revTarget:null,coreGoal:"클레임 비용율 0.63% 이하 달성",goal2026:"낭비와 불량을 제거하여 수익을 남기는 생산을 만들겠습니다.",
    cardKpi:{name:"클레임 비용율",target:0.0063,actual:0.0079,unit:"%",st:"lower"},
    node:{lag:"클레임 비용율·생산능률",lead:"N차불량 0·예방제안",act:"재발방지 과제 등록·공정 낭비 제거"}},
-  {id:"rnd",name:"제품연구소",icon:"chip",type:"cost",revCum:null,revTarget:null,coreGoal:"부품 표준화 143종 달성",goal2026:"부품·공정 표준화로 수익성을, 친환경 솔루션으로 제품 경쟁력을 개선하겠습니다.",
-   cardKpi:{name:"부품 표준화 달성률",target:143,actual:null,unit:"종",st:"higher"},
+  {id:"rnd",name:"제품연구소",icon:"chip",type:"cost",revCum:null,revTarget:null,coreGoal:"부품 표준화 93종 단종 달성",goal2026:"부품·공정 표준화로 수익성을, 친환경 솔루션으로 제품 경쟁력을 개선하겠습니다.",
+   cardKpi:{name:"부품 표준화 달성률",target:93,actual:null,unit:"종",st:"higher",tnote:"200종 운영 (93종 단종)"},
    node:{lag:"부품 단종·부적합설계",lead:"단종 진척·부적합 건수",act:"단종 후보 재선정·설계검토 게이트 강화"}},
   {id:"ops",name:"운영지원본부",icon:"ops",type:"cost",revCum:null,revTarget:null,coreGoal:"재료비율 40% 달성",goal2026:"원가 구조를 혁신하여 '만들수록 남는 구조'로 비용을 절감하겠습니다.",
    cardKpi:{name:"재료비율",target:0.40,actual:0.4484,unit:"%",st:"lower"},
@@ -900,18 +906,14 @@ const DIVS=[
 const TYPE={ sales:{label:"매출 부서"}, cost:{label:"원가 기여 부서"}, ops:{label:"운영 지원 부서"} };
 
 const KPIS=[
-  {id:"K1",div:"sm1",team:"세일즈마케팅실",group:"영업",name:"대리점 공급가 실행율",def:"(매출−수수료)÷대리점 공급가",unit:"%",st:"higher",target:0.98,actual:null,base:null},
-  {id:"K3",div:"sm2",team:"세일즈마케팅2본부",group:"영업",name:"직영 성공율",def:"직영 성공÷영업시도",unit:"%",st:"higher",target:0.20,actual:null,base:null},
-  {id:"K6",div:"prod",team:"생산팀",group:"품질",name:"클레임 비용율",def:"누적 클레임비÷출하금액 (목표 ≤0.63%)",unit:"%",st:"lower",target:0.0063,actual:0.0079,base:null},
-  {id:"K8",div:"prod",team:"생산팀",group:"생산성",name:"가공 생산능률",def:"가공 회수공수÷총투입공수",unit:"%",st:"higher",target:0.747,actual:0.70,base:"laborCum"},
-  {id:"K9",div:"prod",team:"생산팀",group:"생산성",name:"조립 생산능률",def:"조립 회수공수÷총투입공수",unit:"%",st:"higher",target:1.035,actual:null,base:null},
-  {id:"K11",div:"prod",team:"자재·물류팀",group:"생산성",name:"납기지연 건수",def:"당월 납기지연 건수",unit:"건",st:"count",target:0,actual:null,base:null},
-  {id:"K13",div:"ops",team:"동반성장운영팀",group:"원가",name:"재료비율",def:"재료비÷매출 (목표 ≤40%)",unit:"%",st:"lower",target:0.40,actual:0.4484,base:"revenueCum"},
-  {id:"K15",div:"ops",team:"자금관리팀",group:"현금",name:"현금흐름 예측 정확도",def:"(1−|예측−실제|÷실제)",unit:"%",st:"higher",target:0.95,actual:null,base:null},
-  {id:"K16",div:"ops",team:"자금관리팀",group:"현금",name:"유동성 리스크 건수",def:"당월 유동성 리스크 건수",unit:"건",st:"count",target:0,actual:null,base:null},
-  {id:"K18",div:"rnd",team:"제품개발팀",group:"원가",name:"부품 표준화(단종)",def:"단종 진척(목표 143종)",unit:"종",st:"higher",target:143,actual:null,base:null},
-  {id:"K19",div:"rnd",team:"제품개발팀",group:"품질",name:"설계 부적합 건수",def:"당월 부적합 건수(목표 0)",unit:"건",st:"count",target:0,actual:null,base:null},
-  {id:"K20",div:"rnd",team:"제품개발팀",group:"영업",name:"신제품 출시 건수",def:"당해 출시 신제품 수(목표 3)",unit:"건",st:"higher",target:3,actual:null,base:null},
+  {id:"K1",div:"sm1",team:"세일즈마케팅실",group:"영업",name:"대리점 공급가 실행율 관리",def:"",unit:"%",st:"higher",target:0.98,actual:null,base:null},
+  {id:"K3",div:"sm2",team:"세일즈마케팅2본부",group:"영업",name:"직영 성공율",def:"",unit:"%",st:"higher",target:0.20,actual:null,base:null,subs:["대전충청지사","대구경북지사","광주호남지사","부산경남지사"]},
+  {id:"K8",div:"prod",team:"생산팀",group:"생산성",name:"가공 생산능률",def:"산식: 회수공수 ÷ 총투입공수 × 100",unit:"%",st:"higher",target:0.747,actual:null,base:null},
+  {id:"K9",div:"prod",team:"생산팀",group:"생산성",name:"조립 생산능률",def:"산식: 회수공수 ÷ 총투입공수 × 100",unit:"%",st:"higher",target:1.035,actual:null,base:null},
+  {id:"K15",div:"ops",team:"자금관리팀",group:"현금",name:"현금흐름 예측 정확도",def:"산식: {(실제 수지 − 예측 수지) ÷ 실제 수지} × 100",unit:"%",st:"higher",target:0.95,actual:null,base:null},
+  {id:"K17",div:"ops",team:"정보데이터팀",group:"품질",name:"불량률 관리",def:"산식: (불량 구매금액 ÷ 총 구매금액) × 100 · 매출 상위 30개 업체",unit:"%",st:"lower",target:0,actual:null,base:null},
+  {id:"K19",div:"rnd",team:"제품개발팀",group:"품질",name:"설계 부적합 건수",def:"당월 부적합 건수 (목표 0)",unit:"건",st:"count",target:0,actual:null,base:null},
+  {id:"K20",div:"rnd",team:"제품개발팀",group:"영업",name:"신제품 출시 건수",def:"당해 출시 신제품 수 (목표 3)",unit:"건",st:"higher",target:3,actual:null,base:null},
   {id:"K21",div:"plan",team:"인사·컴플라이언스팀",group:"생산성",name:"HCROI",def:"(영업이익+인건비)÷인건비 (목표 1.28)",unit:"배",st:"higher",target:1.28,actual:null,base:null},
   {id:"K22",div:"plan",team:"인사·컴플라이언스팀",group:"생산성",name:"컴플라이언스 통제 구축률",def:"완료 통제÷전체 통제",unit:"%",st:"higher",target:1.00,actual:null,base:null}
 ];
@@ -939,10 +941,10 @@ const TEAMS={
    {team:"공장관리팀",kpis:[{tag:"핵심",name:"자원운영시스템 최적화",disp:"폐기물비용률 절감"}]},
    {team:"자재팀",kpis:[{tag:"핵심",name:"자재발주 시스템 최적화",disp:"발주누락 예방·투입율 100%"}]}],
  ops:[
-   {team:"정보데이터팀",kpis:[{tag:"핵심",name:"전산시스템 고도화",disp:"원가·수익률 개선"},{tag:"핵심",name:"BOM 데이터 자산화 및 운영 체계 표준화",disp:"정합성 가이드북"},{tag:"핵심",name:"불량률 관리",disp:"공정 품질 표준화"}]},
+   {team:"정보데이터팀",kpis:[{tag:"핵심",name:"전산시스템 고도화",disp:"원가·수익률 개선"},{tag:"핵심",name:"BOM 데이터 자산화 및 운영 체계 표준화",disp:"—"},{tag:"핵심",name:"불량률 관리",disp:"공정 품질 표준화"}]},
    {team:"자금관리팀",kpis:[{tag:"핵심",name:"현금흐름 예측 정확도",disp:"목표 95% 이상"}]}],
  rnd:[
-   {team:"제품개발팀",kpis:[{tag:"핵심",name:"신제품 및 신소재 개발",disp:"특허 적용 3건"},{tag:"핵심",name:"부적합 설계 예방",disp:"부적합설계 ZERO"}]},
+   {team:"제품개발팀",kpis:[{tag:"핵심",name:"신제품 및 신소재 개발",disp:"신제품 3종 출시"},{tag:"핵심",name:"부적합 설계 예방",disp:"부적합설계 ZERO"}]},
    {team:"제품디자인팀",kpis:[{tag:"핵심",name:"신제품 개발",disp:"모듈화·맞춤형"},{tag:"핵심",name:"신소재 개발",disp:"친환경 CMF"}]}],
  plan:[
    {team:"인사·컴플라이언스팀",kpis:[{tag:"핵심",name:"전사 컴플라이언스 통제 체계 구축",disp:"리스크 사전 점검·통제"}]}]
@@ -1087,8 +1089,9 @@ function opGauge(E){
   else pos=Math.min(67+(E.profitCum-target)/target*33,97);
   const lab=`${E.profitCum>=0?'+':'−'}${Math.abs(E.profitCum).toLocaleString()}백만`;
   return `<div class="opg">
-    <div class="opg-mk"><span style="left:0%">적자</span><span style="left:33%">손익분기</span><span style="left:67%">목표</span><span style="left:100%">탁월</span></div>
+    <div class="opg-mk"><span style="left:0%">적자</span><span style="left:33%">손익분기</span><span style="left:67%">목표 ${target.toLocaleString()}백만</span><span style="left:100%">탁월</span></div>
     <div class="opg-bar"><span class="opg-s" style="flex:33;background:var(--risk)"></span><span class="opg-s" style="flex:34;background:var(--warn)"></span><span class="opg-s" style="flex:33;background:var(--emerald)"></span></div>
+    <div class="opg-tg" style="left:67%"></div>
     <div class="opg-pt" style="left:${pos.toFixed(1)}%"><span class="opg-pin"></span><span class="opg-now">현재 ${lab}</span></div>
   </div>`;
 }
@@ -1521,21 +1524,28 @@ function divMetricDetail(d){
   let mk=d.cardKpi;
   if(d.id==='plan'){ mk={name:"HCROI · 인재 투자 효율 (전사)",target:HR.hcroiTarget,actual:HR.hcroiNow,unit:"배",st:"higher"}; }
   if(!mk) return "";
+  const CINFO={
+    prod:`<b>클레임 비용율</b><br>산식: 누적 클레임 비용 ÷ 출하 금액 × 100<br><span style="color:var(--cap)">* 클레임 비용 = 클레임 대리점공급가 + 시공비 + 물류비</span>`,
+    rnd:`<b>부품 표준화 달성률</b><br>산식: 단종건수 ÷ 단종 목표 부품수 × 100<br>목표: 200종 운영 (93종 단종)`,
+    ops:`<b>재료비율</b><br>산식: 재료비 ÷ 매출액 × 100`
+  };
+  const mkI=CINFO[d.id]?info(CINFO[d.id]):'';
   const ratio=mk.actual==null?null:(mk.st==='lower'?(mk.actual?mk.target/mk.actual:0):(mk.target?mk.actual/mk.target:0));
   const col=ratio==null?'var(--cap)':(ratio>=1?'var(--ok)':ratio>=0.9?'var(--warn)':'var(--risk)');
   const miss=mk.actual==null;
   const lowTxt=mk.st==='lower'?' · 낮을수록 좋음':'';
+  const tgDisp=mk.tnote?mk.tnote:dispKpiV(mk,mk.target);
   return `<div class="mdetail">
     <div class="md-main">
-      <div class="md-lab">${mk.name}</div>
+      <div class="md-lab">${mk.name} ${mkI}</div>
       <div class="md-val ${miss?'miss':''}" ${miss?'':`style="color:${col}"`}>${miss?'미입력':dispKpiV(mk,mk.actual)}</div>
-      <div class="md-sub">목표 ${dispKpiV(mk,mk.target)}${lowTxt}</div>
+      <div class="md-sub">목표 ${tgDisp}${lowTxt}</div>
       <div class="md-bar"><div class="md-fill" style="width:${ratio==null?0:Math.min(Math.max(ratio,0),1)*100}%;background:${miss?'#dfe3e0':col}"></div></div>
       <div class="md-prow"><b style="color:${miss?'var(--cap)':col}">${miss?'실적 미입력':'목표 도달률 '+(ratio*100).toFixed(0)+'%'}</b></div>
     </div>
     <div class="md-side">
       <div class="md-s"><div class="md-sl">실적</div><div class="md-sv ${miss?'miss':''}" ${miss?'':`style="color:${col}"`}>${miss?'미입력':dispKpiV(mk,mk.actual)}</div></div>
-      <div class="md-s"><div class="md-sl">목표</div><div class="md-sv">${dispKpiV(mk,mk.target)}</div></div>
+      <div class="md-s"><div class="md-sl">목표</div><div class="md-sv">${tgDisp}</div></div>
       <div class="md-s"><div class="md-sl">상태</div><div class="md-sv">${sigPill(st)}</div></div>
     </div>
   </div>`;
@@ -1543,12 +1553,28 @@ function divMetricDetail(d){
 /* 관련 KPI — 2개씩 정렬 · 도달률 · 미입력 색 */
 function kpiCard2(k){
   const s=signal(k),col=stateColor(s),miss=k.actual==null;
+  if(k.subs){
+    const rows=k.subs.map(nm=>`<div class="ksub"><span class="ksub-nm">${nm}</span><div class="ksub-bar"><div style="width:0%"></div></div><span class="ksub-v muted">미입력</span></div>`).join("");
+    return `<div class="kc2 miss">
+      <div class="kc2-top"><span class="kc2-nm">${k.name}</span><span class="kc2-mp">미입력</span></div>
+      ${k.def?`<div class="kc2-df">${k.def}</div>`:''}
+      <div class="kc2-row"><span class="muted">지사별 실적</span><span class="kc2-tg">목표 ${dispKpiV(k,k.target)}</span></div>
+      <div class="ksubs">${rows}</div>
+    </div>`;
+  }
+  if(k.st==="task"){
+    return `<div class="kc2 ${miss?'miss':''}">
+      <div class="kc2-top"><span class="kc2-nm">${k.name}</span><span class="kc2-mp">추진 과제</span></div>
+      ${k.def?`<div class="kc2-df">${k.def}</div>`:''}
+      <div class="kc2-foot"><span class="muted">분기 마일스톤 기준 추진</span></div>
+    </div>`;
+  }
   const ratio=miss?null:(k.st==="higher"?(k.target?k.actual/k.target:0):k.st==="lower"?(k.actual?k.target/k.actual:1):(k.target?k.actual/k.target:0));
   const fill=ratio==null?0:Math.min(Math.max(ratio,0),1)*100;
   return `<div class="kc2 ${miss?'miss':''}">
     <div class="kc2-top"><span class="kc2-nm">${k.name}</span>${miss?'<span class="kc2-mp">미입력</span>':sigPill(s)}</div>
-    <div class="kc2-df">${k.def}</div>
-    <div class="kc2-row"><span>실적 <b style="color:${miss?'var(--cap)':col}">${miss?'—':dispKpiV(k,k.actual)}</b></span><span class="kc2-tg">목표 ${dispKpiV(k,k.target)}</span></div>
+    ${k.def?`<div class="kc2-df">${k.def}</div>`:''}
+    <div class="kc2-row"><span>실적 <b style="color:${miss?'var(--cap)':col}">${miss?'—':dispKpiV(k,k.actual)}</b></span><span class="kc2-tg">목표 ${k.target==null?'—':dispKpiV(k,k.target)}</span></div>
     <div class="kc2-bar"><div style="width:${fill}%;background:${miss?'#dfe3e0':col}"></div></div>
     <div class="kc2-foot">${miss?'<span class="muted">실적 미입력</span>':'목표 도달률 <b style="color:'+col+'">'+(ratio*100).toFixed(0)+'%</b>'}</div>
   </div>`;
@@ -1573,7 +1599,7 @@ function renderDiv(){
   </div>`;
   if(showTeams) h+=`<div class="sec"><span class="bar"></span><h2>팀별 핵심/특임 과제</h2></div>${taskCards}`;
   h+=`<div class="sec"><span class="bar"></span><h2>핵심 지표 상세</h2><span class="s">— 이 본부에서 가장 중요한 지표</span></div>${divMetricDetail(d)}`;
-  if(showKpi) h+=`<div class="sec"><span class="bar"></span><h2>관련 KPI</h2><span class="s">— 실적은 검증값만, 미확정은 미입력</span></div><div id="kpiList" class="kpi2col"></div>`;
+  if(showKpi) h+=`<div class="sec"><span class="bar"></span><h2>관련 KPI</h2></div><div id="kpiList" class="kpi2col"></div>`;
   const myDepts=(HCMAP[curDiv]||[]).map(n=>DIVHR.find(x=>x.name===n)).filter(Boolean);
   if(myDepts.length){
     const wide=myDepts.length===1;
@@ -1613,10 +1639,10 @@ const MILE=[
 ];
 function zIdx(z,v){let i=z.findIndex(x=>v>=x.lo&&v<x.hi);return i<0?(v<z[0].lo?0:z.length-1):i;}
 function zPos(z,v){const seg=100/z.length,i=zIdx(z,v),zz=z[i];let f=(isFinite(zz.hi)&&zz.hi>zz.lo)?Math.min(Math.max((v-zz.lo)/(zz.hi-zz.lo),0),1):0.5;return (i+f)*seg;}
-function zoneBarLine(z,v,label,target){
+function zoneBarLine(z,v,label,target,tLabel){
   const segs=z.map(x=>`<span style="flex:1;background:${x.c}"></span>`).join("");
   const pos=Math.max(2,Math.min(zPos(z,v),98));
-  const tmark=(target!=null)?`<div class="zbar2-tg" style="left:${Math.max(2,Math.min(zPos(z,target),98)).toFixed(1)}%"><span class="zbar2-tgl">목표</span></div>`:'';
+  const tmark=(target!=null)?`<div class="zbar2-tg" style="left:${Math.max(2,Math.min(zPos(z,target),98)).toFixed(1)}%"><span class="zbar2-tgl">${tLabel||'목표'}</span></div>`:'';
   return `<div class="zbar2"><div class="zbar2-segs">${segs}</div>${tmark}<div class="zbar2-pt" style="left:${pos.toFixed(1)}%"><span class="zbar2-pin"></span>${label?`<span class="zbar2-lab">${label}</span>`:''}</div></div>`;
 }
 function zoneLegend(z,v){const cur=zIdx(z,v);return `<div class="zlegend">`+z.map((x,i)=>`<span class="zl"><span class="zld" style="background:${x.c}"></span>${x.l} · ${x.rng}${i===cur?' <b class="zlcur">← 현재</b>':''}</span>`).join("")+`</div>`;}
@@ -1670,7 +1696,7 @@ function hcBigCard(o){
   return `<div class="hcbig">
     <div class="hcb-head"><div><h3>${o.title}</h3><div class="hcb-en">${o.en}</div></div><span class="hcb-pill">${cur.l}</span></div>
     <div class="hcb-val">${o.disp}<small>${o.unit}</small></div>
-    ${zoneBarLine(o.zones,o.value,'현재 '+o.disp,o.target)}
+    ${zoneBarLine(o.zones,o.value,'현재 '+o.disp,o.target,'목표 '+o.tDisp)}
     <div class="hcb-tgline">목표 <b>${o.tDisp}</b> · 현재 <b>${o.disp}</b></div>
     ${trend}
     <div class="hcb-note">전월 대비: 인원 ${o.dPeople} · 인건비 ${o.dLabor}</div>
