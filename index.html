@@ -264,19 +264,25 @@ svg.ic{display:block}
 .claim-legend{display:flex;gap:14px;font-size:12.5px;color:var(--cap);margin-top:8px;flex-wrap:wrap;align-items:center}
 .claim2{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;align-items:stretch}
 .claim-gauge-panel{display:flex;flex-direction:column}
+.claim-one{padding-bottom:6px}
+.claim-inner{display:grid;grid-template-columns:1.3fr 1fr;gap:8px 26px;padding:16px 20px 4px;align-items:center}
+.claim-left{min-width:0}
+.claim-right{min-width:0;border-left:1px solid var(--border);padding-left:24px}
+.claim-one .claim-note{margin:4px 20px 14px}
+.claim-one .cg{padding:4px 0}
 .cg{padding:24px 26px}
 .cg-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .cg-t{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.01em}
 .cg-pill{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;font-size:13px;font-weight:800;color:var(--warn-ink);background:var(--warn-soft,#fcf1d9);border-radius:999px;padding:6px 13px} .cg-pill svg{width:12px;height:12px;stroke:var(--warn-ink);fill:none;stroke-width:2.4}
 .cg-mid{display:flex;align-items:baseline;gap:16px;margin:18px 0 26px;flex-wrap:wrap}
-.cg-v{font-size:54px;font-weight:800;color:var(--warn-ink);letter-spacing:-.04em;line-height:.92} .cg-v small{font-size:22px;font-weight:800;margin-left:2px}
-.cg-diff{font-size:18px;font-weight:800;color:var(--warn-ink)}
+.cg-v{font-size:54px;font-weight:800;color:var(--warn);letter-spacing:-.04em;line-height:.92} .cg-v small{font-size:22px;font-weight:800;margin-left:2px}
+.cg-diff{font-size:18px;font-weight:800;color:var(--warn)}
 .cg-bar{position:relative;height:18px;border-radius:9px;background:var(--emerald-soft);margin-top:8px}
-.cg-tg{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px solid var(--emerald-press)}
-.cg-tgl{position:relative;transform:translateX(-50%);margin-top:9px;display:inline-block;font-size:12px;font-weight:800;color:var(--emerald-press);white-space:nowrap}
+.cg-tg{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px solid var(--warn)}
+.cg-tgl{position:relative;transform:translateX(-50%);margin-top:9px;display:inline-block;font-size:12px;font-weight:800;color:var(--warn);white-space:nowrap}
 .cg-now{position:absolute;top:50%;transform:translate(-50%,-50%)}
-.cg-dot{display:block;width:20px;height:20px;border-radius:50%;background:var(--warn-ink);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
-.cg-nowl{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:var(--warn-ink);color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:8px;white-space:nowrap}
+.cg-dot{display:block;width:20px;height:20px;border-radius:50%;background:var(--warn);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.cg-nowl{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:var(--warn);color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:8px;white-space:nowrap}
 .cg-scale{display:flex;justify-content:space-between;margin-top:6px;font-size:12px;color:var(--cap);font-weight:600}
 .claim-legend .k{display:inline-flex;align-items:center;gap:5px}
 .claim-legend .sw{width:12px;height:12px;border-radius:3px;display:inline-block}
@@ -336,6 +342,10 @@ svg.ic{display:block}
 .goalitem{background:#fff;border:1px solid var(--border);border-radius:11px;padding:11px 14px;font-size:14px}
 .goalitem b{display:block;font-size:14.5px;margin-bottom:2px;color:var(--text)} .goalitem span{color:var(--body)}
 .teamgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.teamgrid-full{grid-template-columns:1fr}
+.htype{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.mcycle{font-size:12.5px;font-weight:700;color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border);border-radius:7px;padding:4px 11px}
+.stat-base{font-size:10.5px;font-weight:700;color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border);border-radius:5px;padding:1px 6px;margin-left:4px;vertical-align:middle}
 .team-goal{font-size:13px;color:var(--body);line-height:1.55;font-weight:500;margin:4px 0 10px;padding-bottom:10px;border-bottom:1px solid var(--surf2)}
 .tk-status{display:flex;align-items:center;gap:8px;margin:6px 0 4px 24px} .tk-st{font-size:12.5px;font-weight:700;color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border);border-radius:7px;padding:3px 10px}
 .team{background:#fff;border:1px solid var(--border);border-radius:12px;padding:13px 15px}
@@ -826,6 +836,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
   .statgrid{grid-template-columns:1fr 1fr} .hcbigrow,.execrow{grid-template-columns:1fr}
   .skpis{grid-template-columns:1fr 1fr} .scomp{grid-template-columns:1fr;gap:24px} .saq2grid{grid-template-columns:1fr} .saq2{padding:20px 18px}
   .claim2{grid-template-columns:1fr}
+  .claim-inner{grid-template-columns:1fr} .claim-right{border-left:none;padding-left:0;border-top:1px solid var(--border);padding-top:14px;margin-top:6px}
   .pfx-row1,.pfx-row2,.pfx-row3{grid-template-columns:1fr} .pfx-alert{flex-wrap:wrap} .pfx-alert-v{text-align:left}
   .deptgrid{grid-template-columns:1fr 1fr}
   .kstat-cols{grid-template-columns:1fr}
@@ -1019,24 +1030,31 @@ function buildWF(p){
 }
 let wfPeriod="cum";
 let divFilter="all";
-let planAiText="베이스라인 구축을 통해 조직 내 저항 요소 식별을 목표로 합니다. 성과피드백 제도 도입 초기의 변화 피로도를 고려하여, 변화수용도 진단은 하반기에 시행합니다.";
+let divAiText={
+  sm1:"공급가·수수료 실행율을 누계로 관리해 수익성 선행 지표로 활용 중입니다. 실데이터 연동 시 실행율 추이를 함께 모니터링하겠습니다.",
+  sm2:"공간 컨설팅 기반 직영 영업 프로세스 정착과 고수익 포트폴리오 전환으로 직영 성공율 20% 달성을 목표로 합니다.",
+  prod:"클레임 비용율이 목표(0.63%)를 다소 상회하고 있어, 원인 규명·재발 방지로 사후 손실 비용 절감이 우선 과제입니다.",
+  rnd:"체결부품 표준화(200종 운영 · 93종 단종)와 매출 기여형 신제품 3종 출시로 원가 절감과 제품 경쟁력을 함께 추진합니다.",
+  ops:"재료비율이 목표(40%)를 상회하고 있어, 라인·아이템별 매입원가 분석과 공용화로 원가 구조 개선이 필요합니다.",
+  plan:"베이스라인 구축을 통해 조직 내 저항 요소 식별을 목표로 합니다. 성과피드백 제도 도입 초기의 변화 피로도를 고려하여, 변화수용도 진단은 하반기에 시행합니다."
+};
 
 /* 본부 */
 const DIVS=[
-  {id:"sm1",name:"세일즈마케팅1본부",icon:"sm1",type:"sales",revCum:16504,revTarget:44276,revM:3613,coreGoal:"대리점 공급가 실행율 98% 달성",goal2026:"공급가와 수수료 통제로 수익을 제대로 남기겠습니다.",
+  {id:"sm1",name:"세일즈마케팅1본부",icon:"sm1",type:"sales",mcycle:"월별(누계) 측정",revCum:16504,revTarget:44276,revM:3613,coreGoal:"대리점 공급가 실행율 98% 달성",goal2026:"공급가와 수수료 통제로 수익을 제대로 남기겠습니다.",
    node:{lag:"대리점채널 공헌이익·수수료율",lead:"대리점 공급가 실행율",act:"공급가 재협상·계약구조 개편"}},
-  {id:"sm2",name:"세일즈마케팅2본부",icon:"sm2",type:"sales",revCum:9216,revTarget:28226,revM:1618,coreGoal:"직영 중심 수익 창출",goal2026:"고객을 잘 아는 컨설팅 프로세스로 직영 중심 수익을 창출하겠습니다.",
+  {id:"sm2",name:"세일즈마케팅2본부",icon:"sm2",type:"sales",mcycle:"월별 측정",revCum:9216,revTarget:28226,revM:1618,coreGoal:"직영 중심 수익 창출",goal2026:"고객을 잘 아는 컨설팅 프로세스로 직영 중심 수익을 창출하겠습니다.",
    node:{lag:"직영 영업이익·수주성공률",lead:"제안→수주 성공률",act:"파이프라인 점검·제안 품질 리뷰"}},
-  {id:"prod",name:"생산본부",icon:"factory",type:"cost",revCum:null,revTarget:null,coreGoal:"클레임 비용율 0.63% 이하 달성",goal2026:"낭비와 불량을 제거하여 수익을 남기는 생산을 만들겠습니다.",
+  {id:"prod",name:"생산본부",icon:"factory",type:"cost",mcycle:"월별 측정",revCum:null,revTarget:null,coreGoal:"클레임 비용율 0.63% 이하 달성",goal2026:"낭비와 불량을 제거하여 수익을 남기는 생산을 만들겠습니다.",
    cardKpi:{name:"클레임 비용율",target:0.0063,actual:0.0079,unit:"%",st:"lower"},
    node:{lag:"클레임 비용율·생산능률",lead:"N차불량 0·예방제안",act:"재발방지 과제 등록·공정 낭비 제거"}},
-  {id:"rnd",name:"제품연구소",icon:"chip",type:"cost",revCum:null,revTarget:null,coreGoal:"부품 표준화 93종 단종 달성",goal2026:"부품·공정 표준화로 수익성을, 친환경 솔루션으로 제품 경쟁력을 개선하겠습니다.",
+  {id:"rnd",name:"제품연구소",icon:"chip",type:"cost",mcycle:"분기 측정",revCum:null,revTarget:null,coreGoal:"부품 표준화 93종 단종 달성",goal2026:"부품·공정 표준화로 수익성을, 친환경 솔루션으로 제품 경쟁력을 개선하겠습니다.",
    cardKpi:{name:"부품 표준화 달성률",target:93,actual:null,unit:"종",st:"higher",tnote:"200종 운영 (93종 단종)"},
    node:{lag:"부품 단종·부적합설계",lead:"단종 진척·부적합 건수",act:"단종 후보 재선정·설계검토 게이트 강화"}},
-  {id:"ops",name:"운영지원본부",icon:"ops",type:"cost",revCum:null,revTarget:null,coreGoal:"재료비율 40% 달성",goal2026:"원가 구조를 혁신하여 '만들수록 남는 구조'로 비용을 절감하겠습니다.",
+  {id:"ops",name:"운영지원본부",icon:"ops",type:"cost",mcycle:"월별 측정",revCum:null,revTarget:null,coreGoal:"재료비율 40% 달성",goal2026:"원가 구조를 혁신하여 '만들수록 남는 구조'로 비용을 절감하겠습니다.",
    cardKpi:{name:"재료비율",target:0.40,actual:0.4484,unit:"%",st:"lower"},
    node:{lag:"재료비율·현금흐름 정확도",lead:"매입율·예측-실제 편차",act:"단가협상·BOM 표준화·자금 스케줄 점검"}},
-  {id:"plan",name:"운영기획실",icon:"plan",type:"ops",revCum:null,revTarget:null,coreGoal:"HCROI 1.28 달성 · 컴플라이언스 체계 구축",goal2026:"흑자 경영 마인드를 이식하여 인당 생산성을 높이겠습니다.",
+  {id:"plan",name:"운영기획실",icon:"plan",type:"ops",mcycle:"분기 측정",revCum:null,revTarget:null,coreGoal:"HCROI 1.28 달성 · 컴플라이언스 체계 구축",goal2026:"흑자 경영 마인드를 이식하여 인당 생산성을 높이겠습니다.",
    cardKpi:{name:"HCROI",target:1.28,actual:null,unit:"배",st:"higher"},
    node:{lag:"변화수용도·컴플라이언스",lead:"통제 구축률·인당 생산성",act:"통제항목 완료·성과체계 정착"}}
 ];
@@ -1059,33 +1077,73 @@ const KPIS=[
 /* 본부 상단 카드 핵심/특임 (사용자 지정) */
 const BCHIPS={
  sm1:[{tag:"핵심",name:"대리점 공급가 실행율 관리"},{tag:"핵심",name:"영업조달관리 매뉴얼 구축"}],
- sm2:[{tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축"},{tag:"핵심",name:"이익율 증대"}],
- prod:[{tag:"특임",name:"클레임 비용율 개선"},{tag:"특임",name:"클레임비용율 통제"}],
- ops:[{tag:"특임",name:"재료비 관리"}],
- rnd:[{tag:"특임",name:"부품 표준화 달성률"}],
- plan:[{tag:"핵심",name:"전사 컴플라이언스 통제 체계 구축"}]
+ sm2:[{tag:"핵심",name:"RE-BORN 제품 판매증대"},{tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축"}],
+ prod:[{tag:"특임",name:"가공/조립 생산능률 개선"},{tag:"특임",name:"클레임 비용율"},{tag:"핵심",name:"부적합 원인 규명 및 재발 방지"},{tag:"핵심",name:"자재 발주 시스템 최적화"}],
+ ops:[{tag:"특임",name:"재료비 관리"},{tag:"핵심",name:"불량률 관리"},{tag:"핵심",name:"BOM 데이터 자산화 및 운영 체계 표준화"},{tag:"핵심",name:"전산 시스템 고도화"},{tag:"핵심",name:"현금흐름 예측 정확도"}],
+ rnd:[{tag:"특임",name:"부품 표준화 달성률"},{tag:"핵심",name:"신제품 및 신소재 개발"},{tag:"핵심",name:"우수제품 특허출원"},{tag:"핵심",name:"부적합 설계 예방"}],
+ plan:[{tag:"특임",name:"구성원 변화 수용도 향상"},{tag:"핵심",name:"경영신호등 운영 정착"},{tag:"핵심",name:"인사제도 개선안 전사 정착"},{tag:"핵심",name:"전사 지식 자산화"}]
 };
 /* 팀별 핵심/특임 — 본부 KPI 페이지 팀 카드 (사용자 지정) */
 const TEAMS={
- sm1:[{team:"세일즈마케팅실",kpis:[{tag:"핵심",name:"대리점 공급가 실행율 관리",disp:"목표 98%"},{tag:"핵심",name:"영업조달관리 매뉴얼 구축",disp:"분기 마일스톤"}]}],
+ sm1:[{team:"세일즈마케팅실",goal:"숫자로 증명하고 수익으로 기여하겠습니다 · 대리점공급가 실행율 98% 달성",kpis:[
+   {tag:"핵심",name:"대리점 공급가 실행율 관리",disp:"월별/누계 관리, 수익율 선행 지표 운영"},
+   {tag:"핵심",name:"영업조달관리 매뉴얼 구축",disp:"영업사원의 조달 담당자화, AI 모델 활용 지식 공유"}]}],
  sm2:[
-   {team:"대전충청지사",kpis:[{tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축",disp:"제안 채택률 제고"},{tag:"핵심",name:"이익율 증대",disp:"고수익 포트폴리오"}]},
-   {team:"대구경북지사",kpis:[{tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축",disp:"제안 채택률 제고"},{tag:"핵심",name:"이익율 증대",disp:"고수익 포트폴리오"}]},
-   {team:"광주호남지사",kpis:[{tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축",disp:"제안 채택률 제고"},{tag:"핵심",name:"이익율 증대",disp:"고수익 포트폴리오"}]},
-   {team:"부산경남지사",kpis:[{tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축",disp:"제안 채택률 제고"},{tag:"핵심",name:"이익율 증대",disp:"고수익 포트폴리오"}]}],
+   {team:"대전충청지사",goal:"솔루션 세일즈 정착으로 영업 체질을 혁신하고, 직영 성공율 20%를 달성하겠습니다.",kpis:[
+     {tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축",disp:"공간 효율성 분석 리포트 제공, 제안서 채택률 제고"},
+     {tag:"핵심",name:"이익율 증대",disp:"고수익 품목 중심의 포트폴리오 재편"}]},
+   {team:"대구경북지사",goal:"솔루션 세일즈 정착으로 영업 체질을 혁신하고, 직영 성공율 20%를 달성하겠습니다.",kpis:[
+     {tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축",disp:"공간 효율성 분석 리포트 제공, 제안서 채택률 제고"},
+     {tag:"핵심",name:"이익율 증대",disp:"고수익 품목 중심의 포트폴리오 재편"}]},
+   {team:"광주호남지사",goal:"솔루션 세일즈 정착으로 영업 체질을 혁신하고, 직영 성공율 20%를 달성하겠습니다.",kpis:[
+     {tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축",disp:"공간 효율성 분석 리포트 제공, 제안서 채택률 제고"},
+     {tag:"핵심",name:"이익율 증대",disp:"고수익 품목 중심의 포트폴리오 재편"}]},
+   {team:"부산경남지사",goal:"솔루션 세일즈 정착으로 영업 체질을 혁신하고, 직영 성공율 20%를 달성하겠습니다.",kpis:[
+     {tag:"핵심",name:"공간 컨설팅 기반 직영 영업 프로세스 구축",disp:"공간 효율성 분석 리포트 제공, 제안서 채택률 제고"},
+     {tag:"핵심",name:"이익율 증대",disp:"고수익 품목 중심의 포트폴리오 재편"}]}],
  prod:[
-   {team:"생산팀",kpis:[{tag:"특임",name:"가공/조립 생산능률 개선",disp:"가공20%·조립5% 개선"}]},
-   {team:"생산관리팀",kpis:[{tag:"특임",name:"생산능률 개선",disp:"산출량 극대화"}]},
-   {team:"공장관리팀",kpis:[{tag:"핵심",name:"자원운영시스템 최적화",disp:"폐기물비용률 절감"}]},
-   {team:"자재팀",kpis:[{tag:"핵심",name:"자재발주 시스템 최적화",disp:"발주누락 예방·투입율 100%"}]}],
+   {team:"생산팀",goal:"생산능률 목표 달성(가공 74.7%, 조립 103.5%)으로 공정 낭비를 제거하고 수익성을 높이겠습니다.",kpis:[
+     {tag:"특임",name:"가공/조립 생산능률 개선",disp:"생산능률 가공 20%, 조립 5% 개선"},
+     {tag:"특임",name:"클레임 비용율 개선",disp:"원인 규명 및 재발방지 교육을 통한 클레임 목표 0 달성"}]},
+   {team:"생산관리팀",goal:"생산 라인 최적 배치로 산출량 극대화, 생산 쏠림 해소하여 비용 절감하겠습니다.",kpis:[
+     {tag:"특임",name:"생산능률 개선",disp:"동일 시간내 산출량 극대화"},
+     {tag:"특임",name:"클레임비용율 개선",disp:"사후 손실 비용 30% 절감"}]},
+   {team:"공장관리팀",goal:"전년 대비 폐기물 처리 비용률 30%를 감축하여 제조 원가 절감에 기여하겠습니다.",kpis:[
+     {tag:"특임",name:"클레임비용율 개선",disp:"조방 팔레트 관리로 파손 클레임 방지 및 폐기물 감소"},
+     {tag:"핵심",name:"자원운영시스템 최적화",disp:"분리배출 체계화 및 인식 개선으로 폐기물 처리 비용률 절감"}]},
+   {team:"자재팀",goal:"자재 창고회전율 115%를 목표로 생산계획 대비 자재 투입율 100%를 달성하겠습니다.",kpis:[
+     {tag:"핵심",name:"자재발주 시스템 최적화",disp:"ERP 기반 발주 모니터링 고도화로 발주누락·추가운임비 0건"},
+     {tag:"핵심",name:"자재발주 시스템 최적화",disp:"생산계획 D-2 대비 투입율 100%로 불필요한 생산 예방"}]},
+   {team:"제상품팀",goal:"제상품 회전율 145%를 목표로 재고 자산 운영의 효율성을 높이겠습니다.",kpis:[
+     {tag:"특임",name:"생산능률 개선",disp:"적정재고 관리 및 비주력 제품 과잉재고 생산 억제"},
+     {tag:"특임",name:"클레임비용율 개선",disp:"클레임 원인 규명 및 작업표준 반영, 동일 문제 재발 방지"}]},
+   {team:"물류팀",goal:"물류 직접운송비율 1.95%, 전년 대비 10% 개선 및 무결점 배송 체계 확립",kpis:[
+     {tag:"특임",name:"클레임비용율 개선",disp:"출고시 에어캡 활용 등 이동간 파손 방지"},
+     {tag:"핵심",name:"자원운영시스템 최적화",disp:"시공팀 자차상차 활용 및 효율적 배차"}]},
+   {team:"시공팀",goal:"철저한 납기 준수와 무결점 시공으로 고객 만족을 실현하겠습니다.",kpis:[
+     {tag:"특임",name:"클레임비용율 통제",disp:"현장보이스 기반 제품 개선 및 서비스 향상 활동"},
+     {tag:"핵심",name:"발주시스템 최적화",disp:"외주+자사 확충 및 단계별 스킬업"}]}],
  ops:[
-   {team:"정보데이터팀",kpis:[{tag:"핵심",name:"전산시스템 고도화",disp:"원가·수익률 개선"},{tag:"핵심",name:"BOM 데이터 자산화 및 운영 체계 표준화",disp:"—"},{tag:"핵심",name:"불량률 관리",disp:"공정 품질 표준화"}]},
-   {team:"자금관리팀",kpis:[{tag:"핵심",name:"현금흐름 예측 정확도",disp:"목표 95% 이상"}]}],
+   {team:"동반성장운영팀",goal:"매입율 40% 달성과 공급망 리스크 제로화를 통해 원가 구조 개선 및 공급 경쟁력을 확보하겠습니다.",kpis:[
+     {tag:"특임",name:"재료비 관리",disp:"라인별·아이템별 매입원가 정밀 분석, 공용화·업체 다변화로 절감"},
+     {tag:"특임",name:"재료비 관리",disp:"핵심 자재 이원화 및 생산–구매 연계를 통한 납기 대응력 강화"}]},
+   {team:"정보데이터팀",goal:"수익성 분석 체계 구축으로 저효율 제품을 정비하고 수익 최적화를 달성하겠습니다.",kpis:[
+     {tag:"핵심",name:"전산시스템 고도화",disp:"출고 데이터 기반 원가 상승 품목 수익률 개선 및 단종 기준 정립"},
+     {tag:"핵심",name:"BOM 데이터 자산화 및 운영 체계 표준화",disp:"직무 교육을 통한 업무 공백 제로화와 적정 재고 관리 프로그램 개발"},
+     {tag:"핵심",name:"불량률 관리",disp:"단계별 공정 정밀 분석과 반복 학습 데이터로 품질 관리 표준 정립"}]},
+   {team:"자금관리팀",goal:"빈틈없는 현금흐름 예측으로 유동성 리스크를 ZERO화 하겠습니다.",kpis:[
+     {tag:"핵심",name:"현금흐름 예측 정확도",disp:"예측현금수지와 실제현금수지 비교분석을 통한 95% 이상 달성"}]}],
  rnd:[
-   {team:"제품개발팀",kpis:[{tag:"핵심",name:"신제품 및 신소재 개발",disp:"신제품 3종 출시"},{tag:"핵심",name:"부적합 설계 예방",disp:"부적합설계 ZERO"}]},
-   {team:"제품디자인팀",kpis:[{tag:"핵심",name:"신제품 개발",disp:"모듈화·맞춤형"},{tag:"핵심",name:"신소재 개발",disp:"친환경 CMF"}]}],
+   {team:"제품개발팀",goal:"매출 기여형 신제품 3종을 출시하고, 설계 부적합 ZERO를 달성하겠습니다.",kpis:[
+     {tag:"특임",name:"부품 표준화 달성률",disp:"체결부품 표준화를 통한 설계 최적화 및 원가 절감 실현"},
+     {tag:"핵심",name:"신제품 및 신소재 개발",disp:"공정 단순화, 우수제품 특허 적용 3건"},
+     {tag:"핵심",name:"부적합 설계 예방",disp:"설계 단계 사전 시뮬레이션 및 피드백 루프 강화"}]},
+   {team:"제품디자인팀",goal:"디자인 우위를 확보하여 매출 기여도를 확대하고, 신소재 개발 제안으로 제품경쟁력을 실현하겠습니다.",kpis:[
+     {tag:"핵심",name:"신제품 개발",disp:"모듈화 기반 사용자 맞춤형, 지속가능성 가시화 제품으로 디자인 경쟁력 확보"},
+     {tag:"핵심",name:"신소재 개발",disp:"친환경 CMF 등 트렌드 추적을 통한 신소재 개발 제안"}]}],
  plan:[
-   {team:"인사·컴플라이언스팀",goal:"인당 생산성 기반의 성과체계를 정착시키고, 전사 리스크를 사전 식별·통제하는 컴플라이언스 체계를 구축하겠습니다.",kpis:[{tag:"핵심",name:"전사 컴플라이언스 통제 체계 구축",disp:"리스크 사전 점검 및 통제 프로세스 정립",status:"핵심 실행 단계",sig:"risk"}]}]
+   {team:"인사·컴플라이언스팀",goal:"인당 생산성 기반의 성과체계를 정착시키고, 전사 리스크를 사전 식별·통제하는 컴플라이언스 체계를 구축하겠습니다.",kpis:[
+     {tag:"핵심",name:"전사 컴플라이언스 통제 체계 구축",disp:"노무·계약·공시 등 주요 리스크 사전 점검 및 통제 프로세스 정립",status:"핵심 실행 단계",sig:"risk"}]}]
 };
 
 const FLOW={
@@ -1220,7 +1278,7 @@ function execMessage(E){
 /* 월별 영업이익 추이 (실제 손익표 · 1~12월, 값 없으면 비움) */
 function opMonthlyChart(){
   const vals=[PNL.op.m1,PNL.op.m2,PNL.op.m3,PNL.op.m4,null,null,null,null,null,null,null,null];
-  const W=560,H=210,pl=8,pr=8,pt=30,pb=26,iw=W-pl-pr,ih=H-pt-pb;
+  const W=560,H=246,pl=8,pr=8,pt=34,pb=48,iw=W-pl-pr,ih=H-pt-pb;
   const present=vals.filter(v=>v!=null);
   const mx=Math.max(...present,0), mn=Math.min(...present,0), span=(mx-mn)||1;
   const yOf=v=>pt+ih*((mx-v)/span);
@@ -1232,10 +1290,10 @@ function opMonthlyChart(){
     if(v!=null){
       const pos=v>=0, yv=yOf(v), top=pos?yv:y0, h=Math.max(Math.abs(yv-y0),2);
       svg+=`<rect x="${x.toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="${pos?'var(--emerald)':'var(--risk)'}"/>`;
-      const ly=pos?top-7:top+h+14;
+      const ly=pos?top-8:top+h+15;
       svg+=`<text x="${(x+bw/2).toFixed(1)}" y="${ly.toFixed(1)}" font-size="12" font-weight="800" fill="${pos?'var(--emerald-press)':'var(--risk-ink)'}" text-anchor="middle">${pos?'+':'−'}${Math.abs(v).toLocaleString()}</text>`;
     }
-    svg+=`<text x="${(x+bw/2).toFixed(1)}" y="${(H-8).toFixed(1)}" font-size="10.5" font-weight="600" fill="#869389" text-anchor="middle">${i+1}</text>`;
+    svg+=`<text x="${(x+bw/2).toFixed(1)}" y="${(H-10).toFixed(1)}" font-size="11" font-weight="600" fill="#869389" text-anchor="middle">${i+1}</text>`;
   });
   return svg+`</svg>`;
 }
@@ -1419,19 +1477,21 @@ function renderCorp(){
   /* 어떻게 벌고 있을까 — 구성안 (데이터 연동 예정, 수치 미표기) */
   h+=`<div class="sec sec-gap"><span class="bar"></span><h2>어떻게 벌고 있을까?</h2><span class="s">— 영업 활동 구성 · 데이터는 추후 연동할 예정입니다</span></div>${salesActivityCards()}`;
 
-  /* 클레임 현황 */
+  /* 클레임 현황 (하나의 카드) */
   h+=`<div class="sec sec-gap"><span class="bar"></span><h2>클레임 비용 현황</h2><span class="s">— 월별 추이 · 비용율 목표 ≤0.63%</span></div>
-    <div class="claim2">
-      <div class="panel"><div class="ph">${ic(ICON.claim,15)} 클레임 건수·비용 추이</div>
-        <div style="padding:14px 18px 6px">${claimChart()}
-          <div class="claim-legend"><span class="k"><span class="sw" style="background:var(--navy)"></span>클레임 건수(건)</span><span class="k"><span class="sw" style="background:var(--risk)"></span>클레임 비용(백만)</span></div></div>
-        <div class="claim-tot">
-          <div class="b"><div class="l">누적 비용 (2~4월)</div><div class="v" style="color:var(--risk-ink)">${fmtM(CLAIM.totalCostM)}</div></div>
-          <div class="b"><div class="l">비용율 목표</div><div class="v" style="font-size:18px;color:var(--warn-ink)">≤0.63%</div></div></div>
+    <div class="panel claim-one">
+      <div class="ph">${ic(ICON.claim,15)} 클레임 건수·비용 추이 · 비용율 현황</div>
+      <div class="claim-inner">
+        <div class="claim-left">${claimChart()}
+          <div class="claim-legend"><span class="k"><span class="sw" style="background:var(--navy)"></span>클레임 건수(건)</span><span class="k"><span class="sw" style="background:var(--risk)"></span>클레임 비용(백만)</span></div>
+          <div class="claim-tot">
+            <div class="b"><div class="l">누적 비용 (2~4월)</div><div class="v" style="color:var(--risk-ink)">${fmtM(CLAIM.totalCostM)}</div></div>
+            <div class="b"><div class="l">비용율 목표</div><div class="v" style="font-size:18px;color:var(--warn)">≤0.63%</div></div>
+          </div>
+        </div>
+        <div class="claim-right">${claimGauge()}</div>
       </div>
-      <div class="panel claim-gauge-panel">${claimGauge()}
-        <div class="claim-note">클레임 비용율 = 누적 클레임 비용 ÷ 출하 금액. 회사 목표는 <b>0.63% 이하</b>이며, 현재 생산본부 실적은 <b style="color:var(--warn-ink)">0.79%</b>로 목표보다 다소 높은 수준입니다.</div>
-      </div>
+      <div class="claim-note">클레임 비용율 = 누적 클레임 비용 ÷ 출하 금액. 회사 목표는 <b style="color:var(--warn)">0.63% 이하</b>이며, 현재 생산본부 실적은 <b style="color:var(--warn)">0.79%</b>로 목표보다 다소 높은 수준입니다.</div>
     </div>`;
 
   /* 신호등 현황 (개수 유지, 멘트 제거) */
@@ -1601,7 +1661,7 @@ function claimChart(){
   /* 비용율 목표 0.63% 기준선 */
   const ty=yK(target);
   svg+=`<line x1="${pl}" y1="${ty.toFixed(1)}" x2="${W-pr}" y2="${ty.toFixed(1)}" stroke="var(--warn)" stroke-width="2" stroke-dasharray="6 4"/>`;
-  svg+=`<text x="${(W-pr).toFixed(1)}" y="${(ty-6).toFixed(1)}" font-size="11" font-weight="800" fill="var(--warn-ink)" text-anchor="end">비용율 목표 0.63%</text>`;
+  svg+=`<text x="${(W-pr).toFixed(1)}" y="${(ty-6).toFixed(1)}" font-size="11" font-weight="800" fill="var(--warn)" text-anchor="end">비용율 목표 0.63%</text>`;
   m.forEach((mm,i)=>{const cx=pl+iw*(i+0.5)/m.length;
     if(cnt[i]!=null){const top=yC(cnt[i]);
       svg+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${(pt+ih-top).toFixed(1)}" rx="3" fill="var(--navy)"/>`;
@@ -1757,6 +1817,12 @@ function aiDiagBlock(d){
   return `<div class="aidiag"><span class="aidiag-lead">✨ AI 진단</span><span class="aidiag-one">${g.one}</span></div>`;
 }
 /* 핵심 지표 상세 — 전사 본부 KPI를 그대로 가져와 구체화 (제일 중요) */
+function aiCmt(d){
+  return `<div class="aicmt">
+    <div class="aicmt-h"><span>✨ AI 코멘트</span><button class="aicmt-btn" id="divAiBtn" data-mode="view">수정</button></div>
+    <div class="aicmt-body" id="divAiBody">${divAiText[d.id]||''}</div>
+  </div>`;
+}
 function divMetricDetail(d){
   const st=divState(d.id);
   if(d.revCum!=null){
@@ -1774,7 +1840,7 @@ function divMetricDetail(d){
         <div class="md-s"><div class="md-sl">연간 목표 대비</div><div class="md-sv" style="color:${col}">${pct(ach)}</div></div>
         <div class="md-s"><div class="md-sl">상태</div><div class="md-sv">${sigPill(st)}</div></div>
       </div>
-    </div>`;
+    </div>${aiCmt(d)}`;
   }
   let mk=d.cardKpi;
   if(d.id==='plan'){
@@ -1791,11 +1857,7 @@ function divMetricDetail(d){
         <div class="md-s"><div class="md-sl">현황</div><div class="md-sv miss">—</div></div>
         <div class="md-s"><div class="md-sl">시그널</div><div class="md-sv">${sigPill('risk')}</div></div>
       </div>
-    </div>
-    <div class="aicmt">
-      <div class="aicmt-h"><span>✨ AI 코멘트</span><button class="aicmt-btn" id="planAiBtn" data-mode="view">수정</button></div>
-      <div class="aicmt-body" id="planAiBody">${planAiText}</div>
-    </div>`;
+    </div>${aiCmt(d)}`;
   }
   if(!mk) return "";
   const CINFO={
@@ -1822,7 +1884,7 @@ function divMetricDetail(d){
       <div class="md-s"><div class="md-sl">목표</div><div class="md-sv">${tgDisp}</div></div>
       <div class="md-s"><div class="md-sl">상태</div><div class="md-sv">${sigPill(st)}</div></div>
     </div>
-  </div>`;
+  </div>${aiCmt(d)}`;
 }
 /* 관련 KPI — 2개씩 정렬 · 도달률 · 미입력 색 */
 function kpiCard2(k){
@@ -1864,19 +1926,18 @@ function renderDiv(){
   const d=DIVS.find(x=>x.id===curDiv),st=divState(curDiv),t=TYPE[d.type];
   const others=DIVS.map(x=>`<option value="${x.id}" ${x.id===curDiv?'selected':''}>${x.name}</option>`).join("");
   const teams=TEAMS[curDiv]||[];
-  const showTeams=teams.length && ['prod','rnd','ops','plan'].includes(curDiv);
+  const showTeams=teams.length>0;
   const showKpi=true;
-  const taskCards=`<div class="teamgrid">${teams.map(tm=>`<div class="team"><div class="th"><span class="nm">${tm.team}</span></div>${tm.goal?`<div class="team-goal">${tm.goal}</div>`:''}${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div>${(k.status||k.sig)?`<div class="tk-status">${k.status?`<span class="tk-st">${k.status}</span>`:''}${k.sig?sigPill(k.sig):''}</div>`:''}`).join("")}</div>`).join("")}</div>`;
+  const taskCards=`<div class="teamgrid${teams.length<=2?' teamgrid-full':''}">${teams.map(tm=>`<div class="team"><div class="th"><span class="nm">${tm.team}</span></div>${tm.goal?`<div class="team-goal">${tm.goal}</div>`:''}${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div>${(k.status||k.sig)?`<div class="tk-status">${k.status?`<span class="tk-st">${k.status}</span>`:''}${k.sig?sigPill(k.sig):''}</div>`:''}`).join("")}</div>`).join("")}</div>`;
   const typetagStyle=d.type==='sales'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)':d.type==='cost'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
 
   let h=`<div class="ddtop"><div class="crumb"><a id="back1">전사 KPI</a><span class="sepc">›</span><b>${d.name}</b></div>
     <div class="sp"></div><span class="tiny muted">다른 본부</span><select class="ddsel" id="divSel">${others}</select></div>
   <div class="ddhead ddhead-lg">
-    <div class="htype"><span class="typetag" style="${typetagStyle}">${t.label}</span></div>
+    <div class="htype"><span class="typetag" style="${typetagStyle}">${t.label}</span>${d.mcycle?`<span class="mcycle">${d.mcycle}</span>`:''}</div>
     <div class="htop"><span class="dico">${ic(ICON[d.icon],26)}</span><h2>${d.name}</h2> ${sigPill(st)}</div>
     <div class="dgoal"><span class="dgoal-t">2026 목표</span> ${d.goal2026||d.coreGoal}</div>
     <div class="hchips"><div class="hl">핵심/특임 과제</div>${divChips(curDiv)}</div>
-    ${aiDiagBlock(d)}
   </div>`;
   if(showTeams) h+=`<div class="sec"><span class="bar"></span><h2>팀별 핵심/특임 과제</h2></div>${taskCards}`;
   h+=`<div class="sec"><span class="bar"></span><h2>핵심 지표 상세</h2><span class="s">— 이 본부에서 가장 중요한 지표</span></div>${divMetricDetail(d)}`;
@@ -1894,10 +1955,10 @@ function renderDiv(){
     document.getElementById("kpiList").innerHTML=ks.map(kpiCard2).join("")||`<div class="tiny muted">관련 KPI 없음</div>`;
   }
   bindInfos(document.getElementById("view-div"));
-  const aiBtn=document.getElementById("planAiBtn"), aiBody=document.getElementById("planAiBody");
+  const aiBtn=document.getElementById("divAiBtn"), aiBody=document.getElementById("divAiBody");
   if(aiBtn&&aiBody){aiBtn.onclick=()=>{
     if(aiBtn.dataset.mode==="view"){aiBody.contentEditable="true";aiBody.classList.add("editing");aiBody.focus();aiBtn.textContent="저장";aiBtn.dataset.mode="edit";}
-    else{aiBody.contentEditable="false";aiBody.classList.remove("editing");planAiText=aiBody.innerText.trim();aiBtn.textContent="수정";aiBtn.dataset.mode="view";}
+    else{aiBody.contentEditable="false";aiBody.classList.remove("editing");divAiText[curDiv]=aiBody.innerText.trim();aiBtn.textContent="수정";aiBtn.dataset.mode="view";}
   };}
 }
 /* ================= 인적 기여가치 ================= */
@@ -1947,9 +2008,11 @@ function statGrid(){
   const perLaborAnnActual=(807.6*12)/META.headcountNow;            /* 실적 연환산 인당 인건비 */
   const perLaborVsBase=(perLaborAnnActual-HR.perLabor)/HR.perLabor*100;  /* 기준 대비 */
   const arrow=v=>v>=0?'▲':'▼';
+  const curPerProfit=PNL.op.m4/META.headcountNow, prevPerProfit=PNL.op.m3/META.headcountPrev;
+  const perProfitD=curPerProfit-prevPerProfit;
   return `<div class="statgrid">
-    <div class="stat"><div class="sl">인당 매출액</div><div class="sv">${HR.perRevenue.toFixed(1)}<small>백만</small></div><div class="sd ${perRevD>=0?'up':'dn'}">${arrow(perRevD)} ${Math.abs(perRevD).toFixed(1)}% 전월 대비</div></div>
-    <div class="stat"><div class="sl">인당 영업이익</div><div class="sv">${HR.perProfit.toFixed(2)}<small>백만</small></div><div class="sd dn">당월 적자 · 전월 대비 ▼</div></div>
+    <div class="stat"><div class="sl">인당 매출액 <span class="stat-base">누계</span></div><div class="sv">${HR.perRevenue.toFixed(1)}<small>백만</small></div><div class="sd ${perRevD>=0?'up':'dn'}">${arrow(perRevD)} ${Math.abs(perRevD).toFixed(1)}% 전월 대비</div></div>
+    <div class="stat"><div class="sl">인당 영업이익 <span class="stat-base">누계</span></div><div class="sv">${HR.perProfit.toFixed(2)}<small>백만</small></div><div class="sd dn">당월 ${curPerProfit.toFixed(2)}백만/인 · 전월 대비 ${arrow(perProfitD)}${Math.abs(perProfitD).toFixed(2)}</div></div>
     <div class="stat"><div class="sl">현재 인원</div><div class="sv">${META.headcountNow}<small>명</small></div><div class="sd dn">${baseHd>=0?'+':''}${baseHd}명 · 기준(${META.FTE}) 대비</div></div>
     <div class="stat"><div class="sl">인당 인건비</div><div class="sv ${perLaborVsBase>=0?'dn':'up'}">${arrow(perLaborVsBase)} ${Math.abs(perLaborVsBase).toFixed(1)}<small>%</small></div><div class="sd muted">기준 대비 · 금액 비공개</div></div>
     <div class="stat"><div class="sl">전사 공헌이익율</div><div class="sv">${(((PNL.rev.m4-3502)/PNL.rev.m4)*100).toFixed(1)}<small>%</small></div><div class="sd muted">당월 기준</div></div>
