@@ -209,27 +209,45 @@ svg.ic{display:block}
 .row2{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:start}
 .row2-gap{margin-top:46px}
 /* 어떻게 벌고 있을까 구성안 */
-.saqgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.saq{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px 18px 16px}
-.saq-h{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--text)}
-.saq-n{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:var(--emerald);color:#fff;font-size:12px;font-weight:800}
-.saq-sub{margin-left:auto;font-size:12px;color:var(--cap);font-weight:600}
-.saq-tbl{margin-top:12px}
-.saq-tr{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;font-size:13.5px;color:var(--body);padding:6px 0;border-bottom:1px solid var(--surf2)}
-.saq-tr span:nth-child(2),.saq-tr span:nth-child(3){text-align:right;min-width:46px;font-weight:800;color:var(--text)}
-.saq-hd{font-size:11.5px;color:var(--cap);font-weight:700;border-bottom:1px solid var(--border)}
-.saq-hd span{color:var(--cap)!important;font-weight:700!important}
-.saq-sum{border-bottom:none;font-weight:800;color:var(--emerald-press)} .saq-sum span{color:var(--emerald-press)!important}
-.saq-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
-.saq-dot.e{background:var(--emerald)} .saq-dot.g{background:#bcd9c8} .saq-dot.ok{background:var(--ok)} .saq-dot.wn{background:var(--warn)} .saq-dot.gy{background:#c2c6cc}
-.saq-d{color:var(--cap);font-weight:700}
-.saq-mini{font-size:11.5px;color:var(--cap);margin:12px 0 5px;font-weight:700}
-.saq-bar{height:8px;background:var(--surf2);border-radius:5px;overflow:hidden;margin:5px 0}
-.saq-bar span{display:block;height:100%;background:var(--emerald);border-radius:5px} .saq-bar span.ok{background:var(--ok)} .saq-bar span.wn{background:var(--warn)} .saq-bar span.gy{background:#c2c6cc}
-.saq-cap{display:flex;justify-content:space-between;font-size:11.5px;color:var(--cap);font-weight:600}
-.saq-kv{display:flex;justify-content:space-between;align-items:baseline} .saq-k{font-size:13px;color:var(--body);font-weight:600} .saq-rt{font-size:11.5px;color:var(--cap)}
-.saq-big{font-size:26px;font-weight:800;color:var(--text);letter-spacing:-.5px;margin:2px 0} .saq-big small{font-size:13px;color:var(--cap);font-weight:700;margin-left:3px} .saq-tag{font-size:12px;color:var(--emerald-press);font-weight:800;margin-left:10px}
-.saq-tr2{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--body);margin-top:11px} .saq-tr2 b{color:var(--text);font-weight:800;margin-left:3px}
+.skpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}
+.skpi{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px 22px;box-shadow:0 1px 2px rgba(13,31,28,.04)}
+.skpi-l{font-size:14px;color:var(--cap);font-weight:700}
+.skpi-v{font-size:38px;font-weight:800;color:var(--text);letter-spacing:-1px;margin-top:10px} .skpi-v small{font-size:14px;color:var(--cap);font-weight:700;margin-left:5px} .skpi-v.em{color:var(--emerald-press)}
+.skpi-s{margin-top:9px;font-size:13px;color:var(--cap);font-weight:500}
+.saq2{background:#fff;border:1px solid var(--border);border-radius:18px;padding:26px 28px;box-shadow:0 1px 2px rgba(13,31,28,.04)}
+.saq2+.saq2,.skpis+.saq2{margin-top:16px}
+.saq2-h{display:flex;align-items:center;gap:11px}
+.saq2-n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:9px;background:var(--emerald);color:#fff;font-size:14px;font-weight:800;flex:0 0 auto}
+.saq2-h h3{margin:0;font-size:18px;font-weight:800;letter-spacing:-.3px;color:var(--text)}
+.saq2-sub{margin-left:auto;font-size:12.5px;color:var(--cap);font-weight:600}
+.sdot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;vertical-align:middle}
+.sdot.e{background:var(--emerald)} .sdot.g{background:#bcd9c8}
+.scomp{margin-top:22px;display:grid;grid-template-columns:minmax(300px,1fr) 1.3fr;gap:34px;align-items:start}
+.scomp-tbl{display:flex;flex-direction:column}
+.stbl-hd{display:grid;grid-template-columns:1fr 90px 110px;font-size:12.5px;color:var(--cap);font-weight:700;padding-bottom:12px} .stbl-hd span:nth-child(n+2){text-align:right}
+.stbl-r{display:grid;grid-template-columns:1fr 90px 110px;align-items:center;font-size:16px;font-weight:700;color:var(--text);padding:14px 0;border-top:1px solid #eef2f0} .stbl-r span:nth-child(n+2){text-align:right;font-size:21px;font-weight:800;color:var(--text2)}
+.stbl-r.sum{border-top:2px solid var(--border);font-weight:800} .stbl-r.sum span{color:var(--emerald-press)}
+.schart-h{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--cap);font-weight:700;margin-bottom:12px}
+.schart-lg .sdot{width:9px;height:9px;margin:0 4px 0 0}
+.sbars{display:flex;align-items:flex-end;gap:7px}
+.sbcol{flex:1;display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.sbslot{display:flex;flex-direction:column;justify-content:flex-end}
+.sbghost{height:14px;border:1.5px dashed #d4dedb;border-bottom:none;border-radius:4px 4px 0 0}
+.sbm{text-align:center;font-size:10.5px;font-weight:600;color:#c2cdc9}
+.sbars-sm .sbghost{height:10px}
+.scomp-foot{margin-top:22px;padding-top:18px;border-top:1px solid #eef2f0}
+.scf-h{display:flex;align-items:flex-end;justify-content:space-between;font-size:12.5px;color:var(--cap);font-weight:700;margin-bottom:11px}
+.scf-bar{display:flex;height:16px;border-radius:8px;overflow:hidden;background:#eef2f0} .scf-bar span.e{background:var(--emerald)} .scf-bar span.g{background:#bcd9c8}
+.scf-cap{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;font-weight:600;color:var(--cap)}
+.saq2grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.saq2-fill{display:flex;flex-direction:column}
+.sctr{margin-top:22px;display:flex;flex-direction:column;gap:30px;flex:1;justify-content:space-around}
+.sct-kv{display:flex;align-items:baseline;justify-content:space-between;font-size:14px;font-weight:700;color:var(--text2)} .sct-kv .muted{font-size:12.5px;color:var(--cap);font-weight:600}
+.sct-big{font-size:34px;font-weight:800;color:var(--text);letter-spacing:-1px;margin:10px 0 16px} .sct-big small{font-size:14px;color:var(--cap);font-weight:700;margin-left:4px}
+.sbig-list{margin-top:22px;display:flex;flex-direction:column;gap:26px;flex:1;justify-content:space-around}
+.sbig-top{display:flex;align-items:center;gap:12px;margin-bottom:11px;font-size:15.5px;font-weight:700;color:var(--text)} .sbig-top b{margin-left:4px} .sbig-amt{margin-left:auto;font-size:18px;font-weight:800;color:var(--text2)} .sbig-amt small{font-size:12px;color:var(--cap);font-weight:600}
+.sbig-bar{height:12px;border-radius:6px;background:#eef2f0;overflow:hidden} .sbig-bar span{display:block;height:100%;background:var(--emerald);border-radius:6px}
+.sbig-sum{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:2px solid var(--border);font-size:15px;font-weight:800;color:var(--emerald-press)}
 .col{min-width:0}
 .colhead{display:flex;align-items:center;gap:9px;margin:0 2px 11px}
 .colhead .bar{width:4px;height:17px;background:var(--emerald);border-radius:2px}
@@ -270,6 +288,8 @@ svg.ic{display:block}
 .dcard .achv .lb b{font-weight:800}
 .dcard .chips{display:flex;flex-wrap:wrap}
 .dcard .go{margin-top:2px;align-self:flex-start;font-size:13.5px;font-weight:700;color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:9px;padding:6px 13px}
+.go-hr{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:800;color:#fff;background:var(--emerald);border:1px solid var(--emerald-press);border-radius:12px;padding:16px 22px;cursor:pointer;box-shadow:0 2px 6px rgba(30,142,90,.22);transition:.12s}
+.go-hr:hover{background:var(--emerald-press)}
 
 /* 본부 상세 */
 .ddtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
@@ -727,6 +747,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
   .flowchain{grid-template-columns:1fr;gap:10px} .fstage{padding:0}
   .fstage .farrow{right:auto;left:50%;top:auto;bottom:-15px;transform:translateX(-50%) rotate(90deg)}
   .statgrid{grid-template-columns:1fr 1fr} .hcbigrow,.execrow{grid-template-columns:1fr}
+  .skpis{grid-template-columns:1fr 1fr} .scomp{grid-template-columns:1fr;gap:24px} .saq2grid{grid-template-columns:1fr} .saq2{padding:20px 18px}
   .deptgrid{grid-template-columns:1fr 1fr}
   .kstat-cols{grid-template-columns:1fr}
   .topbar .meta{display:none}
@@ -1245,7 +1266,7 @@ function renderCorp(){
   ${hcBigRow()}
   ${annualNote()}
   <div style="margin-top:16px">${shareCapacityCard()}</div>
-  <div style="margin-top:12px"><button class="go" id="goHR" style="border:1px solid var(--border-soft)">인적 기여가치 자세히 보기 →</button></div>`;
+  <div style="margin-top:16px"><button class="go go-hr" id="goHR">인적 기여가치 자세히 보기 →</button></div>`;
 
   /* 경쟁사 벤치마킹 — 분기 기준이라 하단 배치 */
   h+=`<div class="sec sec-gap"><span class="bar"></span><h2>경쟁사 벤치마킹</h2><span class="s">— 분기 1회 갱신</span></div>${benchBlock()}`;
@@ -1291,37 +1312,62 @@ function improveInfo(){
 }
 
 function salesActivityCards(){
-  const D='<span class="saq-d">—</span>';
-  return `<div class="saqgrid">
-    <div class="saq">
-      <div class="saq-h"><span class="saq-n">1</span> 매출 구성 <span class="saq-sub">민수 vs 조달</span></div>
-      <div class="saq-tbl"><div class="saq-tr saq-hd"><span>구분</span><span>월</span><span>누계</span></div>
-        <div class="saq-tr"><span><span class="saq-dot e"></span>민수</span>${D}${D}</div>
-        <div class="saq-tr"><span><span class="saq-dot g"></span>조달</span>${D}${D}</div>
-        <div class="saq-tr saq-sum"><span>합계</span>${D}${D}</div></div>
-      <div class="saq-mini">월 구성비</div><div class="saq-bar"><span style="width:55%"></span></div>
-      <div class="saq-cap"><span>민수 —%</span><span>조달 —%</span></div>
+  const D='—';
+  const months=[1,2,3,4,5,6,7,8,9,10,11,12];
+  const ghost=(h)=>months.map(m=>`<div class="sbcol"><div class="sbslot" style="height:${h}px"><div class="sbghost"></div></div><span class="sbm">${m}</span></div>`).join("");
+  return `
+  <div class="skpis">
+    <div class="skpi"><div class="skpi-l">월 매출</div><div class="skpi-v">${D}<small>백만원</small></div><div class="skpi-s">민수 ${D} · 조달 ${D}</div></div>
+    <div class="skpi"><div class="skpi-l">누계 매출</div><div class="skpi-v">${D}<small>백만원</small></div><div class="skpi-s">민수 ${D} · 조달 ${D}</div></div>
+    <div class="skpi"><div class="skpi-l">월 계약</div><div class="skpi-v">${D}<small>건</small></div><div class="skpi-s">계약 금액 ${D} · 누계 ${D}건</div></div>
+    <div class="skpi"><div class="skpi-l">예상 수주 파이프라인</div><div class="skpi-v em">${D}<small>백만원</small></div><div class="skpi-s">총 ${D}건 · 기대값 ${D}</div></div>
+  </div>
+
+  <div class="saq2">
+    <div class="saq2-h"><span class="saq2-n">1</span><h3>매출 구성</h3><span class="saq2-sub">민수 vs 조달</span></div>
+    <div class="scomp">
+      <div class="scomp-tbl">
+        <div class="stbl-hd"><span>구분</span><span>월</span><span>누계</span></div>
+        <div class="stbl-r"><span><i class="sdot e"></i>민수</span><span>${D}</span><span>${D}</span></div>
+        <div class="stbl-r"><span><i class="sdot g"></i>조달</span><span>${D}</span><span>${D}</span></div>
+        <div class="stbl-r sum"><span>합계</span><span>${D}</span><span>${D}</span></div>
+      </div>
+      <div class="scomp-chart">
+        <div class="schart-h"><span>월별 추이</span><span class="schart-lg"><i class="sdot e"></i>민수&nbsp;&nbsp;<i class="sdot g"></i>조달</span></div>
+        <div class="sbars">${ghost(84)}</div>
+      </div>
     </div>
-    <div class="saq">
-      <div class="saq-h"><span class="saq-n">2</span> 계약 현황 <span class="saq-sub">월 / 누계</span></div>
-      <div class="saq-kv"><span class="saq-k">계약 건수</span><span class="saq-rt">누계 —건</span></div>
-      <div class="saq-big">—<small>건</small><span class="saq-tag">월 비중 —%</span></div><div class="saq-bar"><span style="width:25%"></span></div>
-      <div class="saq-kv" style="margin-top:12px"><span class="saq-k">계약 금액</span><span class="saq-rt">누계 —</span></div>
-      <div class="saq-big">—<small>백만원</small><span class="saq-tag">월 비중 —%</span></div><div class="saq-bar"><span style="width:24%"></span></div>
+    <div class="scomp-foot">
+      <div class="scf-h"><span>누계 구성비</span><span>민수 ${D} · 조달 ${D}</span></div>
+      <div class="scf-bar"><span class="e" style="width:56%"></span><span class="g" style="width:44%"></span></div>
+      <div class="scf-cap"><span>민수 ${D}</span><span>조달 ${D}</span></div>
     </div>
-    <div class="saq">
-      <div class="saq-h"><span class="saq-n">3</span> 대형 계약 현황 <span class="saq-sub">총 —건</span></div>
-      <div class="saq-tr2"><span>1,000백만 이상 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span style="width:18%"></span></div>
-      <div class="saq-tr2"><span>300 ~ 999백만 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span style="width:45%"></span></div>
-      <div class="saq-tr2"><span>100 ~ 299백만 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span style="width:62%"></span></div>
-      <div class="saq-tr saq-sum"><span>합계</span><span class="saq-d">—건 · —</span></div>
+  </div>
+
+  <div class="saq2grid">
+    <div class="saq2 saq2-fill">
+      <div class="saq2-h"><span class="saq2-n">2</span><h3>계약 현황</h3><span class="saq2-sub">월 / 누계</span></div>
+      <div class="sctr">
+        <div class="sct-blk">
+          <div class="sct-kv"><span>계약 건수</span><span class="muted">누계 ${D}건</span></div>
+          <div class="sct-big">${D}<small>건</small></div>
+          <div class="sbars sbars-sm">${ghost(46)}</div>
+        </div>
+        <div class="sct-blk">
+          <div class="sct-kv"><span>계약 금액</span><span class="muted">누계 ${D}</span></div>
+          <div class="sct-big">${D}<small>백만원</small></div>
+          <div class="sbars sbars-sm">${ghost(46)}</div>
+        </div>
+      </div>
     </div>
-    <div class="saq">
-      <div class="saq-h"><span class="saq-n">4</span> 예상 수주 활동 <span class="saq-sub">—건 · —</span></div>
-      <div class="saq-tr2"><span><span class="saq-dot ok"></span>수주 임박 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span class="ok" style="width:15%"></span></div>
-      <div class="saq-tr2"><span><span class="saq-dot wn"></span>협상 진행 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span class="wn" style="width:40%"></span></div>
-      <div class="saq-tr2"><span><span class="saq-dot gy"></span>초기 검토 <b>—건</b></span><span class="saq-d">— 백만</span></div><div class="saq-bar"><span class="gy" style="width:55%"></span></div>
-      <div class="saq-tr saq-sum"><span>합계</span><span class="saq-d">—건 · —</span></div>
+    <div class="saq2 saq2-fill">
+      <div class="saq2-h"><span class="saq2-n">3</span><h3>대형 계약 현황</h3><span class="saq2-sub">1억 이상 · 연 누계</span></div>
+      <div class="sbig-list">
+        <div class="sbig-r"><div class="sbig-top"><span>1,000백만 이상 <b>${D}건</b></span><span class="sbig-amt">${D} <small>백만</small></span></div><div class="sbig-bar"><span style="width:26%"></span></div></div>
+        <div class="sbig-r"><div class="sbig-top"><span>300 ~ 999백만 <b>${D}건</b></span><span class="sbig-amt">${D} <small>백만</small></span></div><div class="sbig-bar"><span style="width:50%"></span></div></div>
+        <div class="sbig-r"><div class="sbig-top"><span>100 ~ 299백만 <b>${D}건</b></span><span class="sbig-amt">${D} <small>백만</small></span></div><div class="sbig-bar"><span style="width:64%"></span></div></div>
+        <div class="sbig-sum"><span>합계</span><span>${D}건 · ${D}</span></div>
+      </div>
     </div>
   </div>`;
 }
@@ -1603,7 +1649,7 @@ function renderDiv(){
   const myDepts=(HCMAP[curDiv]||[]).map(n=>DIVHR.find(x=>x.name===n)).filter(Boolean);
   if(myDepts.length){
     const wide=myDepts.length===1;
-    h+=`<div class="sec"><span class="bar"></span><h2>부서 인적 기여가치</h2><span class="s">— 우리 본부 부서 기준 (인적 기여가치 페이지와 동일)</span></div><div class="${wide?'deptwide':'deptgrid'}">${myDepts.map(dd=>deptCardHTML(dd,!wide)).join("")}</div>`;
+    h+=`<div class="sec"><span class="bar"></span><h2>부서 인적 기여가치</h2></div><div class="${wide?'deptwide':'deptgrid'}">${myDepts.map(dd=>deptCardHTML(dd,!wide)).join("")}</div>`;
   }
   document.getElementById("view-div").innerHTML=h;
   document.getElementById("back1").onclick=goHome;
