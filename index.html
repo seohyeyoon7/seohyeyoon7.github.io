@@ -242,7 +242,8 @@ svg.ic{display:block}
 .scf-h{display:flex;align-items:flex-end;justify-content:space-between;font-size:12.5px;color:var(--cap);font-weight:700;margin-bottom:11px}
 .scf-bar{display:flex;height:16px;border-radius:8px;overflow:hidden;background:#eef2f0} .scf-bar span.e{background:var(--emerald)} .scf-bar span.g{background:#bcd9c8}
 .scf-cap{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;font-weight:600;color:var(--cap)}
-.saq2grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.saq2grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;align-items:stretch}
+.saq2grid>.saq2{height:100%}
 .saq2-fill{display:flex;flex-direction:column}
 .sctr{margin-top:22px;display:flex;flex-direction:column;gap:30px;flex:1;justify-content:space-around}
 .sct-kv{display:flex;align-items:baseline;justify-content:space-between;font-size:14px;font-weight:700;color:var(--text2)} .sct-kv .muted{font-size:12.5px;color:var(--cap);font-weight:600}
@@ -1253,7 +1254,7 @@ function renderSidebar(active){
     <button class="sb-item ${active==='corp'?'active':''}" data-nav="corp" data-tip="전사 KPI">${ic(ICON.corp,17)}<span class="lbl">전사 KPI</span></button>
     <div class="sb-grp">본부 KPI</div>`;
   ["sales","cost","ops"].forEach(tp=>DIVS.filter(d=>d.type===tp).forEach(d=>{const col=stateColor(divState(d.id));
-    h+=`<button class="sb-item sb-noicon ${active==='div'&&curDiv===d.id?'active':''}" data-divnav="${d.id}" data-tip="${d.name}"><span class="lbl">${d.name}</span><span class="dotsig" style="background:${col}"></span></button>`;}));
+    h+=`<button class="sb-item ${active==='div'&&curDiv===d.id?'active':''}" data-divnav="${d.id}" data-tip="${d.name}">${ic(ICON[d.icon],17)}<span class="lbl">${d.name}</span><span class="dotsig" style="background:${col}"></span></button>`;}));
   h+=`<div class="sb-grp">경영진 전용</div>
     <button class="sb-item ${active==='hr'?'active':''}" data-nav="hr" data-tip="인적 기여가치">${ic(ICON.people,17)}<span class="lbl">인적 기여가치</span></button>`;
   document.getElementById("sbNav").innerHTML=h;
@@ -2035,7 +2036,7 @@ function renderDiv(){
   const teams=TEAMS[curDiv]||[];
   const showTeams=teams.length>0;
   const showKpi=true;
-  const taskCards=`<div class="teamgrid">${teams.map(tm=>`<div class="team"><div class="th"><span class="nm">${tm.team}</span></div>${tm.goal?`<div class="team-goal">${tm.goal}</div>`:''}${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div><div class="tk-status"><span class="tk-stx"><span class="tk-stl">현황</span> ${k.status||'진행 중'}</span>${sigPill(k.sig||'risk')}</div>`).join("")}</div>`).join("")}</div>`;
+  const taskCards=`<div class="teamgrid">${teams.map(tm=>`<div class="team"><div class="th"><span class="nm">${tm.team}</span></div>${tm.goal?`<div class="team-goal">${tm.goal}</div>`:''}${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div><div class="tk-status"><span class="tk-stx"><span class="tk-stl">현황</span> ${k.status||'핵심 실행 단계'}</span>${sigPill(k.sig||'risk')}</div>`).join("")}</div>`).join("")}</div>`;
   const typetagStyle=d.type==='sales'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)':d.type==='cost'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
 
   let h=`<div class="ddtop"><div class="crumb"><a id="back1">전사 KPI</a><span class="sepc">›</span><b>${d.name}</b></div>
