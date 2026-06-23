@@ -211,6 +211,7 @@ svg.ic{display:block}
 .row2{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:start}
 .row2-gap{margin-top:46px}
 /* 어떻게 벌고 있을까 구성안 */
+.saq-demo{font-size:12.5px;color:var(--warn-ink);background:var(--warn-soft,#fcf1d9);border:1px solid #f0dcae;border-radius:10px;padding:9px 14px;margin-bottom:14px;font-weight:600} .saq-demo b{font-weight:800}
 .skpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}
 .skpi{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px 22px;box-shadow:0 1px 2px rgba(13,31,28,.04)}
 .skpi-l{font-size:14px;color:var(--cap);font-weight:700}
@@ -265,7 +266,7 @@ svg.ic{display:block}
 .claim2{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;align-items:stretch}
 .claim-gauge-panel{display:flex;flex-direction:column}
 .claim-one{padding-bottom:6px}
-.claim-inner{display:grid;grid-template-columns:1.3fr 1fr;gap:8px 26px;padding:16px 20px 4px;align-items:center}
+.claim-inner{display:grid;grid-template-columns:1fr 1.3fr;gap:8px 26px;padding:16px 20px 4px;align-items:center}
 .claim-left{min-width:0}
 .claim-right{min-width:0;border-left:1px solid var(--border);padding-left:24px}
 .claim-one .claim-note{margin:4px 20px 14px}
@@ -278,8 +279,8 @@ svg.ic{display:block}
 .cg-v{font-size:54px;font-weight:800;color:var(--warn);letter-spacing:-.04em;line-height:.92} .cg-v small{font-size:22px;font-weight:800;margin-left:2px}
 .cg-diff{font-size:18px;font-weight:800;color:var(--warn)}
 .cg-bar{position:relative;height:18px;border-radius:9px;background:var(--emerald-soft);margin-top:8px}
-.cg-tg{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px solid var(--warn)}
-.cg-tgl{position:relative;transform:translateX(-50%);margin-top:9px;display:inline-block;font-size:12px;font-weight:800;color:var(--warn);white-space:nowrap}
+.cg-tg{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px solid #1a1a1a}
+.cg-tgl{position:relative;transform:translateX(-50%);margin-top:9px;display:inline-block;font-size:12px;font-weight:800;color:#1a1a1a;white-space:nowrap}
 .cg-now{position:absolute;top:50%;transform:translate(-50%,-50%)}
 .cg-dot{display:block;width:20px;height:20px;border-radius:50%;background:var(--warn);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
 .cg-nowl{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:var(--warn);color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:8px;white-space:nowrap}
@@ -347,7 +348,7 @@ svg.ic{display:block}
 .mcycle{font-size:12.5px;font-weight:700;color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border);border-radius:7px;padding:4px 11px}
 .stat-base{font-size:10.5px;font-weight:700;color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border);border-radius:5px;padding:1px 6px;margin-left:4px;vertical-align:middle}
 .team-goal{font-size:13px;color:var(--body);line-height:1.55;font-weight:500;margin:4px 0 10px;padding-bottom:10px;border-bottom:1px solid var(--surf2)}
-.tk-status{display:flex;align-items:center;gap:8px;margin:6px 0 4px 24px} .tk-st{font-size:12.5px;font-weight:700;color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border);border-radius:7px;padding:3px 10px}
+.tk-status{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:7px 0 12px 24px;padding-bottom:11px;border-bottom:1px solid var(--surf2)} .tk:last-of-type+.tk-status{border-bottom:none;padding-bottom:0;margin-bottom:0} .tk-stx{font-size:13px;font-weight:700;color:var(--text2)} .tk-stl{color:var(--cap);font-weight:600;margin-right:3px}
 .team{background:#fff;border:1px solid var(--border);border-radius:12px;padding:13px 15px}
 .team .th .nm{font-size:14.5px;font-weight:700;color:var(--text)} .team .th{margin-bottom:6px}
 .tk{display:flex;align-items:baseline;gap:6px;padding:5px 0;border-top:1px solid var(--border);font-size:13.5px;flex-wrap:wrap}
@@ -638,7 +639,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .pfx{display:flex;flex-direction:column;gap:16px}
 .pfx-row1{display:grid;grid-template-columns:300px 1fr;gap:16px}
 .pfx-op,.pfx-road,.pfx-m,.pfx-card{background:#fff;border:1px solid var(--card-bd,#e6ebe9);border-radius:16px;box-shadow:0 1px 3px rgba(20,40,35,.05)}
-.pfx-op{padding:24px 26px;display:flex;flex-direction:column;gap:12px}
+.pfx-op{padding:24px 26px;display:flex;flex-direction:column;gap:12px;justify-content:center}
 .pfx-op-h{font-size:14px;font-weight:700;color:var(--sub,#5c665f)}
 .pfx-op-v{font-size:54px;font-weight:800;letter-spacing:-.04em;line-height:.92;color:var(--emerald-press)} .pfx-op-v small{font-size:20px;font-weight:800;margin-left:3px;color:var(--emerald-press)}
 .pfx-op-s{font-size:13.5px;color:var(--sub,#5c665f);font-weight:600} .pfx-op-s b{color:var(--text)}
@@ -1096,8 +1097,8 @@ const KPIS=[
 
 /* 본부 상단 카드 핵심/특임 (사용자 지정) */
 const BCHIPS={
- sm1:[],
- sm2:[],
+ sm1:[{tag:"핵심",name:"대리점공급가 실행율 관리"},{tag:"핵심",name:"온라인/영업조달관리 업무 매뉴얼 구축"}],
+ sm2:[{tag:"핵심",name:"RE-BORN(산불피해목) 제품 판매증대"},{tag:"핵심",name:"공간 컨설팅 기반의 직영 영업 프로세스 구축 및 내재화"}],
  prod:[{tag:"특임",name:"가공/조립 생산능률",cyc:"월별"},{tag:"특임",name:"클레임비용율",cyc:"월별"}],
  ops:[{tag:"특임",name:"재료비 관리",cyc:"월별"}],
  rnd:[{tag:"특임",name:"부품 표준화 달성률",cyc:"분기"}],
@@ -1225,7 +1226,7 @@ function signal(k){ if(k.target==null||k.actual==null)return "none";
 const SIGW={risk:3,warn:2,ok:1,none:0},SIGLAB={ok:"목표 초과",warn:"목표 도달",risk:"목표 도달 전",none:"미입력"};
 const fmtM=v=>v==null?"—":(v<0?"−":"")+Math.abs(v).toLocaleString(undefined,{maximumFractionDigits:0})+"백만";
 const pct=(v,d)=>v==null?"—":(v*100).toFixed(d==null?1:d)+"%";
-function dispKpiV(k,v){ if(v==null)return "—"; if(k.unit==="%")return (v*100).toFixed(v<0.1?2:1)+"%"; return v.toLocaleString()+(k.unit==="배"?"배":k.unit); }
+function dispKpiV(k,v){ if(v==null)return "0"; if(k.unit==="%")return (v*100).toFixed(v<0.1?2:1)+"%"; return v.toLocaleString()+(k.unit==="배"?"배":k.unit); }
 function sigInline(s){return `<span class="sig ${s}"><span class="dot"></span>${SIGLAB[s]}</span>`;}
 function sigPill(s){return `<span class="sig pill ${s}"><span class="dot"></span>${SIGLAB[s]}</span>`;}
 function tagBadge(t){return t==="핵심"?'<span class="tagb core">핵심</span>':(t==="특임"?'<span class="tagb spec">특임</span>':'');}
@@ -1252,7 +1253,7 @@ function renderSidebar(active){
     <button class="sb-item ${active==='corp'?'active':''}" data-nav="corp" data-tip="전사 KPI">${ic(ICON.corp,17)}<span class="lbl">전사 KPI</span></button>
     <div class="sb-grp">본부 KPI</div>`;
   ["sales","cost","ops"].forEach(tp=>DIVS.filter(d=>d.type===tp).forEach(d=>{const col=stateColor(divState(d.id));
-    h+=`<button class="sb-item ${active==='div'&&curDiv===d.id?'active':''}" data-divnav="${d.id}" data-tip="${d.name}">${ic(ICON[d.icon],17)}<span class="lbl">${d.name}</span><span class="dotsig" style="background:${col}"></span></button>`;}));
+    h+=`<button class="sb-item sb-noicon ${active==='div'&&curDiv===d.id?'active':''}" data-divnav="${d.id}" data-tip="${d.name}"><span class="lbl">${d.name}</span><span class="dotsig" style="background:${col}"></span></button>`;}));
   h+=`<div class="sb-grp">경영진 전용</div>
     <button class="sb-item ${active==='hr'?'active':''}" data-nav="hr" data-tip="인적 기여가치">${ic(ICON.people,17)}<span class="lbl">인적 기여가치</span></button>`;
   document.getElementById("sbNav").innerHTML=h;
@@ -1495,21 +1496,19 @@ function renderCorp(){
   <div class="lpan"><div class="sum"><div class="l">개선 가능 추정치</div><div class="v" id="lossSum">—</div></div><div class="lst" id="lossList"></div></div>`;
 
   /* 어떻게 벌고 있을까 — 구성안 (데이터 연동 예정, 수치 미표기) */
-  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>어떻게 벌고 있을까?</h2><span class="s">— 영업 활동 구성 · 데이터는 추후 연동할 예정입니다</span></div>${salesActivityCards()}`;
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>어떻게 벌고 있을까?</h2><span class="s">— 영업 활동 구성 (예시 데이터)</span></div>${salesActivityCards()}`;
 
   /* 클레임 현황 (하나의 카드) */
-  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>클레임 비용 현황</h2><span class="s">— 월별 추이 · 비용율 목표 ≤0.63%</span></div>
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>클레임 비용 현황</h2></div>
     <div class="panel claim-one">
-      <div class="ph">${ic(ICON.claim,15)} 클레임 건수·비용 추이 · 비용율 현황</div>
       <div class="claim-inner">
-        <div class="claim-left">${claimChart()}
+        <div class="claim-left">${claimGauge()}</div>
+        <div class="claim-right">${claimChart()}
           <div class="claim-legend"><span class="k"><span class="sw" style="background:var(--navy)"></span>클레임 건수(건)</span><span class="k"><span class="sw" style="background:var(--risk)"></span>클레임 비용(백만)</span></div>
           <div class="claim-tot">
             <div class="b"><div class="l">누적 비용 (2~4월)</div><div class="v" style="color:var(--risk-ink)">${fmtM(CLAIM.totalCostM)}</div></div>
-            <div class="b"><div class="l">비용율 목표</div><div class="v" style="font-size:18px;color:var(--warn)">≤0.63%</div></div>
           </div>
         </div>
-        <div class="claim-right">${claimGauge()}</div>
       </div>
       <div class="claim-note">클레임 비용율 = 누적 클레임 비용 ÷ 출하 금액. 회사 목표는 <b style="color:var(--warn)">0.63% 이하</b>이며, 현재 생산본부 실적은 <b style="color:var(--warn)">0.79%</b>로 목표보다 다소 높은 수준입니다.</div>
     </div>`;
@@ -1561,7 +1560,7 @@ function renderKstat(){
       <div class="kcol-list">${list}</div>
     </div>`;
   };
-  document.getElementById("kstatBox").innerHTML=`<div class="kstat"><div class="kstat-cols">${col('ok','정상')}${col('warn','주의')}${col('risk','위험')}</div></div>`;
+  document.getElementById("kstatBox").innerHTML=`<div class="kstat"><div class="kstat-cols">${col('ok','목표 초과')}${col('warn','목표 도달')}${col('risk','목표 도달 전')}</div></div>`;
   document.querySelectorAll('[data-gokpi]').forEach(b=>b.onclick=()=>openDiv(b.dataset.gokpi));
 }
 
@@ -1575,15 +1574,28 @@ function improveInfo(){
 }
 
 function salesActivityCards(){
-  const D='—';
   const months=[1,2,3,4,5,6,7,8,9,10,11,12];
-  const ghost=(h)=>months.map(m=>`<div class="sbcol"><div class="sbslot" style="height:${h}px"><div class="sbghost"></div></div><span class="sbm">${m}</span></div>`).join("");
+  /* ▼ 예시(가상) 데이터 — 이 섹션 한정. 실제 연동 전 구성 미리보기용 */
+  const minsu=[420,480,510,460,530,560,590,540,610,580,620,650];
+  const jodal=[180,210,230,200,240,250,260,240,270,260,280,300];
+  const cCnt =[12,15,14,16,18,17,19,16,20,18,21,22];
+  const cAmt =[380,420,400,450,500,480,520,470,540,510,560,600];
+  const sum=a=>a.reduce((x,y)=>x+y,0);
+  const minsuCum=sum(minsu), jodalCum=sum(jodal), revCum=minsuCum+jodalCum;
+  const revM=minsu[11]+jodal[11], cntCum=sum(cCnt), cntM=cCnt[11], amtCum=sum(cAmt), amtM=cAmt[11];
+  const minsuRate=Math.round(minsuCum/revCum*100), jodalRate=100-minsuRate;
+  const stack=(h)=>{const mx=Math.max(...months.map((_,i)=>minsu[i]+jodal[i]));
+    return months.map((m,i)=>{const tot=minsu[i]+jodal[i],th=h*tot/mx,eh=th*minsu[i]/tot,gh=th-eh;
+      return `<div class="sbcol"><div class="sbslot" style="height:${h}px;display:flex;flex-direction:column;justify-content:flex-end"><div style="height:${gh.toFixed(0)}px;background:#bcd9c8;border-radius:3px 3px 0 0"></div><div style="height:${eh.toFixed(0)}px;background:var(--emerald)"></div></div><span class="sbm">${m}</span></div>`;}).join("");};
+  const single=(h,arr,color)=>{const mx=Math.max(...arr);
+    return arr.map((v,i)=>`<div class="sbcol"><div class="sbslot" style="height:${h}px;display:flex;align-items:flex-end"><div style="height:${(h*v/mx).toFixed(0)}px;width:100%;background:${color};border-radius:3px"></div></div><span class="sbm">${months[i]}</span></div>`).join("");};
   return `
+  <div class="saq-demo">※ 아래 ‘어떻게 벌고 있을까’ 카드는 <b>예시(가상) 데이터</b>로 구성만 보여줍니다. 실제 데이터 연동 시 자동 반영됩니다.</div>
   <div class="skpis">
-    <div class="skpi"><div class="skpi-l">월 매출</div><div class="skpi-v">${D}<small>백만원</small></div><div class="skpi-s">민수 ${D} · 조달 ${D}</div></div>
-    <div class="skpi"><div class="skpi-l">누계 매출</div><div class="skpi-v">${D}<small>백만원</small></div><div class="skpi-s">민수 ${D} · 조달 ${D}</div></div>
-    <div class="skpi"><div class="skpi-l">월 계약</div><div class="skpi-v">${D}<small>건</small></div><div class="skpi-s">계약 금액 ${D} · 누계 ${D}건</div></div>
-    <div class="skpi"><div class="skpi-l">예상 수주 파이프라인</div><div class="skpi-v em">${D}<small>백만원</small></div><div class="skpi-s">총 ${D}건 · 기대값 ${D}</div></div>
+    <div class="skpi"><div class="skpi-l">월 매출</div><div class="skpi-v">${revM.toLocaleString()}<small>백만원</small></div><div class="skpi-s">민수 ${minsu[11]} · 조달 ${jodal[11]}</div></div>
+    <div class="skpi"><div class="skpi-l">누계 매출</div><div class="skpi-v">${revCum.toLocaleString()}<small>백만원</small></div><div class="skpi-s">민수 ${minsuCum.toLocaleString()} · 조달 ${jodalCum.toLocaleString()}</div></div>
+    <div class="skpi"><div class="skpi-l">월 계약</div><div class="skpi-v">${cntM}<small>건</small></div><div class="skpi-s">계약 금액 ${amtM} · 누계 ${cntCum}건</div></div>
+    <div class="skpi"><div class="skpi-l">예상 수주 파이프라인</div><div class="skpi-v em">9,500<small>백만원</small></div><div class="skpi-s">총 28건 · 기대값 4,350</div></div>
   </div>
 
   <div class="saq2">
@@ -1591,19 +1603,19 @@ function salesActivityCards(){
     <div class="scomp">
       <div class="scomp-tbl">
         <div class="stbl-hd"><span>구분</span><span>월</span><span>누계</span></div>
-        <div class="stbl-r"><span><i class="sdot e"></i>민수</span><span>${D}</span><span>${D}</span></div>
-        <div class="stbl-r"><span><i class="sdot g"></i>조달</span><span>${D}</span><span>${D}</span></div>
-        <div class="stbl-r sum"><span>합계</span><span>${D}</span><span>${D}</span></div>
+        <div class="stbl-r"><span><i class="sdot e"></i>민수</span><span>${minsu[11]}</span><span>${minsuCum.toLocaleString()}</span></div>
+        <div class="stbl-r"><span><i class="sdot g"></i>조달</span><span>${jodal[11]}</span><span>${jodalCum.toLocaleString()}</span></div>
+        <div class="stbl-r sum"><span>합계</span><span>${revM}</span><span>${revCum.toLocaleString()}</span></div>
       </div>
       <div class="scomp-chart">
         <div class="schart-h"><span>월별 추이</span><span class="schart-lg"><i class="sdot e"></i>민수&nbsp;&nbsp;<i class="sdot g"></i>조달</span></div>
-        <div class="sbars">${ghost(84)}</div>
+        <div class="sbars">${stack(84)}</div>
       </div>
     </div>
     <div class="scomp-foot">
-      <div class="scf-h"><span>누계 구성비</span><span>민수 ${D} · 조달 ${D}</span></div>
-      <div class="scf-bar"><span class="e" style="width:56%"></span><span class="g" style="width:44%"></span></div>
-      <div class="scf-cap"><span>민수 ${D}</span><span>조달 ${D}</span></div>
+      <div class="scf-h"><span>누계 구성비</span><span>민수 ${minsuRate}% · 조달 ${jodalRate}%</span></div>
+      <div class="scf-bar"><span class="e" style="width:${minsuRate}%"></span><span class="g" style="width:${jodalRate}%"></span></div>
+      <div class="scf-cap"><span>민수 ${minsuRate}%</span><span>조달 ${jodalRate}%</span></div>
     </div>
   </div>
 
@@ -1612,24 +1624,24 @@ function salesActivityCards(){
       <div class="saq2-h"><span class="saq2-n">2</span><h3>계약 현황</h3><span class="saq2-sub">월 / 누계</span></div>
       <div class="sctr">
         <div class="sct-blk">
-          <div class="sct-kv"><span>계약 건수</span><span class="muted">누계 ${D}건</span></div>
-          <div class="sct-big">${D}<small>건</small></div>
-          <div class="sbars sbars-sm">${ghost(46)}</div>
+          <div class="sct-kv"><span>계약 건수</span><span class="muted">누계 ${cntCum}건</span></div>
+          <div class="sct-big">${cntM}<small>건</small></div>
+          <div class="sbars sbars-sm">${single(46,cCnt,'var(--navy)')}</div>
         </div>
         <div class="sct-blk">
-          <div class="sct-kv"><span>계약 금액</span><span class="muted">누계 ${D}</span></div>
-          <div class="sct-big">${D}<small>백만원</small></div>
-          <div class="sbars sbars-sm">${ghost(46)}</div>
+          <div class="sct-kv"><span>계약 금액</span><span class="muted">누계 ${amtCum.toLocaleString()}</span></div>
+          <div class="sct-big">${amtM}<small>백만원</small></div>
+          <div class="sbars sbars-sm">${single(46,cAmt,'var(--emerald)')}</div>
         </div>
       </div>
     </div>
     <div class="saq2 saq2-fill">
       <div class="saq2-h"><span class="saq2-n">3</span><h3>대형 계약 현황</h3><span class="saq2-sub">1억 이상 · 연 누계</span></div>
       <div class="sbig-list">
-        <div class="sbig-r"><div class="sbig-top"><span>1,000백만 이상 <b>${D}건</b></span><span class="sbig-amt">${D} <small>백만</small></span></div><div class="sbig-bar"><span style="width:26%"></span></div></div>
-        <div class="sbig-r"><div class="sbig-top"><span>300 ~ 999백만 <b>${D}건</b></span><span class="sbig-amt">${D} <small>백만</small></span></div><div class="sbig-bar"><span style="width:50%"></span></div></div>
-        <div class="sbig-r"><div class="sbig-top"><span>100 ~ 299백만 <b>${D}건</b></span><span class="sbig-amt">${D} <small>백만</small></span></div><div class="sbig-bar"><span style="width:64%"></span></div></div>
-        <div class="sbig-sum"><span>합계</span><span>${D}건 · ${D}</span></div>
+        <div class="sbig-r"><div class="sbig-top"><span>1,000백만 이상 <b>3건</b></span><span class="sbig-amt">4,200 <small>백만</small></span></div><div class="sbig-bar"><span style="width:41%"></span></div></div>
+        <div class="sbig-r"><div class="sbig-top"><span>300 ~ 999백만 <b>8건</b></span><span class="sbig-amt">3,600 <small>백만</small></span></div><div class="sbig-bar"><span style="width:35%"></span></div></div>
+        <div class="sbig-r"><div class="sbig-top"><span>100 ~ 299백만 <b>14건</b></span><span class="sbig-amt">2,500 <small>백만</small></span></div><div class="sbig-bar"><span style="width:24%"></span></div></div>
+        <div class="sbig-sum"><span>합계</span><span>25건 · 10,300</span></div>
       </div>
     </div>
   </div>
@@ -1637,12 +1649,12 @@ function salesActivityCards(){
   <div class="saq2" style="margin-top:16px">
     <div class="saq2-h"><span class="saq2-n">4</span><h3>예상 수주 활동</h3><span class="saq2-sub">파이프라인 단계별</span></div>
     <div class="spipe">
-      <div class="spipe-r"><div class="spipe-top"><span><i class="sdot ok"></i>수주 임박 <b>${D}건</b></span><span class="sbig-amt">${D} <small>백만</small></span></div><div class="sbig-bar"><span class="okb" style="width:20%"></span></div></div>
-      <div class="spipe-r"><div class="spipe-top"><span><i class="sdot wn"></i>협상 진행 <b>${D}건</b></span><span class="sbig-amt">${D} <small>백만</small></span></div><div class="sbig-bar"><span class="wnb" style="width:42%"></span></div></div>
-      <div class="spipe-r"><div class="spipe-top"><span><i class="sdot gy"></i>초기 검토 <b>${D}건</b></span><span class="sbig-amt">${D} <small>백만</small></span></div><div class="sbig-bar"><span class="gyb" style="width:60%"></span></div></div>
-      <div class="sbig-sum"><span>합계</span><span>${D}건 · ${D}</span></div>
+      <div class="spipe-r"><div class="spipe-top"><span><i class="sdot ok"></i>수주 임박 <b>5건</b></span><span class="sbig-amt">1,800 <small>백만</small></span></div><div class="sbig-bar"><span class="okb" style="width:19%"></span></div></div>
+      <div class="spipe-r"><div class="spipe-top"><span><i class="sdot wn"></i>협상 진행 <b>9건</b></span><span class="sbig-amt">3,200 <small>백만</small></span></div><div class="sbig-bar"><span class="wnb" style="width:34%"></span></div></div>
+      <div class="spipe-r"><div class="spipe-top"><span><i class="sdot gy"></i>초기 검토 <b>14건</b></span><span class="sbig-amt">4,500 <small>백만</small></span></div><div class="sbig-bar"><span class="gyb" style="width:47%"></span></div></div>
+      <div class="sbig-sum"><span>합계</span><span>28건 · 9,500</span></div>
     </div>
-    <div class="spipe-note">데이터는 추후 연동할 예정입니다.</div>
+    <div class="spipe-note">※ 예시(가상) 데이터입니다.</div>
   </div>`;
 }
 function benchBlock(){
@@ -1678,10 +1690,6 @@ function claimChart(){
   const yK=v=>pt+ih-(v/maxK*ih);
   let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;max-height:250px">`;
   for(let g=0;g<=2;g++){const gy=pt+ih*g/2;svg+=`<line x1="${pl}" y1="${gy.toFixed(1)}" x2="${W-pr}" y2="${gy.toFixed(1)}" stroke="#eef0f2"/>`;}
-  /* 비용율 목표 0.63% 기준선 */
-  const ty=yK(target);
-  svg+=`<line x1="${pl}" y1="${ty.toFixed(1)}" x2="${W-pr}" y2="${ty.toFixed(1)}" stroke="var(--warn)" stroke-width="2" stroke-dasharray="6 4"/>`;
-  svg+=`<text x="${(W-pr).toFixed(1)}" y="${(ty-6).toFixed(1)}" font-size="11" font-weight="800" fill="var(--warn)" text-anchor="end">비용율 목표 0.63%</text>`;
   m.forEach((mm,i)=>{const cx=pl+iw*(i+0.5)/m.length;
     if(cnt[i]!=null){const top=yC(cnt[i]);
       svg+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${(pt+ih-top).toFixed(1)}" rx="3" fill="var(--navy)"/>`;
@@ -1764,10 +1772,10 @@ function divCard(d){
       <div class="dc-t">목표 ${dispKpiV(ck,ck.target)}</div>
       <div class="dc-sig">${sigPill(st)}</div>
       <div class="dc-bar"><div class="dc-fill" style="width:${ratio==null?0:Math.max(0,Math.min(ratio,1))*100}%;background:${scol}"></div></div>
-      <div class="dc-prow"><b style="color:${scol}">${ratio==null?'실적 미입력':'달성률 '+(ratio*100).toFixed(0)+'%'}</b></div>`;
+      <div class="dc-prow"><b style="color:${scol}">${ratio==null?'실적 0':'달성률 '+(ratio*100).toFixed(0)+'%'}</b></div>`;
   }
   return `<div class="dcard t-${d.type}" data-div="${d.id}">
-    <div class="dc-head"><span class="dico">${ic(ICON[d.icon],19)}</span><span class="dc-nm">${d.name}</span></div>
+    <div class="dc-head"><span class="dc-nm">${d.name}</span></div>
     ${mid}
     <div class="dc-tasks"><div class="dc-th">진행 중 과제</div>${divChips(d.id)}</div>
     ${divCardDept(d.id)}
@@ -1805,7 +1813,7 @@ function aiComment(d,st){
 }
 function gaugeLine(k){
   const s=signal(k),col=stateColor(s);
-  if(k.actual==null) return `<div class="gline muted">실적 — (미입력) · 목표 ${dispKpiV(k,k.target)}</div>`;
+  if(k.actual==null) return `<div class="gline muted">실적 0 · 목표 ${dispKpiV(k,k.target)}</div>`;
   if(k.st==="count") return `<div class="gline">목표 ${k.target}${k.unit} · 실적 <b style="color:${col}">${k.actual}${k.unit}</b></div>`;
   const ratio=k.st==="higher"?(k.target?k.actual/k.target:0):(k.actual?k.target/k.actual:1);
   return `<div class="gline">실적 <b style="color:${col}">${dispKpiV(k,k.actual)}</b> · 목표 ${dispKpiV(k,k.target)} · 달성률 ${(ratio*100).toFixed(0)}%</div>`;
@@ -1878,7 +1886,7 @@ function kdBar(b){
   return `<div class="kdbar">
     <div class="kdbar-top"><span class="kdbar-l">${b.label}</span><span class="kdbar-tg">목표 ${b.target}${b.unit}</span></div>
     <div class="kdbar-track"><div class="kdbar-fill" style="width:${acPos.toFixed(1)}%;background:${miss?'#dfe3e0':col}"></div><div class="kdbar-mk" style="left:${tgPos.toFixed(1)}%"></div></div>
-    <div class="kdbar-foot">${miss?'<span class="muted">실적 미입력</span>':`실적 <b style="color:${col}">${b.actual}${b.unit}</b>`}${b.note?` · ${b.note}`:''}</div>
+    <div class="kdbar-foot">${miss?'<span class="muted">실적 0</span>':`실적 <b style="color:${col}">${b.actual}${b.unit}</b>`}${b.note?` · ${b.note}`:''}</div>
   </div>`;
 }
 /* 추이 차트 (연간) — 측정주기에 따라 월별(1~12) / 분기(1~4) · 실적/계획 · 연간 목표선 (빈 프레임) */
@@ -1932,7 +1940,7 @@ function divMetricDetail(d){
         <div class="md-prow"><b style="color:${col}">${pct(ach)} 달성</b><span class="md-exp">기대 진도 ${(exp*100).toFixed(0)}% (${META.baseMonth}/12) ${info(paceInfo(d))}</span></div>
       </div>
       <div class="md-side">
-        <div class="md-s"><div class="md-sl">당월 (${META.baseMonth}월)</div><div class="md-sv ${d.revM!=null?'':'miss'}">${d.revM!=null?d.revM.toLocaleString()+'<small style="font-size:12px;color:var(--cap);font-weight:700"> 백만</small>':'미입력'}</div></div>
+        <div class="md-s"><div class="md-sl">당월 (${META.baseMonth}월)</div><div class="md-sv ${d.revM!=null?'':'miss'}">${d.revM!=null?d.revM.toLocaleString()+'<small style="font-size:12px;color:var(--cap);font-weight:700"> 백만</small>':'0'}</div></div>
         <div class="md-s"><div class="md-sl">연간 목표 대비</div><div class="md-sv" style="color:${col}">${pct(ach)}</div></div>
         <div class="md-s"><div class="md-sl">상태</div><div class="md-sv">${sigPill(st)}</div></div>
       </div>
@@ -1946,14 +1954,14 @@ function divMetricDetail(d){
     return `<div class="mdetail">
       <div class="md-main">
         <div class="md-lab">구성원 변화 수용도 향상</div>
-        <div class="md-val miss">—</div>
+        <div class="md-val miss">0</div>
         <div class="md-sub">연간 목표 3.0</div>
         <div class="md-bar"><div class="md-fill" style="width:0%;background:#dfe3e0"></div></div>
-        <div class="md-prow"><b style="color:var(--cap)">현황 미입력 · 변화수용도 진단 하반기 시행 예정</b></div>
+        <div class="md-prow"><b style="color:var(--cap)">변화수용도 진단 하반기 시행 예정</b></div>
       </div>
       <div class="md-side">
         <div class="md-s"><div class="md-sl">연간 목표</div><div class="md-sv">3.0</div></div>
-        <div class="md-s"><div class="md-sl">현황</div><div class="md-sv miss">—</div></div>
+        <div class="md-s"><div class="md-sl">현황</div><div class="md-sv miss">0</div></div>
         <div class="md-s"><div class="md-sl">시그널</div><div class="md-sv">${sigPill('risk')}</div></div>
       </div>
     </div>`;
@@ -1973,13 +1981,13 @@ function divMetricDetail(d){
   return `<div class="mdetail">
     <div class="md-main">
       <div class="md-lab">${mk.name} ${mkI}</div>
-      <div class="md-val ${miss?'miss':''}" ${miss?'':`style="color:${col}"`}>${miss?'미입력':dispKpiV(mk,mk.actual)}</div>
+      <div class="md-val ${miss?'miss':''}" ${miss?'':`style="color:${col}"`}>${miss?'0':dispKpiV(mk,mk.actual)}</div>
       <div class="md-sub">목표 ${tgDisp}${lowTxt}</div>
       <div class="md-bar"><div class="md-fill" style="width:${ratio==null?0:Math.min(Math.max(ratio,0),1)*100}%;background:${miss?'#dfe3e0':col}"></div></div>
-      <div class="md-prow"><b style="color:${miss?'var(--cap)':col}">${miss?'실적 미입력':'목표 도달률 '+(ratio*100).toFixed(0)+'%'}</b></div>
+      <div class="md-prow"><b style="color:${miss?'var(--cap)':col}">${miss?'실적 0':'목표 도달률 '+(ratio*100).toFixed(0)+'%'}</b></div>
     </div>
     <div class="md-side">
-      <div class="md-s"><div class="md-sl">실적</div><div class="md-sv ${miss?'miss':''}" ${miss?'':`style="color:${col}"`}>${miss?'미입력':dispKpiV(mk,mk.actual)}</div></div>
+      <div class="md-s"><div class="md-sl">실적</div><div class="md-sv ${miss?'miss':''}" ${miss?'':`style="color:${col}"`}>${miss?'0':dispKpiV(mk,mk.actual)}</div></div>
       <div class="md-s"><div class="md-sl">목표</div><div class="md-sv">${tgDisp}</div></div>
       <div class="md-s"><div class="md-sl">상태</div><div class="md-sv">${sigPill(st)}</div></div>
     </div>
@@ -1996,9 +2004,9 @@ function kpiCard2(k){
     </div>`;
   }
   if(k.subs){
-    const rows=k.subs.map(nm=>`<div class="ksub"><span class="ksub-nm">${nm}</span><div class="ksub-bar"><div style="width:0%"></div></div><span class="ksub-v muted">미입력</span></div>`).join("");
+    const rows=k.subs.map(nm=>`<div class="ksub"><span class="ksub-nm">${nm}</span><div class="ksub-bar"><div style="width:0%"></div></div><span class="ksub-v muted">0</span></div>`).join("");
     return `<div class="kc2 miss">
-      <div class="kc2-top"><span class="kc2-nm">${k.name}</span><span class="kc2-mp">미입력</span></div>
+      <div class="kc2-top"><span class="kc2-nm">${k.name}</span><span class="kc2-mp">0</span></div>
       ${k.def?`<div class="kc2-df">${k.def}</div>`:''}
       <div class="kc2-row"><span class="muted">지사별 실적</span><span class="kc2-tg">목표 ${dispKpiV(k,k.target)}</span></div>
       <div class="ksubs">${rows}</div>
@@ -2014,11 +2022,11 @@ function kpiCard2(k){
   const ratio=miss?null:(k.st==="higher"?(k.target?k.actual/k.target:0):k.st==="lower"?(k.actual?k.target/k.actual:1):(k.target?k.actual/k.target:0));
   const fill=ratio==null?0:Math.min(Math.max(ratio,0),1)*100;
   return `<div class="kc2 ${miss?'miss':''}">
-    <div class="kc2-top"><span class="kc2-nm">${k.name}</span>${miss?'<span class="kc2-mp">미입력</span>':sigPill(s)}</div>
+    <div class="kc2-top"><span class="kc2-nm">${k.name}</span>${miss?sigPill('risk'):sigPill(s)}</div>
     ${k.def?`<div class="kc2-df">${k.def}</div>`:''}
-    <div class="kc2-row"><span>실적 <b style="color:${miss?'var(--cap)':col}">${miss?'—':dispKpiV(k,k.actual)}</b></span><span class="kc2-tg">목표 ${k.target==null?'—':dispKpiV(k,k.target)}</span></div>
+    <div class="kc2-row"><span>실적 <b style="color:${miss?'var(--cap)':col}">${miss?'0':dispKpiV(k,k.actual)}</b></span><span class="kc2-tg">목표 ${k.target==null?'0':dispKpiV(k,k.target)}</span></div>
     <div class="kc2-bar"><div style="width:${fill}%;background:${miss?'#dfe3e0':col}"></div></div>
-    <div class="kc2-foot">${miss?'<span class="muted">실적 미입력</span>':'목표 도달률 <b style="color:'+col+'">'+(ratio*100).toFixed(0)+'%</b>'}</div>
+    <div class="kc2-foot">${miss?'<span class="muted">실적 0</span>':'목표 도달률 <b style="color:'+col+'">'+(ratio*100).toFixed(0)+'%</b>'}</div>
   </div>`;
 }
 function renderDiv(){
@@ -2027,16 +2035,16 @@ function renderDiv(){
   const teams=TEAMS[curDiv]||[];
   const showTeams=teams.length>0;
   const showKpi=true;
-  const taskCards=`<div class="teamgrid${teams.length<=1?' teamgrid-full':''}">${teams.map(tm=>`<div class="team"><div class="th"><span class="nm">${tm.team}</span></div>${tm.goal?`<div class="team-goal">${tm.goal}</div>`:''}${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div>${(k.status||k.sig)?`<div class="tk-status">${k.status?`<span class="tk-st">${k.status}</span>`:''}${k.sig?sigPill(k.sig):''}</div>`:''}`).join("")}</div>`).join("")}</div>`;
+  const taskCards=`<div class="teamgrid">${teams.map(tm=>`<div class="team"><div class="th"><span class="nm">${tm.team}</span></div>${tm.goal?`<div class="team-goal">${tm.goal}</div>`:''}${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div><div class="tk-status"><span class="tk-stx"><span class="tk-stl">현황</span> ${k.status||'진행 중'}</span>${sigPill(k.sig||'risk')}</div>`).join("")}</div>`).join("")}</div>`;
   const typetagStyle=d.type==='sales'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)':d.type==='cost'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
 
   let h=`<div class="ddtop"><div class="crumb"><a id="back1">전사 KPI</a><span class="sepc">›</span><b>${d.name}</b></div>
     <div class="sp"></div><span class="tiny muted">다른 본부</span><select class="ddsel" id="divSel">${others}</select></div>
   <div class="ddhead ddhead-lg">
     <div class="htype"><span class="typetag" style="${typetagStyle}">${t.label}</span>${d.mcycle?`<span class="mcycle">${d.mcycle}</span>`:''}</div>
-    <div class="htop"><span class="dico">${ic(ICON[d.icon],26)}</span><h2>${d.name}</h2> ${sigPill(st)}</div>
+    <div class="htop"><h2>${d.name}</h2> ${sigPill(st)}</div>
     <div class="dgoal"><span class="dgoal-t">2026 목표</span> ${d.goal2026||d.coreGoal}</div>
-    ${(BCHIPS[curDiv]&&BCHIPS[curDiv].length)?`<div class="hchips"><div class="hl">핵심/특임 과제</div>${divChips(curDiv)}</div>`:''}
+    ${(BCHIPS[curDiv]&&BCHIPS[curDiv].length&&curDiv!=='sm1'&&curDiv!=='sm2')?`<div class="hchips"><div class="hl">핵심/특임 과제</div>${divChips(curDiv)}</div>`:''}
     ${aiCmt(d)}
   </div>`;
   h+=`<div class="sec"><span class="bar"></span><h2>핵심 지표 상세</h2><span class="s">— 이 본부에서 가장 중요한 지표</span></div>${divMetricDetail(d)}`;
@@ -2282,7 +2290,7 @@ function deptCardHTML(d,compact,ctx){
   ctx=ctx||'page';
   const head=ctx==='div'
     ? `<div class="dh"><span class="dfte">인원 ${d.fte}명 ${info(deptInfo(d))}</span></div>`
-    : `<div class="dh"><span class="dn">${d.name}</span><span class="dfte">인원 ${d.fte}명 ${info(deptInfo(d))}</span></div>`;
+    : `<div class="dh"><span class="dfte">인원 ${d.fte}명 ${info(deptInfo(d))}</span></div>`;
   const vsCol=d.vsAvg>=0?'navy':'risk';
   if(d.grp==='sales'){
     if(compact){
