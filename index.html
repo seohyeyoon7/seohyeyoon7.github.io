@@ -350,6 +350,11 @@ svg.ic{display:block}
 .stat-base{font-size:10.5px;font-weight:700;color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border);border-radius:5px;padding:1px 6px;margin-left:4px;vertical-align:middle}
 .team-goal{font-size:13px;color:var(--body);line-height:1.55;font-weight:500;margin:4px 0 10px;padding-bottom:10px;border-bottom:1px solid var(--surf2)}
 .tk-status{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:7px 0 12px 24px;padding-bottom:11px;border-bottom:1px solid var(--surf2)} .tk:last-of-type+.tk-status{border-bottom:none;padding-bottom:0;margin-bottom:0} .tk-stx{font-size:13px;font-weight:700;color:var(--text2)} .tk-stl{color:var(--cap);font-weight:600;margin-right:3px}
+.tk-sigsel{flex-shrink:0;font-family:inherit;font-size:12.5px;font-weight:800;border-radius:999px;padding:5px 26px 5px 13px;cursor:pointer;-webkit-appearance:none;appearance:none;background-repeat:no-repeat;background-position:right 9px center;background-size:9px}
+.tk-sigsel.sg-ok{color:var(--emerald-press);background-color:var(--emerald-soft);border:1px solid var(--border-soft);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23197 74 75' stroke-width='2'/></svg>")}
+.tk-sigsel.sg-ok{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%2319774b' stroke-width='2'/></svg>")}
+.tk-sigsel.sg-warn{color:var(--warn-ink);background-color:var(--warn-soft,#fcf1d9);border:1px solid #f0dcae;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23a4720f' stroke-width='2'/></svg>")}
+.tk-sigsel.sg-risk{color:var(--risk-ink);background-color:var(--risk-soft,#fbe9ea);border:1px solid #f5d2d4;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23c2333c' stroke-width='2'/></svg>")}
 .team{background:#fff;border:1px solid var(--border);border-radius:12px;padding:13px 15px}
 .team .th .nm{font-size:14.5px;font-weight:700;color:var(--text)} .team .th{margin-bottom:6px}
 .tk{display:flex;align-items:baseline;gap:6px;padding:5px 0;border-top:1px solid var(--border);font-size:13.5px;flex-wrap:wrap}
@@ -1100,10 +1105,10 @@ const KPIS=[
 const BCHIPS={
  sm1:[{tag:"핵심",name:"대리점공급가 실행율 관리"},{tag:"핵심",name:"온라인/영업조달관리 업무 매뉴얼 구축"}],
  sm2:[{tag:"핵심",name:"RE-BORN(산불피해목) 제품 판매증대"},{tag:"핵심",name:"공간 컨설팅 기반의 직영 영업 프로세스 구축 및 내재화"}],
- prod:[{tag:"특임",name:"가공/조립 생산능률",cyc:"월별"},{tag:"특임",name:"클레임비용율",cyc:"월별"}],
- ops:[{tag:"특임",name:"재료비 관리",cyc:"월별"}],
- rnd:[{tag:"특임",name:"부품 표준화 달성률",cyc:"분기"}],
- plan:[{tag:"특임",name:"구성원 변화 수용도 향상"}]
+ prod:[{tag:"특임",name:"부적합 원인 규명 및 재발 방지"},{tag:"특임",name:"자재 발주 시스템 최적화"}],
+ ops:[{tag:"특임",name:"불량률 관리"},{tag:"특임",name:"BOM 데이터 자산화 및 운영 체계 표준화"},{tag:"특임",name:"전산 시스템 고도화"}],
+ rnd:[{tag:"특임",name:"신제품 및 신소재 개발"},{tag:"특임",name:"우수제품 특허출원"},{tag:"특임",name:"부적합 설계 예방"}],
+ plan:[{tag:"특임",name:"경영신호등 운영 정착"},{tag:"특임",name:"인사제도 개선안 전사 정착"},{tag:"특임",name:"전사 지식 자산화"}]
 };
 /* 팀별 핵심/특임 — 본부 KPI 페이지 팀 카드 (사용자 지정) */
 const TEAMS={
@@ -1230,6 +1235,11 @@ const pct=(v,d)=>v==null?"—":(v*100).toFixed(d==null?1:d)+"%";
 function dispKpiV(k,v){ if(v==null)return "0"; if(k.unit==="%")return (v*100).toFixed(v<0.1?2:1)+"%"; return v.toLocaleString()+(k.unit==="배"?"배":k.unit); }
 function sigInline(s){return `<span class="sig ${s}"><span class="dot"></span>${SIGLAB[s]}</span>`;}
 function sigPill(s){return `<span class="sig pill ${s}"><span class="dot"></span>${SIGLAB[s]}</span>`;}
+function tkSigSelect(sig){
+  const opts=[['ok','목표 초과'],['warn','목표 도달'],['risk','목표 도달 전']];
+  return `<select class="tk-sigsel sg-${sig}" onchange="tkSigChange(this)">${opts.map(([v,l])=>`<option value="${v}"${v===sig?' selected':''}>${l}</option>`).join("")}</select>`;
+}
+function tkSigChange(sel){ sel.className='tk-sigsel sg-'+sel.value; }
 function tagBadge(t){return t==="핵심"?'<span class="tagb core">핵심</span>':(t==="특임"?'<span class="tagb spec">특임</span>':'');}
 function tagChip(t){return t==="핵심"?'<span class="tg core">핵심</span>':(t==="특임"?'<span class="tg spec">특임</span>':'');}
 function expectedProgress(){return META.baseMonth/12;}
@@ -2036,7 +2046,7 @@ function renderDiv(){
   const teams=TEAMS[curDiv]||[];
   const showTeams=teams.length>0;
   const showKpi=true;
-  const taskCards=`<div class="teamgrid">${teams.map(tm=>`<div class="team"><div class="th"><span class="nm">${tm.team}</span></div>${tm.goal?`<div class="team-goal">${tm.goal}</div>`:''}${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div><div class="tk-status"><span class="tk-stx"><span class="tk-stl">현황</span> ${k.status||'핵심 실행 단계'}</span>${sigPill(k.sig||'risk')}</div>`).join("")}</div>`).join("")}</div>`;
+  const taskCards=`<div class="teamgrid">${teams.map(tm=>`<div class="team"><div class="th"><span class="nm">${tm.team}</span></div>${tm.goal?`<div class="team-goal">${tm.goal}</div>`:''}${tm.kpis.map(k=>`<div class="tk">${tagBadge(k.tag)}<span class="knm">${k.name}</span><span class="kt">· ${k.disp}</span></div><div class="tk-status"><span class="tk-stx"><span class="tk-stl">현황</span> ${k.status||'핵심 실행 단계'}</span>${tkSigSelect(k.sig||'risk')}</div>`).join("")}</div>`).join("")}</div>`;
   const typetagStyle=d.type==='sales'?'color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)':d.type==='cost'?'color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border)':'color:var(--navy2);background:var(--surf2);border:1px solid var(--border)';
 
   let h=`<div class="ddtop"><div class="crumb"><a id="back1">전사 KPI</a><span class="sepc">›</span><b>${d.name}</b></div>
@@ -2045,7 +2055,7 @@ function renderDiv(){
     <div class="htype"><span class="typetag" style="${typetagStyle}">${t.label}</span>${d.mcycle?`<span class="mcycle">${d.mcycle}</span>`:''}</div>
     <div class="htop"><h2>${d.name}</h2> ${sigPill(st)}</div>
     <div class="dgoal"><span class="dgoal-t">2026 목표</span> ${d.goal2026||d.coreGoal}</div>
-    ${(BCHIPS[curDiv]&&BCHIPS[curDiv].length&&curDiv!=='sm1'&&curDiv!=='sm2')?`<div class="hchips"><div class="hl">핵심/특임 과제</div>${divChips(curDiv)}</div>`:''}
+    ${(BCHIPS[curDiv]&&BCHIPS[curDiv].length)?`<div class="hchips"><div class="hl">핵심/특임 과제</div>${divChips(curDiv)}</div>`:''}
     ${aiCmt(d)}
   </div>`;
   h+=`<div class="sec"><span class="bar"></span><h2>핵심 지표 상세</h2><span class="s">— 이 본부에서 가장 중요한 지표</span></div>${divMetricDetail(d)}`;
