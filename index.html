@@ -721,7 +721,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .aicmt-btn{font-size:12.5px;font-weight:700;color:var(--emerald-press);background:#fff;border:1px solid var(--border-soft);border-radius:8px;padding:5px 13px;cursor:pointer}
 .aicmt-btn:hover{background:#f3f9f5}
 .aicmt-body{font-size:14px;line-height:1.65;color:var(--text2);font-weight:500;outline:none}
-.aicmt-body.editing{background:#fff;border:1px solid var(--emerald);border-radius:8px;padding:9px 11px}
+.aicmt-body.editing{background:#fff;border:1px solid var(--emerald);border-radius:8px;padding:9px 11px;-webkit-user-select:text;user-select:text;cursor:text}
 .kc2-text .kc2-top{display:flex;align-items:center;justify-content:space-between}
 .kc2-cyc{font-size:12px;font-weight:700;color:var(--navy);background:var(--navy5);border:1px solid var(--navy-border);border-radius:7px;padding:3px 10px}
 .kc2-trow{display:flex;gap:12px;margin-top:10px;font-size:13.5px;line-height:1.5}
@@ -742,7 +742,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .share-t{font-size:17px;font-weight:800;color:var(--text)}
 .share-sub{font-size:13.5px;color:var(--cap);margin-top:2px}
 .share-now{font-size:16px;color:var(--body);font-weight:600;margin-bottom:8px} .share-now b{font-size:22px;color:var(--emerald-press);font-weight:800;letter-spacing:-.5px} .share-of{font-size:13px;color:var(--cap);font-weight:600;margin-left:6px}
-.share-zone{position:relative;margin:30px 0 30px}
+.share-zone{position:relative;margin:50px 0 30px}
 .share-zsegs{display:flex;height:16px;border-radius:8px;overflow:hidden}
 .share-zsegs span{display:block;flex:1}
 .share-zpt{position:absolute;top:-9px;transform:translateX(-50%)}
@@ -829,6 +829,30 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .pfx-m-bar div.warn{background:var(--warn)}
 .pfx-m-pct.warn{color:var(--warn-ink)}
 .pfx-diag-bar span.warn{background:var(--warn)}
+.srev{display:flex;flex-direction:column;gap:15px;margin-top:4px}
+.srev-r{display:flex;flex-direction:column;gap:6px}
+.srev-h{display:flex;justify-content:space-between;align-items:center}
+.srev-nm{font-weight:800;color:var(--text);font-size:13.5px}
+.srev-ach{font-weight:800;font-size:13px}
+.srev-ach.up{color:var(--ok-ink)} .srev-ach.dn{color:var(--risk-ink)}
+.srev-bar{position:relative;height:15px;background:var(--track);border-radius:8px}
+.srev-bar>span{position:absolute;left:0;top:0;height:100%;border-radius:8px}
+.srev-tg{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--target-line)}
+.srev-kv{display:flex;justify-content:space-between;font-size:12px;color:var(--body)}
+.sct2{display:flex;flex-direction:column;gap:11px}
+.sct2-row{display:flex;align-items:center;gap:10px}
+.sct2-l{width:38px;font-size:12.5px;color:var(--body);font-weight:700}
+.sct2-bar{flex:1;height:16px;background:var(--track);border-radius:8px;overflow:hidden}
+.sct2-bar>span{display:block;height:100%;border-radius:8px}
+.sct2-v{width:56px;text-align:right;font-weight:800;font-size:13px;color:var(--text)}
+.sct2-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:13px;border-top:1px solid var(--border);font-size:13px;color:var(--body)}
+.sct2-foot b{font-size:19px}
+.spj{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.spj-r{display:flex;align-items:center;gap:10px}
+.spj-n{width:128px;font-size:12.5px;color:var(--text);font-weight:600}
+.spj-bar{flex:1;height:14px;background:var(--track);border-radius:7px;overflow:hidden}
+.spj-bar>span{display:block;height:100%;background:var(--emerald);border-radius:7px}
+.spj-v{width:48px;text-align:right;font-weight:800;font-size:12.5px;color:var(--text)}
 </style>
 </head>
 <body>
@@ -949,20 +973,20 @@ function buildWF(p){
 let wfPeriod="cum";
 let divFilter="all";
 let divAiText={
-  sm1:"공급가·수수료 실행율을 누계로 관리해 수익성 선행 지표로 활용 중입니다. 실데이터 연동 시 실행율 추이를 함께 모니터링하겠습니다.",
-  sm2:"공간 컨설팅 기반 직영 영업 프로세스 정착과 고수익 포트폴리오 전환으로 직영 성공율 20% 달성을 목표로 합니다.",
-  prod:"클레임 비용율이 목표(0.63%)를 다소 상회하고 있어, 원인 규명·재발 방지로 사후 손실 비용 절감이 우선 과제입니다.",
-  rnd:"체결부품 표준화(200종 운영 · 93종 단종)와 매출 기여형 신제품 3종 출시로 원가 절감과 제품 경쟁력을 함께 추진합니다.",
-  ops:"재료비율이 목표(40%)를 상회하고 있어, 라인·아이템별 매입원가 분석과 공용화로 원가 구조 개선이 필요합니다.",
-  plan:"베이스라인 구축을 통해 조직 내 저항 요소 식별을 목표로 합니다. 성과피드백 제도 도입 초기의 변화 피로도를 고려하여, 변화수용도 진단은 하반기에 시행합니다.",
+  sm1:"1~5월 누계 매출 20,385백만으로 누계 목표(16,280) 대비 125%·전년비 101%, 누계 이익 881백만(이익율 5.41%)입니다. 세일즈마케팅실은 5월 당월 목표 대비 137%(수주 2,737)를 달성했습니다. 공급가·수수료 실행율 관리로 수익성을 함께 끌어올리고 있습니다.",
+  sm2:"1~5월 누계 매출 10,617백만으로 누계 목표(10,470) 대비 101%이나 누계 이익은 -636백만(이익율 -5.9%)입니다. 5월 지사별 매출은 대구경북 488·부산경남 416·대전충청 255·광주호남 242백만으로, 직영 컨설팅 전환과 고수익 포트폴리오 강화가 과제입니다.",
+  prod:"5월 클레임은 83건·약 19.2백만(전월 53.5건/16.1백만 대비 증가)이며, 공정불량은 가공 567ppm(목표 510)·조립 429ppm(목표 610), 인수검사 불량 0.02% 수준입니다. 재발 방지와 정기 품질회의로 사후 손실 비용 절감이 우선 과제입니다.",
+  rnd:"체결볼트·나사 292종을 점검해 유지 226종·단종 66종을 진행 중이며, 파워빔 시스템가구·신규 데스크 등 신제품 개발과 우수제품 특허(K200라이트 조인트레버 등록완료, 산불피해목·캐비닛 후판 출원중)를 함께 추진합니다.",
+  ops:"5월 삼성생명 서랍 사출자재 NEGO로 65백만(목표 53, 12백만 초과 달성)을 절감했고, 하이닉스 기숙사 등 추가 절감과 외주·이원화로 원가를 낮추고 있습니다. 건설솔루션팀은 5월 매출 4.14백만·이익 1.64백만, 1~5월 누계 매출 385백만·이익 149백만(44.3% 달성)입니다.",
+  plan:"경영신호등 대시보드(매출·영업이익/본부별 KPI/인적기여가치)를 운영하고, HR 대시보드는 5월 성장로그 취합·AI 기반 성장레벨 진단/코멘트를 적용했습니다. 가족친화기업 재인증은 서류심사 통과 후 현장심사(7/21)를 준비 중입니다.",
   finir:"투명한 회계 운영과 적시 손익 보고로 경영 리스크를 사전에 통제합니다. 재무제표 작성·회계감사 수검·성실공시·세무신고·재고검사를 핵심 과제로 운영합니다."
 };
 
 /* 본부 */
 const DIVS=[
-  {id:"sm1",name:"세일즈마케팅1본부",icon:"sm1",type:"sales",mcycle:"월별(누계) 측정",revCum:16504,revTarget:44276,revM:3613,coreGoal:"대리점 공급가 실행율 98% 달성",goal2026:"공급가와 수수료 통제로 수익을 제대로 남기겠습니다.",
+  {id:"sm1",name:"세일즈마케팅1본부",icon:"sm1",type:"sales",mcycle:"월별(누계) 측정",revCum:20385,revTarget:44276,revM:3613,coreGoal:"대리점 공급가 실행율 98% 달성",goal2026:"공급가와 수수료 통제로 수익을 제대로 남기겠습니다.",
    node:{lag:"대리점채널 공헌이익·수수료율",lead:"대리점 공급가 실행율",act:"공급가 재협상·계약구조 개편"}},
-  {id:"sm2",name:"세일즈마케팅2본부",icon:"sm2",type:"sales",mcycle:"월별 측정",revCum:9216,revTarget:28226,revM:1618,coreGoal:"직영 중심 수익 창출",goal2026:"고객을 잘 아는 컨설팅 프로세스로 직영 중심 수익을 창출하겠습니다.",
+  {id:"sm2",name:"세일즈마케팅2본부",icon:"sm2",type:"sales",mcycle:"월별 측정",revCum:10617,revTarget:28226,revM:1618,coreGoal:"직영 중심 수익 창출",goal2026:"고객을 잘 아는 컨설팅 프로세스로 직영 중심 수익을 창출하겠습니다.",
    node:{lag:"직영 영업이익·수주성공률",lead:"제안→수주 성공률",act:"파이프라인 점검·제안 품질 리뷰"}},
   {id:"prod",name:"생산본부",icon:"factory",type:"cost",mcycle:"월별 측정",revCum:null,revTarget:null,coreGoal:"클레임 비용율 0.63% 이하 달성",goal2026:"낭비와 불량을 제거하여 수익을 남기는 생산을 만들겠습니다.",
    cardKpi:{name:"클레임 비용율",target:0.0063,actual:0.0079,unit:"%",st:"lower"},
@@ -1376,7 +1400,7 @@ function renderCorp(){
   h+=`<div class="sec"><span class="bar"></span><h2>지금 가장 이익이 될 개선 과제</h2><span class="s">${info(improveInfo())}</span></div>
   <div class="lpan"><div class="sum"><div class="l">개선 가능 추정치</div><div class="v" id="lossSum">—</div></div><div class="lst" id="lossList"></div></div>`;
 
-  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>어떻게 벌고 있을까?</h2><span class="s">— 영업 활동 구성 (예시 데이터)</span></div>${salesActivityCards()}`;
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>어떻게 벌고 있을까?</h2></div>${salesActivityCards()}`;
 
   h+=`<div class="sec sec-gap"><span class="bar"></span><h2>클레임 비용 현황</h2></div>
     <div class="panel claim-one">
@@ -1435,7 +1459,7 @@ function renderKstat(){
       <div class="kcol-list">${list}</div>
     </div>`;
   };
-  document.getElementById("kstatBox").innerHTML=`<div class="kstat"><div class="kstat-cols">${col('ok','목표 도달')}${col('warn','목표 도달 전')}${col('risk','목표 초과')}</div></div>`;
+  document.getElementById("kstatBox").innerHTML=`<div class="kstat"><div class="kstat-cols">${col('warn','목표 도달 전')}${col('ok','목표 도달')}${col('risk','목표 초과')}</div></div>`;
   document.querySelectorAll('[data-gokpi]').forEach(b=>b.onclick=()=>openDiv(b.dataset.gokpi));
 }
 
@@ -1464,12 +1488,11 @@ function salesActivityCards(){
   const single=(h,arr,color)=>{const mx=Math.max(...arr);
     return arr.map((v,i)=>`<div class="sbcol"><div class="sbslot" style="height:${h}px;display:flex;align-items:flex-end"><div style="height:${(h*v/mx).toFixed(0)}px;width:100%;background:${color};border-radius:3px"></div></div><span class="sbm">${months[i]}</span></div>`).join("");};
   return `
-  <div class="saq-demo">※ 아래 ‘어떻게 벌고 있을까’ 카드는 <b>예시(가상) 데이터</b>로 구성만 보여줍니다. 실제 데이터 연동 시 자동 반영됩니다.</div>
   <div class="skpis">
     <div class="skpi"><div class="skpi-l">월 매출</div><div class="skpi-v">${revM.toLocaleString()}<small>백만원</small></div><div class="skpi-s">민수 ${minsu[11]} · 조달 ${jodal[11]}</div></div>
     <div class="skpi"><div class="skpi-l">누계 매출</div><div class="skpi-v">${revCum.toLocaleString()}<small>백만원</small></div><div class="skpi-s">민수 ${minsuCum.toLocaleString()} · 조달 ${jodalCum.toLocaleString()}</div></div>
     <div class="skpi"><div class="skpi-l">월 계약</div><div class="skpi-v">${cntM}<small>건</small></div><div class="skpi-s">계약 금액 ${amtM} · 누계 ${cntCum}건</div></div>
-    <div class="skpi"><div class="skpi-l">예상 수주 파이프라인</div><div class="skpi-v em">9,500<small>백만원</small></div><div class="skpi-s">총 28건 · 기대값 4,350</div></div>
+    <div class="skpi"><div class="skpi-l">예상 수주 파이프라인</div><div class="skpi-v em">17,000<small>백만원</small></div><div class="skpi-s">총 56건 · 진행 프로젝트</div></div>
   </div>
 
   <div class="saq2">
@@ -1510,12 +1533,12 @@ function salesActivityCards(){
       </div>
     </div>
     <div class="saq2 saq2-fill">
-      <div class="saq2-h"><span class="saq2-n">3</span><h3>대형 계약 현황</h3><span class="saq2-sub">1억 이상 · 연 누계</span></div>
+      <div class="saq2-h"><span class="saq2-n">3</span><h3>대형 계약 현황</h3><span class="saq2-sub">1억 이상 · 진행 파이프라인</span></div>
       <div class="sbig-list">
-        <div class="sbig-r"><div class="sbig-top"><span>1,000백만 이상 <b>3건</b></span><span class="sbig-amt">4,200 <small>백만</small></span></div><div class="sbig-bar"><span style="width:41%"></span></div></div>
-        <div class="sbig-r"><div class="sbig-top"><span>300 ~ 999백만 <b>8건</b></span><span class="sbig-amt">3,600 <small>백만</small></span></div><div class="sbig-bar"><span style="width:35%"></span></div></div>
-        <div class="sbig-r"><div class="sbig-top"><span>100 ~ 299백만 <b>14건</b></span><span class="sbig-amt">2,500 <small>백만</small></span></div><div class="sbig-bar"><span style="width:24%"></span></div></div>
-        <div class="sbig-sum"><span>합계</span><span>25건 · 10,300</span></div>
+        <div class="sbig-r"><div class="sbig-top"><span>1,000백만 이상 <b>3건</b></span><span class="sbig-amt">6,200 <small>백만</small></span></div><div class="sbig-bar"><span style="width:100%"></span></div></div>
+        <div class="sbig-r"><div class="sbig-top"><span>300 ~ 999백만 <b>13건</b></span><span class="sbig-amt">5,850 <small>백만</small></span></div><div class="sbig-bar"><span style="width:94%"></span></div></div>
+        <div class="sbig-r"><div class="sbig-top"><span>100 ~ 299백만 <b>36건</b></span><span class="sbig-amt">4,660 <small>백만</small></span></div><div class="sbig-bar"><span style="width:75%"></span></div></div>
+        <div class="sbig-sum"><span>합계</span><span>52건 · 16,710</span></div>
       </div>
     </div>
   </div>
@@ -1528,9 +1551,9 @@ function salesActivityCards(){
       <div class="spipe-r"><div class="spipe-top"><span><i class="sdot gy"></i>초기 검토 <b>14건</b></span><span class="sbig-amt">4,500 <small>백만</small></span></div><div class="sbig-bar"><span class="gyb" style="width:47%"></span></div></div>
       <div class="sbig-sum"><span>합계</span><span>28건 · 9,500</span></div>
     </div>
-    <div class="spipe-note">※ 예시(가상) 데이터입니다.</div>
   </div>`;
 }
+
 function benchBlock(){
   const rows=BENCH.rows.map(c=>{
     const cw=c.cost, sw=c.sga, ow=c.op>0?c.op:0;
@@ -1707,11 +1730,11 @@ function actionFlow(d){
   </div></div>`;
 }
 const DIAG={
- sm1:{one:"매출 누계 16,504백만으로 연간 목표의 약 37%, 시기상 정상 페이스입니다. 공급가 실행율을 함께 관리하면 같은 매출에서도 남는 이익을 더 키울 수 있습니다."},
- sm2:{one:"매출 누계 9,216백만으로 연간 목표의 약 33% 수준입니다. 직영 전환·수주 성공률 데이터를 입력하면 수익 흐름을 더 정확히 점검할 수 있습니다."},
- prod:{one:"클레임 비용율이 0.79%로 목표(0.63%)보다 다소 높은 구간입니다. 재발 방지로 클레임 비용을 줄이면 이익 개선에 직접 도움이 됩니다."},
+ sm1:{one:"1~5월 누계 매출 20,385백만으로 누계 목표(16,280) 대비 125% 달성, 누계 이익율 5.41%입니다. 공급가·수수료 실행율을 함께 관리하면 같은 매출에서도 남는 이익을 더 키울 수 있습니다."},
+ sm2:{one:"1~5월 누계 매출 10,617백만으로 누계 목표(10,470) 대비 101%이나, 누계 이익율은 -5.9%로 적자 구간입니다. 직영 전환·고수익 포트폴리오 강화로 수익성 개선이 필요합니다."},
+ prod:{one:"5월 클레임 83건·약 19.2백만으로 전월(53.5건/16.1백만) 대비 늘었고, 클레임 비용율도 목표(0.63%)를 상회합니다. 재발 방지로 클레임 비용을 줄이면 이익 개선에 직접 도움이 됩니다."},
  rnd:{one:"체결부품 표준화는 단종 66종 진행으로 상반기 목표(93종)의 약 71% 수준이며, 설계 부적합은 0건을 유지 중입니다. 단종 진척을 높이면 원가 절감 효과가 더 커집니다."},
- ops:{one:"재료비율이 44.8%로 목표(40%)보다 높은 구간입니다. 재료비는 비중이 가장 큰 항목이라, 단가·BOM 관리로 비율을 낮추면 이익 개선 효과가 큽니다."},
+ ops:{one:"재료비율이 44.8%로 목표(40%)보다 높지만, 5월 삼성생명 서랍 자재 65백만 절감(목표 53 초과) 등 원가절감이 진행 중입니다. 단가·BOM 관리로 비율을 더 낮추면 이익 개선 효과가 큽니다."},
  plan:{one:"전사 HCROI가 1.09배로 손익분기는 넘어선 단계입니다. 목표(1.28)까지는 인당 생산성을 조금 더 끌어올리면 도달할 수 있습니다."}
 };
 function aiDiagBlock(d){
@@ -1726,7 +1749,7 @@ function aiCmt(d){
 }
 const BKPI={
   prod:[
-    {name:"클레임 비용율",cyc:"월별",bars:[
+    {name:"클레임 비용율",cyc:"월별",monthly:{label:"월별 클레임 비용 (백만)",vals:[null,null,67.8,16.1,19.2,null,null,null,null,null,null,null]},bars:[
       {label:"클레임 비용율",target:0.63,actual:0.79,unit:"%",lower:true}]}
   ],
   rnd:[
@@ -1758,7 +1781,7 @@ function kdBar(b){
     <div class="kdbar-foot">${miss?'<span class="muted">실적 0</span>':`실적 <b style="color:${col}">${b.actual}${b.unit}</b>`}${b.note?` · ${b.note}`:''}</div>
   </div>`;
 }
-function trendChart(cyc){
+function trendChart(cyc,series){
   const monthly=(cyc==="월별");
   const labels=monthly?["1","2","3","4","5","6","7","8","9","10","11","12"]:["1분기","2분기","3분기","4분기"];
   const n=labels.length;
@@ -1769,6 +1792,22 @@ function trendChart(cyc){
   const ty=pt+ih*0.28;
   let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block">`;
   svg+=`<line x1="${pl}" y1="${(pt+ih).toFixed(1)}" x2="${W-pr}" y2="${(pt+ih).toFixed(1)}" stroke="#dde3e0"/>`;
+  if(series&&series.vals){
+    const vals=series.vals, mx=(Math.max.apply(null,vals.filter(v=>v!=null).concat([0]))||1)*1.28;
+    const bwS=Math.min(grp*0.66,16);
+    labels.forEach((q,i)=>{
+      const gx=pl+i*(grp+gap), bx=gx+(grp-bwS)/2, v=vals[i];
+      if(v!=null){
+        const bh=Math.max(ih*v/mx,2), by=pt+ih-bh;
+        svg+=`<rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bwS.toFixed(1)}" height="${bh.toFixed(1)}" rx="2.5" fill="var(--emerald)"/>`;
+        svg+=`<text x="${(gx+grp/2).toFixed(1)}" y="${(by-3).toFixed(1)}" font-size="8.5" font-weight="800" fill="var(--emerald-press)" text-anchor="middle">${v}</text>`;
+      }else{
+        svg+=`<rect x="${bx.toFixed(1)}" y="${(pt+ih-15).toFixed(1)}" width="${bwS.toFixed(1)}" height="15" rx="2.5" fill="none" stroke="#d4dedb" stroke-width="1.2" stroke-dasharray="3 3"/>`;
+      }
+      svg+=`<text x="${(gx+grp/2).toFixed(1)}" y="${(H-9).toFixed(1)}" font-size="9.5" font-weight="600" fill="#869389" text-anchor="middle">${q}</text>`;
+    });
+    return svg+`</svg>`;
+  }
   svg+=`<line x1="${pl}" y1="${ty.toFixed(1)}" x2="${W-pr}" y2="${ty.toFixed(1)}" stroke="var(--target-line)" stroke-width="1.5" stroke-dasharray="5 4"/>`;
   svg+=`<text x="${(W-pr).toFixed(1)}" y="${(ty-5).toFixed(1)}" font-size="10.5" font-weight="800" fill="var(--emerald-press)" text-anchor="end">연간 목표</text>`;
   labels.forEach((q,i)=>{
@@ -1783,14 +1822,16 @@ function trendChart(cyc){
 }
 function kpiDetailRow(item){
   const sig=itemSig(item);
-  const trendTitle=item.cyc==="월별"?"월별 추이 (연간)":"분기 추이 (연간)";
+  const series=item.monthly;
+  const trendTitle=series?series.label:(item.cyc==="월별"?"월별 추이 (연간)":"분기 추이 (연간)");
+  const leg=series?`<i class="kdl ok"></i>실적`:`<i class="kdl ok"></i>실적 <i class="kdl pl"></i>계획`;
   return `<div class="kdrow">
     <div class="kd-head"><span class="kd-nm">${item.name}</span><span class="kd-cyc">${item.cyc}</span>${sigPill(sig)}</div>
     <div class="kd-body">
       <div class="kd-left">${item.bars.map(kdBar).join("")}</div>
       <div class="kd-right">
-        <div class="kd-rh"><span class="kd-rt">${trendTitle}</span><span class="kd-leg"><i class="kdl ok"></i>실적 <i class="kdl pl"></i>계획</span></div>
-        ${trendChart(item.cyc)}
+        <div class="kd-rh"><span class="kd-rt">${trendTitle}</span><span class="kd-leg">${leg}</span></div>
+        ${trendChart(item.cyc,series)}
       </div>
     </div>
   </div>`;
@@ -2005,7 +2046,7 @@ function shareCapacityCard(){
   return `<div class="sharecard">
     <div class="share-head"><div class="share-t">성과 공유 여력</div><div class="share-sub">회사의 수익성이 높아질수록 구성원과 공유할 수 있는 성과 여력도 함께 커집니다.</div></div>
     <div class="share-zone">
-      <div class="share-zpt" style="left:${pos.toFixed(1)}%"><div style="position:absolute;bottom:11px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--text);color:#fff;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:6px">현재 ${(r*100).toFixed(0)}% · ${zones[zi].l}</div><div class="share-zpin"></div></div>
+      <div class="share-zpt" style="left:${pos.toFixed(1)}%"><div style="position:absolute;bottom:15px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--text);color:#fff;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:6px">현재 ${(r*100).toFixed(0)}% · ${zones[zi].l}</div><div class="share-zpin"></div></div>
       <div class="share-zsegs">${segs}</div>
       <div class="share-zscale">${labels}</div>
     </div>
@@ -2271,7 +2312,7 @@ function tryLogin(){
 
 document.addEventListener("contextmenu",e=>e.preventDefault());
 document.addEventListener("dragstart",e=>e.preventDefault());
-document.addEventListener("selectstart",e=>{const t=e.target;if(t&&t.tagName==="INPUT")return;e.preventDefault();});
+document.addEventListener("selectstart",e=>{const t=e.target;if(t&&(t.tagName==="INPUT"||t.isContentEditable||(t.closest&&t.closest('[contenteditable="true"]'))))return;e.preventDefault();});
 document.addEventListener("copy",e=>e.preventDefault());
 document.addEventListener("cut",e=>e.preventDefault());
 document.addEventListener("keydown",e=>{
