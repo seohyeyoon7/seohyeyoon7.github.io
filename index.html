@@ -7,19 +7,20 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='9.5' y='2' width='13' height='28' rx='6.5' fill='%2326473a'/%3E%3Ccircle cx='16' cy='9' r='3.3' fill='%2316a34a'/%3E%3Ccircle cx='16' cy='16' r='3.3' fill='%23e8a317'/%3E%3Ccircle cx='16' cy='23' r='3.3' fill='%23f04452'/%3E%3C/svg%3E">
 <style>
 :root{
-  --emerald:#1e8e5a; --emerald-press:#19774b; --emerald-soft:#e6f4ec;
-  --forest:#26473a; --forest-line:#1b332a; --lime:#9fd356;
-  --navy:#234876; --navy2:#4a6794; --navy3:#6f86b0; --navy4:#cdd8e8; --navy6:#eef3f8; --navy5:#e8eff7; --navy-border:#dce5f0;
-  --white:#fff; --surf2:#f3f6f4; --surf-hover:#f7faf8; --border:#e4eae6; --border-soft:#d3e7da;
-  --text:#16271f; --text2:#2e3d36; --body:#52635b; --cap:#869389; --ph:#aab4ad;
-  --ok:#16a34a; --ok-ink:#15803d; --ok-soft:rgba(22,163,74,.12);
-  --warn:#e8a317; --warn-ink:#b45309; --warn-soft:rgba(232,163,23,.14);
-  --risk:#f04452; --risk-ink:#dc2626; --risk-soft:rgba(240,68,82,.12);
-  --bg:#f3f6f4; --radius:14px; --maxw:1500px;
+  --emerald:#0E6E6A; --emerald-press:#0A5754; --emerald-soft:#F1F8F5;
+  --forest:#0F3D3A; --forest-line:#0A2C2A; --lime:#5EC9B8;
+  --navy:#3B5BA9; --navy2:#3B5BA9; --navy3:#6f86b0; --navy4:#cdd8e8; --navy6:#eef3f8; --navy5:#EAF0FB; --navy-border:#D6E0F2;
+  --white:#fff; --surf2:#F1F8F5; --surf-hover:#F7FBF9; --border:#E6EBE9; --border-soft:#DCEEE6;
+  --text:#10211E; --text2:#1A2421; --body:#5C665F; --cap:#8B948F; --ph:#9AA4A0;
+  --ok:#12A06A; --ok-ink:#0A7A50; --ok-soft:#E6F6EE;
+  --warn:#E8A317; --warn-ink:#9A6B12; --warn-soft:#FCF1D9;
+  --risk:#E5484D; --risk-ink:#BE2A2F; --risk-soft:#FBE9EA;
+  --bg:#EEF2F1; --radius:16px; --maxw:1560px;
+  --target-line:#B6C0BC; --pace-marker:#5B6B65; --track:#EEF2F0;
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;max-width:100%;overflow-x:hidden}
-body{background:var(--bg);color:var(--body);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+body{background:var(--bg);color:var(--body);font-family:"Pretendard","Pretendard Variable","Apple SD Gothic Neo","Malgun Gothic",-apple-system,system-ui,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-.3px;color:var(--text)}
 .muted{color:var(--cap)} .tiny{font-size:13px}
 button{font-family:inherit;cursor:pointer}
@@ -111,10 +112,10 @@ svg.ic{display:block}
 .info .box .row{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px dashed var(--border)}
 .info .box .row:last-child{border:none}
 .estbadge{font-size:11.5px;font-weight:700;color:var(--navy2);background:var(--navy5);border:1px dashed var(--navy-border);border-radius:5px;padding:1px 6px}
-.tagb{font-size:11.5px;font-weight:800;border-radius:5px;padding:1px 6px}
+.tagb{font-size:11.5px;font-weight:800;border-radius:7px;padding:1px 6px}
 .tagb.core{color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft)}
 .tagb.spec{color:var(--warn-ink);background:var(--warn-soft);border:1px solid rgba(232,163,23,.3)}
-.chip{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;background:var(--surf2);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:2px 8px;margin:2px 4px 2px 0}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;background:var(--surf2);color:var(--text2);border:1px solid var(--border);border-radius:9px;padding:2px 8px;margin:2px 4px 2px 0}
 .chip .tg{font-size:10.5px;font-weight:800;padding:0 4px;border-radius:3px}
 .chip .tg.core{color:var(--emerald-press);background:var(--emerald-soft)} .chip .tg.spec{color:var(--warn-ink);background:var(--warn-soft)}
 .kc{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(16,39,31,.04)}
@@ -508,7 +509,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .zbar2-pt{position:absolute;top:0}
 .zbar2-pin{position:absolute;transform:translateX(-50%);top:-9px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:9px solid var(--text)}
 .zbar2-lab{position:absolute;transform:translateX(-50%);top:20px;font-size:12.5px;font-weight:800;color:var(--text);white-space:nowrap}
-.zbar2-tg{position:absolute;top:-4px;height:24px;width:0;border-left:2px dashed var(--emerald-press);z-index:1}
+.zbar2-tg{position:absolute;top:-4px;height:24px;width:0;border-left:2px dashed var(--target-line);z-index:1}
 .zbar2-tgl{position:absolute;transform:translateX(-50%);top:-17px;font-size:10.5px;font-weight:800;color:var(--emerald-press);white-space:nowrap}
 .hcb-tgline{margin:6px 0 2px;font-size:13px;color:var(--body);font-weight:600} .hcb-tgline b{color:var(--text);font-weight:800}
 .zonecard{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px 16px}
@@ -688,7 +689,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .kdbar-l{font-size:14px;font-weight:700;color:var(--text2)} .kdbar-tg{font-size:12.5px;font-weight:700;color:var(--cap)}
 .kdbar-track{position:relative;height:12px;border-radius:7px;background:var(--track,#eef2f0);overflow:visible}
 .kdbar-fill{height:100%;border-radius:7px}
-.kdbar-mk{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--emerald-press)}
+.kdbar-mk{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--target-line)}
 .kdbar-foot{margin-top:7px;font-size:12.5px;color:var(--cap);font-weight:600}
 .kd-right{border-left:1px solid var(--border);padding-left:22px}
 .kd-rh{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
@@ -701,7 +702,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .md-sub{font-size:13.5px;color:var(--cap)}
 .md-bar{position:relative;height:11px;background:var(--surf2);border-radius:6px;overflow:hidden;margin:14px 0 8px}
 .md-fill{height:100%;border-radius:6px}
-.md-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text2);z-index:2;border-radius:1px}
+.md-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--pace-marker);z-index:2;border-radius:1px}
 .md-prow{display:flex;justify-content:space-between;align-items:center;font-size:15px} .md-prow b{font-size:17px} .md-exp{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--text2);font-weight:700}
 .md-side{display:flex;flex-direction:column;gap:10px;justify-content:center;border-left:1px solid var(--border);padding-left:18px}
 .md-s{display:flex;justify-content:space-between;align-items:center} .md-sl{font-size:12.5px;color:var(--cap);font-weight:600} .md-sv{font-size:16px;font-weight:800;color:var(--text)} .md-sv.miss{color:var(--cap);font-size:14px}
@@ -732,7 +733,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .ksub-v{font-size:11.5px;min-width:38px;text-align:right}
 .kc2-foot{font-size:12.5px;color:var(--body)} .kc2-foot b{font-weight:800}
 .dc-bar{position:relative}
-.dc-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text2);z-index:2;border-radius:1px}
+.dc-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--pace-marker);z-index:2;border-radius:1px}
 .dc-exp{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:var(--text2);font-weight:700}
 .dc-foot{justify-content:flex-end}
 .dc-btn{width:100%;text-align:center}
@@ -824,6 +825,10 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
   body.printing-hr #deptArea .deptgrid{break-inside:avoid;page-break-inside:avoid}
   body.printing-hr .hcvahero{background:#26473a!important}
 }
+.pfx-d.warn{background:var(--warn)}
+.pfx-m-bar div.warn{background:var(--warn)}
+.pfx-m-pct.warn{color:var(--warn-ink)}
+.pfx-diag-bar span.warn{background:var(--warn)}
 </style>
 </head>
 <body>
@@ -1114,17 +1119,17 @@ const ICON={
 /* ================= CALC ================= */
 function impact(k){ if(k.base==null||k.target==null||k.actual==null)return null; const b=PARAMS[k.base]; if(b==null)return null; const sign=(k.st==="higher")?1:-1; return (k.actual-k.target)*b*sign; }
 function signal(k){ if(k.target==null||k.actual==null)return "none";
-  if(k.st==="higher"){ if(k.actual>=k.target)return "ok"; if(k.actual>=k.target*0.85)return "warn"; return "risk"; }
-  if(k.st==="lower"){ if(k.actual<=k.target)return "ok"; if(k.actual<=k.target*1.1)return "warn"; return "risk"; }
-  if(k.actual<=k.target)return "ok"; if(k.actual<=k.target+1)return "warn"; return "risk"; }
-const SIGW={risk:3,warn:2,ok:1,none:0},SIGLAB={ok:"목표 초과",warn:"목표 도달",risk:"목표 도달 전",none:"미입력"};
+  if(k.st==="higher"){ return k.actual>=k.target?"ok":"warn"; }
+  if(k.st==="lower"){ return k.actual<=k.target?"ok":"risk"; }
+  return k.actual<=k.target?"ok":"risk"; }
+const SIGW={risk:3,warn:2,ok:1,none:0},SIGLAB={ok:"목표 도달",warn:"목표 도달 전",risk:"목표 초과",none:"미입력"};
 const fmtM=v=>v==null?"—":(v<0?"−":"")+Math.abs(v).toLocaleString(undefined,{maximumFractionDigits:0})+"백만";
 const pct=(v,d)=>v==null?"—":(v*100).toFixed(d==null?1:d)+"%";
 function dispKpiV(k,v){ if(v==null)return "0"; if(k.unit==="%")return (v*100).toFixed(v<0.1?2:1)+"%"; return v.toLocaleString()+(k.unit==="배"?"배":k.unit); }
 function sigInline(s){return `<span class="sig ${s}"><span class="dot"></span>${SIGLAB[s]}</span>`;}
 function sigPill(s){return `<span class="sig pill ${s}"><span class="dot"></span>${SIGLAB[s]}</span>`;}
 function tkSigSelect(sig){
-  const opts=[['ok','목표 초과'],['warn','목표 도달'],['risk','목표 도달 전']];
+  const opts=[['ok','목표 도달'],['warn','목표 도달 전'],['risk','목표 초과']];
   return `<select class="tk-sigsel sg-${sig}" onchange="tkSigChange(this)">${opts.map(([v,l])=>`<option value="${v}"${v===sig?' selected':''}>${l}</option>`).join("")}</select>`;
 }
 function tkSigChange(sel){ sel.className='tk-sigsel sg-'+sel.value; }
@@ -1135,7 +1140,7 @@ function divAch(d){ return d.revCum==null?null:d.revCum/d.revTarget; }
 function divState(id){
   const d=DIVS.find(x=>x.id===id);
   if(d.revCum!=null){const ach=divAch(d),exp=expectedProgress();const pace=ach/exp;
-    if(pace>=0.98)return "ok"; if(pace>=0.90)return "warn"; return "risk";}
+    return pace>=0.98?"ok":"warn";}
   if(d.cardKpi&&d.cardKpi.actual!=null)return signal(d.cardKpi);
   return "none";
 }
@@ -1165,11 +1170,11 @@ let kstatSel=null;
 function signalInfo(){
   const d=c=>`<span class="legdot ${c}"></span>`;
   return `<b>신호등 색이 뜻하는 것</b><br>
-  KPI 상태를 색으로 한눈에 봅니다.
-  <div class="row"><span>${d('ok')} 목표 초과</span><span>목표를 넘어선 상태</span></div>
-  <div class="row"><span>${d('warn')} 목표 도달</span><span>목표 달성 수준</span></div>
-  <div class="row"><span>${d('risk')} 목표 도달 전</span><span>목표 미달 · 개선 필요</span></div>
-  단, <b>영업이익</b>은 달성률이 아니라 구간으로 봅니다. 적자거나 흑자라도 목표에 못 미치면 ‘목표 도달 전’, 목표를 넘으면 ‘목표 초과’입니다.`;
+  상태는 “목표 대비 위치”로만 정의합니다.
+  <div class="row"><span>${d('warn')} 목표 도달 전</span><span>목표 미달 · 개선 필요</span></div>
+  <div class="row"><span>${d('ok')} 목표 도달</span><span>목표 달성 · 그 이상</span></div>
+  <div class="row"><span>${d('risk')} 목표 초과</span><span>낮을수록 좋은 값이 한도를 넘음</span></div>
+  레드는 ‘넘으면 안 되는 값’을 넘었을 때만 등장합니다. 단, <b>영업이익</b>은 달성률이 아니라 구간으로 봅니다.`;
 }
 function execMessage(E){
   const revOver=E.revAchCum>=1, marginShort=E.opMarginCum<E.opMarginCumTarget;
@@ -1309,7 +1314,7 @@ function renderCorp(){
       <div class="pfx-op">
         <div class="pfx-op-h">영업이익 흑자 전환 <span class="pf-tag">누계(1~${META.baseMonth}월)</span></div>
         <div class="pfx-op-v">+${E.profitCum.toLocaleString()}<small>백만</small></div>
-        <div><span class="sig pill risk"><span class="dot"></span>목표 도달 전</span></div>
+        <div><span class="sig pill warn"><span class="dot"></span>목표 도달 전</span></div>
         <div class="pfx-op-s">목표 <b>${HR.opTarget.toLocaleString()}백만</b> · 달성률 <b>${(E.profitCum/HR.opTarget*100).toFixed(0)}%</b></div>
       </div>
       <div class="pfx-road">
@@ -1324,25 +1329,25 @@ function renderCorp(){
     </div>
     <div class="pfx-row2">
       <div class="pfx-m">
-        <div class="pfx-m-h"><span class="pfx-m-l"><span class="pfx-d ok"></span>매출 (1~5월 누계) ${revInfo}</span><span class="sig pill ok"><span class="dot"></span>목표 초과</span></div>
+        <div class="pfx-m-h"><span class="pfx-m-l"><span class="pfx-d ok"></span>매출 (1~5월 누계) ${revInfo}</span><span class="sig pill ok"><span class="dot"></span>목표 도달</span></div>
         <div class="pfx-m-v">${E.revenueCum.toLocaleString()}<small>백만</small></div>
         <div class="pfx-m-t">목표 ${E.revenueCumTarget.toLocaleString()}백만</div>
         <div class="pfx-m-bar"><div class="ok" style="width:100%"></div><span class="pfx-m-pct ok">${(E.revAchCum*100).toFixed(0)}%</span></div>
         <div class="pfx-m-f">목표 대비 <b class="ok">+${((E.revAchCum-1)*100).toFixed(1)}%</b></div>
       </div>
       <div class="pfx-m">
-        <div class="pfx-m-h"><span class="pfx-m-l"><span class="pfx-d ok"></span>매출 (당월 · ${META.baseMonth}월)</span><span class="sig pill ok"><span class="dot"></span>목표 초과</span></div>
+        <div class="pfx-m-h"><span class="pfx-m-l"><span class="pfx-d ok"></span>매출 (당월 · ${META.baseMonth}월)</span><span class="sig pill ok"><span class="dot"></span>목표 도달</span></div>
         <div class="pfx-m-v">${E.revenueMonth.toLocaleString()}<small>백만</small></div>
         <div class="pfx-m-t">목표 ${E.revenueMonthTarget.toLocaleString()}백만</div>
         <div class="pfx-m-bar"><div class="ok" style="width:100%"></div><span class="pfx-m-pct ok">${(E.revAchMonth*100).toFixed(0)}%</span></div>
         <div class="pfx-m-f">목표 대비 <b class="ok">+${((E.revAchMonth-1)*100).toFixed(1)}%</b></div>
       </div>
       <div class="pfx-m">
-        <div class="pfx-m-h"><span class="pfx-m-l"><span class="pfx-d risk"></span>영업이익률 (1~5월 누계) ${marginInfo}</span><span class="sig pill risk"><span class="dot"></span>목표 도달 전</span></div>
-        <div class="pfx-m-v dn">${pct(E.opMarginCum)}</div>
+        <div class="pfx-m-h"><span class="pfx-m-l"><span class="pfx-d warn"></span>영업이익률 (1~5월 누계) ${marginInfo}</span><span class="sig pill warn"><span class="dot"></span>목표 도달 전</span></div>
+        <div class="pfx-m-v" style="color:var(--warn-ink)">${pct(E.opMarginCum)}</div>
         <div class="pfx-m-t">목표 ${pct(E.opMarginCumTarget)}</div>
-        <div class="pfx-m-bar"><div class="risk" style="width:${(E.opMarginCum/E.opMarginCumTarget*100).toFixed(0)}%"></div><span class="pfx-m-pct dn">${(E.opMarginCum/E.opMarginCumTarget*100).toFixed(0)}%</span></div>
-        <div class="pfx-m-f">목표까지 <b class="dn">−${((E.opMarginCumTarget-E.opMarginCum)*100).toFixed(1)}%p</b></div>
+        <div class="pfx-m-bar"><div class="warn" style="width:${(E.opMarginCum/E.opMarginCumTarget*100).toFixed(0)}%"></div><span class="pfx-m-pct warn">${(E.opMarginCum/E.opMarginCumTarget*100).toFixed(0)}%</span></div>
+        <div class="pfx-m-f">목표까지 <b style="color:var(--warn-ink)">−${((E.opMarginCumTarget-E.opMarginCum)*100).toFixed(1)}%p</b></div>
       </div>
     </div>
     <div class="pfx-row3">
@@ -1355,8 +1360,8 @@ function renderCorp(){
         <div class="pfx-sub2">매출은 목표 달성, 이익은 미달 → 비용 구조가 원인</div>
         <div class="pfx-diag-r"><span>매출 목표 달성 (1~5월 누계) ${info('누계 매출 ÷ 누계 매출목표 × 100')}</span><b class="ok">${(E.revAchCum*100).toFixed(0)}%</b></div>
         <div class="pfx-diag-bar"><span class="ok" style="width:100%"></span></div>
-        <div class="pfx-diag-r"><span>영업이익 목표 달성 (누계 · 연간목표 대비) ${info('누계 영업이익 ÷ 연간 영업이익 목표(2,900백만) × 100')}</span><b class="dn">${(E.profitCum/HR.opTarget*100).toFixed(0)}%</b></div>
-        <div class="pfx-diag-bar"><span class="risk" style="width:${(E.profitCum/HR.opTarget*100).toFixed(0)}%"></span></div>
+        <div class="pfx-diag-r"><span>영업이익 목표 달성 (누계 · 연간목표 대비) ${info('누계 영업이익 ÷ 연간 영업이익 목표(2,900백만) × 100')}</span><b style="color:var(--warn-ink)">${(E.profitCum/HR.opTarget*100).toFixed(0)}%</b></div>
+        <div class="pfx-diag-bar"><span class="warn" style="width:${(E.profitCum/HR.opTarget*100).toFixed(0)}%"></span></div>
         <div class="pfx-diag-box2">
           <div class="pfx-db"><div class="pfx-db-l">매출 초과분</div><div class="pfx-db-v ok">+${(E.revenueCum-E.revenueCumTarget).toLocaleString()}백만</div></div>
           <div class="pfx-db r"><div class="pfx-db-l">이익 부족분</div><div class="pfx-db-v dn">${(E.profitCum-HR.opTarget).toLocaleString()}백만</div></div>
@@ -1430,7 +1435,7 @@ function renderKstat(){
       <div class="kcol-list">${list}</div>
     </div>`;
   };
-  document.getElementById("kstatBox").innerHTML=`<div class="kstat"><div class="kstat-cols">${col('ok','목표 초과')}${col('warn','목표 도달')}${col('risk','목표 도달 전')}</div></div>`;
+  document.getElementById("kstatBox").innerHTML=`<div class="kstat"><div class="kstat-cols">${col('ok','목표 도달')}${col('warn','목표 도달 전')}${col('risk','목표 초과')}</div></div>`;
   document.querySelectorAll('[data-gokpi]').forEach(b=>b.onclick=()=>openDiv(b.dataset.gokpi));
 }
 
@@ -1734,9 +1739,9 @@ const BKPI={
   ]
 };
 function barSig(b){
-  if(b.actual==null) return 'risk';
-  if(b.lower) return b.actual<=b.target?'ok':(b.actual<=b.target*1.1?'warn':'risk');
-  return b.actual>=b.target?'ok':(b.actual>=b.target*0.9?'warn':'risk');
+  if(b.actual==null) return 'warn';
+  if(b.lower) return b.actual<=b.target?'ok':'risk';
+  return b.actual>=b.target?'ok':'warn';
 }
 function itemSig(item){
   const ss=item.bars.map(barSig);
@@ -1764,7 +1769,7 @@ function trendChart(cyc){
   const ty=pt+ih*0.28;
   let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block">`;
   svg+=`<line x1="${pl}" y1="${(pt+ih).toFixed(1)}" x2="${W-pr}" y2="${(pt+ih).toFixed(1)}" stroke="#dde3e0"/>`;
-  svg+=`<line x1="${pl}" y1="${ty.toFixed(1)}" x2="${W-pr}" y2="${ty.toFixed(1)}" stroke="var(--emerald-press)" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+  svg+=`<line x1="${pl}" y1="${ty.toFixed(1)}" x2="${W-pr}" y2="${ty.toFixed(1)}" stroke="var(--target-line)" stroke-width="1.5" stroke-dasharray="5 4"/>`;
   svg+=`<text x="${(W-pr).toFixed(1)}" y="${(ty-5).toFixed(1)}" font-size="10.5" font-weight="800" fill="var(--emerald-press)" text-anchor="end">연간 목표</text>`;
   labels.forEach((q,i)=>{
     const gx=pl+i*(grp+gap);
