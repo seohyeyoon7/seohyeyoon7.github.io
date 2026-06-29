@@ -220,8 +220,8 @@ svg.ic{display:block}
 .scf-h{display:flex;align-items:flex-end;justify-content:space-between;font-size:12.5px;color:var(--cap);font-weight:700;margin-bottom:11px}
 .scf-bar{display:flex;height:16px;border-radius:8px;overflow:hidden;background:#eef2f0} .scf-bar span.e{background:var(--emerald)} .scf-bar span.g{background:#bcd9c8}
 .scf-cap{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;font-weight:600;color:var(--cap)}
-.saq2grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;align-items:stretch}
-.saq2grid>.saq2{height:100%}
+.saq2grid{display:flex;gap:16px;margin-top:16px;align-items:stretch}
+.saq2grid>.saq2{flex:1 1 0;min-width:0;align-self:stretch}
 .saq2-fill{display:flex;flex-direction:column}
 .sctr{margin-top:22px;display:flex;flex-direction:column;gap:30px;flex:1;justify-content:space-around}
 .sct-kv{display:flex;align-items:baseline;justify-content:space-between;font-size:14px;font-weight:700;color:var(--text2)} .sct-kv .muted{font-size:12.5px;color:var(--cap);font-weight:600}
@@ -490,8 +490,8 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .dc-btn{font-size:14px;font-weight:700;color:var(--text2);background:#fff;border:1px solid var(--border);border-radius:9px;padding:8px 15px;white-space:nowrap;cursor:pointer}
 .dc-btn:hover{background:var(--surf-hover);border-color:var(--border-soft)}
 .statgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
-.stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:15px 16px;box-shadow:0 1px 3px rgba(16,39,31,.05)}
-.stat .sl{font-size:13px;color:var(--cap);font-weight:600}
+.stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:15px 16px;box-shadow:0 1px 3px rgba(16,39,31,.05);display:flex;flex-direction:column}
+.stat .sl{font-size:13px;color:var(--text2);font-weight:800} .stat .sv-wrap{flex:1;display:flex;align-items:center;margin:6px 0}
 .stat .sv{font-size:23px;font-weight:800;color:var(--text);margin:5px 0 4px;letter-spacing:-.6px} .stat .sv small{font-size:13.5px;color:var(--cap);font-weight:700} .stat .sv.dn{color:var(--risk-ink)} .stat .sv.up{color:var(--ok-ink)}
 .stat .sd{font-size:12.5px;font-weight:700} .stat .sd.muted{color:var(--cap);font-weight:600} .stat .sd.dn{color:var(--risk-ink)} .stat .sd.up{color:var(--ok-ink)}
 .hcbigrow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
@@ -772,7 +772,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 @media (max-width:680px){
   .content{padding:16px 12px 56px}
   .topbar-inner{padding:13px 14px 12px} .topbar .ttl h1{font-size:20px}
-  .divs,.cardnews,.deptgrid,.hcgrid,.statgrid,.execrow{grid-template-columns:1fr}
+  .divs,.cardnews,.deptgrid,.hcgrid,.statgrid,.execrow{grid-template-columns:1fr} .saq2grid{flex-direction:column}
   .subkpi.div{border-left:none;border-top:1px solid var(--border);padding-top:13px;margin-top:11px}
   .pf-twin,.mc-twin,.wfg-items,.wfsub{grid-template-columns:1fr} .pf-trio{grid-template-columns:1fr} .pf-trio .pf-metric{border-right:none;border-bottom:1px solid var(--border);padding-bottom:10px}
   .guidewrap{grid-template-columns:1fr}
@@ -853,6 +853,16 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .spj-bar{flex:1;height:14px;background:var(--track);border-radius:7px;overflow:hidden}
 .spj-bar>span{display:block;height:100%;background:var(--emerald);border-radius:7px}
 .spj-v{width:48px;text-align:right;font-weight:800;font-size:12.5px;color:var(--text)}
+.md-branch{margin-top:14px;background:var(--surf2);border:1px solid var(--border);border-radius:12px;padding:15px 18px}
+.md-branch-h{font-size:14.5px;font-weight:800;color:var(--text);margin-bottom:13px} .md-branch-h span{font-size:12px;color:var(--cap);font-weight:600;margin-left:6px}
+.mbr{display:flex;flex-direction:column;gap:5px;margin-bottom:12px} .mbr:last-child{margin-bottom:0}
+.mbr-h{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px}
+.mbr-n{font-weight:700;color:var(--text2)} .mbr-a{font-weight:800}
+.mbr-bar{position:relative;height:14px;background:var(--track);border-radius:7px}
+.mbr-bar>span{position:absolute;left:0;top:0;height:100%;border-radius:7px}
+.mbr-tg{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--target-line)}
+.mbr-kv{font-size:12px;color:var(--body)}
+.spj-t{font-size:11px;color:var(--cap);font-weight:600;margin-left:4px}
 </style>
 </head>
 <body>
@@ -940,8 +950,8 @@ const BENCH={ period:"2026년 1분기 · 가구 4사",
   growth:[{nm:"코아스",v:5.04,me:true},{nm:"한샘",v:-9.93},{nm:"퍼시스",v:-5.89},{nm:"현대리바트",v:-18.69}]
 };
 
-const CLAIM={ month:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"], count:[null,176,191,99,null,null,null,null,null,null,null,null],
-  costM:[null,46.85,67.84,16.06,null,null,null,null,null,null,null,null], totalCount:466, totalCostM:130.75, rateTarget:0.0063, rateNow:0.0079, shipCum:23186 };
+const CLAIM={ month:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"], count:[null,176,191,53.5,83,null,null,null,null,null,null,null],
+  costM:[null,46.85,67.84,16.06,19.16,null,null,null,null,null,null,null], totalCount:503.5, totalCostM:149.91, rateTarget:0.0063, rateNow:0.0079, shipCum:23186 };
 
 /* 회계IR팀 손익표 — 월별/누계 실제값 (백만, 역산·추정 없음) · 5월 반영(1~5월 누계) */
 const PNL={
@@ -974,19 +984,19 @@ let wfPeriod="cum";
 let divFilter="all";
 let divAiText={
   sm1:"1~5월 누계 매출 20,385백만으로 누계 목표(16,280) 대비 125%·전년비 101%, 누계 이익 881백만(이익율 5.41%)입니다. 세일즈마케팅실은 5월 당월 목표 대비 137%(수주 2,737)를 달성했습니다. 공급가·수수료 실행율 관리로 수익성을 함께 끌어올리고 있습니다.",
-  sm2:"1~5월 누계 매출 10,617백만으로 누계 목표(10,470) 대비 101%이나 누계 이익은 -636백만(이익율 -5.9%)입니다. 5월 지사별 매출은 대구경북 488·부산경남 416·대전충청 255·광주호남 242백만으로, 직영 컨설팅 전환과 고수익 포트폴리오 강화가 과제입니다.",
+  sm2:"1~5월 누계 매출 10,617백만으로 누계 목표(10,470) 대비 101%(전년비 85%)이나 누계 이익 -636백만(이익율 -5.9%)입니다. 지사별 누계 달성률은 부산경남 118%·대구경북 108%·대전충청 92%·광주호남 88%로, 직영 컨설팅 전환과 고수익 포트폴리오 강화가 과제입니다.",
   prod:"5월 클레임은 83건·약 19.2백만(전월 53.5건/16.1백만 대비 증가)이며, 공정불량은 가공 567ppm(목표 510)·조립 429ppm(목표 610), 인수검사 불량 0.02% 수준입니다. 재발 방지와 정기 품질회의로 사후 손실 비용 절감이 우선 과제입니다.",
   rnd:"체결볼트·나사 292종을 점검해 유지 226종·단종 66종을 진행 중이며, 파워빔 시스템가구·신규 데스크 등 신제품 개발과 우수제품 특허(K200라이트 조인트레버 등록완료, 산불피해목·캐비닛 후판 출원중)를 함께 추진합니다.",
-  ops:"5월 삼성생명 서랍 사출자재 NEGO로 65백만(목표 53, 12백만 초과 달성)을 절감했고, 하이닉스 기숙사 등 추가 절감과 외주·이원화로 원가를 낮추고 있습니다. 건설솔루션팀은 5월 매출 4.14백만·이익 1.64백만, 1~5월 누계 매출 385백만·이익 149백만(44.3% 달성)입니다.",
+  ops:"재료비율은 1~5월 누계 42.6%로 목표(40%) 대비 93.8% 달성 수준입니다. 5월 삼성생명 서랍 자재 NEGO로 65백만(목표 53, 12백만 초과)을 절감했고, 5월 자재 매입금액은 약 1,578.8백만(ERP)입니다. 원자재 인상(3,800만 추가)·외주 전환에 따른 매입 상승이 미달 요인이라 비축 발주 최소화·수주별 구매로 대응 중입니다. 건설솔루션팀은 1~5월 누계 매출 385백만·이익 149백만(44.3% 달성)입니다.",
   plan:"경영신호등 대시보드(매출·영업이익/본부별 KPI/인적기여가치)를 운영하고, HR 대시보드는 5월 성장로그 취합·AI 기반 성장레벨 진단/코멘트를 적용했습니다. 가족친화기업 재인증은 서류심사 통과 후 현장심사(7/21)를 준비 중입니다.",
   finir:"투명한 회계 운영과 적시 손익 보고로 경영 리스크를 사전에 통제합니다. 재무제표 작성·회계감사 수검·성실공시·세무신고·재고검사를 핵심 과제로 운영합니다."
 };
 
 /* 본부 */
 const DIVS=[
-  {id:"sm1",name:"세일즈마케팅1본부",icon:"sm1",type:"sales",mcycle:"월별(누계) 측정",revCum:20385,revTarget:44276,revM:3613,coreGoal:"대리점 공급가 실행율 98% 달성",goal2026:"공급가와 수수료 통제로 수익을 제대로 남기겠습니다.",
+  {id:"sm1",name:"세일즈마케팅1본부",icon:"sm1",type:"sales",mcycle:"월별(누계) 측정",revCum:20385,revTarget:44276,revM:3880,coreGoal:"대리점 공급가 실행율 98% 달성",goal2026:"공급가와 수수료 통제로 수익을 제대로 남기겠습니다.",
    node:{lag:"대리점채널 공헌이익·수수료율",lead:"대리점 공급가 실행율",act:"공급가 재협상·계약구조 개편"}},
-  {id:"sm2",name:"세일즈마케팅2본부",icon:"sm2",type:"sales",mcycle:"월별 측정",revCum:10617,revTarget:28226,revM:1618,coreGoal:"직영 중심 수익 창출",goal2026:"고객을 잘 아는 컨설팅 프로세스로 직영 중심 수익을 창출하겠습니다.",
+  {id:"sm2",name:"세일즈마케팅2본부",icon:"sm2",type:"sales",mcycle:"월별 측정",revCum:10617,revTarget:28226,revM:1401,branches:[{n:"부산경남지사",act:2942,tgt:2500},{n:"대구경북지사",act:2918,tgt:2700},{n:"대전충청지사",act:2641,tgt:2870},{n:"광주호남지사",act:2116,tgt:2400}],coreGoal:"직영 중심 수익 창출",goal2026:"고객을 잘 아는 컨설팅 프로세스로 직영 중심 수익을 창출하겠습니다.",
    node:{lag:"직영 영업이익·수주성공률",lead:"제안→수주 성공률",act:"파이프라인 점검·제안 품질 리뷰"}},
   {id:"prod",name:"생산본부",icon:"factory",type:"cost",mcycle:"월별 측정",revCum:null,revTarget:null,coreGoal:"클레임 비용율 0.63% 이하 달성",goal2026:"낭비와 불량을 제거하여 수익을 남기는 생산을 만들겠습니다.",
    cardKpi:{name:"클레임 비용율",target:0.0063,actual:0.0079,unit:"%",st:"lower"},
@@ -995,10 +1005,10 @@ const DIVS=[
    cardKpi:{name:"부품 표준화 달성률",target:93,actual:66,unit:"종",st:"higher",tnote:"226종 운영 · 66종 단종 진행"},
    node:{lag:"부품 단종·부적합설계",lead:"단종 진척·부적합 건수",act:"단종 후보 재선정·설계검토 게이트 강화"}},
   {id:"ops",name:"운영지원본부",icon:"ops",type:"cost",mcycle:"월별 측정",revCum:null,revTarget:null,coreGoal:"재료비율 40% 달성",goal2026:"원가 구조를 혁신하여 '만들수록 남는 구조'로 비용을 절감하겠습니다.",
-   cardKpi:{name:"재료비율",target:0.40,actual:0.4484,unit:"%",st:"lower"},
+   cardKpi:{name:"재료비율",target:0.40,actual:0.426,unit:"%",st:"lower"},
    node:{lag:"재료비율·현금흐름 정확도",lead:"매입율·예측-실제 편차",act:"단가협상·BOM 표준화·자금 스케줄 점검"}},
   {id:"plan",name:"운영기획실",icon:"plan",type:"ops",mcycle:"분기 측정",revCum:null,revTarget:null,coreGoal:"HCROI 1.28 달성 · 컴플라이언스 체계 구축",goal2026:"흑자 경영 마인드를 이식하여 인당 생산성을 높이겠습니다.",
-   cardKpi:{name:"HCROI",target:1.28,actual:null,unit:"배",st:"higher"},
+   cardKpi:{name:"전사 HCROI",target:1.28,actual:1.07,unit:"배",st:"higher"},
    node:{lag:"변화수용도·컴플라이언스",lead:"통제 구축률·인당 생산성",act:"통제항목 완료·성과체계 정착"}},
   {id:"finir",name:"재무IR본부",icon:"ir",emoji:"📊",type:"ops",mcycle:null,revCum:null,revTarget:null,coreGoal:"투명한 회계 운영으로 경영 리스크 Zero화",goal2026:"투명한 회계 운영으로 경영 리스크를 Zero화하겠습니다.",
    node:{lag:"",lead:"",act:""}}
@@ -1007,7 +1017,6 @@ const TYPE={ sales:{label:"매출 부서"}, cost:{label:"원가 기여 부서"},
 
 const KPIS=[
   {id:"K1",div:"sm1",team:"세일즈마케팅실",group:"영업",name:"대리점 공급가 실행율 관리",def:"",unit:"%",st:"higher",target:0.98,actual:null,base:null,cycle:"월별"},
-  {id:"K3",div:"sm2",team:"세일즈마케팅2본부",group:"영업",name:"직영 성공율",def:"",unit:"%",st:"higher",target:0.20,actual:null,base:null,cycle:"분기",subs:["대전충청지사","대구경북지사","광주호남지사","부산경남지사"]},
   {id:"K8",div:"prod",team:"생산팀",group:"생산성",name:"가공 생산능률",def:"산식: 회수공수 ÷ 총투입공수 × 100",unit:"%",st:"higher",target:0.747,actual:null,base:null,cycle:"월별"},
   {id:"K9",div:"prod",team:"생산팀",group:"생산성",name:"조립 생산능률",def:"산식: 회수공수 ÷ 총투입공수 × 100",unit:"%",st:"higher",target:1.035,actual:null,base:null,cycle:"월별"},
   {id:"K15",div:"ops",team:"자금관리팀",group:"현금",name:"현금흐름 예측 정확도",def:"산식: {(실제 수지 − 예측 수지) ÷ 실제 수지} × 100",unit:"%",st:"higher",target:0.95,actual:null,base:null,cycle:"월별"},
@@ -1185,7 +1194,7 @@ function renderSidebar(active){
   h+=`<div class="sb-grp">경영진 전용</div>
     <button class="sb-item ${active==='hr'?'active':''}" data-nav="hr" data-tip="인적 기여가치">${ic(ICON.people,17)}<span class="lbl">인적 기여가치</span></button>`;
   document.getElementById("sbNav").innerHTML=h;
-  document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{if(b.dataset.nav==='corp')goHome();else{renderHR();showView('hr');renderSidebar('hr');scrollTop0();}closeMobile();});
+  document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{if(b.dataset.nav==='corp')goHome();else{goHR();}closeMobile();});
   document.querySelectorAll('[data-divnav]').forEach(b=>b.onclick=()=>{openDiv(b.dataset.divnav);closeMobile();});
 }
 
@@ -1426,7 +1435,7 @@ function renderCorp(){
       <button class="dd-b ${divFilter==='ops'?'active':''}" data-f="ops">운영 지원 부서</button>
     </div></div><div id="divArea"></div>`;
 
-  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>인적 기여가치</h2><span class="s">— 전사 현황 (자세히는 좌측 ‘인적 기여가치’) · 현재값은 연환산</span></div>
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>인적 기여가치</h2></div>
   ${statGrid()}
   ${hcBigRow()}
   ${annualNote()}
@@ -1443,7 +1452,7 @@ function renderCorp(){
   document.getElementById("lossList").innerHTML=losses.map((x,i)=>{const dn=DIVS.find(d=>d.id===x.k.div).name;const bs=x.k.base==='revenueCum'?'누계매출 31,396':'누계노무비 2,039';
     return `<button class="lrow" data-godiv="${x.k.div}"><span class="rank">${i+1}</span><span class="nm">${x.k.name}<small>${dn} · 기준값 ${bs}백만</small></span><span class="amt">${fmtM(Math.abs(x.imp))}</span></button>`;}).join("")||`<div class="tiny muted" style="padding:10px">실데이터로 환산되는 개선 과제가 없습니다.</div>`;
   document.querySelectorAll('[data-godiv]').forEach(b=>b.onclick=()=>openDiv(b.dataset.godiv));
-  const goHR=document.getElementById("goHR"); if(goHR)goHR.onclick=()=>{renderHR();showView('hr');renderSidebar('hr');scrollTop0();};
+  const goHRBtn=document.getElementById("goHR"); if(goHRBtn)goHRBtn.onclick=()=>{goHR();};
   renderDivGroups();
   bindInfos(document.getElementById("view-corp"));
 }
@@ -1700,7 +1709,7 @@ function divCardDept(id){
 
 /* ================= 본부 상세 ================= */
 let curDiv=null;
-function openDiv(id){curDiv=id;showView("div");renderDiv();renderSidebar('div');scrollTop0();}
+function openDiv(id,push){curDiv=id;showView("div");renderDiv();renderSidebar('div');scrollTop0();if(push!==false)histPush({v:"div",id:id});}
 function aiComment(d,st){
   const risks=KPIS.filter(k=>k.div===d.id&&signal(k)==="risk");
   if(st==="ok") return `정렬 과제가 순항 중입니다. <b>${d.coreGoal}</b> 기조를 유지하세요.`;
@@ -1731,10 +1740,10 @@ function actionFlow(d){
 }
 const DIAG={
  sm1:{one:"1~5월 누계 매출 20,385백만으로 누계 목표(16,280) 대비 125% 달성, 누계 이익율 5.41%입니다. 공급가·수수료 실행율을 함께 관리하면 같은 매출에서도 남는 이익을 더 키울 수 있습니다."},
- sm2:{one:"1~5월 누계 매출 10,617백만으로 누계 목표(10,470) 대비 101%이나, 누계 이익율은 -5.9%로 적자 구간입니다. 직영 전환·고수익 포트폴리오 강화로 수익성 개선이 필요합니다."},
+ sm2:{one:"1~5월 누계 매출 10,617백만으로 목표 대비 101%(전년비 85%)이나 누계 이익율 -5.9% 적자 구간입니다. 대전충청·광주호남 지사가 목표에 미달해, 직영 전환·고수익 포트폴리오 강화로 수익성 개선이 필요합니다."},
  prod:{one:"5월 클레임 83건·약 19.2백만으로 전월(53.5건/16.1백만) 대비 늘었고, 클레임 비용율도 목표(0.63%)를 상회합니다. 재발 방지로 클레임 비용을 줄이면 이익 개선에 직접 도움이 됩니다."},
  rnd:{one:"체결부품 표준화는 단종 66종 진행으로 상반기 목표(93종)의 약 71% 수준이며, 설계 부적합은 0건을 유지 중입니다. 단종 진척을 높이면 원가 절감 효과가 더 커집니다."},
- ops:{one:"재료비율이 44.8%로 목표(40%)보다 높지만, 5월 삼성생명 서랍 자재 65백만 절감(목표 53 초과) 등 원가절감이 진행 중입니다. 단가·BOM 관리로 비율을 더 낮추면 이익 개선 효과가 큽니다."},
+ ops:{one:"재료비율 누계 42.6%로 목표(40%)보다 높지만 목표 대비 93.8% 수준이며, 5월 삼성생명 서랍 자재 65백만 절감(목표 53 초과) 등 원가절감이 진행 중입니다. 단가·BOM 관리로 비율을 더 낮추면 이익 개선 효과가 큽니다."},
  plan:{one:"전사 HCROI가 1.09배로 손익분기는 넘어선 단계입니다. 목표(1.28)까지는 인당 생산성을 조금 더 끌어올리면 도달할 수 있습니다."}
 };
 function aiDiagBlock(d){
@@ -1749,7 +1758,7 @@ function aiCmt(d){
 }
 const BKPI={
   prod:[
-    {name:"클레임 비용율",cyc:"월별",monthly:{label:"월별 클레임 비용 (백만)",vals:[null,null,67.8,16.1,19.2,null,null,null,null,null,null,null]},bars:[
+    {name:"클레임 비용율",cyc:"월별",monthly:{label:"월별 클레임 비용 (백만)",vals:[null,46.85,67.84,16.06,19.16,null,null,null,null,null,null,null]},bars:[
       {label:"클레임 비용율",target:0.63,actual:0.79,unit:"%",lower:true}]}
   ],
   rnd:[
@@ -1757,8 +1766,8 @@ const BKPI={
       {label:"단종 부품수",target:93,actual:66,unit:"종",hi:true,note:"226종 운영 (66종 단종 진행) · 목표 200종(93종 단종)"}]}
   ],
   ops:[
-    {name:"재료비 관리",cyc:"월별",bars:[
-      {label:"재료비율",target:40,actual:44.84,unit:"%",lower:true}]}
+    {name:"재료비 관리",cyc:"월별",monthly:{label:"월별 재료비율 (%)",vals:[42.0,41.3,41.9,44.5,44.4,null,null,null,null,null,null,null]},bars:[
+      {label:"재료비율",target:40,actual:42.6,unit:"%",lower:true}]}
   ]
 };
 function barSig(b){
@@ -1836,6 +1845,15 @@ function kpiDetailRow(item){
     </div>
   </div>`;
 }
+function branchBlock(d){
+  if(!d.branches) return "";
+  const mx=Math.max.apply(null,d.branches.map(x=>Math.max(x.act,x.tgt)));
+  const rows=d.branches.map(x=>{const ach=x.act/x.tgt, ok=ach>=1;
+    return `<div class="mbr"><div class="mbr-h"><span class="mbr-n">${x.n}</span><span class="mbr-a" style="color:${ok?'var(--ok-ink)':'var(--warn-ink)'}">${(ach*100).toFixed(0)}%</span></div>`+
+    `<div class="mbr-bar"><span style="width:${(x.act/mx*100).toFixed(0)}%;background:${ok?'var(--emerald)':'var(--warn)'}"></span><i class="mbr-tg" style="left:${(x.tgt/mx*100).toFixed(0)}%"></i></div>`+
+    `<div class="mbr-kv">목표 ${x.tgt.toLocaleString()} · 실적 ${x.act.toLocaleString()}</div></div>`;}).join("");
+  return `<div class="md-branch"><div class="md-branch-h">지사별 매출 현황 <span>1~5월 누계 · 목표 대비</span></div>${rows}</div>`;
+}
 function divMetricDetail(d){
   const st=divState(d.id);
   if(d.revCum!=null){
@@ -1860,18 +1878,19 @@ function divMetricDetail(d){
     return `<div class="kdwrap">${BKPI[d.id].map(kpiDetailRow).join("")}</div>`;
   }
   if(d.id==='plan'){
+    const hr=HR.hcroiNow, tg=HR.hcroiTarget, ach=hr/tg, ok=hr>=tg, col=ok?'var(--ok-ink)':'var(--warn-ink)';
     return `<div class="mdetail">
       <div class="md-main">
-        <div class="md-lab">구성원 변화 수용도 향상</div>
-        <div class="md-val miss">0</div>
-        <div class="md-sub">연간 목표 3.0</div>
-        <div class="md-bar"><div class="md-fill" style="width:0%;background:#dfe3e0"></div></div>
-        <div class="md-prow"><b style="color:var(--cap)">변화수용도 진단 하반기 시행 예정</b></div>
+        <div class="md-lab">전사 HCROI (인적 투자 대비 이익) ${info('HCROI = (영업이익 + 인건비) ÷ 인건비<br>인적기여가치 페이지의 HCROI와 동일한 전사 지표이며, 운영기획실이 목표 달성을 책임집니다.')}</div>
+        <div class="md-val">${hr.toFixed(2)}<small>배</small></div>
+        <div class="md-sub">목표 ${tg.toFixed(2)}배 · 연환산 기준</div>
+        <div class="md-bar"><div class="md-fill" style="width:${Math.min(ach*100,100).toFixed(0)}%;background:${ok?'var(--ok)':'var(--warn)'}"></div></div>
+        <div class="md-prow"><b style="color:${col}">목표 대비 ${(ach*100).toFixed(0)}%</b><span class="md-exp">(영업이익+인건비) ÷ 인건비 · 연환산</span></div>
       </div>
       <div class="md-side">
-        <div class="md-s"><div class="md-sl">연간 목표</div><div class="md-sv">3.0</div></div>
-        <div class="md-s"><div class="md-sl">현황</div><div class="md-sv miss">0</div></div>
-        <div class="md-s"><div class="md-sl">시그널</div><div class="md-sv">${sigPill('risk')}</div></div>
+        <div class="md-s"><div class="md-sl">현황</div><div class="md-sv">${hr.toFixed(2)}배</div></div>
+        <div class="md-s"><div class="md-sl">목표</div><div class="md-sv">${tg.toFixed(2)}배</div></div>
+        <div class="md-s"><div class="md-sl">상태</div><div class="md-sv">${sigPill(ok?'ok':'warn')}</div></div>
       </div>
     </div>`;
   }
@@ -1971,8 +1990,9 @@ function renderDiv(){
   document.getElementById("back1").onclick=goHome;
   document.getElementById("divSel").onchange=e=>openDiv(e.target.value);
   if(showKpi){
-    const ks=KPIS.filter(k=>k.div===curDiv);
-    document.getElementById("kpiList").innerHTML=ks.map(kpiCard2).join("")||`<div class="dd-empty">데이터 준비 중입니다.</div>`;
+    const dcur=DIVS.find(x=>x.id===curDiv);
+    if(dcur&&dcur.branches){ document.getElementById("kpiList").innerHTML=`<div style="grid-column:1/-1">${branchBlock(dcur)}</div>`; }
+    else { const ks=KPIS.filter(k=>k.div===curDiv); document.getElementById("kpiList").innerHTML=ks.map(kpiCard2).join("")||`<div class="dd-empty">데이터 준비 중입니다.</div>`; }
   }
   bindInfos(document.getElementById("view-div"));
   const aiBtn=document.getElementById("divAiBtn"), aiBody=document.getElementById("divAiBody");
@@ -2025,11 +2045,11 @@ function statGrid(){
   const curPerProfit=PNL.op.m5/META.headcountNow, prevPerProfit=PNL.op.m4/META.headcountPrev;
   const perProfitD=curPerProfit-prevPerProfit;
   return `<div class="statgrid">
-    <div class="stat"><div class="sl">인당 매출액 <span class="stat-base">누계</span></div><div class="sv">${HR.perRevenue.toFixed(1)}<small>백만</small></div><div class="sd ${perRevD>=0?'up':'dn'}">${arrow(perRevD)} ${Math.abs(perRevD).toFixed(1)}% 전월 대비</div></div>
-    <div class="stat"><div class="sl">인당 영업이익 <span class="stat-base">누계</span></div><div class="sv">${HR.perProfit.toFixed(2)}<small>백만</small></div><div class="sd ${perProfitD>=0?'up':'dn'}">당월 ${curPerProfit.toFixed(2)}백만/인 · 전월 대비 ${arrow(perProfitD)}${Math.abs(perProfitD).toFixed(2)}</div></div>
-    <div class="stat"><div class="sl">현재 인원</div><div class="sv">${META.headcountNow}<small>명</small></div><div class="sd dn">${baseHd>=0?'+':''}${baseHd}명 · 기준(${META.FTE}) 대비</div></div>
-    <div class="stat"><div class="sl">인당 인건비</div><div class="sv ${perLaborVsBase>=0?'dn':'up'}">${arrow(perLaborVsBase)} ${Math.abs(perLaborVsBase).toFixed(1)}<small>%</small></div><div class="sd muted">기준 대비 · 금액 비공개</div></div>
-    <div class="stat"><div class="sl">전사 공헌이익율</div><div class="sv">${(((PNL.rev.m5-2957)/PNL.rev.m5)*100).toFixed(1)}<small>%</small></div><div class="sd muted">당월(5월) 기준 · 변동비=재료비+판매수수료</div></div>
+    <div class="stat"><div class="sl">인당 매출액 <span class="stat-base">누계</span></div><div class="sv-wrap"><div class="sv">${HR.perRevenue.toFixed(1)}<small>백만</small></div></div><div class="sd ${perRevD>=0?'up':'dn'}">${arrow(perRevD)} ${Math.abs(perRevD).toFixed(1)}% 전월 대비</div></div>
+    <div class="stat"><div class="sl">인당 영업이익 <span class="stat-base">누계</span></div><div class="sv-wrap"><div class="sv">${HR.perProfit.toFixed(2)}<small>백만</small></div></div><div class="sd ${perProfitD>=0?'up':'dn'}">당월 ${curPerProfit.toFixed(2)}백만/인 · 전월 대비 ${arrow(perProfitD)}${Math.abs(perProfitD).toFixed(2)}</div></div>
+    <div class="stat"><div class="sl">현재 인원</div><div class="sv-wrap"><div class="sv">${META.headcountNow}<small>명</small></div></div><div class="sd dn">${baseHd>=0?'+':''}${baseHd}명 · 기준(${META.FTE}) 대비</div></div>
+    <div class="stat"><div class="sl">인당 인건비</div><div class="sv-wrap"><div class="sv ${perLaborVsBase>=0?'dn':'up'}">${arrow(perLaborVsBase)} ${Math.abs(perLaborVsBase).toFixed(1)}<small>%</small></div></div><div class="sd muted">기준 대비 · 금액 비공개</div></div>
+    <div class="stat"><div class="sl">전사 공헌이익율</div><div class="sv-wrap"><div class="sv">${(((PNL.rev.m5-2957)/PNL.rev.m5)*100).toFixed(1)}<small>%</small></div></div><div class="sd muted">당월(5월) 기준 ${info('공헌이익율 = (매출 − 변동비) ÷ 매출<br>변동비 = 재료비 + 판매수수료')}</div></div>
   </div>`;
 }
 function shareCapacityCard(){
@@ -2267,7 +2287,13 @@ function renderDepts(){
 /* ================= 라우팅 / 사이드바 토글 ================= */
 function scrollTop0(){window.scrollTo(0,0);try{document.documentElement.scrollTop=0;document.body.scrollTop=0;}catch(_){}}
 function showView(v){["corp","div","hr"].forEach(x=>document.getElementById("view-"+x).classList.toggle("hidden",x!==v));}
-function goHome(){renderCorp();showView("corp");renderSidebar("corp");scrollTop0();}
+function goHome(push){renderCorp();showView("corp");renderSidebar("corp");scrollTop0();if(push!==false)histPush({v:"corp"});}
+function goHR(push){renderHR();showView("hr");renderSidebar("hr");scrollTop0();if(push!==false)histPush({v:"hr"});}
+function histPush(st){try{history.pushState(st,"");}catch(_){}}
+function _revealApp(){document.getElementById("login").classList.add("hidden");document.getElementById("app").classList.remove("hidden");_started=true;}
+function _showLogin(){_started=false;document.getElementById("app").classList.add("hidden");document.getElementById("login").classList.remove("hidden");try{document.getElementById("lid").focus();}catch(_){}}
+function applyState(st){st=st||{v:"login"};if(st.v==="login"){_showLogin();return;}_revealApp();if(st.v==="hr")goHR(false);else if(st.v==="div"&&st.id)openDiv(st.id,false);else goHome(false);}
+window.addEventListener("popstate",function(e){applyState(e.state);});
 function isMobile(){return window.innerWidth<=1000;}
 function closeMobile(){if(isMobile()){document.getElementById("app").classList.remove("sbshow");document.getElementById("backdrop").classList.remove("on");}}
 function toggleSidebar(){
@@ -2291,8 +2317,9 @@ function startApp(){
   document.getElementById("titleHome2").onclick=goHome;
   document.getElementById("logoutBtn").onclick=doLogout;
   document.getElementById("backdrop").onclick=closeMobile;
+  histPush({v:"corp"});
 }
-function doLogout(){_started=false;document.getElementById("app").classList.add("hidden");document.getElementById("login").classList.remove("hidden");document.getElementById("lid").value="";document.getElementById("lpw").value="";document.getElementById("loginErr").textContent="";try{document.getElementById("lid").focus();}catch(_){}}
+function doLogout(){_started=false;document.getElementById("app").classList.add("hidden");document.getElementById("login").classList.remove("hidden");document.getElementById("lid").value="";document.getElementById("lpw").value="";document.getElementById("loginErr").textContent="";histPush({v:"login"});try{document.getElementById("lid").focus();}catch(_){}}
 let _started=false;
 function tryLogin(){
   if(_started)return;
@@ -2300,6 +2327,7 @@ function tryLogin(){
   if(id==="koas"&&pw==="koas2026"){ _started=true; try{startApp();}catch(err){_started=false;document.getElementById("loginErr").textContent="오류가 발생했습니다. 다시 시도해 주세요.";} }
   else document.getElementById("loginErr").textContent="아이디 또는 비밀번호가 올바르지 않습니다.";
 }
+try{history.replaceState({v:"login"},"");}catch(_){}
 (function bindLogin(){
   const btn=document.getElementById("loginBtn");
   btn.setAttribute("type","button");
