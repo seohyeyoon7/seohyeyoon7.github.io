@@ -708,7 +708,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .md-s{display:flex;justify-content:space-between;align-items:center} .md-sl{font-size:12.5px;color:var(--cap);font-weight:600} .md-sv{font-size:16px;font-weight:800;color:var(--text)} .md-sv.miss{color:var(--cap);font-size:14px}
 .kpi2col{display:grid;grid-template-columns:1fr 1fr;gap:13px}
 .kc2{background:#fff;border:1px solid var(--border);border-radius:12px;padding:15px 16px;box-shadow:0 1px 2px rgba(13,31,28,.04)}
-.kc2.miss{background:var(--surf2);border-style:dashed}
+.kc2.miss{background:#fff;border-style:dashed}
 .kc2-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .kc2-nm{font-size:15px;font-weight:800;color:var(--text)}
 .kc2-mp{font-size:11px;font-weight:800;color:var(--cap);background:#e7eae8;border-radius:20px;padding:3px 10px}
@@ -1388,7 +1388,7 @@ function renderCorp(){
         <div class="pfx-card-h"><h4>월별 영업이익 추이</h4><span class="pfx-unit">단위: 백만원</span></div>
         ${opMonthlyChart()}
       </div>
-      <div class="pfx-card center">
+      <div class="pfx-card">
         <div class="pfx-card-h"><h4>손익 구조 진단</h4></div>
         <div class="pfx-sub2">매출은 목표 달성, 이익은 미달 → 비용 구조가 원인</div>
         <div class="pfx-diag-r"><span>매출 목표 달성 (1~5월 누계) ${info('누계 매출 ÷ 누계 매출목표 × 100')}</span><b class="ok">${(E.revAchCum*100).toFixed(0)}%</b></div>
