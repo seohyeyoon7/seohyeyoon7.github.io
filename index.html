@@ -220,9 +220,10 @@ svg.ic{display:block}
 .scf-h{display:flex;align-items:flex-end;justify-content:space-between;font-size:12.5px;color:var(--cap);font-weight:700;margin-bottom:11px}
 .scf-bar{display:flex;height:16px;border-radius:8px;overflow:hidden;background:#eef2f0} .scf-bar span.e{background:var(--emerald)} .scf-bar span.g{background:#bcd9c8}
 .scf-cap{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;font-weight:600;color:var(--cap)}
-.saq2grid{display:flex;gap:16px;margin-top:16px;align-items:stretch}
-.saq2grid>.saq2{flex:1 1 0;min-width:0;align-self:stretch}
+.saq2grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;align-items:stretch}
+.saq2grid>.saq2{min-width:0}
 .saq2-fill{display:flex;flex-direction:column}
+.saq2-fill>.sctr{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:18px}
 .sctr{margin-top:22px;display:flex;flex-direction:column;gap:30px;flex:1;justify-content:space-around}
 .sct-kv{display:flex;align-items:baseline;justify-content:space-between;font-size:14px;font-weight:700;color:var(--text2)} .sct-kv .muted{font-size:12.5px;color:var(--cap);font-weight:600}
 .sct-big{font-size:34px;font-weight:800;color:var(--text);letter-spacing:-1px;margin:10px 0 16px} .sct-big small{font-size:14px;color:var(--cap);font-weight:700;margin-left:4px}
@@ -863,6 +864,13 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .mbr-tg{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--target-line)}
 .mbr-kv{font-size:12px;color:var(--body)}
 .spj-t{font-size:11px;color:var(--cap);font-weight:600;margin-left:4px}
+.role-employee .aicmt-btn{display:none!important}
+.role-employee .exec-only{display:none!important}
+.role-badge{display:block;width:100%;box-sizing:border-box;margin:0 0 9px;padding:8px 10px;border-radius:9px;font-size:12px;font-weight:700;text-align:center;letter-spacing:-.2px;border:1px solid var(--forest-line)}
+.rb-exec{background:rgba(94,201,184,.16);color:#a9ebdf} .rb-emp{background:rgba(255,255,255,.07);color:rgba(255,255,255,.62)}
+.tk-sigsel:disabled{opacity:1;-webkit-text-fill-color:currentColor;cursor:default}
+.hb2-inp input:disabled{background:var(--surf2);color:var(--body);cursor:default;opacity:1;-webkit-text-fill-color:var(--body)}
+.hb2-lock{font-size:11px;font-weight:800;color:var(--warn-ink);background:var(--warn-soft,#fcf1d9);border:1px solid #f0dcae;border-radius:20px;padding:3px 9px;margin-left:8px}
 </style>
 </head>
 <body>
@@ -877,7 +885,7 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
     <input id="lpw" type="password" placeholder="비밀번호를 입력하세요">
     <button class="login-btn" id="loginBtn">로그인</button>
     <div class="login-err" id="loginErr"></div>
-    <div class="login-hint">검증용 빌드 · 데모 계정 <b>koas / koas2026</b></div>
+    <div class="login-hint">직원(조회) <b>koas / koas</b> · 경영진(편집) <b>koas / koas2026</b></div>
   </div>
   <div class="login-credit">Architecture &amp; Build | <b>운영기획실 &amp; 서혜윤</b></div>
 </div>
@@ -1163,7 +1171,7 @@ function sigInline(s){return `<span class="sig ${s}"><span class="dot"></span>${
 function sigPill(s){return `<span class="sig pill ${s}"><span class="dot"></span>${SIGLAB[s]}</span>`;}
 function tkSigSelect(sig){
   const opts=[['ok','목표 도달'],['warn','목표 도달 전'],['risk','목표 초과']];
-  return `<select class="tk-sigsel sg-${sig}" onchange="tkSigChange(this)">${opts.map(([v,l])=>`<option value="${v}"${v===sig?' selected':''}>${l}</option>`).join("")}</select>`;
+  return `<select class="tk-sigsel sg-${sig}"${CURROLE!=="executive"?" disabled":""} onchange="tkSigChange(this)">${opts.map(([v,l])=>`<option value="${v}"${v===sig?' selected':''}>${l}</option>`).join("")}</select>`;
 }
 function tkSigChange(sel){ sel.className='tk-sigsel sg-'+sel.value; }
 function tagBadge(t){return t==="핵심"?'<span class="tagb core">핵심</span>':(t==="특임"?'<span class="tagb spec">특임</span>':'');}
@@ -1997,6 +2005,7 @@ function renderDiv(){
   bindInfos(document.getElementById("view-div"));
   const aiBtn=document.getElementById("divAiBtn"), aiBody=document.getElementById("divAiBody");
   if(aiBtn&&aiBody){aiBtn.onclick=()=>{
+    if(CURROLE!=="executive"){return;}
     if(aiBtn.dataset.mode==="view"){aiBody.contentEditable="true";aiBody.classList.add("editing");aiBody.focus();aiBtn.textContent="저장";aiBtn.dataset.mode="edit";}
     else{aiBody.contentEditable="false";aiBody.classList.remove("editing");divAiText[curDiv]=aiBody.innerText.trim();aiBtn.textContent="수정";aiBtn.dataset.mode="view";}
   };}
@@ -2111,9 +2120,9 @@ function hireBlock(){
   return `<div class="hireblock">
     <div class="hb2-head"><span class="hb2-dot"></span><b>채용 신중 검토</b><span class="hb2-sub">전사 HCVA·HCROI 모두 목표 미달 — 생산성 회복 우선</span></div>
     <div class="hb2-sim">
-      <span class="hb2-tag">채용 시뮬레이션</span>
-      <label class="hb2-inp">추가 인원 <input type="number" id="hireN" value="1" min="1" step="1"> <span>명</span></label>
-      <label class="hb2-inp">평균 연봉 <input type="number" id="hirePay" value="${HR.perLabor.toFixed(0)}" min="0" step="1"> <span>백만</span></label>
+      <span class="hb2-tag">채용 시뮬레이션</span>${CURROLE!=="executive"?'<span class="hb2-lock">경영진 전용</span>':''}
+      <label class="hb2-inp">추가 인원 <input type="number" id="hireN" value="1" min="1" step="1"${CURROLE!=="executive"?" disabled":""}> <span>명</span></label>
+      <label class="hb2-inp">평균 연봉 <input type="number" id="hirePay" value="${HR.perLabor.toFixed(0)}" min="0" step="1"${CURROLE!=="executive"?" disabled":""}> <span>백만</span></label>
       <span class="hb2-cost">추가 인건비 <b id="hireCost">—</b> 백만/년</span>
     </div>
     <div class="hb2-recover">이 채용의 인건비를 회수하려면 — 추가 인건비 <b id="hireCost2">—</b>백만 ÷ 공헌이익율 <b>${pct(HR.cmRate)}</b> 만큼의 공헌이익을 새로 만들어야 합니다 ${info(hireInfo())}</div>
@@ -2319,14 +2328,32 @@ function startApp(){
   document.getElementById("backdrop").onclick=closeMobile;
   histPush({v:"corp"});
 }
-function doLogout(){_started=false;document.getElementById("app").classList.add("hidden");document.getElementById("login").classList.remove("hidden");document.getElementById("lid").value="";document.getElementById("lpw").value="";document.getElementById("loginErr").textContent="";histPush({v:"login"});try{document.getElementById("lid").focus();}catch(_){}}
+function doLogout(){_started=false;CURROLE=null;try{localStorage.removeItem("koasRole");}catch(_){}document.body.classList.remove("role-employee","role-executive");document.getElementById("app").classList.add("hidden");document.getElementById("login").classList.remove("hidden");document.getElementById("lid").value="";document.getElementById("lpw").value="";document.getElementById("loginErr").textContent="";histPush({v:"login"});try{document.getElementById("lid").focus();}catch(_){}}
 let _started=false;
+let CURROLE=null;
+function applyRole(role){
+  CURROLE=role;
+  document.body.classList.remove("role-employee","role-executive");
+  document.body.classList.add(role==="executive"?"role-executive":"role-employee");
+  const lb=document.getElementById("logoutBtn");
+  if(lb){ let rb=document.getElementById("roleBadge");
+    if(!rb){rb=document.createElement("span");rb.id="roleBadge";lb.parentNode.insertBefore(rb,lb);}
+    rb.textContent=role==="executive"?"● 경영진 · 편집 가능":"● 직원 · 조회 전용";
+    rb.className="role-badge "+(role==="executive"?"rb-exec":"rb-emp");
+  }
+}
 function tryLogin(){
   if(_started)return;
   const id=(document.getElementById("lid").value||"").trim(), pw=(document.getElementById("lpw").value||"").trim();
-  if(id==="koas"&&pw==="koas2026"){ _started=true; try{startApp();}catch(err){_started=false;document.getElementById("loginErr").textContent="오류가 발생했습니다. 다시 시도해 주세요.";} }
+  let role=null;
+  if(id==="koas"&&pw==="koas") role="employee";
+  else if(id==="koas"&&pw==="koas2026") role="executive";
+  if(role){ _started=true; CURROLE=role; try{localStorage.setItem("koasRole",role);}catch(_){}
+    try{ applyRole(role); startApp(); }
+    catch(err){_started=false;document.getElementById("loginErr").textContent="오류가 발생했습니다. 다시 시도해 주세요.";} }
   else document.getElementById("loginErr").textContent="아이디 또는 비밀번호가 올바르지 않습니다.";
 }
+try{localStorage.removeItem("koasRole");}catch(_){}
 try{history.replaceState({v:"login"},"");}catch(_){}
 (function bindLogin(){
   const btn=document.getElementById("loginBtn");
