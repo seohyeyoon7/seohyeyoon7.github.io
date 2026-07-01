@@ -259,6 +259,7 @@ svg.ic{display:block}
 .cg-v{font-size:54px;font-weight:800;color:var(--warn);letter-spacing:-.04em;line-height:.92} .cg-v small{font-size:22px;font-weight:800;margin-left:2px}
 .cg-diff{font-size:18px;font-weight:800;color:var(--warn)}
 .cg-bar{position:relative;height:18px;border-radius:9px;background:var(--emerald-soft);margin-top:8px}
+.cg-fill{position:absolute;left:0;top:0;height:100%;border-radius:9px;background:var(--warn)}
 .cg-tg{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px solid #1a1a1a}
 .cg-tgl{position:relative;transform:translateX(-50%);margin-top:9px;display:inline-block;font-size:14.5px;font-weight:800;color:#1a1a1a;white-space:nowrap}
 .cg-now{position:absolute;top:50%;transform:translate(-50%,-50%)}
@@ -280,7 +281,7 @@ svg.ic{display:block}
 .dd-b{border:none;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--cap);padding:6px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.12s}
 .dd-b:hover{color:var(--text2)}
 .dd-b.active{background:#fff;color:var(--emerald-press);box-shadow:0 1px 3px rgba(16,39,31,.12)}
-.dcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:.12s;border-top:4px solid var(--navy)}
+.dcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:6px;cursor:default;transition:.12s;border-top:4px solid var(--navy)}
 .dcard:hover{border-color:var(--emerald);transform:translateY(-2px);box-shadow:0 8px 22px rgba(16,39,31,.07)}
 .dcard.t-sales{border-top-color:var(--emerald)} .dcard.t-cost{border-top-color:var(--navy)} .dcard.t-ops{border-top-color:var(--navy3)}
 .dcard .top{display:flex;align-items:center;gap:10px}
@@ -488,8 +489,8 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .dcm-stats b{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-.3px} .dcm-stats b small{font-size:11px;color:var(--cap);font-weight:700;margin-left:1px}
 .dcm-stats b.em{color:var(--emerald-press)} .dcm-stats b.navy{color:var(--navy)} .dcm-stats b.risk{color:var(--risk-ink)}
 .dc-fnote{font-size:13.5px;color:var(--cap)} .dc-fnote.up{color:var(--ok-ink);font-weight:700}
-.dc-btn{font-size:14px;font-weight:700;color:var(--text2);background:#fff;border:1px solid var(--border);border-radius:9px;padding:8px 15px;white-space:nowrap;cursor:pointer}
-.dc-btn:hover{background:var(--surf-hover);border-color:var(--border-soft)}
+.dc-btn{font-size:14px;font-weight:700;color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:9px;padding:8px 15px;white-space:nowrap;cursor:pointer}
+.dc-btn:hover{background:#dcefe4;border-color:var(--border-soft)}
 .statgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
 .stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:15px 16px;box-shadow:0 1px 3px rgba(16,39,31,.05);display:flex;flex-direction:column}
 .stat .sl{font-size:13px;color:var(--text2);font-weight:800} .stat .sv-wrap{flex:1;display:flex;align-items:center;margin:6px 0}
@@ -871,6 +872,10 @@ footer{font-size:12.5px;color:var(--ph);text-align:center;padding-top:24px;line-
 .tk-sigsel:disabled{opacity:1;-webkit-text-fill-color:currentColor;cursor:default}
 .hb2-inp input:disabled{background:var(--surf2);color:var(--body);cursor:default;opacity:1;-webkit-text-fill-color:var(--body)}
 .hb2-lock{font-size:11px;font-weight:800;color:var(--warn-ink);background:var(--warn-soft,#fcf1d9);border:1px solid #f0dcae;border-radius:20px;padding:3px 9px;margin-left:8px}
+.pfx-card-diag{display:flex;flex-direction:column} .pfx-card-diag .pfx-diag-mid{flex:1;display:flex;flex-direction:column;justify-content:center}
+.share-cmt-h{display:flex;justify-content:flex-end;margin-top:12px;margin-bottom:-2px}
+.share-edit{font-size:12px;font-weight:700;color:var(--emerald-press);background:var(--emerald-soft);border:1px solid var(--border-soft);border-radius:7px;padding:3px 11px;cursor:pointer}
+.share-cmt.editing{outline:2px solid var(--emerald);border-radius:8px;padding:8px 10px;background:#fff;user-select:text;-webkit-user-select:text}
 </style>
 </head>
 <body>
@@ -1272,7 +1277,7 @@ function wfSvg(W){
   const span=hi-lo||1, ih=H-24-pbase;
   const yOf=v=>24+ih*(hi-v)/span;
   const n=cats.length, gap=16, bw=(iw-gap*(n-1))/n;
-  const col={rev:"var(--navy)",cogs:"#3f6191",sga:"var(--warn)",profit:"var(--emerald)",final:"var(--emerald)",neg:"var(--risk)"};
+  const col={rev:"#9BD5CB",cogs:"#F3C778",sga:"#CE7A11",profit:"#3E9E90",final:"#0A5754",neg:"#0A5754"};
   let svg=`<svg viewBox="0 0 ${Wd} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block">`;
   const y0=yOf(0);
   svg+=`<line x1="${pl}" y1="${y0.toFixed(1)}" x2="${Wd-pr}" y2="${y0.toFixed(1)}" stroke="#d8dee5" stroke-width="1"/>`;
@@ -1292,11 +1297,11 @@ function wfSvg(W){
     const inside=yTop-14<24;
     const lblY=inside?yTop+18:yTop-9;
     const isCost=(c.kind==='cogs'||c.kind==='sga');
-    const lblFill=inside?'#fff':(c.kind==='neg'?'var(--risk-ink)':(c.kind==='cogs'?'#2f4d77':(c.kind==='sga'?'var(--warn-ink)':'var(--text)')));
+    const lblFill=inside?'#fff':(c.kind==='cogs'?'#B5680C':(c.kind==='sga'?'#8F5209':(c.kind==='rev'?'var(--text)':'var(--emerald-press)')));
     const lv=(isCost?"−":(c.val<0?"−":"+"))+Math.abs(isCost?(c.top-c.bot):c.val).toLocaleString();
     svg+=`<text x="${(x+bw/2).toFixed(1)}" y="${lblY.toFixed(1)}" font-size="15" font-weight="800" fill="${lblFill}" text-anchor="middle">${lv}</text>`;
     const pctV=c.kind==="rev"?"100%":(["매출총이익","영업이익"].includes(c.nm)?pct(c.nm==="매출총이익"?W.gpRate:W.opRate):pct((c.top-c.bot)/rev));
-    const nmFill=c.kind==='cogs'?'#2f4d77':(c.kind==='sga'?'var(--warn-ink)':'var(--text)');
+    const nmFill=c.kind==='cogs'?'#B5680C':(c.kind==='sga'?'#8F5209':'var(--text)');
     svg+=`<text x="${(x+bw/2).toFixed(1)}" y="${(H-28).toFixed(1)}" font-size="14" font-weight="800" fill="${nmFill}" text-anchor="middle">${c.nm}</text>`;
     svg+=`<text x="${(x+bw/2).toFixed(1)}" y="${(H-10).toFixed(1)}" font-size="13.5" font-weight="700" fill="var(--cap)" text-anchor="middle">${pctV}</text>`;
   });
@@ -1330,7 +1335,7 @@ function wfChart(){
         ${W.sga.map(item).join("")}
       </div>
     </div>
-    <div class="wf-note">※ 회계IR팀 손익표 ${W.label} 기준 · 막대: <b style="color:var(--navy)">매출·이익</b>에서 <b style="color:#3f6191">매출원가</b>와 <b style="color:var(--warn-ink)">판관비</b>를 차감 → 남는 <b style="color:var(--emerald-press)">영업이익</b>. 모든 값은 손익표 실제값(역산·추정 없음).</div>
+    <div class="wf-note">※ 회계IR팀 손익표 ${W.label} 기준 · <b style="color:var(--emerald-press)">매출액</b>에서 <b style="color:#B5680C">매출원가</b>·<b style="color:#8F5209">판관비</b>(빠져나가는 돈)를 차감 → <b style="color:#2a9d8f">매출총이익</b>·<b style="color:var(--emerald-press)">영업이익</b>(남는 돈). 모든 값은 손익표 실제값(역산·추정 없음).</div>
   </div>`;
 }
 function renderWF(){
@@ -1346,8 +1351,8 @@ function renderCorp(){
   const mSig=E.opMarginCum>=E.opMarginCumTarget?"ok":(E.opMarginCum>=0?"warn":"risk");
   const profitGap=HR.opTarget-E.profitCum;
   const msLab=s=>s==="ok"?"목표 초과":(s==="warn"?"목표 도달":"목표 도달 전");
-  const revInfo=info(`<b>매출 (1~5월 누계)</b><br>1~5월 누적 매출액입니다.<div class="row"><span>누계 실적</span><span>${E.revenueCum.toLocaleString()}백만</span></div><div class="row"><span>누계 목표(사업계획)</span><span>${E.revenueCumTarget.toLocaleString()}백만</span></div><div class="row"><span>달성률</span><span>${(E.revAchCum*100).toFixed(0)}%</span></div>산식: 누계 매출 ÷ 누계 매출목표 × 100`);
-  const marginInfo=info(`<b>영업이익률 (1~5월 누계)</b><br>매출에서 모든 비용을 빼고 남은 비율입니다.<div class="row"><span>누계 영업이익</span><span>${E.profitCum.toLocaleString()}백만</span></div><div class="row"><span>누계 매출</span><span>${E.revenueCum.toLocaleString()}백만</span></div><div class="row"><span>현재 영업이익률</span><span>${pct(E.opMarginCum)}</span></div>산식: 영업이익 ÷ 매출 × 100 · 목표 ${pct(E.opMarginCumTarget)}는 2026 연간 목표치`);
+  const revInfo=info(`<b>매출 (1~5월 누계)</b><br>1~5월 월별 매출액입니다.<div class="row"><span>1월</span><span>${PNL.rev.m1.toLocaleString()}백만</span></div><div class="row"><span>2월</span><span>${PNL.rev.m2.toLocaleString()}백만</span></div><div class="row"><span>3월</span><span>${PNL.rev.m3.toLocaleString()}백만</span></div><div class="row"><span>4월</span><span>${PNL.rev.m4.toLocaleString()}백만</span></div><div class="row"><span>5월</span><span>${PNL.rev.m5.toLocaleString()}백만</span></div>산식: 누계 매출 ÷ 누계 매출목표 × 100`);
+  const marginInfo=info(`<b>영업이익률 (1~5월 누계)</b><br>매출에서 모든 비용을 빼고 남은 비율입니다.<div class="row"><span>1월 영업이익</span><span>${PNL.op.m1.toLocaleString()}백만</span></div><div class="row"><span>2월 영업이익</span><span>${PNL.op.m2.toLocaleString()}백만</span></div><div class="row"><span>3월 영업이익</span><span>${PNL.op.m3.toLocaleString()}백만</span></div><div class="row"><span>4월 영업이익</span><span>${PNL.op.m4.toLocaleString()}백만</span></div><div class="row"><span>5월 영업이익</span><span>${PNL.op.m5.toLocaleString()}백만</span></div><div class="row"><span>누계 영업이익</span><span>${E.profitCum.toLocaleString()}백만</span></div><div class="row"><span>누계 매출</span><span>${E.revenueCum.toLocaleString()}백만</span></div>산식: 영업이익 ÷ 매출 × 100`);
 
   let h=`<div class="sec"><span class="bar"></span><h2>전사 KPI</h2><span class="s">· 2026년 ${META.baseMonth}월 누계 (1~${META.baseMonth}월)</span> ${info(signalInfo())}</div>
   <div class="pfx">
@@ -1396,8 +1401,9 @@ function renderCorp(){
         <div class="pfx-card-h"><h4>월별 영업이익 추이</h4><span class="pfx-unit">단위: 백만원</span></div>
         ${opMonthlyChart()}
       </div>
-      <div class="pfx-card">
+      <div class="pfx-card pfx-card-diag">
         <div class="pfx-card-h"><h4>손익 구조 진단</h4></div>
+        <div class="pfx-diag-mid">
         <div class="pfx-sub2">매출은 목표 달성, 이익은 미달 → 비용 구조가 원인</div>
         <div class="pfx-diag-r"><span>매출 목표 달성 (1~5월 누계) ${info('누계 매출 ÷ 누계 매출목표 × 100')}</span><b class="ok">${(E.revAchCum*100).toFixed(0)}%</b></div>
         <div class="pfx-diag-bar"><span class="ok" style="width:100%"></span></div>
@@ -1406,6 +1412,7 @@ function renderCorp(){
         <div class="pfx-diag-box2">
           <div class="pfx-db"><div class="pfx-db-l">매출 초과분</div><div class="pfx-db-v ok">+${(E.revenueCum-E.revenueCumTarget).toLocaleString()}백만</div></div>
           <div class="pfx-db r"><div class="pfx-db-l">이익 부족분</div><div class="pfx-db-v dn">${(E.profitCum-HR.opTarget).toLocaleString()}백만</div></div>
+        </div>
         </div>
       </div>
     </div>
@@ -1443,11 +1450,10 @@ function renderCorp(){
       <button class="dd-b ${divFilter==='ops'?'active':''}" data-f="ops">운영 지원 부서</button>
     </div></div><div id="divArea"></div>`;
 
-  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>인적 기여가치</h2></div>
+  h+=`<div class="sec sec-gap"><span class="bar"></span><h2>인적 기여가치</h2><button class="go go-hr2" id="goHR" style="margin-left:auto">인적 기여가치 자세히 보기 →</button></div>
   ${statGrid()}
   ${hcBigRow()}
   ${annualNote()}
-  <div style="margin-top:14px"><button class="go go-hr2" id="goHR">인적 기여가치 자세히 보기 →</button></div>
   <div style="margin-top:14px">${shareCapacityCard()}</div>`;
 
   h+=`<div class="sec sec-gap"><span class="bar"></span><h2>경쟁사 벤치마킹</h2><span class="s">— 분기 1회 갱신</span></div>${benchBlock()}`;
@@ -1601,19 +1607,19 @@ function claimChart(){
   const bw=Math.min(iw/m.length*0.46,34);
   const yC=v=>pt+ih-(v/maxC*ih);
   const yK=v=>pt+ih-(v/maxK*ih);
-  let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;max-height:250px">`;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;max-height:250px">`,cntLbl="";
   for(let g=0;g<=2;g++){const gy=pt+ih*g/2;svg+=`<line x1="${pl}" y1="${gy.toFixed(1)}" x2="${W-pr}" y2="${gy.toFixed(1)}" stroke="#eef0f2"/>`;}
   m.forEach((mm,i)=>{const cx=pl+iw*(i+0.5)/m.length;
     if(cnt[i]!=null){const top=yC(cnt[i]);
       svg+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${(pt+ih-top).toFixed(1)}" rx="3" fill="var(--navy)"/>`;
-      svg+=`<text x="${cx.toFixed(1)}" y="${(top-6).toFixed(1)}" font-size="11" font-weight="800" fill="var(--navy2)" text-anchor="middle">${cnt[i]}건</text>`;}
+      cntLbl+=`<text x="${cx.toFixed(1)}" y="${(top-6).toFixed(1)}" font-size="11" font-weight="800" fill="var(--navy2)" text-anchor="middle" style="paint-order:stroke" stroke="#fff" stroke-width="3">${cnt[i]}건</text>`;}
     svg+=`<text x="${cx.toFixed(1)}" y="${H-9}" font-size="11" fill="#869389" text-anchor="middle">${mm}</text>`;});
   let pts=[],lbl="";
   m.forEach((mm,i)=>{if(cost[i]!=null){const cx=pl+iw*(i+0.5)/m.length;const cy=yK(cost[i]);pts.push([cx,cy]);
     const ly=Math.min(cy+16,pt+ih-3);
     lbl+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="4" fill="var(--risk)"/><text x="${cx.toFixed(1)}" y="${ly.toFixed(1)}" font-size="11" font-weight="800" fill="var(--risk-ink)" text-anchor="middle" style="paint-order:stroke" stroke="#fff" stroke-width="3">${cost[i].toFixed(1)}</text>`;}});
   if(pts.length>1)svg+=`<polyline points="${pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ")}" fill="none" stroke="var(--risk)" stroke-width="2.4"/>`;
-  return svg+lbl+`</svg>`;
+  return svg+lbl+cntLbl+`</svg>`;
 }
 function claimGauge(){
   const now=CLAIM.rateNow, tg=CLAIM.rateTarget, scale=0.01;
@@ -1623,6 +1629,7 @@ function claimGauge(){
     <div class="cg-top"><span class="cg-t">클레임 비용율 (누적)</span><span class="cg-pill">${ic(ICON.warn,12)} 주의 · 목표 초과</span></div>
     <div class="cg-mid"><span class="cg-v">${(now*100).toFixed(2)}<small>%</small></span><span class="cg-diff">목표 대비 +${diff}%p</span></div>
     <div class="cg-bar">
+      <div class="cg-fill" style="width:${nowL.toFixed(1)}%"></div>
       <div class="cg-tg" style="left:${tgL.toFixed(1)}%"></div>
       <div class="cg-now" style="left:${nowL.toFixed(1)}%"><span class="cg-nowl">현재 ${(now*100).toFixed(2)}%</span><span class="cg-dot"></span></div>
     </div>
@@ -1641,7 +1648,7 @@ function renderDivGroups(){
       <div class="divs">${DIVS.filter(d=>d.type===tp).map(divCard).join("")}</div></div>`;
   });
   document.getElementById("divArea").innerHTML=h;
-  document.querySelectorAll('[data-div]').forEach(el=>el.onclick=()=>openDiv(el.dataset.div));
+  document.querySelectorAll('[data-div]').forEach(el=>{const b=el.querySelector('.dc-btn');if(b)b.onclick=(e)=>{e.stopPropagation();openDiv(el.dataset.div);};});
   const ddf=document.getElementById("ddFilter");
   if(ddf) ddf.querySelectorAll('.dd-b').forEach(b=>b.onclick=()=>{
     divFilter=b.dataset.f;
@@ -1654,13 +1661,14 @@ function divChips(id){
   return list.map(k=>`<span class="chip">${tagChip(k.tag)}${k.name}</span>`).join("")||`<span class="tiny muted">등록 과제 없음</span>`;
 }
 function paceInfo(d){
-  const ach=divAch(d),exp=expectedProgress();
-  return `<b>기대 진도란?</b><br>지금은 ${META.baseMonth}월, 1년의 ${META.baseMonth}/12 즉 <b>${(exp*100).toFixed(0)}%</b>가 지났습니다. 그래서 연간 목표의 ${(exp*100).toFixed(0)}%를 채웠으면 딱 정상 속도입니다.
+  const ach=divAch(d),exp=expectedProgress(),diff=(ach-exp)*100;
+  return `<b>일정 대비란?</b><br>지금은 ${META.baseMonth}월로 1년의 ${META.baseMonth}/12(<b>${(exp*100).toFixed(0)}%</b>)가 지났습니다. 연간 목표의 ${(exp*100).toFixed(0)}%(기대 진도)를 채웠으면 정상 속도이며, <b>달성률 − 기대 진도 = 일정 대비</b>입니다. +면 일정보다 앞섬, −면 뒤처짐을 뜻합니다.
   <div class="row"><span>연간 목표</span><span>${fmtM(d.revTarget)}</span></div>
   <div class="row"><span>현재 누계 실적</span><span>${fmtM(d.revCum)}</span></div>
   <div class="row"><span>달성률</span><span>${pct(ach)}</span></div>
-  <div class="row"><span>기대 진도</span><span>${(exp*100).toFixed(0)}%</span></div>
-  현재 ${pct(ach)}는 기대 진도(${(exp*100).toFixed(0)}%)보다 ${ach>=exp?'앞서':'뒤처져'} 있습니다.`;
+  <div class="row"><span>기대 진도(${META.baseMonth}/12)</span><span>${(exp*100).toFixed(0)}%</span></div>
+  <div class="row"><span>일정 대비</span><span>${diff>=0?'+':''}${diff.toFixed(1)}%p</span></div>
+  일정 대비 <b>${diff>=0?'+':''}${diff.toFixed(1)}%p</b> — 기대 진도보다 ${diff>=0?'앞서':'뒤처져'} 있습니다.`;
 }
 const HCMAP={sm1:["세일즈마케팅1본부"],sm2:["세일즈마케팅2본부"],prod:["생산본부(공장)"],rnd:["연구소"],ops:["동반성장팀","데이터정보팀"],plan:["운영기획실"],finir:["재무·IR본부"]};
 function divCard(d){
@@ -1674,7 +1682,7 @@ function divCard(d){
       <div class="dc-t">연간 목표 ${d.revTarget.toLocaleString()}백만</div>
       <div class="dc-sig">${sigPill(st)}</div>
       <div class="dc-bar"><div class="dc-mark" style="left:${(exp*100).toFixed(1)}%"></div><div class="dc-fill" style="width:${Math.min(ach*100,100)}%;background:${scol}"></div></div>
-      <div class="dc-prow"><b style="color:${scol}">${pct(ach)} 달성</b><span class="dc-exp">기대 진도 ${(exp*100).toFixed(0)}% ${info(paceInfo(d))}</span></div>`;
+      <div class="dc-prow"><b style="color:${scol}">${pct(ach)} 달성</b><span class="dc-exp">일정 대비 <b style="color:${paceDiff>=0?'var(--ok-ink)':'var(--warn-ink)'}">${paceDiff>=0?'+':''}${paceDiff.toFixed(1)}%p</b> ${info(paceInfo(d))}</span></div>`;
     if(paceDiff<0&&d.gapNote) mid+=`<div class="dc-info">${ic(ICON.warn,12)} ${d.gapNote}</div>`;
   } else if(d.cardKpi){
     const ck=d.cardKpi;
@@ -1872,7 +1880,7 @@ function divMetricDetail(d){
         <div class="md-val">${d.revCum.toLocaleString()}<small>백만</small></div>
         <div class="md-sub">연간 목표 ${d.revTarget.toLocaleString()}백만</div>
         <div class="md-bar"><div class="md-mark" style="left:${(exp*100).toFixed(1)}%"></div><div class="md-fill" style="width:${Math.min(ach*100,100)}%;background:${col}"></div></div>
-        <div class="md-prow"><b style="color:${col}">${pct(ach)} 달성</b><span class="md-exp">기대 진도 ${(exp*100).toFixed(0)}% (${META.baseMonth}/12) ${info(paceInfo(d))}</span></div>
+        <div class="md-prow"><b style="color:${col}">${pct(ach)} 달성</b><span class="md-exp">일정 대비 <b style="color:${(ach-exp)>=0?'var(--ok-ink)':'var(--warn-ink)'}">${(ach-exp)>=0?'+':''}${((ach-exp)*100).toFixed(1)}%p</b> ${info(paceInfo(d))}</span></div>
       </div>
       <div class="md-side">
         <div class="md-s"><div class="md-sl">당월 (${META.baseMonth}월)</div><div class="md-sv ${d.revM!=null?'':'miss'}">${d.revM!=null?d.revM.toLocaleString()+'<small style="font-size:12px;color:var(--cap);font-weight:700"> 백만</small>':'0'}</div></div>
@@ -2079,6 +2087,7 @@ function shareCapacityCard(){
       <div class="share-zsegs">${segs}</div>
       <div class="share-zscale">${labels}</div>
     </div>
+    <div class="share-cmt-h"><button class="share-edit" onclick="var b=this,c=this.closest('.sharecard').querySelector('.share-cmt');if(b.textContent==='수정'){c.contentEditable='true';c.classList.add('editing');c.focus();b.textContent='저장';}else{c.contentEditable='false';c.classList.remove('editing');b.textContent='수정';}">수정</button></div>
     <div class="share-cmt">이익이 증가할수록 성과 공유 여력이 점진적으로 확대됩니다. 현재 누계 영업이익 <b>+${profit.toLocaleString()}백만</b>은 연간 목표(${target.toLocaleString()}백만) 대비 약 <b>${(r*100).toFixed(0)}%</b> 수준으로, ‘${zones[zi].l}’ 구간입니다.</div>
     <div class="share-disc">* 경영성과금은 임금이 아닌 경영성과 배분금이며, 지급 여부와 수준은 매년 회사의 경영판단에 따라 결정됩니다. 표시 구간은 영업이익 수준에 따른 상대적 위치이며, 특정 금액의 지급을 보장하지 않습니다.</div>
   </div>`;
